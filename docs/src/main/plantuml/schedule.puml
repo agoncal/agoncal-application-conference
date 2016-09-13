@@ -1,0 +1,15 @@
+@startuml
+
+class Schedule << Model >>
+class Session << Model >>
+class Venue << Model >>
+
+class ScheduleDAO << DAO >>
+class ScheduleResource << REST Endpoint >>
+
+ScheduleResource ..> ScheduleDAO
+ScheduleDAO ..> Schedule
+Schedule --> Session
+Schedule --> Venue
+
+@enduml
