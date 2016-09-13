@@ -12,22 +12,23 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
@@ -39,15 +40,16 @@ public class RoomEndpointTest {
     // ======================================
 
     private static final Room TEST_ROOM = new Room("Metroxx", "Metropolis");
-
     private static String roomId;
+    private Client client;
+    private WebTarget webTarget;
 
     // ======================================
     // =          Injection Points          =
     // ======================================
 
     @ArquillianResource
-    private URL base;
+    private URI baseURL;
 
     // ======================================
     // =         Deployment methods         =
@@ -66,40 +68,50 @@ public class RoomEndpointTest {
     }
 
     // ======================================
+    // =          Lifecycle methods         =
+    // ======================================
+
+    @Before
+    public void initWebTarget() {
+        client = ClientBuilder.newClient();
+        webTarget = client.target(baseURL);
+    }
+
+    // ======================================
     // =            Test methods            =
     // ======================================
 
     @Test
     @InSequence(1)
+    public void shouldGetAllRooms() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    @InSequence(2)
     public void shouldCreateRoom() throws Exception {
-        Response response = createRoom(TEST_ROOM);
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_ROOM, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         roomId = getRoomId(response);
     }
 
     @Test
-    @InSequence(2)
+    @InSequence(3)
     public void shouldGetAlreadyCreatedRoom() throws Exception {
-        URL url = new URL(base, "rooms/" + roomId);
-        WebTarget target = ClientBuilder.newClient().target(url.toExternalForm());
-        Response response = target.request(MediaType.APPLICATION_JSON_TYPE).get();
+        Response response = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals(roomId, jsonObject.getInt("id"));
+        assertEquals(roomId, jsonObject.getString("id"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getJsonObject("venue").getString("name"));
     }
 
     @Test
-    @InSequence(6)
+    @InSequence(4)
     public void shouldRemoveRoom() throws Exception {
-        URL url = new URL(base, "rooms/" + roomId);
-        WebTarget target = ClientBuilder.newClient().target(url.toExternalForm());
-        Response deleteResponse = target.request(MediaType.APPLICATION_JSON_TYPE).delete();
-        assertEquals(204, deleteResponse.getStatus());
-
-        URL checkUrl = new URL(base, "rooms/" + roomId);
-        WebTarget checkTarget = ClientBuilder.newClient().target(checkUrl.toExternalForm());
-        Response checkResponse = checkTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
+        Response response = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).delete();
+        assertEquals(204, response.getStatus());
+        Response checkResponse = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
     }
 
@@ -121,12 +133,5 @@ public class RoomEndpointTest {
         String competitionJson = response.readEntity(String.class);
         StringReader stringReader = new StringReader(competitionJson);
         return Json.createReader(stringReader);
-    }
-
-    private Response createRoom(Room room) throws MalformedURLException {
-        URL url = new URL(base, "/rooms");
-        System.out.println("#############" +url.toExternalForm());
-        WebTarget target = ClientBuilder.newClient().target(url.toExternalForm());
-        return target.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(room, MediaType.APPLICATION_JSON_TYPE));
     }
 }
