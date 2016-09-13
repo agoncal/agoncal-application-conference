@@ -6,9 +6,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>microprofile-conference</artifactId>
-        <groupId>io.microprofile.showcase</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.agoncal.application.conference</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0</version>
     </parent>
 
     <artifactId>microservice-documentation</artifactId>
