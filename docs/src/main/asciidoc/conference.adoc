@@ -12,8 +12,8 @@ The application consists of several Microservices and a Web-Application managing
 
 = Architecture
 
-* Session service. Manage session descriptions.
-* Session voting service. Vote for the your favorite session
+* Venue service. Manage the venue description with rooms and halls
+* Voting service. Vote for the your favorite session
 * Speaker service. Manage speakers, Bios, etc
 * Schedule Service.  Service to manage session schedules
 * Front-end application

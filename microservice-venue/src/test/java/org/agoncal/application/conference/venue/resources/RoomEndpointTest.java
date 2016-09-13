@@ -40,7 +40,7 @@ public class RoomEndpointTest {
 
     private static final Room TEST_ROOM = new Room("Metroxx", "Metropolis");
 
-    private static String scheduleId;
+    private static String roomId;
 
     // ======================================
     // =          Injection Points          =
@@ -72,32 +72,32 @@ public class RoomEndpointTest {
     @Test
     @InSequence(1)
     public void shouldCreateRoom() throws Exception {
-        Response response = createScheduledSession(TEST_ROOM);
+        Response response = createRoom(TEST_ROOM);
         assertEquals(201, response.getStatus());
-        scheduleId = getRoomId(response);
+        roomId = getRoomId(response);
     }
 
     @Test
     @InSequence(2)
     public void shouldGetAlreadyCreatedRoom() throws Exception {
-        URL url = new URL(base, "rooms/" + scheduleId);
+        URL url = new URL(base, "rooms/" + roomId);
         WebTarget target = ClientBuilder.newClient().target(url.toExternalForm());
         Response response = target.request(MediaType.APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals(scheduleId, jsonObject.getInt("id"));
+        assertEquals(roomId, jsonObject.getInt("id"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getJsonObject("venue").getString("name"));
     }
 
     @Test
     @InSequence(6)
     public void shouldRemoveRoom() throws Exception {
-        URL url = new URL(base, "rooms/" + scheduleId);
+        URL url = new URL(base, "rooms/" + roomId);
         WebTarget target = ClientBuilder.newClient().target(url.toExternalForm());
         Response deleteResponse = target.request(MediaType.APPLICATION_JSON_TYPE).delete();
         assertEquals(204, deleteResponse.getStatus());
 
-        URL checkUrl = new URL(base, "rooms/" + scheduleId);
+        URL checkUrl = new URL(base, "rooms/" + roomId);
         WebTarget checkTarget = ClientBuilder.newClient().target(checkUrl.toExternalForm());
         Response checkResponse = checkTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
@@ -123,7 +123,7 @@ public class RoomEndpointTest {
         return Json.createReader(stringReader);
     }
 
-    private Response createScheduledSession(Room room) throws MalformedURLException {
+    private Response createRoom(Room room) throws MalformedURLException {
         URL url = new URL(base, "rooms");
         WebTarget target = ClientBuilder.newClient().target(url.toExternalForm());
         return target.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(room, MediaType.APPLICATION_JSON_TYPE));

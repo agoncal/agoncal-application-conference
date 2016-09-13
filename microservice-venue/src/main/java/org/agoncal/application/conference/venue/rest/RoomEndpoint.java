@@ -47,7 +47,7 @@ public class RoomEndpoint {
     @Path("/{id}")
     public Response retrieve(@PathParam("id") String roomId) {
         return roomDAO.findById(roomId)
-            .map(schedule -> Response.ok(schedule).build())
+            .map(room -> Response.ok(room).build())
             .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 

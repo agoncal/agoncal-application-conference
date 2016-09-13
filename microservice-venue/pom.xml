@@ -16,7 +16,7 @@
     <packaging>war</packaging>
 
     <build>
-        <finalName>conference-schedule</finalName>
+        <finalName>conference-venue</finalName>
     </build>
 
     <dependencies>
@@ -76,7 +76,7 @@
                         <configuration>
                             <properties>
                                 <swarm.http.port>8081</swarm.http.port>
-                                <swarm.context.path>/schedule</swarm.context.path>
+                                <swarm.context.path>/</swarm.context.path>
                             </properties>
                         </configuration>
                     </plugin>
