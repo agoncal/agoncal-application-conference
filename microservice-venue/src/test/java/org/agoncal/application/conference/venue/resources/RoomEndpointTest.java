@@ -124,7 +124,8 @@ public class RoomEndpointTest {
     }
 
     private Response createRoom(Room room) throws MalformedURLException {
-        URL url = new URL(base, "rooms");
+        URL url = new URL(base, "/rooms");
+        System.out.println("#############" +url.toExternalForm());
         WebTarget target = ClientBuilder.newClient().target(url.toExternalForm());
         return target.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(room, MediaType.APPLICATION_JSON_TYPE));
     }
