@@ -1,7 +1,7 @@
 package org.agoncal.application.conference.venue.resources;
 
 import org.agoncal.application.conference.venue.model.Room;
-import org.agoncal.application.conference.venue.persistence.RoomDAO;
+import org.agoncal.application.conference.venue.persistence.RoomRepository;
 import org.agoncal.application.conference.venue.rest.Application;
 import org.agoncal.application.conference.venue.rest.RoomEndpoint;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -63,7 +63,7 @@ public class RoomEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Room.class, RoomEndpoint.class, RoomDAO.class, Application.class)
+            .addClasses(Room.class, RoomEndpoint.class, RoomRepository.class, Application.class)
             .addAsLibraries(files);
     }
 
@@ -74,7 +74,7 @@ public class RoomEndpointTest {
     @Before
     public void initWebTarget() {
         client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL);
+        webTarget = client.target(baseURL).path("rooms");
     }
 
     // ======================================
@@ -103,7 +103,7 @@ public class RoomEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(roomId, jsonObject.getString("id"));
-        assertEquals(TEST_ROOM.getName(), jsonObject.getJsonObject("venue").getString("name"));
+        assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
     }
 
     @Test

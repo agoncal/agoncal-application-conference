@@ -2,7 +2,7 @@ package org.agoncal.application.conference.venue.rest;
 
 import io.swagger.annotations.Api;
 import org.agoncal.application.conference.venue.model.Room;
-import org.agoncal.application.conference.venue.persistence.RoomDAO;
+import org.agoncal.application.conference.venue.persistence.RoomRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -28,7 +28,7 @@ public class RoomEndpoint {
     // ======================================
 
     @Inject
-    private RoomDAO roomDAO;
+    private RoomRepository roomDAO;
 
     // ======================================
     // =          Business methods          =

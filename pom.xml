@@ -38,6 +38,7 @@
         <version.arquillian.wildfly.managed>8.2.1.Final</version.arquillian.wildfly.managed>
         <version.junit>4.12</version.junit>
         <version.resteasy>3.0.18.Final</version.resteasy>
+        <version.json>1.0.4</version.json>
 
         <!-- App servers -->
         <version.wildfly-swarm>2016.9</version.wildfly-swarm>
@@ -99,6 +100,18 @@
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-client</artifactId>
                 <version>${version.resteasy}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jackson-provider</artifactId>
+                <version>${version.resteasy}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.json</artifactId>
+                <version>${version.json}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -250,7 +263,7 @@
         </profile>
 
         <profile>
-            <id>wildfly-swarm</id>
+            <id>arquillian-wildfly-swarm</id>
             <build>
                 <plugins>
                     <plugin>

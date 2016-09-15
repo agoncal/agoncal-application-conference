@@ -12,7 +12,7 @@ import java.util.*;
  *         --
  */
 @ApplicationScoped
-public class RoomDAO {
+public class RoomRepository {
 
     // ======================================
     // =             Attributes             =
