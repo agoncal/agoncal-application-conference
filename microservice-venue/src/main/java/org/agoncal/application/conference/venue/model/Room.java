@@ -3,6 +3,9 @@ package org.agoncal.application.conference.venue.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -19,6 +22,7 @@ public class Room {
     // ======================================
 
     private String id;
+    private Map<String, URI> links;
     private String name;
     private Integer capacity;
     private String setup;
@@ -78,6 +82,11 @@ public class Room {
         this.setup = setup;
     }
 
+    public void addLink(String title, URI uri) {
+        links = new HashMap<>();
+        links.put(title, uri);
+    }
+
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
@@ -99,6 +108,7 @@ public class Room {
     public String toString() {
         return "Room{" +
             "id='" + id + '\'' +
+            ", links=" + links +
             ", name='" + name + '\'' +
             ", capacity=" + capacity +
             ", setup='" + setup + '\'' +

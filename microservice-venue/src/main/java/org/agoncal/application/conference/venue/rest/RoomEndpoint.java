@@ -7,8 +7,7 @@ import org.agoncal.application.conference.venue.persistence.RoomRepository;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
 
@@ -30,6 +29,9 @@ public class RoomEndpoint {
     @Inject
     private RoomRepository roomDAO;
 
+    @Context
+    UriInfo uriInfo;
+
     // ======================================
     // =          Business methods          =
     // ======================================
@@ -46,14 +48,22 @@ public class RoomEndpoint {
     @GET
     @Path("/{id}")
     public Response retrieve(@PathParam("id") String roomId) {
-        return roomDAO.findById(roomId)
-            .map(room -> Response.ok(room).build())
-            .orElse(Response.status(Response.Status.NOT_FOUND).build());
+
+        Room room = roomDAO.findById(roomId);
+
+        if (room != null) {
+            room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
+            return Response.ok(room).build();
+        } else
+            return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @GET
     public Response allRooms() {
         List<Room> allRooms = roomDAO.getAllRooms();
+        for (Room room : allRooms) {
+            room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
+        }
         GenericEntity<List<Room>> entity = buildEntity(allRooms);
         return Response.ok(entity).build();
     }

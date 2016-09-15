@@ -57,8 +57,8 @@ public class RoomRepository {
         return new ArrayList<>(roomMap.values());
     }
 
-    public Optional<Room> findById(String id) {
-        return Optional.ofNullable(roomMap.get(id));
+    public Room findById(String id) {
+        return roomMap.get(id);
     }
 
     public Room updateRoom(Room room) {
