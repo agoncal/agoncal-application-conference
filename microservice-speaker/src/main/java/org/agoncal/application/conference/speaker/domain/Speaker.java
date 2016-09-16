@@ -29,10 +29,8 @@ public class Speaker {
     private String avatarUrl;
     private String company;
     private String blog;
-    @ElementCollection
-    @CollectionTable(name = "acceptedTalks")
-    @Column(name = "acceptedTalkId", nullable = false)
-    private List<String> acceptedTalkIds;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<AcceptedTalk> acceptedTalks;
 
     // ======================================
     // =            Constructors            =
@@ -128,15 +126,15 @@ public class Speaker {
         this.blog = blog;
     }
 
-    public List<String> getAcceptedTalkIds() {
-        return acceptedTalkIds;
+    public List<AcceptedTalk> getAcceptedTalks() {
+        return acceptedTalks;
     }
 
-    public void setAcceptedTalkIds(List<String> acceptedTalkIds) {
-        this.acceptedTalkIds = acceptedTalkIds;
+    public void setAcceptedTalks(List<AcceptedTalk> acceptedTalks) {
+        this.acceptedTalks = acceptedTalks;
     }
 
-    // ======================================
+// ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
 
@@ -165,7 +163,7 @@ public class Speaker {
             ", avatarUrl='" + avatarUrl + '\'' +
             ", company='" + company + '\'' +
             ", blog='" + blog + '\'' +
-            ", acceptedTalkIds='" + acceptedTalkIds + '\'' +
+            ", acceptedTalks='" + acceptedTalks + '\'' +
             '}';
     }
 }
