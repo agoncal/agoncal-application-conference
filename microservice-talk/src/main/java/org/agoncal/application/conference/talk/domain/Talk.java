@@ -37,6 +37,10 @@ public class Talk {
     private Map<String, URI> links;
     private String title;
     private String language;
+    private String talkType;
+    private String track;
+    @Column(length = 5000)
+    private String summary;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Speaker> speakers;
 
@@ -81,6 +85,30 @@ public class Talk {
         this.language = language;
     }
 
+    public String getTalkType() {
+        return talkType;
+    }
+
+    public void setTalkType(String talkType) {
+        this.talkType = talkType;
+    }
+
+    public String getTrack() {
+        return track;
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     public void addLink(String title, URI uri) {
         links = new HashMap<>();
         links.put(title, uri);
@@ -105,10 +133,15 @@ public class Talk {
 
     @Override
     public String toString() {
-        return "AcceptedTalk{" +
+        return "Talk{" +
             "id='" + id + '\'' +
+            ", links=" + links +
             ", title='" + title + '\'' +
             ", language='" + language + '\'' +
+            ", talkType='" + talkType + '\'' +
+            ", track='" + track + '\'' +
+            ", summary='" + summary + '\'' +
+            ", speakers=" + speakers +
             '}';
     }
 }

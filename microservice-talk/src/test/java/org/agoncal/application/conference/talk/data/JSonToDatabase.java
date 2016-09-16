@@ -23,43 +23,43 @@ import java.util.Map;
 public class JSonToDatabase {
 
     /**
-     * create table AcceptedTalk (id varchar(255) not null, language varchar(255), title varchar(255), primary key (id))
-     * create table Speaker (id varchar(255) not null, avatarUrl varchar(255), bio varchar(5000), blog varchar(255), company varchar(255), firstName varchar(255), language varchar(3), lastName varchar(255), twitter varchar(255), primary key (id))
-     * create table Speaker_AcceptedTalk (Speaker_id varchar(255) not null, acceptedTalks_id varchar(255) not null)
+     * create table Talk (id varchar(255) not null, language varchar(255), summary varchar(255), talkType varchar(255), title varchar(255), track varchar(255), primary key (id))
+     * create table Speaker (id varchar(255) not null, name varchar(255), primary key (id))
+     * create table Talk_Speaker (Talk_id varchar(255) not null, speakers_id varchar(255) not null)
      */
 
-    private static List<String> acceptedTalkCreateSQLStatements;
+    private static List<String> talkCreateSQLStatements;
     private static String speakerCreateSQLStatement;
-    private static Map<String, String> talksAlreadyExist = new HashMap<>();
+    private static Map<String, String> speakersAlreadyExist = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
 
-        File file = Paths.get("src/test/resources/speakers.json").toFile();
+        File file = Paths.get("src/test/resources/talks.json").toFile();
         JsonReader rdr = Json.createReader(new FileReader(file.getAbsoluteFile()));
 
         JsonArray results = rdr.readArray();
         for (JsonObject result : results.getValuesAs(JsonObject.class)) {
-            acceptedTalkCreateSQLStatements = new ArrayList<>();
-            speakerCreateSQLStatement = "INSERT INTO Speaker (id, firstName, lastName, company, twitter, avatarUrl, language, blog, bio) values (";
+            talkCreateSQLStatements = new ArrayList<>();
+            speakerCreateSQLStatement = "INSERT INTO Talk (id, title, language, talkType, track, summary) values (";
 
-            speakerCreateSQLStatement += getSqlValue(result, "uuid") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "firstName") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "lastName") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "company") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "twitter") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "avatarURL") + ", ";
+            speakerCreateSQLStatement += "'" + result.getString("id") + "', ";
+            speakerCreateSQLStatement += getSqlValue(result, "title") + ", ";
+            speakerCreateSQLStatement += getSqlValue(result, "lang") + ", ";
+            speakerCreateSQLStatement += getSqlValue(result, "talkType") + ", ";
+            speakerCreateSQLStatement += getSqlValue(result, "track") + ", ";
+            speakerCreateSQLStatement += getSqlValue(result, "summary") + ", ";
 
-            JsonArray links = result.getJsonArray("links");
-            for (JsonObject link : links.getValuesAs(JsonObject.class)) {
-                getSpeaker(result.getString("uuid"), link.getString("href"));
-            }
+            // JsonArray speakers = result.getJsonArray("speakers");
+            // for (JsonObject link : speakers.getValuesAs(JsonObject.class)) {
+            //     getSpeaker(result.getString("id"), link.getString("href"));
+            // }
 
             speakerCreateSQLStatement += ");";
             System.out.println(speakerCreateSQLStatement);
-            for (String acceptedTalkCreateSQLStatement : acceptedTalkCreateSQLStatements) {
-                System.out.println(acceptedTalkCreateSQLStatement);
-            }
-            System.out.println("");
+            // for (String acceptedTalkCreateSQLStatement : talkCreateSQLStatements) {
+            //     System.out.println(acceptedTalkCreateSQLStatement);
+            // }
+            // System.out.println("");
         }
     }
 
@@ -79,7 +79,7 @@ public class JSonToDatabase {
                 for (JsonObject link : links.getValuesAs(JsonObject.class)) {
                     String hrefTalk = link.getString("href");
                     if (hrefTalk.contains("/talks"))
-                        acceptedTalkCreateSQLStatements.addAll(getTalk(speakerUUID, hrefTalk));
+                        talkCreateSQLStatements.addAll(getTalk(speakerUUID, hrefTalk));
                 }
             }
         }
@@ -93,8 +93,11 @@ public class JSonToDatabase {
         try (InputStream is = url.openStream(); JsonReader rdr = Json.createReader(is)) {
             JsonObject result = rdr.readObject();
 
-            if (!talksAlreadyExist.containsKey(result.getString("id"))) {
-                talksAlreadyExist.put(result.getString("id"), "exists");
+            if (!speakersAlreadyExist.containsKey(result.getString("id"))) {
+
+                System.out.println(result.toString());
+
+                speakersAlreadyExist.put(result.getString("id"), "exists");
                 acceptedTalkCreateSQLStatement = "INSERT INTO AcceptedTalk (id, title, language) values (";
                 acceptedTalkCreateSQLStatement += "'" + result.getString("id") + "', ";
                 acceptedTalkCreateSQLStatement += getSqlValue(result, "title") + ", ";

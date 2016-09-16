@@ -25,8 +25,7 @@ public class Speaker {
     private String id;
     @Transient
     private Map<String, URI> links;
-    private String lastName;
-    private String firstName;
+    private String name;
 
     // ======================================
     // =            Constructors            =
@@ -35,9 +34,9 @@ public class Speaker {
     public Speaker() {
     }
 
-    public Speaker(String id, String lastName) {
+    public Speaker(String id, String name) {
         this.id = id;
-        this.lastName = lastName;
+        this.name = name;
     }
 
     // ======================================
@@ -61,20 +60,12 @@ public class Speaker {
         this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addLink(String title, URI uri) {
@@ -103,8 +94,7 @@ public class Speaker {
     public String toString() {
         return "Speaker{" +
             "id='" + id + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", firstName='" + firstName + '\'' +
+            ", name='" + name + '\'' +
             '}';
     }
 }
