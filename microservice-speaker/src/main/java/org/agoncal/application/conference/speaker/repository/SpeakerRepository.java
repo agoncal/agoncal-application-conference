@@ -1,10 +1,10 @@
 package org.agoncal.application.conference.speaker.repository;
 
 import org.agoncal.application.conference.speaker.domain.Speaker;
-import org.agoncal.application.conference.speaker.resource.SpeakerResource;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -27,22 +27,25 @@ public class SpeakerRepository {
     // =          Business methods          =
     // ======================================
 
-    public Speaker create(SpeakerResource speakerResource) {
-        return null;
+    public Speaker create(Speaker speaker) {
+        em.persist(speaker);
+        return speaker;
     }
 
     public List<Speaker> getAllSpeakers() {
-        return null;
+        TypedQuery<Speaker> query = em.createNamedQuery(Speaker.FIND_ALL, Speaker.class);
+        return query.getResultList();
     }
 
     public Speaker findById(String id) {
         return em.find(Speaker.class, id);
     }
 
-    public Speaker update(SpeakerResource room) {
+    public Speaker update(Speaker room) {
         return null;
     }
 
     public void delete(String id) {
+        em.remove(em.getReference(Speaker.class, id));
     }
 }

@@ -39,6 +39,7 @@
         <version.junit>4.12</version.junit>
         <version.resteasy>3.0.18.Final</version.resteasy>
         <version.json>1.0.4</version.json>
+        <version.assertj>3.5.2</version.assertj>
 
         <!-- App servers -->
         <version.wildfly-swarm>2016.9</version.wildfly-swarm>
@@ -113,6 +114,12 @@
                 <groupId>org.glassfish</groupId>
                 <artifactId>javax.json</artifactId>
                 <version>${version.json}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${version.assertj}</version>
                 <scope>test</scope>
             </dependency>
 

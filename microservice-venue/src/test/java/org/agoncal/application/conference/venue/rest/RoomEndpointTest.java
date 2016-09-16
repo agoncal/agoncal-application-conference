@@ -1,9 +1,7 @@
-package org.agoncal.application.conference.speaker.resources;
+package org.agoncal.application.conference.venue.rest;
 
-import org.agoncal.application.conference.speaker.resource.SpeakerResource;
-import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
-import org.agoncal.application.conference.speaker.rest.Application;
-import org.agoncal.application.conference.speaker.rest.SpeakerEndpoint;
+import org.agoncal.application.conference.venue.resource.RoomResource;
+import org.agoncal.application.conference.venue.repository.RoomRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -33,13 +31,13 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-public class SpeakerEndpointTest {
+public class RoomEndpointTest {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    private static final SpeakerResource TEST_ROOM = new SpeakerResource("Metroxx", "Metropolis");
+    private static final RoomResource TEST_ROOM = new RoomResource("Metroxx", "Metropolis");
     private static String roomId;
     private Client client;
     private WebTarget webTarget;
@@ -63,7 +61,7 @@ public class SpeakerEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(SpeakerResource.class, SpeakerEndpoint.class, SpeakerRepository.class, Application.class)
+            .addClasses(RoomResource.class, RoomEndpoint.class, RoomRepository.class, Application.class)
             .addAsLibraries(files);
     }
 

@@ -1,9 +1,8 @@
 package org.agoncal.application.conference.speaker.domain;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.net.URI;
+import java.util.*;
 
 /**
  * @author Antonio Goncalves
@@ -11,7 +10,14 @@ import java.util.UUID;
  *         --
  */
 @Entity
+@NamedQuery(name = Speaker.FIND_ALL, query = "SELECT s FROM Speaker s ORDER BY s.lastName DESC")
 public class Speaker {
+
+    // ======================================
+    // =             Constants              =
+    // ======================================
+
+    public static final String FIND_ALL = "Speaker.findAll";
 
     // ======================================
     // =             Attributes             =
@@ -19,6 +25,8 @@ public class Speaker {
 
     @Id
     private String id;
+    @Transient
+    private Map<String, URI> links;
     private String lastName;
     private String firstName;
     @Column(length = 5000)
@@ -44,6 +52,18 @@ public class Speaker {
         this.lastName = lastName;
     }
 
+    public Speaker(String id, String lastName, String firstName, String bio, String language, String twitter, String avatarUrl, String company, String blog) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.bio = bio;
+        this.language = language;
+        this.twitter = twitter;
+        this.avatarUrl = avatarUrl;
+        this.company = company;
+        this.blog = blog;
+    }
+
     // ======================================
     // =         Lifecycle methods          =
     // ======================================
@@ -61,6 +81,10 @@ public class Speaker {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getLastName() {
         return lastName;
     }
@@ -68,7 +92,6 @@ public class Speaker {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -134,7 +157,12 @@ public class Speaker {
         this.acceptedTalks = acceptedTalks;
     }
 
-// ======================================
+    public void addLink(String title, URI uri) {
+        links = new HashMap<>();
+        links.put(title, uri);
+    }
+
+    // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
 

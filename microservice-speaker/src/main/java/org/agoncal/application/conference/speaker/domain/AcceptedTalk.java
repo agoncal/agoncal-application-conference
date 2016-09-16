@@ -1,8 +1,11 @@
 package org.agoncal.application.conference.speaker.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -19,8 +22,23 @@ public class AcceptedTalk {
 
     @Id
     private String id;
+    @Transient
+    private Map<String, URI> links;
     private String title;
     private String language;
+
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public AcceptedTalk() {
+    }
+
+    public AcceptedTalk(String id, String title, String language) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+    }
 
     // ======================================
     // =          Getters & Setters         =
@@ -48,6 +66,11 @@ public class AcceptedTalk {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public void addLink(String title, URI uri) {
+        links = new HashMap<>();
+        links.put(title, uri);
     }
 
     // ======================================

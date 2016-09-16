@@ -3,7 +3,6 @@ package org.agoncal.application.conference.speaker.rest;
 import io.swagger.annotations.Api;
 import org.agoncal.application.conference.speaker.domain.Speaker;
 import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
-import org.agoncal.application.conference.speaker.resource.SpeakerResource;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,10 +19,11 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Path("/rooms")
+@Path("/speakers")
 @Api(description = "Rooms REST Endpoint")
 @RequestScoped
 @Produces("application/json")
+@Consumes("application/json")
 public class SpeakerEndpoint {
 
     // ======================================
@@ -41,9 +41,8 @@ public class SpeakerEndpoint {
     // ======================================
 
     @POST
-    @Consumes("application/json")
-    public Response add(SpeakerResource room) {
-        Speaker created = speakerRepository.create(room);
+    public Response add(Speaker speaker) {
+        Speaker created = speakerRepository.create(speaker);
         // Speaker2SpeakerResource
         return Response.created(URI.create("/" + created.getId()))
             .entity(created)
@@ -52,15 +51,15 @@ public class SpeakerEndpoint {
 
     @GET
     @Path("/{id}")
-    public Response retrieve(@PathParam("id") String roomId) {
+    public Response retrieve(@PathParam("id") String id) {
 
-        Speaker room = speakerRepository.findById(roomId);
+        Speaker speaker = speakerRepository.findById(id);
         // Speaker2SpeakerResource
-        SpeakerResource speakerResource = new SpeakerResource();
+        //SpeakerResource speakerResource = new SpeakerResource();
 
-        if (room != null) {
-            speakerResource.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
-            return Response.ok(room).build();
+        if (speaker != null) {
+            speaker.addLink("self", uriInfo.getAbsolutePath().resolve(speaker.getId()));
+            return Response.ok(speaker).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();
     }
@@ -68,12 +67,11 @@ public class SpeakerEndpoint {
     @GET
     public Response allSpeakers() {
         List<Speaker> allSpeakers = speakerRepository.getAllSpeakers();
-        // for (SpeakerResource room : allSpeakers) {
-        //     room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
-        // }
-        // GenericEntity<List<SpeakerResource>> entity = buildEntity(allSpeakers);
-        // return Response.ok(entity).build();
-        return null;
+        for (Speaker speaker : allSpeakers) {
+            speaker.addLink("self", uriInfo.getAbsolutePath().resolve(speaker.getId()));
+        }
+        GenericEntity<List<Speaker>> entity = buildEntity(allSpeakers);
+        return Response.ok(entity).build();
     }
 
     @DELETE
@@ -87,8 +85,8 @@ public class SpeakerEndpoint {
     // =           Private methods          =
     // ======================================
 
-    private GenericEntity<List<SpeakerResource>> buildEntity(final List<SpeakerResource> roomList) {
-        return new GenericEntity<List<SpeakerResource>>(roomList) {
+    private GenericEntity<List<Speaker>> buildEntity(final List<Speaker> speakerList) {
+        return new GenericEntity<List<Speaker>>(speakerList) {
         };
     }
 }
