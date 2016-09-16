@@ -7,12 +7,8 @@ import javax.json.JsonReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,8 +24,9 @@ public class JSonToDatabase {
      * create table Talk_Speaker (Talk_id varchar(255) not null, speakers_id varchar(255) not null)
      */
 
-    private static List<String> talkCreateSQLStatements;
+    private static String talkCreateSQLStatement;
     private static String speakerCreateSQLStatement;
+    private static String joinTableCreateSQLStatement;
     private static Map<String, String> speakersAlreadyExist = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
@@ -39,80 +36,39 @@ public class JSonToDatabase {
 
         JsonArray results = rdr.readArray();
         for (JsonObject result : results.getValuesAs(JsonObject.class)) {
-            talkCreateSQLStatements = new ArrayList<>();
-            speakerCreateSQLStatement = "INSERT INTO Talk (id, title, language, talkType, track, summary) values (";
 
-            speakerCreateSQLStatement += "'" + result.getString("id") + "', ";
-            speakerCreateSQLStatement += getSqlValue(result, "title") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "lang") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "talkType") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "track") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "summary") + ", ";
+            talkCreateSQLStatement = "INSERT INTO Talk (id, title, language, talkType, track, summary) values (";
+            talkCreateSQLStatement += "'" + result.getString("id") + "', ";
+            talkCreateSQLStatement += getSqlValue(result, "title") + ", ";
+            talkCreateSQLStatement += getSqlValue(result, "lang") + ", ";
+            talkCreateSQLStatement += getSqlValue(result, "talkType") + ", ";
+            talkCreateSQLStatement += getSqlValue(result, "track") + ", ";
+            talkCreateSQLStatement += getSqlValue(result, "summary") + ", ";
+            talkCreateSQLStatement += ");";
 
-            // JsonArray speakers = result.getJsonArray("speakers");
-            // for (JsonObject link : speakers.getValuesAs(JsonObject.class)) {
-            //     getSpeaker(result.getString("id"), link.getString("href"));
-            // }
+            JsonArray speakers = result.getJsonArray("speakers");
+            for (JsonObject link : speakers.getValuesAs(JsonObject.class)) {
 
-            speakerCreateSQLStatement += ");";
-            System.out.println(speakerCreateSQLStatement);
-            // for (String acceptedTalkCreateSQLStatement : talkCreateSQLStatements) {
-            //     System.out.println(acceptedTalkCreateSQLStatement);
-            // }
-            // System.out.println("");
-        }
-    }
+                if (!speakersAlreadyExist.containsKey(link.getString("id"))) {
 
-    private static void getSpeaker(String speakerUUID, String hrefSpeaker) throws IOException {
-        URL url = new URL(hrefSpeaker);
-        try (InputStream is = url.openStream(); JsonReader rdr = Json.createReader(is)) {
-
-            JsonObject result = rdr.readObject();
-            speakerCreateSQLStatement += getSqlValue(result, "lang") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "blog") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "bio");
-
-            JsonArray acceptedTalks = result.getJsonArray("acceptedTalks");
-            for (int i = 0; i < acceptedTalks.size(); i++) {
-                JsonArray links = acceptedTalks.getJsonObject(i).getJsonArray("links");
-
-                for (JsonObject link : links.getValuesAs(JsonObject.class)) {
-                    String hrefTalk = link.getString("href");
-                    if (hrefTalk.contains("/talks"))
-                        talkCreateSQLStatements.addAll(getTalk(speakerUUID, hrefTalk));
+                    speakersAlreadyExist.put(link.getString("id"), "exists");
+                    speakerCreateSQLStatement = "INSERT INTO AcceptedTalk (id, title, language) values (";
+                    speakerCreateSQLStatement += "'" + link.getString("id") + "', ";
+                    speakerCreateSQLStatement += getSqlValue(link, "title") + ", ";
+                    speakerCreateSQLStatement += getSqlValue(link, "lang");
+                    speakerCreateSQLStatement += ");";
                 }
+
+                joinTableCreateSQLStatement = "INSERT INTO Talk_Speaker (Talk_id, speakers_id) values (";
+                joinTableCreateSQLStatement += "'" + result.getString("id") + "', ";
+                joinTableCreateSQLStatement += "'" + link.getString("id");
+                joinTableCreateSQLStatement += ");";
             }
         }
-    }
 
-    private static List<String> getTalk(String speakerUUID, String hrefTalk) throws IOException {
-        List<String> sqlStatements = new ArrayList<>();
-        URL url = new URL(hrefTalk);
-        String acceptedTalkCreateSQLStatement;
-        String joinTableCreateSQLStatement;
-        try (InputStream is = url.openStream(); JsonReader rdr = Json.createReader(is)) {
-            JsonObject result = rdr.readObject();
-
-            if (!speakersAlreadyExist.containsKey(result.getString("id"))) {
-
-                System.out.println(result.toString());
-
-                speakersAlreadyExist.put(result.getString("id"), "exists");
-                acceptedTalkCreateSQLStatement = "INSERT INTO AcceptedTalk (id, title, language) values (";
-                acceptedTalkCreateSQLStatement += "'" + result.getString("id") + "', ";
-                acceptedTalkCreateSQLStatement += getSqlValue(result, "title") + ", ";
-                acceptedTalkCreateSQLStatement += getSqlValue(result, "lang");
-                acceptedTalkCreateSQLStatement += ");";
-                sqlStatements.add(acceptedTalkCreateSQLStatement);
-            }
-
-            joinTableCreateSQLStatement = "INSERT INTO Speaker_AcceptedTalk (Speaker_id, acceptedTalks_id) values (";
-            joinTableCreateSQLStatement += "'" + speakerUUID + "', ";
-            joinTableCreateSQLStatement += "'" + result.getString("id") + "', ";
-            joinTableCreateSQLStatement += ");";
-        }
-        sqlStatements.add(joinTableCreateSQLStatement);
-        return sqlStatements;
+        System.out.println(speakerCreateSQLStatement);
+        System.out.println(joinTableCreateSQLStatement);
+        System.out.println("");
     }
 
     private static String getSqlValue(JsonObject jsonObject, String key) {
