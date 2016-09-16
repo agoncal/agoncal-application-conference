@@ -54,6 +54,7 @@
     <modules>
         <module>microservice-venue</module>
         <module>microservice-speaker</module>
+        <module>microservice-talk</module>
     </modules>
 
     <dependencyManagement>
