@@ -11,7 +11,9 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Antonio Goncalves
@@ -28,6 +30,7 @@ public class JSonToDatabase {
 
     private static List<String> acceptedTalkCreateSQLStatements;
     private static String speakerCreateSQLStatement;
+    private static Map<String, String> talksAlreadyExist = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
 
@@ -56,6 +59,7 @@ public class JSonToDatabase {
             for (String acceptedTalkCreateSQLStatement : acceptedTalkCreateSQLStatements) {
                 System.out.println(acceptedTalkCreateSQLStatement);
             }
+            System.out.println("");
         }
     }
 
@@ -89,18 +93,21 @@ public class JSonToDatabase {
         try (InputStream is = url.openStream(); JsonReader rdr = Json.createReader(is)) {
             JsonObject result = rdr.readObject();
 
-            acceptedTalkCreateSQLStatement = "INSERT INTO AcceptedTalk (id, title, language) values (";
-            acceptedTalkCreateSQLStatement += "'" + result.getString("id") + "', ";
-            acceptedTalkCreateSQLStatement += getSqlValue(result, "title") + ", ";
-            acceptedTalkCreateSQLStatement += getSqlValue(result, "lang");
-            acceptedTalkCreateSQLStatement += ");";
+            if (!talksAlreadyExist.containsKey(result.getString("id"))) {
+                talksAlreadyExist.put(result.getString("id"), "exists");
+                acceptedTalkCreateSQLStatement = "INSERT INTO AcceptedTalk (id, title, language) values (";
+                acceptedTalkCreateSQLStatement += "'" + result.getString("id") + "', ";
+                acceptedTalkCreateSQLStatement += getSqlValue(result, "title") + ", ";
+                acceptedTalkCreateSQLStatement += getSqlValue(result, "lang");
+                acceptedTalkCreateSQLStatement += ");";
+                sqlStatements.add(acceptedTalkCreateSQLStatement);
+            }
 
             joinTableCreateSQLStatement = "INSERT INTO Speaker_AcceptedTalk (Speaker_id, acceptedTalks_id) values (";
             joinTableCreateSQLStatement += "'" + speakerUUID + "', ";
             joinTableCreateSQLStatement += "'" + result.getString("id") + "', ";
             joinTableCreateSQLStatement += ");";
         }
-        sqlStatements.add(acceptedTalkCreateSQLStatement);
         sqlStatements.add(joinTableCreateSQLStatement);
         return sqlStatements;
     }
