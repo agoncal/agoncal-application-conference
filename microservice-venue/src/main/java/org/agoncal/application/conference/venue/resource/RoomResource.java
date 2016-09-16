@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Room {
+public class RoomResource {
 
     // ======================================
     // =             Attributes             =
@@ -31,15 +31,15 @@ public class Room {
     // =            Constructors            =
     // ======================================
 
-    public Room() {
+    public RoomResource() {
     }
 
-    public Room(String id, String name) {
+    public RoomResource(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Room(String id, String name, Integer capacity, String setup) {
+    public RoomResource(String id, String name, Integer capacity, String setup) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
@@ -95,7 +95,7 @@ public class Room {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
+        RoomResource room = (RoomResource) o;
         return Objects.equals(id, room.id);
     }
 
