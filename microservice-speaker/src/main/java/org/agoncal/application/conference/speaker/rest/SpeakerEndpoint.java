@@ -66,13 +66,14 @@ public class SpeakerEndpoint {
     }
 
     @GET
-    public Response allRooms() {
-        List<SpeakerResource> allRooms = roomDAO.getAllSpeakers();
-        for (SpeakerResource room : allRooms) {
-            room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
-        }
-        GenericEntity<List<SpeakerResource>> entity = buildEntity(allRooms);
-        return Response.ok(entity).build();
+    public Response allSpeakers() {
+        List<Speaker> allSpeakers = roomDAO.getAllSpeakers();
+        // for (SpeakerResource room : allSpeakers) {
+        //     room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
+        // }
+        // GenericEntity<List<SpeakerResource>> entity = buildEntity(allSpeakers);
+        // return Response.ok(entity).build();
+        return null;
     }
 
     @DELETE
