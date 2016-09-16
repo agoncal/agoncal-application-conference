@@ -22,13 +22,13 @@ public class Application extends javax.ws.rs.core.Application {
 
     public Application() {
         final BeanConfig beanConfig = new BeanConfig();
-        beanConfig.setTitle("Room");
-        beanConfig.setDescription("Gives all the details of the rooms of the venue");
+        beanConfig.setTitle("Speakers");
+        beanConfig.setDescription("Gives all the details of the speakers, including their accepted talks");
         beanConfig.setVersion("1.0.0");
         beanConfig.setSchemes(new String[]{"http"});
-        beanConfig.setHost("localhost:8081/venue");
+        beanConfig.setHost("localhost:8081/speakers");
         beanConfig.setBasePath("/");
-        beanConfig.setResourcePackage("org.agoncal.application.conference.venue.rest");
+        beanConfig.setResourcePackage("org.agoncal.application.conference.speaker.rest");
         beanConfig.setPrettyPrint(true);
         beanConfig.setScan(true);
     }

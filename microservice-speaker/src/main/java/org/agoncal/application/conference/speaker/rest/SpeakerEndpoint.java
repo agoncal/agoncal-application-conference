@@ -1,6 +1,7 @@
 package org.agoncal.application.conference.speaker.rest;
 
 import io.swagger.annotations.Api;
+import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
 import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
 
@@ -51,14 +52,20 @@ public class SpeakerEndpoint {
 
     @GET
     @Path("/{id}")
-    public Response retrieve(@PathParam("id") String id) {
+    public Response retrieve(@PathParam("id") String id, @DefaultValue("false") @QueryParam("expand") boolean expand) {
 
         Speaker speaker = speakerRepository.findById(id);
-        // Speaker2SpeakerResource
-        //SpeakerResource speakerResource = new SpeakerResource();
 
         if (speaker != null) {
             speaker.addLink("self", uriInfo.getAbsolutePath().resolve(speaker.getId()));
+            if (expand) {
+                for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
+                    acceptedTalk.addLink("self", uriInfo.getAbsolutePath().resolve(acceptedTalk.getId()));
+                }
+            } else {
+                speaker.setBio(null);
+                speaker.setAcceptedTalks(null);
+            }
             return Response.ok(speaker).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();

@@ -1,6 +1,9 @@
 package org.agoncal.application.conference.speaker.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
 import java.util.*;
 
@@ -11,6 +14,8 @@ import java.util.*;
  */
 @Entity
 @NamedQuery(name = Speaker.FIND_ALL, query = "SELECT s FROM Speaker s ORDER BY s.lastName DESC")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Speaker {
 
     // ======================================
