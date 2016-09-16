@@ -1,8 +1,9 @@
 package org.agoncal.application.conference.speaker.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Antonio Goncalves
@@ -16,17 +17,22 @@ public class Speaker {
     // =             Attributes             =
     // ======================================
 
+    @Id
     private String id;
-    private String email;
-    private String name;
+    private String lastName;
     private String firstName;
+    @Column(length = 5000)
     private String bio;
+    @Column(length = 3)
     private String language;
     private String twitter;
     private String avatarUrl;
     private String company;
     private String blog;
-    private List<String> qualifications;
+    @ElementCollection
+    @CollectionTable(name = "acceptedTalks")
+    @Column(name = "acceptedTalkId", nullable = false)
+    private List<String> acceptedTalkIds;
 
     // ======================================
     // =            Constructors            =
@@ -35,9 +41,18 @@ public class Speaker {
     public Speaker() {
     }
 
-    public Speaker(String id, String name) {
+    public Speaker(String id, String lastName) {
         this.id = id;
-        this.name = name;
+        this.lastName = lastName;
+    }
+
+    // ======================================
+    // =         Lifecycle methods          =
+    // ======================================
+
+    @PrePersist
+    private void setUUID() {
+        this.id = UUID.randomUUID().toString().replace("-", "");
     }
 
     // ======================================
@@ -48,26 +63,14 @@ public class Speaker {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getName() {
-        return name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -125,12 +128,12 @@ public class Speaker {
         this.blog = blog;
     }
 
-    public List<String> getQualifications() {
-        return qualifications;
+    public List<String> getAcceptedTalkIds() {
+        return acceptedTalkIds;
     }
 
-    public void setQualifications(List<String> qualifications) {
-        this.qualifications = qualifications;
+    public void setAcceptedTalkIds(List<String> acceptedTalkIds) {
+        this.acceptedTalkIds = acceptedTalkIds;
     }
 
     // ======================================
@@ -154,8 +157,7 @@ public class Speaker {
     public String toString() {
         return "Speaker{" +
             "id='" + id + '\'' +
-            ", email='" + email + '\'' +
-            ", name='" + name + '\'' +
+            ", lastName='" + lastName + '\'' +
             ", firstName='" + firstName + '\'' +
             ", bio='" + bio + '\'' +
             ", language='" + language + '\'' +
@@ -163,7 +165,7 @@ public class Speaker {
             ", avatarUrl='" + avatarUrl + '\'' +
             ", company='" + company + '\'' +
             ", blog='" + blog + '\'' +
-            ", qualifications='" + qualifications + '\'' +
+            ", acceptedTalkIds='" + acceptedTalkIds + '\'' +
             '}';
     }
 }

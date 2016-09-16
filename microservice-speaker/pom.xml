@@ -16,7 +16,7 @@
     <packaging>war</packaging>
 
     <build>
-        <finalName>conference-venue</finalName>
+        <finalName>conference-speaker</finalName>
     </build>
 
     <dependencies>

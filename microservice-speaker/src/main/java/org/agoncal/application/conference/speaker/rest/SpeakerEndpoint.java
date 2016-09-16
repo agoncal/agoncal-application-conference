@@ -31,7 +31,7 @@ public class SpeakerEndpoint {
     // ======================================
 
     @Inject
-    private SpeakerRepository roomDAO;
+    private SpeakerRepository speakerRepository;
 
     @Context
     UriInfo uriInfo;
@@ -43,7 +43,7 @@ public class SpeakerEndpoint {
     @POST
     @Consumes("application/json")
     public Response add(SpeakerResource room) {
-        Speaker created = roomDAO.create(room);
+        Speaker created = speakerRepository.create(room);
         // Speaker2SpeakerResource
         return Response.created(URI.create("/" + created.getId()))
             .entity(created)
@@ -54,7 +54,7 @@ public class SpeakerEndpoint {
     @Path("/{id}")
     public Response retrieve(@PathParam("id") String roomId) {
 
-        Speaker room = roomDAO.findById(roomId);
+        Speaker room = speakerRepository.findById(roomId);
         // Speaker2SpeakerResource
         SpeakerResource speakerResource = new SpeakerResource();
 
@@ -67,7 +67,7 @@ public class SpeakerEndpoint {
 
     @GET
     public Response allSpeakers() {
-        List<Speaker> allSpeakers = roomDAO.getAllSpeakers();
+        List<Speaker> allSpeakers = speakerRepository.getAllSpeakers();
         // for (SpeakerResource room : allSpeakers) {
         //     room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
         // }
@@ -79,7 +79,7 @@ public class SpeakerEndpoint {
     @DELETE
     @Path("/{id}")
     public Response remove(@PathParam("id") String id) {
-        roomDAO.delete(id);
+        speakerRepository.delete(id);
         return Response.noContent().build();
     }
 
