@@ -1,4 +1,4 @@
-package org.agoncal.application.conference.venue.model;
+package org.agoncal.application.conference.venue.resource;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

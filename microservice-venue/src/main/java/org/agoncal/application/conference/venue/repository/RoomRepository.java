@@ -1,6 +1,6 @@
-package org.agoncal.application.conference.venue.persistence;
+package org.agoncal.application.conference.venue.repository;
 
-import org.agoncal.application.conference.venue.model.Room;
+import org.agoncal.application.conference.venue.resource.Room;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

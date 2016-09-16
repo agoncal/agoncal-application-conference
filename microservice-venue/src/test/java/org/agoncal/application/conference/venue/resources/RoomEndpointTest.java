@@ -1,7 +1,7 @@
 package org.agoncal.application.conference.venue.resources;
 
-import org.agoncal.application.conference.venue.model.Room;
-import org.agoncal.application.conference.venue.persistence.RoomRepository;
+import org.agoncal.application.conference.venue.resource.Room;
+import org.agoncal.application.conference.venue.repository.RoomRepository;
 import org.agoncal.application.conference.venue.rest.Application;
 import org.agoncal.application.conference.venue.rest.RoomEndpoint;
 import org.jboss.arquillian.container.test.api.Deployment;

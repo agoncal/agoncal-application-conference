@@ -1,8 +1,8 @@
 package org.agoncal.application.conference.venue.rest;
 
 import io.swagger.annotations.Api;
-import org.agoncal.application.conference.venue.model.Room;
-import org.agoncal.application.conference.venue.persistence.RoomRepository;
+import org.agoncal.application.conference.venue.resource.Room;
+import org.agoncal.application.conference.venue.repository.RoomRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
