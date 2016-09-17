@@ -5,7 +5,10 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Antonio Goncalves
@@ -13,7 +16,11 @@ import java.util.*;
  *         --
  */
 @Entity
-@NamedQuery(name = Schedule.FIND_ALL, query = "SELECT s FROM Schedule s ORDER BY s.title DESC")
+@NamedQueries({
+    @NamedQuery(name = Schedule.FIND_ALL, query = "SELECT s FROM Schedule s ORDER BY s.id DESC"),
+    @NamedQuery(name = Schedule.FIND_BY_DAY, query = "SELECT s FROM Schedule s WHERE s.day = :day ORDER BY s.id DESC"),
+    @NamedQuery(name = Schedule.FIND_BY_DAY_AND_ROOM, query = "SELECT s FROM Schedule s WHERE s.day = :day AND s.room.id = :roomId ORDER BY s.id DESC")
+})
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Schedule {
@@ -22,7 +29,9 @@ public class Schedule {
     // =             Constants              =
     // ======================================
 
-    public static final String FIND_ALL = "Talk.findAll";
+    public static final String FIND_ALL = "Schedule.findAll";
+    public static final String FIND_BY_DAY = "Schedule.findByDay";
+    public static final String FIND_BY_DAY_AND_ROOM = "Schedule.findByDayAndRoom";
 
     // ======================================
     // =             Attributes             =
@@ -32,14 +41,17 @@ public class Schedule {
     private String id;
     @Transient
     private Map<String, URI> links;
-    private String title;
-    private String language;
-    private String talkType;
-    private String track;
-    @Column(length = 5000)
-    private String summary;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Speaker> speakers;
+    private Boolean notAllocated;
+    private Boolean isaBreak;
+    private Long fromTimeMillis;
+    private String fromTime;
+    private Long toTimeMillis;
+    private String toTime;
+    private String day;
+    @ManyToOne
+    private Room room;
+    @ManyToOne
+    private Talk talk;
 
     // ======================================
     // =            Constructors            =
@@ -48,10 +60,9 @@ public class Schedule {
     public Schedule() {
     }
 
-    public Schedule(String id, String title, String language) {
+    public Schedule(String id, String day) {
         this.id = id;
-        this.title = title;
-        this.language = language;
+        this.day = day;
     }
 
     // ======================================
@@ -75,44 +86,76 @@ public class Schedule {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Boolean getNotAllocated() {
+        return notAllocated;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNotAllocated(Boolean notAllocated) {
+        this.notAllocated = notAllocated;
     }
 
-    public String getLanguage() {
-        return language;
+    public Boolean getIsaBreak() {
+        return isaBreak;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setIsaBreak(Boolean isaBreak) {
+        this.isaBreak = isaBreak;
     }
 
-    public String getTalkType() {
-        return talkType;
+    public Long getFromTimeMillis() {
+        return fromTimeMillis;
     }
 
-    public void setTalkType(String talkType) {
-        this.talkType = talkType;
+    public void setFromTimeMillis(Long fromTimeMillis) {
+        this.fromTimeMillis = fromTimeMillis;
     }
 
-    public String getTrack() {
-        return track;
+    public String getFromTime() {
+        return fromTime;
     }
 
-    public void setTrack(String track) {
-        this.track = track;
+    public void setFromTime(String fromTime) {
+        this.fromTime = fromTime;
     }
 
-    public String getSummary() {
-        return summary;
+    public Long getToTimeMillis() {
+        return toTimeMillis;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setToTimeMillis(Long toTimeMillis) {
+        this.toTimeMillis = toTimeMillis;
+    }
+
+    public String getToTime() {
+        return toTime;
+    }
+
+    public void setToTime(String toTime) {
+        this.toTime = toTime;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Talk getTalk() {
+        return talk;
+    }
+
+    public void setTalk(Talk talk) {
+        this.talk = talk;
     }
 
     public void addLink(String title, URI uri) {
@@ -139,15 +182,18 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return "Talk{" +
+        return "Schedule{" +
             "id='" + id + '\'' +
             ", links=" + links +
-            ", title='" + title + '\'' +
-            ", language='" + language + '\'' +
-            ", talkType='" + talkType + '\'' +
-            ", track='" + track + '\'' +
-            ", summary='" + summary + '\'' +
-            ", speakers=" + speakers +
+            ", notAllocated=" + notAllocated +
+            ", isaBreak=" + isaBreak +
+            ", fromTimeMillis=" + fromTimeMillis +
+            ", fromTime='" + fromTime + '\'' +
+            ", toTimeMillis=" + toTimeMillis +
+            ", toTime='" + toTime + '\'' +
+            ", day='" + day + '\'' +
+            ", room=" + room +
+            ", talk=" + talk +
             '}';
     }
 }

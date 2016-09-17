@@ -69,6 +69,84 @@ public class ScheduleEndpoint {
         return Response.ok(entity).build();
     }
 
+    @GET
+    @Path("/monday")
+    public Response allSchedulesMonday() {
+        return allSchedulesByDay("monday");
+    }
+
+    @GET
+    @Path("/monday/{roomId}")
+    public Response allSchedulesMondayByRoom(@PathParam("roomId") String roomId) {
+        return allSchedulesByDayAndRoom("monday", roomId);
+    }
+
+    @GET
+    @Path("/tuesday")
+    public Response allSchedulesTuesday() {
+        return allSchedulesByDay("tuesday");
+    }
+
+    @GET
+    @Path("/tuesday/{roomId}")
+    public Response allSchedulesTuesdayByRoom(@PathParam("roomId") String roomId) {
+        return allSchedulesByDayAndRoom("tuesday", roomId);
+    }
+
+    @GET
+    @Path("/wednesday")
+    public Response allSchedulesWednesday() {
+        return allSchedulesByDay("wednesday");
+    }
+
+    @GET
+    @Path("/wednesday/{roomId}")
+    public Response allSchedulesWednesdayByRoom(@PathParam("roomId") String roomId) {
+        return allSchedulesByDayAndRoom("wednesday", roomId);
+    }
+
+    @GET
+    @Path("/thursday")
+    public Response allSchedulesThursday() {
+        return allSchedulesByDay("thursday");
+    }
+
+    @GET
+    @Path("/thursday/{roomId}")
+    public Response allSchedulesThursdayByRoom(@PathParam("roomId") String roomId) {
+        return allSchedulesByDayAndRoom("thursday", roomId);
+    }
+
+    @GET
+    @Path("/friday")
+    public Response allSchedulesFriday() {
+        return allSchedulesByDay("friday");
+    }
+
+    @GET
+    @Path("/friday/{roomId}")
+    public Response allSchedulesFridayByRoom(@PathParam("roomId") String roomId) {
+        return allSchedulesByDayAndRoom("friday", roomId);
+    }
+
+    private Response allSchedulesByDay(String day) {
+        List<Schedule> allSchedules = scheduleRepository.getAllSchedulesByDay(day);
+        for (Schedule schedule : allSchedules) {
+            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
+        }
+        GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
+        return Response.ok(entity).build();
+    }
+
+    private Response allSchedulesByDayAndRoom(String day, String roomId) {
+        List<Schedule> allSchedules = scheduleRepository.getAllSchedulesByDayAndRoom(day, roomId);
+        for (Schedule schedule : allSchedules) {
+            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
+        }
+        GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
+        return Response.ok(entity).build();
+    }
+
     @DELETE
     @Path("/{id}")
     public Response remove(@PathParam("id") String id) {

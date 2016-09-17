@@ -29,7 +29,6 @@ public class Room {
     private String id;
     @Transient
     private Map<String, URI> links;
-    private String name;
 
     // ======================================
     // =            Constructors            =
@@ -38,9 +37,8 @@ public class Room {
     public Room() {
     }
 
-    public Room(String id, String name) {
+    public Room(String id) {
         this.id = id;
-        this.name = name;
     }
 
     // ======================================
@@ -53,14 +51,6 @@ public class Room {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void addLink(String title, URI uri) {
@@ -89,7 +79,6 @@ public class Room {
     public String toString() {
         return "Speaker{" +
             "id='" + id + '\'' +
-            ", name='" + name + '\'' +
             '}';
     }
 }

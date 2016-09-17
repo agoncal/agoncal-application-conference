@@ -1,6 +1,5 @@
 package org.agoncal.application.conference.schedule.rest;
 
-import org.agoncal.application.conference.schedule.domain.Speaker;
 import org.agoncal.application.conference.schedule.domain.Schedule;
 import org.agoncal.application.conference.schedule.repository.ScheduleRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -39,7 +38,7 @@ public class ScheduleEndpointTest {
     // =             Attributes             =
     // ======================================
 
-    private static final Schedule TEST_TALK = new Schedule("id", "last name", "language");
+    private static final Schedule TEST_TALK = new Schedule("id", "monday");
     private static String talkId;
     private Client client;
     private WebTarget webTarget;
@@ -63,7 +62,8 @@ public class ScheduleEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Schedule.class, Speaker.class, ScheduleEndpoint.class, ScheduleRepository.class, Application.class)
+            .addPackage(Schedule.class.getPackage())
+            .addClasses(ScheduleEndpoint.class, ScheduleRepository.class, Application.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);
@@ -105,7 +105,7 @@ public class ScheduleEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(talkId, jsonObject.getString("id"));
-        assertEquals(TEST_TALK.getTitle(), jsonObject.getString("title"));
+        assertEquals(TEST_TALK.getDay(), jsonObject.getString("day"));
     }
 
     @Test
