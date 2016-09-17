@@ -44,9 +44,7 @@ public class TalkEndpoint {
     public Response add(Talk talk) {
         Talk created = talkRepository.create(talk);
 
-        return Response.created(URI.create("/" + created.getId()))
-            .entity(created)
-            .build();
+        return Response.created(URI.create("/" + created.getId())).entity(created).build();
     }
 
     @GET

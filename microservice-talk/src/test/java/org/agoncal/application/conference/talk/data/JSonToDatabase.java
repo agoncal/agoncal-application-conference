@@ -35,40 +35,46 @@ public class JSonToDatabase {
         JsonReader rdr = Json.createReader(new FileReader(file.getAbsoluteFile()));
 
         JsonArray results = rdr.readArray();
-        for (JsonObject result : results.getValuesAs(JsonObject.class)) {
+        for (JsonObject talk : results.getValuesAs(JsonObject.class)) {
 
             talkCreateSQLStatement = "INSERT INTO Talk (id, title, language, talkType, track, summary) values (";
-            talkCreateSQLStatement += "'" + result.getString("id") + "', ";
-            talkCreateSQLStatement += getSqlValue(result, "title") + ", ";
-            talkCreateSQLStatement += getSqlValue(result, "lang") + ", ";
-            talkCreateSQLStatement += getSqlValue(result, "talkType") + ", ";
-            talkCreateSQLStatement += getSqlValue(result, "track") + ", ";
-            talkCreateSQLStatement += getSqlValue(result, "summary") + ", ";
+            talkCreateSQLStatement += "'" + talk.getString("id") + "', ";
+            talkCreateSQLStatement += getSqlValue(talk, "title") + ", ";
+            talkCreateSQLStatement += getSqlValue(talk, "lang") + ", ";
+            talkCreateSQLStatement += getSqlValue(talk, "talkType") + ", ";
+            talkCreateSQLStatement += getSqlValue(talk, "track") + ", ";
+            talkCreateSQLStatement += getSqlValue(talk, "summary") + ", ";
             talkCreateSQLStatement += ");";
 
-            JsonArray speakers = result.getJsonArray("speakers");
-            for (JsonObject link : speakers.getValuesAs(JsonObject.class)) {
+            System.out.println(talkCreateSQLStatement);
 
-                if (!speakersAlreadyExist.containsKey(link.getString("id"))) {
+            JsonArray speakers = talk.getJsonArray("speakers");
+            for (JsonObject speaker : speakers.getValuesAs(JsonObject.class)) {
 
-                    speakersAlreadyExist.put(link.getString("id"), "exists");
-                    speakerCreateSQLStatement = "INSERT INTO AcceptedTalk (id, title, language) values (";
-                    speakerCreateSQLStatement += "'" + link.getString("id") + "', ";
-                    speakerCreateSQLStatement += getSqlValue(link, "title") + ", ";
-                    speakerCreateSQLStatement += getSqlValue(link, "lang");
+                if (!speakersAlreadyExist.containsKey(speaker.getJsonObject("link").getString("href"))) {
+
+                    speakersAlreadyExist.put(speaker.getJsonObject("link").getString("href"), "exists");
+                    speakerCreateSQLStatement = "INSERT INTO Speaker (id, name) values (";
+                    speakerCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href")) + "', ";
+                    speakerCreateSQLStatement += getSqlValue(speaker, "name");
                     speakerCreateSQLStatement += ");";
+
+                    System.out.println(speakerCreateSQLStatement);
                 }
 
                 joinTableCreateSQLStatement = "INSERT INTO Talk_Speaker (Talk_id, speakers_id) values (";
-                joinTableCreateSQLStatement += "'" + result.getString("id") + "', ";
-                joinTableCreateSQLStatement += "'" + link.getString("id");
+                joinTableCreateSQLStatement += "'" + talk.getString("id") + "', ";
+                joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href")+ "'");
                 joinTableCreateSQLStatement += ");";
-            }
-        }
 
-        System.out.println(speakerCreateSQLStatement);
-        System.out.println(joinTableCreateSQLStatement);
-        System.out.println("");
+                System.out.println(joinTableCreateSQLStatement);
+            }
+            System.out.println("");
+        }
+    }
+
+    private static String getId(String href) {
+        return href.substring(href.lastIndexOf('/')+1, href.length());
     }
 
     private static String getSqlValue(JsonObject jsonObject, String key) {
