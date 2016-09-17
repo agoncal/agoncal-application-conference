@@ -1,8 +1,8 @@
-package org.agoncal.application.conference.talk.rest;
+package org.agoncal.application.conference.schedule.rest;
 
 import io.swagger.annotations.Api;
-import org.agoncal.application.conference.talk.domain.Talk;
-import org.agoncal.application.conference.talk.repository.TalkRepository;
+import org.agoncal.application.conference.schedule.domain.Schedule;
+import org.agoncal.application.conference.schedule.repository.ScheduleRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -19,19 +19,19 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Path("/talks")
-@Api(description = "Talks REST Endpoint")
+@Path("/schedules")
+@Api(description = "Schedule REST Endpoint")
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
-public class TalkEndpoint {
+public class ScheduleEndpoint {
 
     // ======================================
     // =          Injection Points          =
     // ======================================
 
     @Inject
-    private TalkRepository talkRepository;
+    private ScheduleRepository scheduleRepository;
 
     @Context
     private UriInfo uriInfo;
@@ -41,8 +41,8 @@ public class TalkEndpoint {
     // ======================================
 
     @POST
-    public Response add(Talk talk) {
-        Talk created = talkRepository.create(talk);
+    public Response add(Schedule schedule) {
+        Schedule created = scheduleRepository.create(schedule);
         return Response.created(URI.create("/" + created.getId())).entity(created).build();
     }
 
@@ -50,7 +50,7 @@ public class TalkEndpoint {
     @Path("/{id}")
     public Response retrieve(@PathParam("id") String id) {
 
-        Talk talk = talkRepository.findById(id);
+        Schedule talk = scheduleRepository.findById(id);
 
         if (talk != null) {
             talk.addLink("self", uriInfo.getAbsolutePathBuilder().path(talk.getId()).build());
@@ -60,19 +60,19 @@ public class TalkEndpoint {
     }
 
     @GET
-    public Response allTalks() {
-        List<Talk> allTalks = talkRepository.getAllTalks();
-        for (Talk talk : allTalks) {
-            talk.addLink("self", uriInfo.getAbsolutePathBuilder().path(talk.getId()).build());
+    public Response allSchedules() {
+        List<Schedule> allSchedules = scheduleRepository.getAllSchedules();
+        for (Schedule schedule : allSchedules) {
+            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
         }
-        GenericEntity<List<Talk>> entity = buildEntity(allTalks);
+        GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
         return Response.ok(entity).build();
     }
 
     @DELETE
     @Path("/{id}")
     public Response remove(@PathParam("id") String id) {
-        talkRepository.delete(id);
+        scheduleRepository.delete(id);
         return Response.noContent().build();
     }
 
@@ -80,8 +80,8 @@ public class TalkEndpoint {
     // =           Private methods          =
     // ======================================
 
-    private GenericEntity<List<Talk>> buildEntity(final List<Talk> talkList) {
-        return new GenericEntity<List<Talk>>(talkList) {
+    private GenericEntity<List<Schedule>> buildEntity(final List<Schedule> scheduleList) {
+        return new GenericEntity<List<Schedule>>(scheduleList) {
         };
     }
 }

@@ -55,6 +55,7 @@
         <module>microservice-venue</module>
         <module>microservice-speaker</module>
         <module>microservice-talk</module>
+        <module>microservice-schedule</module>
     </modules>
 
     <dependencyManagement>

@@ -1,4 +1,4 @@
-package org.agoncal.application.conference.talk.domain;
+package org.agoncal.application.conference.schedule.domain;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;

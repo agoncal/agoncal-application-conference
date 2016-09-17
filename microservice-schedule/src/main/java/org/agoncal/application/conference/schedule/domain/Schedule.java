@@ -1,4 +1,4 @@
-package org.agoncal.application.conference.talk.domain;
+package org.agoncal.application.conference.schedule.domain;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,10 +13,10 @@ import java.util.*;
  *         --
  */
 @Entity
-@NamedQuery(name = Talk.FIND_ALL, query = "SELECT t FROM Talk t ORDER BY t.title DESC")
+@NamedQuery(name = Schedule.FIND_ALL, query = "SELECT s FROM Schedule s ORDER BY s.title DESC")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Talk {
+public class Schedule {
 
     // ======================================
     // =             Constants              =
@@ -45,10 +45,10 @@ public class Talk {
     // =            Constructors            =
     // ======================================
 
-    public Talk() {
+    public Schedule() {
     }
 
-    public Talk(String id, String title, String language) {
+    public Schedule(String id, String title, String language) {
         this.id = id;
         this.title = title;
         this.language = language;
@@ -128,7 +128,7 @@ public class Talk {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Talk that = (Talk) o;
+        Schedule that = (Schedule) o;
         return Objects.equals(id, that.id);
     }
 
