@@ -19,8 +19,10 @@ import java.util.Map;
 public class JSonToDatabase {
 
     /**
-     * create table Talk (id varchar(255) not null, language varchar(255), summary varchar(255), talkType varchar(255), title varchar(255), track varchar(255), primary key (id))
+     * create table Room (id varchar(255) not null, primary key (id))
+     * create table Schedule (id varchar(255) not null, day varchar(255), fromTime varchar(255), fromTimeMillis bigint, isaBreak boolean, notAllocated boolean, toTime varchar(255), toTimeMillis bigint, room_id varchar(255), talk_id varchar(255), primary key (id))
      * create table Speaker (id varchar(255) not null, name varchar(255), primary key (id))
+     * create table Talk (id varchar(255) not null, talkType varchar(255), title varchar(255), track varchar(255), primary key (id))
      * create table Talk_Speaker (Talk_id varchar(255) not null, speakers_id varchar(255) not null)
      */
 
@@ -31,7 +33,15 @@ public class JSonToDatabase {
 
     public static void main(String[] args) throws IOException {
 
-        File file = Paths.get("src/test/resources/talks.json").toFile();
+        parse(Paths.get("src/test/resources/monday.json").toFile());
+        parse(Paths.get("src/test/resources/tuesday.json").toFile());
+        parse(Paths.get("src/test/resources/wednesday.json").toFile());
+        parse(Paths.get("src/test/resources/thursday.json").toFile());
+        parse(Paths.get("src/test/resources/friday.json").toFile());
+    }
+
+    public static void parse(File file) throws IOException {
+
         JsonReader rdr = Json.createReader(new FileReader(file.getAbsoluteFile()));
 
         JsonArray results = rdr.readArray();
@@ -64,7 +74,7 @@ public class JSonToDatabase {
 
                 joinTableCreateSQLStatement = "INSERT INTO Talk_Speaker (Talk_id, speakers_id) values (";
                 joinTableCreateSQLStatement += "'" + talk.getString("id") + "', ";
-                joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href")+ "'");
+                joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href") + "'");
                 joinTableCreateSQLStatement += ");";
 
                 System.out.println(joinTableCreateSQLStatement);
@@ -74,7 +84,7 @@ public class JSonToDatabase {
     }
 
     private static String getId(String href) {
-        return href.substring(href.lastIndexOf('/')+1, href.length());
+        return href.substring(href.lastIndexOf('/') + 1, href.length());
     }
 
     private static String getSqlValue(JsonObject jsonObject, String key) {
