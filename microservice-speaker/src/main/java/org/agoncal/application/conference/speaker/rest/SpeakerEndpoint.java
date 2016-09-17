@@ -21,7 +21,7 @@ import java.util.List;
  *         --
  */
 @Path("/speakers")
-@Api(description = "Rooms REST Endpoint")
+@Api(description = "Speakers REST Endpoint")
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
@@ -35,7 +35,7 @@ public class SpeakerEndpoint {
     private SpeakerRepository speakerRepository;
 
     @Context
-    UriInfo uriInfo;
+    private UriInfo uriInfo;
 
     // ======================================
     // =          Business methods          =
@@ -44,10 +44,7 @@ public class SpeakerEndpoint {
     @POST
     public Response add(Speaker speaker) {
         Speaker created = speakerRepository.create(speaker);
-        // Speaker2SpeakerResource
-        return Response.created(URI.create("/" + created.getId()))
-            .entity(created)
-            .build();
+        return Response.created(URI.create("/" + created.getId())).entity(created).build();
     }
 
     @GET
@@ -57,7 +54,7 @@ public class SpeakerEndpoint {
         Speaker speaker = speakerRepository.findById(id);
 
         if (speaker != null) {
-            speaker.addLink("self", uriInfo.getAbsolutePath().resolve(speaker.getId()));
+            speaker.addLink("self", uriInfo.getAbsolutePathBuilder().path(speaker.getId()).build());
             if (expand) {
                 for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
                     acceptedTalk.addLink("self", uriInfo.getAbsolutePath().resolve(acceptedTalk.getId()));
@@ -75,7 +72,7 @@ public class SpeakerEndpoint {
     public Response allSpeakers() {
         List<Speaker> allSpeakers = speakerRepository.getAllSpeakers();
         for (Speaker speaker : allSpeakers) {
-            speaker.addLink("self", uriInfo.getAbsolutePath().resolve(speaker.getId()));
+            speaker.addLink("self", uriInfo.getAbsolutePathBuilder().path(speaker.getId()).build());
         }
         GenericEntity<List<Speaker>> entity = buildEntity(allSpeakers);
         return Response.ok(entity).build();

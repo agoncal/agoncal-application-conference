@@ -1,6 +1,6 @@
 package org.agoncal.application.conference.venue.rest;
 
-import org.agoncal.application.conference.venue.resource.RoomResource;
+import org.agoncal.application.conference.venue.domain.Room;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -37,7 +37,7 @@ public class RoomEndpointTest {
     // =             Attributes             =
     // ======================================
 
-    private static final RoomResource TEST_ROOM = new RoomResource("Metroxx", "Metropolis");
+    private static final Room TEST_ROOM = new Room("Metroxx", "Metropolis");
     private static String roomId;
     private Client client;
     private WebTarget webTarget;
@@ -61,7 +61,7 @@ public class RoomEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(RoomResource.class, RoomEndpoint.class, RoomRepository.class, Application.class)
+            .addClasses(Room.class, RoomEndpoint.class, RoomRepository.class, Application.class)
             .addAsLibraries(files);
     }
 

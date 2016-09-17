@@ -19,8 +19,8 @@ import java.util.List;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Path("/speakers")
-@Api(description = "Rooms REST Endpoint")
+@Path("/talks")
+@Api(description = "Talks REST Endpoint")
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
@@ -34,7 +34,7 @@ public class TalkEndpoint {
     private TalkRepository talkRepository;
 
     @Context
-    UriInfo uriInfo;
+    private UriInfo uriInfo;
 
     // ======================================
     // =          Business methods          =
@@ -43,7 +43,6 @@ public class TalkEndpoint {
     @POST
     public Response add(Talk talk) {
         Talk created = talkRepository.create(talk);
-
         return Response.created(URI.create("/" + created.getId())).entity(created).build();
     }
 
@@ -54,7 +53,7 @@ public class TalkEndpoint {
         Talk talk = talkRepository.findById(id);
 
         if (talk != null) {
-            talk.addLink("self", uriInfo.getAbsolutePath().resolve(talk.getId()));
+            talk.addLink("self", uriInfo.getAbsolutePathBuilder().path(talk.getId()).build());
             return Response.ok(talk).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -64,7 +63,7 @@ public class TalkEndpoint {
     public Response allTalks() {
         List<Talk> allTalks = talkRepository.getAllTalks();
         for (Talk talk : allTalks) {
-            talk.addLink("self", uriInfo.getAbsolutePath().resolve(talk.getId()));
+            talk.addLink("self", uriInfo.getAbsolutePathBuilder().path(talk.getId()).build());
         }
         GenericEntity<List<Talk>> entity = buildEntity(allTalks);
         return Response.ok(entity).build();

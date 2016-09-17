@@ -1,7 +1,7 @@
 package org.agoncal.application.conference.venue.rest;
 
 import io.swagger.annotations.Api;
-import org.agoncal.application.conference.venue.resource.RoomResource;
+import org.agoncal.application.conference.venue.domain.Room;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 
 import javax.enterprise.context.RequestScoped;
@@ -20,6 +20,7 @@ import java.util.List;
 @Api(description = "Rooms REST Endpoint")
 @RequestScoped
 @Produces("application/json")
+@Consumes("application/json")
 public class RoomEndpoint {
 
     // ======================================
@@ -27,32 +28,29 @@ public class RoomEndpoint {
     // ======================================
 
     @Inject
-    private RoomRepository roomDAO;
+    private RoomRepository roomRepository;
 
     @Context
-    UriInfo uriInfo;
+    private UriInfo uriInfo;
 
     // ======================================
     // =          Business methods          =
     // ======================================
 
     @POST
-    @Consumes("application/json")
-    public Response add(RoomResource room) {
-        RoomResource created = roomDAO.create(room);
-        return Response.created(URI.create("/" + created.getId()))
-            .entity(created)
-            .build();
+    public Response add(Room room) {
+        Room created = roomRepository.create(room);
+        return Response.created(URI.create("/" + created.getId())).entity(created).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response retrieve(@PathParam("id") String roomId) {
+    public Response retrieve(@PathParam("id") String id) {
 
-        RoomResource room = roomDAO.findById(roomId);
+        Room room = roomRepository.findById(id);
 
         if (room != null) {
-            room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
+            room.addLink("self", uriInfo.getAbsolutePathBuilder().path(room.getId()).build());
             return Response.ok(room).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -60,18 +58,18 @@ public class RoomEndpoint {
 
     @GET
     public Response allRooms() {
-        List<RoomResource> allRooms = roomDAO.getAllRooms();
-        for (RoomResource room : allRooms) {
-            room.addLink("self", uriInfo.getAbsolutePath().resolve(room.getId()));
+        List<Room> allRooms = roomRepository.getAllRooms();
+        for (Room room : allRooms) {
+            room.addLink("self", uriInfo.getAbsolutePathBuilder().path(room.getId()).build());
         }
-        GenericEntity<List<RoomResource>> entity = buildEntity(allRooms);
+        GenericEntity<List<Room>> entity = buildEntity(allRooms);
         return Response.ok(entity).build();
     }
 
     @DELETE
     @Path("/{id}")
-    public Response remove(@PathParam("id") String roomId) {
-        roomDAO.delete(roomId);
+    public Response remove(@PathParam("id") String id) {
+        roomRepository.delete(id);
         return Response.noContent().build();
     }
 
@@ -79,8 +77,8 @@ public class RoomEndpoint {
     // =           Private methods          =
     // ======================================
 
-    private GenericEntity<List<RoomResource>> buildEntity(final List<RoomResource> roomList) {
-        return new GenericEntity<List<RoomResource>>(roomList) {
+    private GenericEntity<List<Room>> buildEntity(final List<Room> roomList) {
+        return new GenericEntity<List<Room>>(roomList) {
         };
     }
 }

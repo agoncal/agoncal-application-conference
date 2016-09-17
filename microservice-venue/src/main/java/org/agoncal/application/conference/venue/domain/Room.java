@@ -1,4 +1,4 @@
-package org.agoncal.application.conference.venue.resource;
+package org.agoncal.application.conference.venue.domain;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RoomResource {
+public class Room {
 
     // ======================================
     // =             Attributes             =
@@ -31,15 +31,15 @@ public class RoomResource {
     // =            Constructors            =
     // ======================================
 
-    public RoomResource() {
+    public Room() {
     }
 
-    public RoomResource(String id, String name) {
+    public Room(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public RoomResource(String id, String name, Integer capacity, String setup) {
+    public Room(String id, String name, Integer capacity, String setup) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
@@ -95,7 +95,7 @@ public class RoomResource {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RoomResource room = (RoomResource) o;
+        Room room = (Room) o;
         return Objects.equals(id, room.id);
     }
 
