@@ -53,14 +53,7 @@ public class ScheduleEndpoint {
         Schedule schedule = scheduleRepository.findById(id);
 
         if (schedule != null) {
-            // Hack to solve marshalling problems TO BE FIXED
-            try {
-                schedule.getTalk().getTalkType();
-            } catch (Exception e) {
-                schedule.setTalk(null);
-            }
-
-            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
+            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().build());
             return Response.ok(schedule).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();

@@ -1,9 +1,6 @@
 package org.agoncal.application.conference.schedule.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,7 +31,7 @@ public class Talk {
     private String title;
     private String talkType;
     private String track;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Speaker> speakers;
 
     // ======================================
