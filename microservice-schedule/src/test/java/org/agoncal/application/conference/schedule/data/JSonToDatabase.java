@@ -19,16 +19,20 @@ import java.util.Map;
 public class JSonToDatabase {
 
     /**
-     * create table Room (id varchar(255) not null, primary key (id))
-     * create table Schedule (id varchar(255) not null, day varchar(255), fromTime varchar(255), fromTimeMillis bigint, isaBreak boolean, notAllocated boolean, toTime varchar(255), toTimeMillis bigint, room_id varchar(255), talk_id varchar(255), primary key (id))
-     * create table Speaker (id varchar(255) not null, name varchar(255), primary key (id))
-     * create table Talk (id varchar(255) not null, talkType varchar(255), title varchar(255), track varchar(255), primary key (id))
-     * create table Talk_Speaker (Talk_id varchar(255) not null, speakers_id varchar(255) not null)
+     * create table Room (id)
+     * create table Talk (id, talkType, title, track)
+     * create table Speaker (id, name)
+     * create table Talk_Speaker (Talk_id, speakers_id)
+     * create table Schedule (id, day, fromTime, fromTimeMillis, isaBreak, notAllocated, toTime, toTimeMillis, room_id, talk_id)
      */
 
+    private static String roomCreateSQLStatement;
     private static String talkCreateSQLStatement;
     private static String speakerCreateSQLStatement;
     private static String joinTableCreateSQLStatement;
+    private static String scheduleTableCreateSQLStatement;
+
+    private static Map<String, String> roomAlreadyExist = new HashMap<>();
     private static Map<String, String> speakersAlreadyExist = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
@@ -44,41 +48,77 @@ public class JSonToDatabase {
 
         JsonReader rdr = Json.createReader(new FileReader(file.getAbsoluteFile()));
 
-        JsonArray results = rdr.readArray();
-        for (JsonObject talk : results.getValuesAs(JsonObject.class)) {
+        JsonArray slots = rdr.readObject().getJsonArray("slots");
+        for (JsonObject slot : slots.getValuesAs(JsonObject.class)) {
 
-            talkCreateSQLStatement = "INSERT INTO Talk (id, title, language, talkType, track, summary) values (";
-            talkCreateSQLStatement += "'" + talk.getString("id") + "', ";
-            talkCreateSQLStatement += getSqlValue(talk, "title") + ", ";
-            talkCreateSQLStatement += getSqlValue(talk, "lang") + ", ";
-            talkCreateSQLStatement += getSqlValue(talk, "talkType") + ", ";
-            talkCreateSQLStatement += getSqlValue(talk, "track") + ", ";
-            talkCreateSQLStatement += getSqlValue(talk, "summary") + ", ";
-            talkCreateSQLStatement += ");";
+            if (!roomAlreadyExist.containsKey(slot.getString("roomId"))) {
 
-            System.out.println(talkCreateSQLStatement);
+                roomAlreadyExist.put(slot.getString("roomId"), "exists");
+                roomCreateSQLStatement = "INSERT INTO Room (id) values (";
+                roomCreateSQLStatement += "'" + slot.getString("roomId") + "'";
+                roomCreateSQLStatement += ");";
 
-            JsonArray speakers = talk.getJsonArray("speakers");
-            for (JsonObject speaker : speakers.getValuesAs(JsonObject.class)) {
-
-                if (!speakersAlreadyExist.containsKey(speaker.getJsonObject("link").getString("href"))) {
-
-                    speakersAlreadyExist.put(speaker.getJsonObject("link").getString("href"), "exists");
-                    speakerCreateSQLStatement = "INSERT INTO Speaker (id, name) values (";
-                    speakerCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href")) + "', ";
-                    speakerCreateSQLStatement += getSqlValue(speaker, "name");
-                    speakerCreateSQLStatement += ");";
-
-                    System.out.println(speakerCreateSQLStatement);
-                }
-
-                joinTableCreateSQLStatement = "INSERT INTO Talk_Speaker (Talk_id, speakers_id) values (";
-                joinTableCreateSQLStatement += "'" + talk.getString("id") + "', ";
-                joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href") + "'");
-                joinTableCreateSQLStatement += ");";
-
-                System.out.println(joinTableCreateSQLStatement);
+                System.out.println(roomCreateSQLStatement);
             }
+
+            if (slot.containsKey("talk") && !slot.get("talk").toString().equals("null")) {
+                JsonObject talk = slot.getJsonObject("talk");
+
+                talkCreateSQLStatement = "INSERT INTO Talk (id, talkType, title, track) values (";
+                talkCreateSQLStatement += "'" + talk.getString("id") + "', ";
+                talkCreateSQLStatement += getSqlValue(slot, "talkType") + ", ";
+                talkCreateSQLStatement += getSqlValue(slot, "title") + ", ";
+                talkCreateSQLStatement += getSqlValue(slot, "track");
+                talkCreateSQLStatement += ");";
+
+                System.out.println(talkCreateSQLStatement);
+
+                JsonArray speakers = talk.getJsonArray("speakers");
+                for (JsonObject speaker : speakers.getValuesAs(JsonObject.class)) {
+
+                    if (!speakersAlreadyExist.containsKey(speaker.getJsonObject("link").getString("href"))) {
+
+                        speakersAlreadyExist.put(speaker.getJsonObject("link").getString("href"), "exists");
+                        speakerCreateSQLStatement = "INSERT INTO Speaker (id, name) values (";
+                        speakerCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href")) + "', ";
+                        speakerCreateSQLStatement += getSqlValue(speaker, "name");
+                        speakerCreateSQLStatement += ");";
+
+                        System.out.println(speakerCreateSQLStatement);
+                    }
+
+                    joinTableCreateSQLStatement = "INSERT INTO Talk_Speaker (Talk_id, speakers_id) values (";
+                    joinTableCreateSQLStatement += "'" + talk.getString("id") + "', ";
+                    joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href") + "'");
+                    joinTableCreateSQLStatement += ");";
+
+                    System.out.println(joinTableCreateSQLStatement);
+                }
+            }
+
+            scheduleTableCreateSQLStatement = "INSERT INTO Schedule (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values (";
+            scheduleTableCreateSQLStatement += "'" + slot.getString("slotId") + "', ";
+            scheduleTableCreateSQLStatement += getSqlValue(slot, "day") + ", ";
+            scheduleTableCreateSQLStatement += "'" + slot.getString("fromTime") + "', ";
+            scheduleTableCreateSQLStatement += slot.getInt("fromTimeMillis") + ", ";
+
+            if (slot.containsKey("break") && slot.get("break").toString().equals("null"))
+                scheduleTableCreateSQLStatement += "false, ";
+            else
+                scheduleTableCreateSQLStatement += "true, ";
+
+            if (slot.containsKey("talk") && slot.get("talk").toString().equals("null"))
+                scheduleTableCreateSQLStatement += "null, ";
+            else
+                scheduleTableCreateSQLStatement += "'" + slot.getJsonObject("talk").getString("id") + "', ";
+
+            scheduleTableCreateSQLStatement += slot.getBoolean("notAllocated") + ", ";
+            scheduleTableCreateSQLStatement += "'" + slot.getString("toTime") + "', ";
+            scheduleTableCreateSQLStatement += slot.getInt("toTimeMillis") + ", ";
+            scheduleTableCreateSQLStatement += "'" + slot.getString("roomId") + "'";
+            scheduleTableCreateSQLStatement += ");";
+
+            System.out.println(scheduleTableCreateSQLStatement);
             System.out.println("");
         }
     }
