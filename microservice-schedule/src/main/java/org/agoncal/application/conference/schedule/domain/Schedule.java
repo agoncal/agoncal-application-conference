@@ -3,6 +3,7 @@ package org.agoncal.application.conference.schedule.domain;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
 import java.util.HashMap;
@@ -49,8 +50,10 @@ public class Schedule {
     private String toTime;
     private String day;
     @ManyToOne
+    @XmlElement(nillable = false)
     private Room room;
     @ManyToOne
+    @XmlElement(nillable = true)
     private Talk talk;
 
     // ======================================
@@ -193,7 +196,6 @@ public class Schedule {
             ", toTime='" + toTime + '\'' +
             ", day='" + day + '\'' +
             ", room=" + room +
-            ", talk=" + talk +
             '}';
     }
 }

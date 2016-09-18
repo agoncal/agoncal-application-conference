@@ -50,11 +50,18 @@ public class ScheduleEndpoint {
     @Path("/{id}")
     public Response retrieve(@PathParam("id") String id) {
 
-        Schedule talk = scheduleRepository.findById(id);
+        Schedule schedule = scheduleRepository.findById(id);
 
-        if (talk != null) {
-            talk.addLink("self", uriInfo.getAbsolutePathBuilder().path(talk.getId()).build());
-            return Response.ok(talk).build();
+        if (schedule != null) {
+            // Hack to solve marshalling problems TO BE FIXED
+            try {
+                schedule.getTalk().getTalkType();
+            } catch (Exception e) {
+                schedule.setTalk(null);
+            }
+
+            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
+            return Response.ok(schedule).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();
     }

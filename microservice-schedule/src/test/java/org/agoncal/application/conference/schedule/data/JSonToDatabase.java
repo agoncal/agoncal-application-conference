@@ -66,9 +66,9 @@ public class JSonToDatabase {
 
                 talkCreateSQLStatement = "INSERT INTO Talk (id, talkType, title, track) values (";
                 talkCreateSQLStatement += "'" + talk.getString("id") + "', ";
-                talkCreateSQLStatement += getSqlValue(slot, "talkType") + ", ";
-                talkCreateSQLStatement += getSqlValue(slot, "title") + ", ";
-                talkCreateSQLStatement += getSqlValue(slot, "track");
+                talkCreateSQLStatement += getSqlValue(talk, "talkType") + ", ";
+                talkCreateSQLStatement += getSqlValue(talk, "title") + ", ";
+                talkCreateSQLStatement += getSqlValue(talk, "track");
                 talkCreateSQLStatement += ");";
 
                 System.out.println(talkCreateSQLStatement);

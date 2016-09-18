@@ -123,7 +123,6 @@ public class Talk {
             ", title='" + title + '\'' +
             ", talkType='" + talkType + '\'' +
             ", track='" + track + '\'' +
-            ", speakers=" + speakers +
             '}';
     }
 }
