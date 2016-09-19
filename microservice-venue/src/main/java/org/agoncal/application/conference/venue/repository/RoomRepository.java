@@ -61,7 +61,11 @@ public class RoomRepository {
     }
 
     public Room findById(String id) {
-        return roomMap.get(id).clone();
+        Room room = roomMap.get(id);
+        if (room != null)
+            return room.clone();
+        else
+            return null;
     }
 
     public Room update(Room room) {

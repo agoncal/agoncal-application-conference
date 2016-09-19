@@ -37,7 +37,7 @@ public class RoomEndpointTest {
     // =             Attributes             =
     // ======================================
 
-    private static final Room TEST_ROOM = new Room("Metroxx", "Metropolis");
+    private static final Room TEST_ROOM = new Room("name", 123, "setup");
     private static String roomId;
     private Client client;
     private WebTarget webTarget;
@@ -92,6 +92,7 @@ public class RoomEndpointTest {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_ROOM, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         roomId = getRoomId(response);
+        TEST_ROOM.setId(roomId);
     }
 
     @Test
@@ -106,6 +107,17 @@ public class RoomEndpointTest {
 
     @Test
     @InSequence(4)
+    public void shouldUpdateCreatedRoom() throws Exception {
+        TEST_ROOM.setName("updated name");
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).put(Entity.entity(TEST_ROOM, APPLICATION_JSON_TYPE));
+        assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals(roomId, jsonObject.getString("id"));
+        assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
+    }
+
+    @Test
+    @InSequence(5)
     public void shouldRemoveRoom() throws Exception {
         Response response = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());

@@ -34,9 +34,10 @@ public class Room implements Cloneable {
     public Room() {
     }
 
-    public Room(String id, String name) {
-        this.id = id;
+    public Room(String name, Integer capacity, String setup) {
         this.name = name;
+        this.capacity = capacity;
+        this.setup = setup;
     }
 
     public Room(String id, String name, Integer capacity, String setup) {
