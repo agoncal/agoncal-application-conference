@@ -74,8 +74,7 @@ public class SpeakerEndpoint {
         for (Speaker speaker : allSpeakers) {
             speaker.addLink("self", getURIForSelf(speaker));
         }
-        GenericEntity<List<Speaker>> entity = buildEntity(allSpeakers);
-        return Response.ok(entity).build();
+        return Response.ok(buildEntity(allSpeakers)).build();
     }
 
     @DELETE

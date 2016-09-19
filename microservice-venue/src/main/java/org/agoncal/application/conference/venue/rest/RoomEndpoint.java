@@ -66,8 +66,7 @@ public class RoomEndpoint {
         for (Room room : allRooms) {
             room.addLink("self", getURIForSelf(room));
         }
-        GenericEntity<List<Room>> entity = buildEntity(allRooms);
-        return Response.ok(entity).build();
+        return Response.ok(buildEntity(allRooms)).build();
     }
 
     @DELETE
@@ -75,6 +74,12 @@ public class RoomEndpoint {
     public Response remove(@PathParam("id") String id) {
         roomRepository.delete(id);
         return Response.noContent().build();
+    }
+
+    @PUT
+    public Response update(Room room) {
+        roomRepository.update(room);
+        return Response.ok(room).build();
     }
 
     // ======================================

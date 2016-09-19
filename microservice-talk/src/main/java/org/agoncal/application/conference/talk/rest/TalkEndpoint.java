@@ -65,8 +65,7 @@ public class TalkEndpoint {
         for (Talk talk : allTalks) {
             talk.addLink("self", getURIForSelf(talk));
         }
-        GenericEntity<List<Talk>> entity = buildEntity(allTalks);
-        return Response.ok(entity).build();
+        return Response.ok(buildEntity(allTalks)).build();
     }
 
     @DELETE

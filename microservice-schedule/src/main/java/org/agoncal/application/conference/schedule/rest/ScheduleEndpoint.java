@@ -65,8 +65,7 @@ public class ScheduleEndpoint {
         for (Schedule schedule : allSchedules) {
             schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
         }
-        GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
-        return Response.ok(entity).build();
+        return Response.ok(buildEntity(allSchedules)).build();
     }
 
     @GET
@@ -134,8 +133,7 @@ public class ScheduleEndpoint {
         for (Schedule schedule : allSchedules) {
             schedule.addLink("self", getURIForSelf(schedule));
         }
-        GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
-        return Response.ok(entity).build();
+        return Response.ok(buildEntity(allSchedules)).build();
     }
 
     private Response allSchedulesByDayAndRoom(String day, String roomId) {
@@ -143,8 +141,7 @@ public class ScheduleEndpoint {
         for (Schedule schedule : allSchedules) {
             schedule.addLink("self", getURIForSelf(schedule));
         }
-        GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
-        return Response.ok(entity).build();
+        return Response.ok(buildEntity(allSchedules)).build();
     }
 
     @DELETE
