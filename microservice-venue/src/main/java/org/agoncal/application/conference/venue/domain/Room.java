@@ -82,9 +82,9 @@ public class Room {
         this.setup = setup;
     }
 
-    public void addLink(String title, URI uri) {
+    public void addLink(String rel, URI uri) {
         links = new HashMap<>();
-        links.put(title, uri);
+        links.put(rel, uri);
     }
 
     // ======================================
