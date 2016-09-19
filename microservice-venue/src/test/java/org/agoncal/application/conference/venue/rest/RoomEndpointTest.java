@@ -21,6 +21,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
@@ -28,6 +29,7 @@ import java.net.URI;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -103,10 +105,24 @@ public class RoomEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(roomId, jsonObject.getString("id"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
+        assertEquals(2, jsonObject.getJsonObject("links").size());
     }
 
     @Test
     @InSequence(4)
+    public void shouldGetCreatedRoomWithEtag() throws Exception {
+        Response response = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).get();
+        EntityTag etag = response.getEntityTag();
+        assertNotNull(etag);
+        assertEquals(200, response.getStatus());
+        response.close();
+        Response response2 = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
+        assertNotNull(response2.getEntityTag());
+        assertEquals(304, response2.getStatus());
+    }
+
+    @Test
+    @InSequence(5)
     public void shouldUpdateCreatedRoom() throws Exception {
         TEST_ROOM.setName("updated name");
         Response response = webTarget.request(APPLICATION_JSON_TYPE).put(Entity.entity(TEST_ROOM, APPLICATION_JSON_TYPE));
@@ -114,10 +130,11 @@ public class RoomEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(roomId, jsonObject.getString("id"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
+        assertEquals(2, jsonObject.getJsonObject("links").size());
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(6)
     public void shouldRemoveRoom() throws Exception {
         Response response = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());

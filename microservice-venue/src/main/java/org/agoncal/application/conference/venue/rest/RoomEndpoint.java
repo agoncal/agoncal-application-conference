@@ -7,10 +7,7 @@ import org.agoncal.application.conference.venue.repository.RoomRepository;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
 
@@ -48,16 +45,24 @@ public class RoomEndpoint {
 
     @GET
     @Path("/{id}")
-    public Response retrieve(@PathParam("id") String id) {
+    public Response retrieve(@PathParam("id") String id, @Context Request request) {
 
         Room room = roomRepository.findById(id);
 
-        if (room != null) {
+        if (room == null)
+            return Response.status(Response.Status.NOT_FOUND).build();
+
+        EntityTag etag = new EntityTag(Integer.toString(room.hashCode()));
+        Response.ResponseBuilder preconditions = request.evaluatePreconditions(etag);
+
+        // cached resource did change -> serve updated content
+        if (preconditions == null) {
             room.addLink("self", getURIForSelf(room));
             room.addLink("collection", getURIForCollection());
-            return Response.ok(room).build();
-        } else
-            return Response.status(Response.Status.NOT_FOUND).build();
+            preconditions = Response.ok(room).tag(etag);
+        }
+
+        return preconditions.build();
     }
 
     @GET
@@ -79,6 +84,8 @@ public class RoomEndpoint {
     @PUT
     public Response update(Room room) {
         roomRepository.update(room);
+        room.addLink("self", getURIForSelf(room));
+        room.addLink("collection", getURIForCollection());
         return Response.ok(room).build();
     }
 
