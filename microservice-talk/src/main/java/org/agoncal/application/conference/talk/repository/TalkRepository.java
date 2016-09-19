@@ -32,7 +32,7 @@ public class TalkRepository {
         return talk;
     }
 
-    public List<Talk> getAllTalks() {
+    public List<Talk> findAllTalks() {
         TypedQuery<Talk> query = em.createNamedQuery(Talk.FIND_ALL, Talk.class);
         return query.getResultList();
     }

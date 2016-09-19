@@ -44,7 +44,7 @@ public class SpeakerEndpoint {
     @POST
     public Response add(Speaker speaker) {
         Speaker created = speakerRepository.create(speaker);
-        return Response.created(URI.create("/" + created.getId())).entity(created).build();
+        return Response.created(getURIForSelf(speaker)).entity(created).build();
     }
 
     @GET
@@ -70,7 +70,7 @@ public class SpeakerEndpoint {
 
     @GET
     public Response allSpeakers() {
-        List<Speaker> allSpeakers = speakerRepository.getAllSpeakers();
+        List<Speaker> allSpeakers = speakerRepository.findAllSpeakers();
         for (Speaker speaker : allSpeakers) {
             speaker.addLink("self", getURIForSelf(speaker));
         }

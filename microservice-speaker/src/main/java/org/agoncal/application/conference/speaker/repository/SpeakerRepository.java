@@ -32,7 +32,7 @@ public class SpeakerRepository {
         return speaker;
     }
 
-    public List<Speaker> getAllSpeakers() {
+    public List<Speaker> findAllSpeakers() {
         TypedQuery<Speaker> query = em.createNamedQuery(Speaker.FIND_ALL, Speaker.class);
         return query.getResultList();
     }

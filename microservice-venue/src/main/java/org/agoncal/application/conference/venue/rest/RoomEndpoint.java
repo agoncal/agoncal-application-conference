@@ -7,7 +7,10 @@ import org.agoncal.application.conference.venue.repository.RoomRepository;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
@@ -40,7 +43,7 @@ public class RoomEndpoint {
     @POST
     public Response add(Room room) {
         Room created = roomRepository.create(room);
-        return Response.created(URI.create("/" + created.getId())).entity(created).build();
+        return Response.created(getURIForSelf(room)).entity(created).build();
     }
 
     @GET
@@ -51,6 +54,7 @@ public class RoomEndpoint {
 
         if (room != null) {
             room.addLink("self", getURIForSelf(room));
+            room.addLink("collection", getURIForCollection());
             return Response.ok(room).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -58,7 +62,7 @@ public class RoomEndpoint {
 
     @GET
     public Response allRooms() {
-        List<Room> allRooms = roomRepository.getAllRooms();
+        List<Room> allRooms = roomRepository.findAllRooms();
         for (Room room : allRooms) {
             room.addLink("self", getURIForSelf(room));
         }
@@ -84,5 +88,9 @@ public class RoomEndpoint {
 
     private URI getURIForSelf(Room room) {
         return uriInfo.getBaseUriBuilder().path(RoomEndpoint.class).path(room.getId()).build();
+    }
+
+    private URI getURIForCollection() {
+        return uriInfo.getBaseUriBuilder().path(RoomEndpoint.class).build();
     }
 }

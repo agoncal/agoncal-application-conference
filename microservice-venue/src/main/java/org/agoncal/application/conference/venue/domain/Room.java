@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Room {
+public class Room implements Cloneable {
 
     // ======================================
     // =             Attributes             =
@@ -83,13 +83,24 @@ public class Room {
     }
 
     public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
+        if (links == null)
+            links = new HashMap<>();
         links.put(rel, uri);
     }
 
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
+
+    @Override
+    public Room clone() {
+        Room cloned = new Room();
+        cloned.setId(this.getId());
+        cloned.setCapacity(this.getCapacity());
+        cloned.setName(this.getName());
+        cloned.setSetup(this.getSetup());
+        return cloned;
+    }
 
     @Override
     public boolean equals(Object o) {

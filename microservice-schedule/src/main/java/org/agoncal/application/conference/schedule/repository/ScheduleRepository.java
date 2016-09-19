@@ -33,18 +33,18 @@ public class ScheduleRepository {
         return schedule;
     }
 
-    public List<Schedule> getAllSchedules() {
+    public List<Schedule> findAllSchedules() {
         TypedQuery<Schedule> query = em.createNamedQuery(Schedule.FIND_ALL, Schedule.class);
         return query.getResultList();
     }
 
-    public List<Schedule> getAllSchedulesByDay(String day) {
+    public List<Schedule> findAllSchedulesByDay(String day) {
         TypedQuery<Schedule> query = em.createNamedQuery(Schedule.FIND_BY_DAY, Schedule.class);
         query.setParameter("day", day);
         return query.getResultList();
     }
 
-    public List<Schedule> getAllSchedulesByDayAndRoom(String day, String roomId) {
+    public List<Schedule> findAllSchedulesByDayAndRoom(String day, String roomId) {
         TypedQuery<Schedule> query = em.createNamedQuery(Schedule.FIND_BY_DAY_AND_ROOM, Schedule.class);
         query.setParameter("day", day);
         query.setParameter("roomId", roomId);

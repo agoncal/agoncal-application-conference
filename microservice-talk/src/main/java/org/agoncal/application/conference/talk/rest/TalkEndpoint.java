@@ -43,7 +43,7 @@ public class TalkEndpoint {
     @POST
     public Response add(Talk talk) {
         Talk created = talkRepository.create(talk);
-        return Response.created(URI.create("/" + created.getId())).entity(created).build();
+        return Response.created(getURIForSelf(talk)).entity(created).build();
     }
 
     @GET
@@ -61,7 +61,7 @@ public class TalkEndpoint {
 
     @GET
     public Response allTalks() {
-        List<Talk> allTalks = talkRepository.getAllTalks();
+        List<Talk> allTalks = talkRepository.findAllTalks();
         for (Talk talk : allTalks) {
             talk.addLink("self", getURIForSelf(talk));
         }

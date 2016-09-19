@@ -4,7 +4,10 @@ import org.agoncal.application.conference.venue.domain.Room;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Antonio Goncalves
@@ -53,12 +56,12 @@ public class RoomRepository {
         return room;
     }
 
-    public List<Room> getAllRooms() {
+    public List<Room> findAllRooms() {
         return new ArrayList<>(roomMap.values());
     }
 
     public Room findById(String id) {
-        return roomMap.get(id);
+        return roomMap.get(id).clone();
     }
 
     public Room update(Room room) {

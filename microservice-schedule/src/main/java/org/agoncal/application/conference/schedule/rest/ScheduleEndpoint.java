@@ -43,7 +43,7 @@ public class ScheduleEndpoint {
     @POST
     public Response add(Schedule schedule) {
         Schedule created = scheduleRepository.create(schedule);
-        return Response.created(URI.create("/" + created.getId())).entity(created).build();
+        return Response.created(getURIForSelf(schedule)).entity(created).build();
     }
 
     @GET
@@ -61,7 +61,7 @@ public class ScheduleEndpoint {
 
     @GET
     public Response allSchedules() {
-        List<Schedule> allSchedules = scheduleRepository.getAllSchedules();
+        List<Schedule> allSchedules = scheduleRepository.findAllSchedules();
         for (Schedule schedule : allSchedules) {
             schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
         }
@@ -130,7 +130,7 @@ public class ScheduleEndpoint {
     }
 
     private Response allSchedulesByDay(String day) {
-        List<Schedule> allSchedules = scheduleRepository.getAllSchedulesByDay(day);
+        List<Schedule> allSchedules = scheduleRepository.findAllSchedulesByDay(day);
         for (Schedule schedule : allSchedules) {
             schedule.addLink("self", getURIForSelf(schedule));
         }
@@ -139,7 +139,7 @@ public class ScheduleEndpoint {
     }
 
     private Response allSchedulesByDayAndRoom(String day, String roomId) {
-        List<Schedule> allSchedules = scheduleRepository.getAllSchedulesByDayAndRoom(day, roomId);
+        List<Schedule> allSchedules = scheduleRepository.findAllSchedulesByDayAndRoom(day, roomId);
         for (Schedule schedule : allSchedules) {
             schedule.addLink("self", getURIForSelf(schedule));
         }
