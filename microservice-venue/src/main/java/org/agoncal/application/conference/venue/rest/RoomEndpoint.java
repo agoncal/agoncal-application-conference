@@ -50,7 +50,7 @@ public class RoomEndpoint {
         Room room = roomRepository.findById(id);
 
         if (room != null) {
-            room.addLink("self", uriInfo.getAbsolutePathBuilder().path(room.getId()).build());
+            room.addLink("self", getURIForSelf(room));
             return Response.ok(room).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -60,7 +60,7 @@ public class RoomEndpoint {
     public Response allRooms() {
         List<Room> allRooms = roomRepository.getAllRooms();
         for (Room room : allRooms) {
-            room.addLink("self", uriInfo.getAbsolutePathBuilder().path(room.getId()).build());
+            room.addLink("self", getURIForSelf(room));
         }
         GenericEntity<List<Room>> entity = buildEntity(allRooms);
         return Response.ok(entity).build();
@@ -80,5 +80,9 @@ public class RoomEndpoint {
     private GenericEntity<List<Room>> buildEntity(final List<Room> roomList) {
         return new GenericEntity<List<Room>>(roomList) {
         };
+    }
+
+    private URI getURIForSelf(Room room) {
+        return uriInfo.getAbsolutePathBuilder().path(RoomEndpoint.class).path(room.getId()).build();
     }
 }

@@ -132,7 +132,7 @@ public class ScheduleEndpoint {
     private Response allSchedulesByDay(String day) {
         List<Schedule> allSchedules = scheduleRepository.getAllSchedulesByDay(day);
         for (Schedule schedule : allSchedules) {
-            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
+            schedule.addLink("self", getURIForSelf(schedule));
         }
         GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
         return Response.ok(entity).build();
@@ -141,7 +141,7 @@ public class ScheduleEndpoint {
     private Response allSchedulesByDayAndRoom(String day, String roomId) {
         List<Schedule> allSchedules = scheduleRepository.getAllSchedulesByDayAndRoom(day, roomId);
         for (Schedule schedule : allSchedules) {
-            schedule.addLink("self", uriInfo.getAbsolutePathBuilder().path(schedule.getId()).build());
+            schedule.addLink("self", getURIForSelf(schedule));
         }
         GenericEntity<List<Schedule>> entity = buildEntity(allSchedules);
         return Response.ok(entity).build();
@@ -161,5 +161,9 @@ public class ScheduleEndpoint {
     private GenericEntity<List<Schedule>> buildEntity(final List<Schedule> scheduleList) {
         return new GenericEntity<List<Schedule>>(scheduleList) {
         };
+    }
+
+    private URI getURIForSelf(Schedule schedule) {
+        return uriInfo.getAbsolutePathBuilder().path(ScheduleEndpoint.class).path(schedule.getId()).build();
     }
 }

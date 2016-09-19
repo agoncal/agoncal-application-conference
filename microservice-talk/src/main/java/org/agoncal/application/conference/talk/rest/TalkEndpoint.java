@@ -53,7 +53,7 @@ public class TalkEndpoint {
         Talk talk = talkRepository.findById(id);
 
         if (talk != null) {
-            talk.addLink("self", uriInfo.getAbsolutePathBuilder().path(talk.getId()).build());
+            talk.addLink("self", getURIForSelf(talk));
             return Response.ok(talk).build();
         } else
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -63,7 +63,7 @@ public class TalkEndpoint {
     public Response allTalks() {
         List<Talk> allTalks = talkRepository.getAllTalks();
         for (Talk talk : allTalks) {
-            talk.addLink("self", uriInfo.getAbsolutePathBuilder().path(talk.getId()).build());
+            talk.addLink("self", getURIForSelf(talk));
         }
         GenericEntity<List<Talk>> entity = buildEntity(allTalks);
         return Response.ok(entity).build();
@@ -83,5 +83,9 @@ public class TalkEndpoint {
     private GenericEntity<List<Talk>> buildEntity(final List<Talk> talkList) {
         return new GenericEntity<List<Talk>>(talkList) {
         };
+    }
+
+    private URI getURIForSelf(Talk talk) {
+        return uriInfo.getAbsolutePathBuilder().path(TalkEndpoint.class).path(talk.getId()).build();
     }
 }

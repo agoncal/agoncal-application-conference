@@ -54,7 +54,7 @@ public class SpeakerEndpoint {
         Speaker speaker = speakerRepository.findById(id);
 
         if (speaker != null) {
-            speaker.addLink("self", uriInfo.getAbsolutePathBuilder().path(speaker.getId()).build());
+            speaker.addLink("self", getURIForSelf(speaker));
             if (expand) {
                 for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
                     acceptedTalk.addLink("self", uriInfo.getAbsolutePath().resolve(acceptedTalk.getId()));
@@ -72,7 +72,7 @@ public class SpeakerEndpoint {
     public Response allSpeakers() {
         List<Speaker> allSpeakers = speakerRepository.getAllSpeakers();
         for (Speaker speaker : allSpeakers) {
-            speaker.addLink("self", uriInfo.getAbsolutePathBuilder().path(speaker.getId()).build());
+            speaker.addLink("self", getURIForSelf(speaker));
         }
         GenericEntity<List<Speaker>> entity = buildEntity(allSpeakers);
         return Response.ok(entity).build();
@@ -92,5 +92,9 @@ public class SpeakerEndpoint {
     private GenericEntity<List<Speaker>> buildEntity(final List<Speaker> speakerList) {
         return new GenericEntity<List<Speaker>>(speakerList) {
         };
+    }
+
+    private URI getURIForSelf(Speaker speaker) {
+        return uriInfo.getAbsolutePathBuilder().path(SpeakerEndpoint.class).path(speaker.getId()).build();
     }
 }
