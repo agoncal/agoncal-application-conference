@@ -164,6 +164,6 @@ public class ScheduleEndpoint {
     }
 
     private URI getURIForSelf(Schedule schedule) {
-        return uriInfo.getAbsolutePathBuilder().path(ScheduleEndpoint.class).path(schedule.getId()).build();
+        return uriInfo.getBaseUriBuilder().path(ScheduleEndpoint.class).path(schedule.getId()).build();
     }
 }

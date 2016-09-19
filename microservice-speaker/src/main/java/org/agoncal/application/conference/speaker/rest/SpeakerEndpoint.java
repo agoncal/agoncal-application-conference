@@ -95,6 +95,6 @@ public class SpeakerEndpoint {
     }
 
     private URI getURIForSelf(Speaker speaker) {
-        return uriInfo.getAbsolutePathBuilder().path(SpeakerEndpoint.class).path(speaker.getId()).build();
+        return uriInfo.getBaseUriBuilder().path(SpeakerEndpoint.class).path(speaker.getId()).build();
     }
 }

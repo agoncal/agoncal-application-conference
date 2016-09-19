@@ -86,6 +86,6 @@ public class TalkEndpoint {
     }
 
     private URI getURIForSelf(Talk talk) {
-        return uriInfo.getAbsolutePathBuilder().path(TalkEndpoint.class).path(talk.getId()).build();
+        return uriInfo.getBaseUriBuilder().path(TalkEndpoint.class).path(talk.getId()).build();
     }
 }

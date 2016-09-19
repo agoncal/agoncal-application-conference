@@ -83,6 +83,6 @@ public class RoomEndpoint {
     }
 
     private URI getURIForSelf(Room room) {
-        return uriInfo.getAbsolutePathBuilder().path(RoomEndpoint.class).path(room.getId()).build();
+        return uriInfo.getBaseUriBuilder().path(RoomEndpoint.class).path(room.getId()).build();
     }
 }
