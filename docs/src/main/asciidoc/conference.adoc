@@ -8,14 +8,15 @@ ifndef::ebook-format[:leveloffset: 1]
 
 = Introduction
 
-The application consists of several Microservices and a Web-Application managing a conference.
+The application consists of several Microservices and a Web-Application managing a conference. It is inspired by the one used in the https://github.com/microprofile/microprofile-conference[Micro Profile samples].
 
 = Architecture
 
 * Venue service. Manage the venue description with rooms and halls
-* Voting service. Vote for the your favorite session
 * Speaker service. Manage speakers, Bios, etc
-* Schedule Service.  Service to manage session schedules
+* Talk service. Manage the talks of the conference
+* Schedule Service.  Service to manage talks schedule
+* Voting service. Vote for the your favorite talk
 * Front-end application
 
 image::architecture.png[title="Overall Architecture"]

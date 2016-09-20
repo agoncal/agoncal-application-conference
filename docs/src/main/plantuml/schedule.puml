@@ -1,15 +1,17 @@
 @startuml
 
 class Schedule << Model >>
-class Session << Model >>
-class Venue << Model >>
+class Talk << Model >>
+class Room << Model >>
+class Speaker << Model >>
 
-class ScheduleDAO << DAO >>
-class ScheduleResource << REST Endpoint >>
+class ScheduleRepository << DAO >>
+class ScheduleEndpoint << REST Endpoint >>
 
-ScheduleResource ..> ScheduleDAO
-ScheduleDAO ..> Schedule
-Schedule --> Session
-Schedule --> Venue
+ScheduleEndpoint ..> ScheduleRepository
+ScheduleRepository ..> Schedule
+Schedule --> Talk
+Schedule --> Room
+Schedule --> Speaker
 
 @enduml
