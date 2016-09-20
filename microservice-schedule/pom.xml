@@ -17,6 +17,30 @@
 
     <build>
         <finalName>conference-schedule</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>com.github.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <springmvc>false</springmvc>
+                            <locations>org.agoncal.application.conference.schedule.rest</locations>
+                            <schemes>http,https</schemes>
+                            <host>localhost:8084</host>
+                            <basePath>/api</basePath>
+                            <info>
+                                <title>Schedule</title>
+                                <version>1.0.0</version>
+                                <description>Gives all the details of the schedule</description>
+                            </info>
+                            <swaggerDirectory>${basedir}/src/main/webapp</swaggerDirectory>
+                        </apiSource>
+                    </apiSources>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <dependencies>
@@ -26,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
-            <artifactId>swagger-jaxrs</artifactId>
+            <artifactId>swagger-core</artifactId>
         </dependency>
 
         <!-- TEST -->

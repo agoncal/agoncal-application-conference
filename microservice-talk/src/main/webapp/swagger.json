@@ -1,19 +1,19 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Gives all the details of the rooms of the venue",
+    "description" : "Gives all the details of the talks",
     "version" : "1.0.0",
-    "title" : "Room"
+    "title" : "Talk"
   },
-  "host" : "localhost:8081",
+  "host" : "localhost:8082",
   "basePath" : "/api",
   "schemes" : [ "http", "https" ],
   "paths" : {
-    "/rooms" : {
+    "/talks" : {
       "get" : {
-        "summary" : "Finds all the rooms",
+        "summary" : "Finds all the talks",
         "description" : "",
-        "operationId" : "allRooms",
+        "operationId" : "allTalks",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
@@ -22,7 +22,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Room"
+                "$ref" : "#/definitions/Talk"
               }
             }
           },
@@ -32,7 +32,7 @@
         }
       },
       "post" : {
-        "summary" : "Adds a new room to the venue",
+        "summary" : "Adds a new talk to the conference",
         "description" : "",
         "operationId" : "add",
         "consumes" : [ "application/json" ],
@@ -42,27 +42,9 @@
             "description" : "Invalid input"
           }
         }
-      },
-      "put" : {
-        "summary" : "Update an existing room",
-        "description" : "",
-        "operationId" : "update",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "Pet not found"
-          },
-          "405" : {
-            "description" : "Validation exception"
-          }
-        }
       }
     },
-    "/rooms/{id}" : {
+    "/talks/{id}" : {
       "get" : {
         "summary" : "Finds a room by ID",
         "description" : "",
@@ -79,7 +61,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/Room"
+              "$ref" : "#/definitions/Talk"
             }
           },
           "400" : {
@@ -91,7 +73,7 @@
         }
       },
       "delete" : {
-        "summary" : "Deletes a room",
+        "summary" : "Deletes a talk",
         "description" : "",
         "operationId" : "remove",
         "consumes" : [ "application/json" ],
@@ -104,27 +86,32 @@
         } ],
         "responses" : {
           "400" : {
-            "description" : "Invalid room value"
+            "description" : "Invalid talk value"
           }
         }
       }
     }
   },
   "definitions" : {
-    "Room" : {
+    "Talk" : {
       "type" : "object",
       "properties" : {
         "id" : {
           "type" : "string"
         },
-        "name" : {
+        "title" : {
           "type" : "string"
         },
-        "capacity" : {
-          "type" : "integer",
-          "format" : "int32"
+        "language" : {
+          "type" : "string"
         },
-        "setup" : {
+        "talkType" : {
+          "type" : "string"
+        },
+        "track" : {
+          "type" : "string"
+        },
+        "summary" : {
           "type" : "string"
         }
       }

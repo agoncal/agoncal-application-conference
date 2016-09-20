@@ -1,0 +1,438 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Gives all the details of the schedule",
+    "version" : "1.0.0",
+    "title" : "Schedule"
+  },
+  "host" : "localhost:8084",
+  "basePath" : "/api",
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/schedules" : {
+      "get" : {
+        "summary" : "Finds all the schedules",
+        "description" : "",
+        "operationId" : "allSchedules",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Adds a new schedule to the conference",
+        "description" : "",
+        "operationId" : "add",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      }
+    },
+    "/schedules/friday" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Friday",
+        "description" : "",
+        "operationId" : "allSchedulesFriday",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/friday/{roomId}" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Friday on a specific room",
+        "description" : "",
+        "operationId" : "allSchedulesFridayByRoom",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roomId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/monday" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Monday",
+        "description" : "",
+        "operationId" : "allSchedulesMonday",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/monday/{roomId}" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Monday on a specific room",
+        "description" : "",
+        "operationId" : "allSchedulesMondayByRoom",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roomId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/thursday" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Thursday",
+        "description" : "",
+        "operationId" : "allSchedulesThursday",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/thursday/{roomId}" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Thursday on a specific room",
+        "description" : "",
+        "operationId" : "allSchedulesThursdayByRoom",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roomId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/tuesday" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Tuesday",
+        "description" : "",
+        "operationId" : "allSchedulesTuesday",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/tuesday/{roomId}" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Tuesday on a specific room",
+        "description" : "",
+        "operationId" : "allSchedulesTuesdayByRoom",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roomId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/wednesday" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Wednesday",
+        "description" : "",
+        "operationId" : "allSchedulesWednesday",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/wednesday/{roomId}" : {
+      "get" : {
+        "summary" : "Finds all the schedules for Wednesday on a specific room",
+        "description" : "",
+        "operationId" : "allSchedulesWednesdayByRoom",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roomId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Schedule"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Schedules not found"
+          }
+        }
+      }
+    },
+    "/schedules/{id}" : {
+      "get" : {
+        "summary" : "Finds a schedule by ID",
+        "description" : "",
+        "operationId" : "retrieve",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Schedule"
+            }
+          },
+          "400" : {
+            "description" : "Invalid input"
+          },
+          "404" : {
+            "description" : "Schedule not found"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a schedule",
+        "description" : "",
+        "operationId" : "remove",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid schedule value"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Room" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Schedule" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "notAllocated" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "isaBreak" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "fromTimeMillis" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "fromTime" : {
+          "type" : "string"
+        },
+        "toTimeMillis" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "toTime" : {
+          "type" : "string"
+        },
+        "day" : {
+          "type" : "string"
+        },
+        "room" : {
+          "$ref" : "#/definitions/Room"
+        },
+        "talk" : {
+          "$ref" : "#/definitions/Talk"
+        }
+      }
+    },
+    "Speaker" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Talk" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "talkType" : {
+          "type" : "string"
+        },
+        "track" : {
+          "type" : "string"
+        },
+        "speakers" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Speaker"
+          }
+        }
+      }
+    }
+  }
+}

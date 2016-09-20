@@ -1,19 +1,19 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Gives all the details of the rooms of the venue",
+    "description" : "Gives all the details of the speakers",
     "version" : "1.0.0",
-    "title" : "Room"
+    "title" : "Speaker"
   },
-  "host" : "localhost:8081",
+  "host" : "localhost:8083",
   "basePath" : "/api",
   "schemes" : [ "http", "https" ],
   "paths" : {
-    "/rooms" : {
+    "/speakers" : {
       "get" : {
-        "summary" : "Finds all the rooms",
+        "summary" : "Finds all the speakers",
         "description" : "",
-        "operationId" : "allRooms",
+        "operationId" : "allSpeakers",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
@@ -22,17 +22,17 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Room"
+                "$ref" : "#/definitions/Speaker"
               }
             }
           },
           "404" : {
-            "description" : "Rooms not found"
+            "description" : "Speakers not found"
           }
         }
       },
       "post" : {
-        "summary" : "Adds a new room to the venue",
+        "summary" : "Adds a new speacker to the conference",
         "description" : "",
         "operationId" : "add",
         "consumes" : [ "application/json" ],
@@ -42,27 +42,9 @@
             "description" : "Invalid input"
           }
         }
-      },
-      "put" : {
-        "summary" : "Update an existing room",
-        "description" : "",
-        "operationId" : "update",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "Pet not found"
-          },
-          "405" : {
-            "description" : "Validation exception"
-          }
-        }
       }
     },
-    "/rooms/{id}" : {
+    "/speakers/{id}" : {
       "get" : {
         "summary" : "Finds a room by ID",
         "description" : "",
@@ -74,24 +56,30 @@
           "in" : "path",
           "required" : true,
           "type" : "string"
+        }, {
+          "name" : "expand",
+          "in" : "query",
+          "required" : false,
+          "type" : "boolean",
+          "default" : false
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/Room"
+              "$ref" : "#/definitions/Speaker"
             }
           },
           "400" : {
             "description" : "Invalid input"
           },
           "404" : {
-            "description" : "Room not found"
+            "description" : "Speaker not found"
           }
         }
       },
       "delete" : {
-        "summary" : "Deletes a room",
+        "summary" : "Deletes a speaker",
         "description" : "",
         "operationId" : "remove",
         "consumes" : [ "application/json" ],
@@ -104,28 +92,62 @@
         } ],
         "responses" : {
           "400" : {
-            "description" : "Invalid room value"
+            "description" : "Invalid speaker value"
           }
         }
       }
     }
   },
   "definitions" : {
-    "Room" : {
+    "AcceptedTalk" : {
       "type" : "object",
       "properties" : {
         "id" : {
           "type" : "string"
         },
-        "name" : {
+        "title" : {
           "type" : "string"
         },
-        "capacity" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "setup" : {
+        "language" : {
           "type" : "string"
+        }
+      }
+    },
+    "Speaker" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "bio" : {
+          "type" : "string"
+        },
+        "language" : {
+          "type" : "string"
+        },
+        "twitter" : {
+          "type" : "string"
+        },
+        "avatarUrl" : {
+          "type" : "string"
+        },
+        "company" : {
+          "type" : "string"
+        },
+        "blog" : {
+          "type" : "string"
+        },
+        "acceptedTalks" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AcceptedTalk"
+          }
         }
       }
     }

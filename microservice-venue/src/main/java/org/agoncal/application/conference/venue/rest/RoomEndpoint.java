@@ -38,7 +38,7 @@ public class RoomEndpoint {
     // ======================================
 
     @POST
-    @ApiOperation(value = "Add a new room to the venue")
+    @ApiOperation(value = "Adds a new room to the venue")
     @ApiResponses(value = {
         @ApiResponse(code = 405, message = "Invalid input")}
     )
