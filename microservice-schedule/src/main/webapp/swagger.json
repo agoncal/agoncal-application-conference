@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Schedule"
   },
-  "host" : "localhost:8084",
+  "host" : "localhost:8082",
   "basePath" : "/api",
   "schemes" : [ "http", "https" ],
   "paths" : {

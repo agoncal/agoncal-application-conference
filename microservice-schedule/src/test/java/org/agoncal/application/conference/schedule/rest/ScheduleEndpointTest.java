@@ -76,7 +76,7 @@ public class ScheduleEndpointTest {
     @Before
     public void initWebTarget() {
         client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("schedules");
+        webTarget = client.target(baseURL).path("api/schedules");
     }
 
     // ======================================

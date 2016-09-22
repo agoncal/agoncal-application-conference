@@ -53,10 +53,11 @@
     </properties>
 
     <modules>
-        <module>microservice-venue</module>
+        <module>microservice-rating</module>
+        <module>microservice-schedule</module>
         <module>microservice-speaker</module>
         <module>microservice-talk</module>
-        <module>microservice-schedule</module>
+        <module>microservice-venue</module>
     </modules>
 
     <dependencyManagement>
@@ -79,11 +80,16 @@
             </dependency>
 
             <!-- OTHERS -->
+            <!--<dependency>-->
+                <!--<groupId>io.swagger</groupId>-->
+                <!--<artifactId>swagger-core</artifactId>-->
+                <!--<version>${version.swagger}</version>-->
+                <!--<scope>provided</scope>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>io.swagger</groupId>
-                <artifactId>swagger-core</artifactId>
+                <artifactId>swagger-annotations</artifactId>
                 <version>${version.swagger}</version>
-                <scope>provided</scope>
             </dependency>
 
             <!-- ARQUILLIAN TEST -->

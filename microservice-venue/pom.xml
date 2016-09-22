@@ -28,7 +28,7 @@
                             <springmvc>false</springmvc>
                             <locations>org.agoncal.application.conference.venue.rest</locations>
                             <schemes>http,https</schemes>
-                            <host>localhost:8081</host>
+                            <host>localhost:8085</host>
                             <basePath>/api</basePath>
                             <info>
                                 <title>Room</title>
@@ -50,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
-            <artifactId>swagger-core</artifactId>
+            <artifactId>swagger-annotations</artifactId>
         </dependency>
 
         <!-- TEST -->
@@ -95,7 +95,7 @@
                         <artifactId>wildfly-swarm-plugin</artifactId>
                         <configuration>
                             <properties>
-                                <swarm.http.port>8081</swarm.http.port>
+                                <swarm.http.port>8085</swarm.http.port>
                                 <swarm.context.path>/</swarm.context.path>
                             </properties>
                         </configuration>

@@ -76,7 +76,7 @@ public class TalkEndpointTest {
     @Before
     public void initWebTarget() {
         client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("talks");
+        webTarget = client.target(baseURL).path("api/talks");
     }
 
     // ======================================

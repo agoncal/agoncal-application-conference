@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Talk"
   },
-  "host" : "localhost:8082",
+  "host" : "localhost:8084",
   "basePath" : "/api",
   "schemes" : [ "http", "https" ],
   "paths" : {

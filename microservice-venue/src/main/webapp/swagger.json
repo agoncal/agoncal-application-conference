@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Room"
   },
-  "host" : "localhost:8081",
+  "host" : "localhost:8085",
   "basePath" : "/api",
   "schemes" : [ "http", "https" ],
   "paths" : {

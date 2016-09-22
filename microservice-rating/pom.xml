@@ -11,12 +11,12 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>microservice-schedule</artifactId>
-    <name>Conference :: Schedule</name>
+    <artifactId>microservice-rating</artifactId>
+    <name>Conference :: Rating</name>
     <packaging>war</packaging>
 
     <build>
-        <finalName>conference-schedule</finalName>
+        <finalName>conference-rating</finalName>
 
         <plugins>
             <plugin>
@@ -26,14 +26,14 @@
                     <apiSources>
                         <apiSource>
                             <springmvc>false</springmvc>
-                            <locations>org.agoncal.application.conference.schedule.rest</locations>
+                            <locations>org.agoncal.application.conference.rating.rest</locations>
                             <schemes>http,https</schemes>
-                            <host>localhost:8082</host>
+                            <host>localhost:8081</host>
                             <basePath>/api</basePath>
                             <info>
                                 <title>Schedule</title>
                                 <version>1.0.0</version>
-                                <description>Gives all the details of the schedule</description>
+                                <description>Allows rating for a talk and gives all the details about the ratings</description>
                             </info>
                             <swaggerDirectory>${basedir}/src/main/webapp</swaggerDirectory>
                         </apiSource>
@@ -99,7 +99,7 @@
                         <artifactId>wildfly-swarm-plugin</artifactId>
                         <configuration>
                             <properties>
-                                <swarm.http.port>8082</swarm.http.port>
+                                <swarm.http.port>8081</swarm.http.port>
                                 <swarm.context.path>/</swarm.context.path>
                             </properties>
                         </configuration>

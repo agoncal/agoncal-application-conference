@@ -74,7 +74,7 @@ public class RoomEndpointTest {
     @Before
     public void initWebTarget() {
         client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("rooms");
+        webTarget = client.target(baseURL).path("api/rooms");
     }
 
     // ======================================
@@ -90,7 +90,7 @@ public class RoomEndpointTest {
 
     @Test
     @InSequence(2)
-    public void shouldCreateRoom() throws Exception {
+    public void shouldCreateARoom() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_ROOM, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         roomId = getRoomId(response);

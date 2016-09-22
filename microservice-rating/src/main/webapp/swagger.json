@@ -1,0 +1,175 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Allows rating for a talk and gives all the details about the ratings",
+    "version" : "1.0.0",
+    "title" : "Schedule"
+  },
+  "host" : "localhost:8081",
+  "basePath" : "/api",
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/ratings" : {
+      "get" : {
+        "summary" : "Finds all the ratings",
+        "description" : "",
+        "operationId" : "allRatings",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Rating"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Ratings not found"
+          }
+        }
+      }
+    },
+    "/ratings/attendees/{attendeeId}" : {
+      "get" : {
+        "summary" : "Finds all the ratings for an attendee",
+        "description" : "",
+        "operationId" : "allRatingsByAttendee",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "attendeeId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Rating"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Ratings not found"
+          }
+        }
+      }
+    },
+    "/ratings/rate" : {
+      "post" : {
+        "summary" : "Rates a session",
+        "description" : "",
+        "operationId" : "rateSession",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      }
+    },
+    "/ratings/sessions/{sessionId}" : {
+      "get" : {
+        "summary" : "Finds all the ratings for a session",
+        "description" : "",
+        "operationId" : "allRatingsBySession",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "sessionId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Rating"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Ratings not found"
+          }
+        }
+      }
+    },
+    "/ratings/{id}" : {
+      "get" : {
+        "summary" : "Finds a rating by ID",
+        "description" : "",
+        "operationId" : "retrieve",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Rating"
+            }
+          },
+          "400" : {
+            "description" : "Invalid input"
+          },
+          "404" : {
+            "description" : "Rating not found"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a rating",
+        "description" : "",
+        "operationId" : "remove",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid rating value"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Rating" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "talkId" : {
+          "type" : "string"
+        },
+        "attendeeId" : {
+          "type" : "string"
+        },
+        "rating" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    }
+  }
+}

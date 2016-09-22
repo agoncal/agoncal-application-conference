@@ -50,17 +50,13 @@
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
-            <artifactId>swagger-core</artifactId>
+            <artifactId>swagger-annotations</artifactId>
         </dependency>
 
         <!-- TEST -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.arquillian.universe</groupId>
@@ -89,15 +85,7 @@
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>undertow</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>jaxrs-cdi</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>jaxrs-jsonp</artifactId>
+                    <artifactId>microprofile</artifactId>
                 </dependency>
                 <dependency>
                     <groupId>org.wildfly.swarm</groupId>
@@ -111,7 +99,7 @@
                         <artifactId>wildfly-swarm-plugin</artifactId>
                         <configuration>
                             <properties>
-                                <swarm.http.port>8081</swarm.http.port>
+                                <swarm.http.port>8083</swarm.http.port>
                                 <swarm.context.path>/</swarm.context.path>
                             </properties>
                         </configuration>

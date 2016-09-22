@@ -1,8 +1,7 @@
-package org.agoncal.application.conference.speaker.rest;
+package org.agoncal.application.conference.rating.rest;
 
-import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
-import org.agoncal.application.conference.speaker.domain.Speaker;
-import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
+import org.agoncal.application.conference.rating.domain.Rating;
+import org.agoncal.application.conference.rating.repository.RatingRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -33,14 +32,14 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-public class SpeakerEndpointTest {
+public class ScheduleEndpointTest {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    private static final Speaker TEST_SPEAKER = new Speaker("id", "last name");
-    private static String speakerId;
+    private static final Rating TEST_RATING = new Rating("sessionId", "attendeeId", 5);
+    private static String ratingId;
     private Client client;
     private WebTarget webTarget;
 
@@ -63,7 +62,8 @@ public class SpeakerEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Speaker.class, AcceptedTalk.class, SpeakerEndpoint.class, SpeakerRepository.class, Application.class)
+            .addPackage(Rating.class.getPackage())
+            .addClasses(RatingEndpoint.class, RatingRepository.class, Application.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);
@@ -76,7 +76,7 @@ public class SpeakerEndpointTest {
     @Before
     public void initWebTarget() {
         client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("api/speakers");
+        webTarget = client.target(baseURL).path("api/ratings");
     }
 
     // ======================================
@@ -85,36 +85,35 @@ public class SpeakerEndpointTest {
 
     @Test
     @InSequence(1)
-    public void shouldGetAllSpeakers() throws Exception {
+    public void shouldGetAllRatings() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
     }
 
-
     @Test
     @InSequence(2)
-    public void shouldCreateSpeaker() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_SPEAKER, APPLICATION_JSON_TYPE));
+    public void shouldCreateARating() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_RATING, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
-        speakerId = getSpeakerId(response);
+        ratingId = getRatingId(response);
     }
 
     @Test
     @InSequence(3)
-    public void shouldGetAlreadyCreatedRoom() throws Exception {
-        Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
+    public void shouldGetAlreadyCreatedRating() throws Exception {
+        Response response = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals(speakerId, jsonObject.getString("id"));
-        assertEquals(TEST_SPEAKER.getLastName(), jsonObject.getString("lastName"));
+        assertEquals(ratingId, jsonObject.getString("id"));
+        assertEquals(TEST_RATING.getRating(), new Integer(jsonObject.getInt("day")));
     }
 
     @Test
     @InSequence(4)
-    public void shouldRemoveRoom() throws Exception {
-        Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).delete();
+    public void shouldRemoveRating() throws Exception {
+        Response response = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
-        Response checkResponse = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
+        Response checkResponse = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
     }
 
@@ -122,7 +121,7 @@ public class SpeakerEndpointTest {
     // =           Private methods          =
     // ======================================
 
-    private String getSpeakerId(Response response) {
+    private String getRatingId(Response response) {
         String location = response.getHeaderString("location");
         return location.substring(location.lastIndexOf("/") + 1);
     }
