@@ -39,7 +39,7 @@ public class ScheduleEndpointTest {
     // ======================================
 
     private static final Schedule TEST_TALK = new Schedule("id", "monday");
-    private static String talkId;
+    private static String rateId;
     private Client client;
     private WebTarget webTarget;
 
@@ -95,25 +95,25 @@ public class ScheduleEndpointTest {
     public void shouldCreateTalk() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_TALK, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
-        talkId = getSpeakerId(response);
+        rateId = getSpeakerId(response);
     }
 
     @Test
     @InSequence(3)
     public void shouldGetAlreadyCreatedTalk() throws Exception {
-        Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).get();
+        Response response = webTarget.path(rateId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals(talkId, jsonObject.getString("id"));
+        assertEquals(rateId, jsonObject.getString("id"));
         assertEquals(TEST_TALK.getDay(), jsonObject.getString("day"));
     }
 
     @Test
     @InSequence(4)
     public void shouldRemoveTalk() throws Exception {
-        Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).delete();
+        Response response = webTarget.path(rateId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
-        Response checkResponse = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).get();
+        Response checkResponse = webTarget.path(rateId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
     }
 

@@ -38,7 +38,6 @@ public class RatingEndpoint {
     // ======================================
 
     @POST
-    @Path("/rate")
     @ApiOperation(value = "Rates a session")
     @ApiResponses(value = {
         @ApiResponse(code = 405, message = "Invalid input")}

@@ -30,6 +30,18 @@
             "description" : "Ratings not found"
           }
         }
+      },
+      "post" : {
+        "summary" : "Rates a session",
+        "description" : "",
+        "operationId" : "rateSession",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
       }
     },
     "/ratings/attendees/{attendeeId}" : {
@@ -57,20 +69,6 @@
           },
           "404" : {
             "description" : "Ratings not found"
-          }
-        }
-      }
-    },
-    "/ratings/rate" : {
-      "post" : {
-        "summary" : "Rates a session",
-        "description" : "",
-        "operationId" : "rateSession",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "405" : {
-            "description" : "Invalid input"
           }
         }
       }
@@ -159,7 +157,7 @@
         "id" : {
           "type" : "string"
         },
-        "talkId" : {
+        "sessionId" : {
           "type" : "string"
         },
         "attendeeId" : {

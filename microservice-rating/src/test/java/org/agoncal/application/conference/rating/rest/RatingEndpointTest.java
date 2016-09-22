@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ScheduleEndpointTest {
+public class RatingEndpointTest {
 
     // ======================================
     // =             Attributes             =

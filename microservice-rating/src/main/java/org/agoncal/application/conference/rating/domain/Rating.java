@@ -41,7 +41,7 @@ public class Rating {
     private String id;
     @Transient
     private Map<String, URI> links;
-    private String talkId;
+    private String sessionId;
     private String attendeeId;
     private Integer rating;
 
@@ -52,8 +52,8 @@ public class Rating {
     public Rating() {
     }
 
-    public Rating(String talkId, String attendeeId, Integer rating) {
-        this.talkId = talkId;
+    public Rating(String sessionId, String attendeeId, Integer rating) {
+        this.sessionId = sessionId;
         this.attendeeId = attendeeId;
         this.rating = rating;
     }
@@ -79,12 +79,12 @@ public class Rating {
         this.id = id;
     }
 
-    public String getTalkId() {
-        return talkId;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public void setTalkId(String talkId) {
-        this.talkId = talkId;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     public String getAttendeeId() {
@@ -130,7 +130,7 @@ public class Rating {
         return "Rating{" +
             "id='" + id + '\'' +
             ", links=" + links +
-            ", talkId='" + talkId + '\'' +
+            ", talkId='" + sessionId + '\'' +
             ", attendeeId='" + attendeeId + '\'' +
             ", rating=" + rating +
             '}';
