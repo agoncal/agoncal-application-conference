@@ -1,12 +1,11 @@
 package org.agoncal.application.conference.rating.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -23,7 +22,7 @@ import java.util.UUID;
 })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Rating {
+public class Rating extends LinkableResource {
 
     // ======================================
     // =             Constants              =
@@ -39,8 +38,6 @@ public class Rating {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
     private String sessionId;
     private String attendeeId;
     private Integer rating;
@@ -103,11 +100,6 @@ public class Rating {
         this.rating = rating;
     }
 
-    public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
-        links.put(rel, uri);
-    }
-
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
@@ -129,7 +121,7 @@ public class Rating {
     public String toString() {
         return "Rating{" +
             "id='" + id + '\'' +
-            ", links=" + links +
+            ", links=" + getLinks() +
             ", talkId='" + sessionId + '\'' +
             ", attendeeId='" + attendeeId + '\'' +
             ", rating=" + rating +

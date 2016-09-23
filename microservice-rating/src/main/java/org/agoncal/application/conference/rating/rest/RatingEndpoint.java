@@ -66,8 +66,8 @@ public class RatingEndpoint {
 
         // cached resource did change -> serve updated content
         if (preconditions == null) {
-            rating.addLink("self", getURIForSelf(rating));
-            rating.addLink("collection", getURIForCollection());
+            rating.addSelfLink(getURIForSelf(rating));
+            rating.addCollectionLink(getURIForCollection());
             preconditions = Response.ok(rating).tag(etag);
         }
 
@@ -86,7 +86,7 @@ public class RatingEndpoint {
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Rating rating : allRatings) {
-            rating.addLink("self", getURIForSelf(rating));
+            rating.addSelfLink(getURIForSelf(rating));
         }
         return Response.ok(buildEntity(allRatings)).build();
     }
@@ -100,7 +100,7 @@ public class RatingEndpoint {
     public Response allRatingsByAttendee(@PathParam("attendeeId") String attendeeId) {
         List<Rating> allRatings = ratingRepository.findRatingsByAttendee(attendeeId);
         for (Rating rating : allRatings) {
-            rating.addLink("self", getURIForSelf(rating));
+            rating.addSelfLink(getURIForSelf(rating));
         }
         return Response.ok(buildEntity(allRatings)).build();
     }
@@ -114,7 +114,7 @@ public class RatingEndpoint {
     public Response allRatingsBySession(@PathParam("sessionId") String sessionId) {
         List<Rating> allRatings = ratingRepository.findRatingsBySession(sessionId);
         for (Rating rating : allRatings) {
-            rating.addLink("self", getURIForSelf(rating));
+            rating.addSelfLink(getURIForSelf(rating));
         }
         return Response.ok(buildEntity(allRatings)).build();
     }

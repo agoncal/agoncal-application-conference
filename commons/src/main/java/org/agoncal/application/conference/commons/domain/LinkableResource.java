@@ -23,11 +23,11 @@ public abstract class LinkableResource implements Identifiable {
 
     private Map<String, URI> links;
 
-    public void addSelf(URI uri) {
+    public void addSelfLink(URI uri) {
         addLink(SELF, uri);
     }
 
-    public void addCollection(URI uri) {
+    public void addCollectionLink(URI uri) {
         addLink(COLLECTION, uri);
     }
 

@@ -1,11 +1,14 @@
 package org.agoncal.application.conference.talk.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Antonio Goncalves
@@ -16,7 +19,7 @@ import java.util.*;
 @NamedQuery(name = Talk.FIND_ALL, query = "SELECT t FROM Talk t ORDER BY t.title DESC")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Talk {
+public class Talk extends LinkableResource {
 
     // ======================================
     // =             Constants              =
@@ -30,8 +33,6 @@ public class Talk {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
     private String title;
     private String language;
     private String talkType;
@@ -115,11 +116,6 @@ public class Talk {
         this.summary = summary;
     }
 
-    public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
-        links.put(rel, uri);
-    }
-
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
@@ -141,7 +137,7 @@ public class Talk {
     public String toString() {
         return "Talk{" +
             "id='" + id + '\'' +
-            ", links=" + links +
+            ", links=" + getLinks() +
             ", title='" + title + '\'' +
             ", language='" + language + '\'' +
             ", talkType='" + talkType + '\'' +

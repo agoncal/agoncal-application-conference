@@ -69,8 +69,8 @@ public class RoomEndpoint {
 
         // cached resource did change -> serve updated content
         if (preconditions == null) {
-            room.addSelf(getURIForSelf(room));
-            room.addCollection(getURIForCollection());
+            room.addSelfLink(getURIForSelf(room));
+            room.addCollectionLink(getURIForCollection());
             preconditions = Response.ok(room).tag(etag);
         }
 
@@ -89,7 +89,7 @@ public class RoomEndpoint {
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Room room : allRooms) {
-            room.addSelf(getURIForSelf(room));
+            room.addSelfLink(getURIForSelf(room));
         }
         return Response.ok(buildEntity(allRooms)).build();
     }
@@ -114,8 +114,8 @@ public class RoomEndpoint {
     )
     public Response update(Room room) {
         roomRepository.update(room);
-        room.addSelf(getURIForSelf(room));
-        room.addCollection(getURIForCollection());
+        room.addSelfLink(getURIForSelf(room));
+        room.addCollectionLink(getURIForCollection());
         return Response.ok(room).build();
     }
 

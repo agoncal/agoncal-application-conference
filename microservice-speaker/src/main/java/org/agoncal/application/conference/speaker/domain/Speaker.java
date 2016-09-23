@@ -1,11 +1,14 @@
 package org.agoncal.application.conference.speaker.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Antonio Goncalves
@@ -16,7 +19,7 @@ import java.util.*;
 @NamedQuery(name = Speaker.FIND_ALL, query = "SELECT s FROM Speaker s ORDER BY s.lastName DESC")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Speaker {
+public class Speaker extends LinkableResource {
 
     // ======================================
     // =             Constants              =
@@ -30,8 +33,6 @@ public class Speaker {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
     private String lastName;
     private String firstName;
     @Column(length = 5000)
@@ -162,11 +163,6 @@ public class Speaker {
         this.acceptedTalks = acceptedTalks;
     }
 
-    public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
-        links.put(rel, uri);
-    }
-
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
@@ -188,6 +184,7 @@ public class Speaker {
     public String toString() {
         return "Speaker{" +
             "id='" + id + '\'' +
+            ", links='" + getLinks() + '\'' +
             ", lastName='" + lastName + '\'' +
             ", firstName='" + firstName + '\'' +
             ", bio='" + bio + '\'' +

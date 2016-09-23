@@ -66,8 +66,8 @@ public class ScheduleEndpoint {
 
         // cached resource did change -> serve updated content
         if (preconditions == null) {
-            schedule.addLink("self", getURIForSelf(schedule));
-            schedule.addLink("collection", getURIForCollection());
+            schedule.addSelfLink(getURIForSelf(schedule));
+            schedule.addCollectionLink(getURIForCollection());
             preconditions = Response.ok(schedule).tag(etag);
         }
 
@@ -86,7 +86,7 @@ public class ScheduleEndpoint {
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Schedule schedule : allSchedules) {
-            schedule.addLink("self", getURIForSelf(schedule));
+            schedule.addSelfLink(getURIForSelf(schedule));
         }
         return Response.ok(buildEntity(allSchedules)).build();
     }
@@ -194,7 +194,7 @@ public class ScheduleEndpoint {
     private Response allSchedulesByDay(String day) {
         List<Schedule> allSchedules = scheduleRepository.findAllSchedulesByDay(day);
         for (Schedule schedule : allSchedules) {
-            schedule.addLink("self", getURIForSelf(schedule));
+            schedule.addSelfLink(getURIForSelf(schedule));
         }
         return Response.ok(buildEntity(allSchedules)).build();
     }
@@ -202,7 +202,7 @@ public class ScheduleEndpoint {
     private Response allSchedulesByDayAndRoom(String day, String roomId) {
         List<Schedule> allSchedules = scheduleRepository.findAllSchedulesByDayAndRoom(day, roomId);
         for (Schedule schedule : allSchedules) {
-            schedule.addLink("self", getURIForSelf(schedule));
+            schedule.addSelfLink(getURIForSelf(schedule));
         }
         return Response.ok(buildEntity(allSchedules)).build();
     }

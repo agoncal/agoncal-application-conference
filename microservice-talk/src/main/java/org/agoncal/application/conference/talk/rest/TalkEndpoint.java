@@ -69,8 +69,8 @@ public class TalkEndpoint {
 
         // cached resource did change -> serve updated content
         if (preconditions == null) {
-            talk.addLink("self", getURIForSelf(talk));
-            talk.addLink("collection", getURIForCollection());
+            talk.addSelfLink(getURIForSelf(talk));
+            talk.addCollectionLink(getURIForCollection());
             preconditions = Response.ok(talk).tag(etag);
         }
 
@@ -89,7 +89,7 @@ public class TalkEndpoint {
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Talk talk : allTalks) {
-            talk.addLink("self", getURIForSelf(talk));
+            talk.addSelfLink(getURIForSelf(talk));
         }
         return Response.ok(buildEntity(allTalks)).build();
     }

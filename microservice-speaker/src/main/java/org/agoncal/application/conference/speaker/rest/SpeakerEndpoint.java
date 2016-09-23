@@ -70,8 +70,8 @@ public class SpeakerEndpoint {
 
         // cached resource did change -> serve updated content
         if (preconditions == null) {
-            speaker.addLink("self", getURIForSelf(speaker));
-            speaker.addLink("collection", getURIForCollection());
+            speaker.addSelfLink(getURIForSelf(speaker));
+            speaker.addCollectionLink(getURIForCollection());
             if (expand) {
                 for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
                     acceptedTalk.addLink("self", uriInfo.getAbsolutePath().resolve(acceptedTalk.getId()));
@@ -99,7 +99,7 @@ public class SpeakerEndpoint {
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Speaker speaker : allSpeakers) {
-            speaker.addLink("self", getURIForSelf(speaker));
+            speaker.addSelfLink(getURIForSelf(speaker));
         }
         return Response.ok(buildEntity(allSpeakers)).build();
     }

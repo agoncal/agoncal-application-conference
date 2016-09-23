@@ -1,13 +1,12 @@
 package org.agoncal.application.conference.schedule.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -24,7 +23,7 @@ import java.util.UUID;
 })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Schedule {
+public class Schedule extends LinkableResource {
 
     // ======================================
     // =             Constants              =
@@ -40,8 +39,6 @@ public class Schedule {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
     private Boolean notAllocated;
     private Boolean isaBreak;
     private Long fromTimeMillis;
@@ -161,11 +158,6 @@ public class Schedule {
         this.talk = talk;
     }
 
-    public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
-        links.put(rel, uri);
-    }
-
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
@@ -187,7 +179,7 @@ public class Schedule {
     public String toString() {
         return "Schedule{" +
             "id='" + id + '\'' +
-            ", links=" + links +
+            ", links=" + getLinks() +
             ", notAllocated=" + notAllocated +
             ", isaBreak=" + isaBreak +
             ", fromTimeMillis=" + fromTimeMillis +
