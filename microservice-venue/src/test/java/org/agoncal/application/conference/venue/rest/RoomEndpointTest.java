@@ -1,5 +1,6 @@
 package org.agoncal.application.conference.venue.rest;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
 import org.agoncal.application.conference.venue.domain.Room;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -105,6 +106,8 @@ public class RoomEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(roomId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
+        jsonObject.getJsonObject("links").getString(LinkableResource.SELF).contains("/api/rooms/" + roomId);
+        jsonObject.getJsonObject("links").getString(LinkableResource.COLLECTION).contains("/api/rooms");
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
     }
 

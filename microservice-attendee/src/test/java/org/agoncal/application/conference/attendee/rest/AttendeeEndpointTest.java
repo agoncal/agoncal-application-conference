@@ -2,6 +2,7 @@ package org.agoncal.application.conference.attendee.rest;
 
 import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
+import org.agoncal.application.conference.commons.domain.LinkableResource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -106,6 +107,8 @@ public class AttendeeEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(attendeeId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
+        jsonObject.getJsonObject("links").getString(LinkableResource.SELF).contains("/api/attendees/" + attendeeId);
+        jsonObject.getJsonObject("links").getString(LinkableResource.COLLECTION).contains("/api/attendees");
         assertEquals(TEST_ATTENDEE.getLastName(), jsonObject.getString("lastName"));
     }
 

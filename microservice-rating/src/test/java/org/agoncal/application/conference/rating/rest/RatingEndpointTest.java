@@ -1,5 +1,6 @@
 package org.agoncal.application.conference.rating.rest;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -106,6 +107,8 @@ public class RatingEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(ratingId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
+        jsonObject.getJsonObject("links").getString(LinkableResource.SELF).contains("/api/ratings/" + ratingId);
+        jsonObject.getJsonObject("links").getString(LinkableResource.COLLECTION).contains("/api/ratings");
         assertEquals(TEST_RATING.getRating(), new Integer(jsonObject.getInt("rating")));
     }
 
