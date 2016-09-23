@@ -105,6 +105,7 @@ public class RatingEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(ratingId, jsonObject.getString("id"));
+        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
         assertEquals(TEST_RATING.getRating(), new Integer(jsonObject.getInt("rating")));
     }
 

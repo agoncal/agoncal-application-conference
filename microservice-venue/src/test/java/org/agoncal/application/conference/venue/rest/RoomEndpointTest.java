@@ -104,8 +104,8 @@ public class RoomEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(roomId, jsonObject.getString("id"));
+        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
-        assertEquals(2, jsonObject.getJsonObject("links").size());
     }
 
     @Test

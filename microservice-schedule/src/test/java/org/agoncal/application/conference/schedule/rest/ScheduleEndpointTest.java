@@ -105,6 +105,7 @@ public class ScheduleEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(rateId, jsonObject.getString("id"));
+        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
         assertEquals(TEST_TALK.getDay(), jsonObject.getString("day"));
     }
 

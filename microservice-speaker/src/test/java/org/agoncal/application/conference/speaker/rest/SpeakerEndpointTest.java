@@ -106,6 +106,7 @@ public class SpeakerEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(speakerId, jsonObject.getString("id"));
+        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
         assertEquals(TEST_SPEAKER.getLastName(), jsonObject.getString("lastName"));
     }
 
