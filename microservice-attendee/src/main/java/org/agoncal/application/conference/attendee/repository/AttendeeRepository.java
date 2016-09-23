@@ -27,12 +27,12 @@ public class AttendeeRepository {
     // =          Business methods          =
     // ======================================
 
-    public Attendee create(Attendee speaker) {
-        em.persist(speaker);
-        return speaker;
+    public Attendee create(Attendee attendee) {
+        em.persist(attendee);
+        return attendee;
     }
 
-    public List<Attendee> findAllSpeakers() {
+    public List<Attendee> findAllAttendees() {
         TypedQuery<Attendee> query = em.createNamedQuery(Attendee.FIND_ALL, Attendee.class);
         return query.getResultList();
     }
@@ -41,7 +41,7 @@ public class AttendeeRepository {
         return em.find(Attendee.class, id);
     }
 
-    public Attendee update(Attendee room) {
+    public Attendee update(Attendee attendee) {
         return null;
     }
 

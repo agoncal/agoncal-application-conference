@@ -122,7 +122,7 @@ public class Rating extends LinkableResource {
         return "Rating{" +
             "id='" + id + '\'' +
             ", links=" + getLinks() +
-            ", talkId='" + sessionId + '\'' +
+            ", sessionId='" + sessionId + '\'' +
             ", attendeeId='" + attendeeId + '\'' +
             ", rating=" + rating +
             '}';

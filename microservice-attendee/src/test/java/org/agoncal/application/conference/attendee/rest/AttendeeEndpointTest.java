@@ -98,7 +98,7 @@ public class AttendeeEndpointTest {
     public void shouldCreateAttendee() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_ATTENDEE, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
-        attendeeId = getSpeakerId(response);
+        attendeeId = getAttendeeId(response);
     }
 
     @Test
@@ -127,7 +127,7 @@ public class AttendeeEndpointTest {
     // =           Private methods          =
     // ======================================
 
-    private String getSpeakerId(Response response) {
+    private String getAttendeeId(Response response) {
         String location = response.getHeaderString("location");
         return location.substring(location.lastIndexOf("/") + 1);
     }

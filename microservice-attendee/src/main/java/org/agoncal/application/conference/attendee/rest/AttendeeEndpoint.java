@@ -34,7 +34,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     // ======================================
 
     @Inject
-    private AttendeeRepository speakerRepository;
+    private AttendeeRepository attendeeRepository;
 
     // ======================================
     // =            Constructors            =
@@ -53,9 +53,9 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @ApiResponses(value = {
         @ApiResponse(code = 405, message = "Invalid input")}
     )
-    public Response add(Attendee speaker) {
-        Attendee created = speakerRepository.create(speaker);
-        return Response.created(getURIForSelf(speaker)).entity(created).build();
+    public Response add(Attendee attendee) {
+        Attendee created = attendeeRepository.create(attendee);
+        return Response.created(getURIForSelf(attendee)).entity(created).build();
     }
 
     @GET
@@ -67,20 +67,20 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     )
     public Response retrieve(@PathParam("id") String id, @Context Request request) {
 
-        Attendee speaker = speakerRepository.findById(id);
+        Attendee attendee = attendeeRepository.findById(id);
 
-        if (speaker == null)
+        if (attendee == null)
             return Response.status(Response.Status.NOT_FOUND).build();
 
-        EntityTag etag = new EntityTag(Integer.toString(speaker.hashCode()));
+        EntityTag etag = new EntityTag(Integer.toString(attendee.hashCode()));
         Response.ResponseBuilder preconditions = request.evaluatePreconditions(etag);
 
         // cached resource did change -> serve updated content
         if (preconditions == null) {
-            speaker.addSelfLink(getURIForSelf(speaker));
-            speaker.addCollectionLink(getURIForCollection());
+            attendee.addSelfLink(getURIForSelf(attendee));
+            attendee.addCollectionLink(getURIForCollection());
 
-            preconditions = Response.ok(speaker).tag(etag);
+            preconditions = Response.ok(attendee).tag(etag);
         }
 
         return preconditions.build();
@@ -91,16 +91,16 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @ApiResponses(value = {
         @ApiResponse(code = 404, message = "Attendees not found")}
     )
-    public Response allSpeakers() {
-        List<Attendee> allSpeakers = speakerRepository.findAllSpeakers();
+    public Response allAttendees() {
+        List<Attendee> allAttendees = attendeeRepository.findAllAttendees();
 
-        if (allSpeakers == null)
+        if (allAttendees == null)
             return Response.status(Response.Status.NOT_FOUND).build();
 
-        for (Attendee speaker : allSpeakers) {
-            speaker.addSelfLink(getURIForSelf(speaker));
+        for (Attendee attendee : allAttendees) {
+            attendee.addSelfLink(getURIForSelf(attendee));
         }
-        return Response.ok(buildEntity(allSpeakers)).build();
+        return Response.ok(buildEntity(allAttendees)).build();
     }
 
     @DELETE
@@ -110,7 +110,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
         @ApiResponse(code = 400, message = "Invalid attendee value")}
     )
     public Response remove(@PathParam("id") String id) {
-        speakerRepository.delete(id);
+        attendeeRepository.delete(id);
         return Response.noContent().build();
     }
 }

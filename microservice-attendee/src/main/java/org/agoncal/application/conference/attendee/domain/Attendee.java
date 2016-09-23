@@ -131,8 +131,8 @@ public class Attendee extends LinkableResource {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Attendee room = (Attendee) o;
-        return Objects.equals(id, room.id);
+        Attendee attendee = (Attendee) o;
+        return Objects.equals(id, attendee.id);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class Attendee extends LinkableResource {
 
     @Override
     public String toString() {
-        return "Speaker{" +
+        return "Attendee{" +
             "id='" + id + '\'' +
             ", links='" + getLinks() + '\'' +
             ", lastName='" + lastName + '\'' +

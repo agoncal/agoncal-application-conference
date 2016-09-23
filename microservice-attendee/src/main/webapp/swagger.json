@@ -13,7 +13,7 @@
       "get" : {
         "summary" : "Finds all the attendees",
         "description" : "",
-        "operationId" : "allSpeakers",
+        "operationId" : "allAttendees",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
