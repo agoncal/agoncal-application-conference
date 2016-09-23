@@ -1,6 +1,5 @@
 package org.agoncal.application.conference.rating.rest;
 
-import org.agoncal.application.conference.commons.domain.LinkableResource;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -29,7 +28,10 @@ import java.io.StringReader;
 import java.net.URI;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static org.agoncal.application.conference.commons.domain.LinkableResource.COLLECTION;
+import static org.agoncal.application.conference.commons.domain.LinkableResource.SELF;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -107,8 +109,8 @@ public class RatingEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(ratingId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
-        jsonObject.getJsonObject("links").getString(LinkableResource.SELF).contains("/api/ratings/" + ratingId);
-        jsonObject.getJsonObject("links").getString(LinkableResource.COLLECTION).contains("/api/ratings");
+        assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/ratings/" + ratingId));
+        assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/ratings"));
         assertEquals(TEST_RATING.getRating(), new Integer(jsonObject.getInt("rating")));
     }
 

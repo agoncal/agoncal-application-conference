@@ -1,6 +1,5 @@
 package org.agoncal.application.conference.speaker.rest;
 
-import org.agoncal.application.conference.commons.domain.LinkableResource;
 import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
 import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
@@ -30,7 +29,10 @@ import java.io.StringReader;
 import java.net.URI;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static org.agoncal.application.conference.commons.domain.LinkableResource.COLLECTION;
+import static org.agoncal.application.conference.commons.domain.LinkableResource.SELF;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -108,8 +110,8 @@ public class SpeakerEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(speakerId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
-        jsonObject.getJsonObject("links").getString(LinkableResource.SELF).contains("/api/speakers/" + speakerId);
-        jsonObject.getJsonObject("links").getString(LinkableResource.COLLECTION).contains("/api/speakers");
+        assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/speakers/" + speakerId));
+        assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/speakers"));
         assertEquals(TEST_SPEAKER.getLastName(), jsonObject.getString("lastName"));
     }
 
