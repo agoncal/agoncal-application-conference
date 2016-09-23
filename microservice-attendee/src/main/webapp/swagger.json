@@ -1,0 +1,127 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Gives all the details of the attendee",
+    "version" : "1.0.0",
+    "title" : "Attendee"
+  },
+  "host" : "localhost:8083",
+  "basePath" : "/api",
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/attendees" : {
+      "get" : {
+        "summary" : "Finds all the attendees",
+        "description" : "",
+        "operationId" : "allSpeakers",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Attendee"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Attendees not found"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Adds a new attendee to the conference",
+        "description" : "",
+        "operationId" : "add",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      }
+    },
+    "/attendees/{id}" : {
+      "get" : {
+        "summary" : "Finds an attendee by ID",
+        "description" : "",
+        "operationId" : "retrieve",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Attendee"
+            }
+          },
+          "400" : {
+            "description" : "Invalid input"
+          },
+          "404" : {
+            "description" : "Attendee not found"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes an attendee",
+        "description" : "",
+        "operationId" : "remove",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid attendee value"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Attendee" : {
+      "type" : "object",
+      "properties" : {
+        "links" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "twitter" : {
+          "type" : "string"
+        },
+        "avatarUrl" : {
+          "type" : "string"
+        },
+        "company" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

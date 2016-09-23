@@ -54,6 +54,7 @@
 
     <modules>
         <module>commons</module>
+        <module>microservice-attendee</module>
         <module>microservice-rating</module>
         <module>microservice-schedule</module>
         <module>microservice-speaker</module>
@@ -88,12 +89,6 @@
             </dependency>
 
             <!-- OTHERS -->
-            <!--<dependency>-->
-                <!--<groupId>io.swagger</groupId>-->
-                <!--<artifactId>swagger-core</artifactId>-->
-                <!--<version>${version.swagger}</version>-->
-                <!--<scope>provided</scope>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
