@@ -105,7 +105,7 @@ public class RatingEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(ratingId, jsonObject.getString("id"));
-        assertEquals(TEST_RATING.getRating(), new Integer(jsonObject.getInt("day")));
+        assertEquals(TEST_RATING.getRating(), new Integer(jsonObject.getInt("rating")));
     }
 
     @Test
