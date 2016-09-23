@@ -2,7 +2,10 @@ package org.agoncal.application.conference.attendee.domain;
 
 import org.agoncal.application.conference.commons.domain.LinkableResource;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;

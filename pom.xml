@@ -53,7 +53,7 @@
     </properties>
 
     <modules>
-        <module>commons</module>
+        <module>conference-commons</module>
         <module>microservice-attendee</module>
         <module>microservice-rating</module>
         <module>microservice-schedule</module>

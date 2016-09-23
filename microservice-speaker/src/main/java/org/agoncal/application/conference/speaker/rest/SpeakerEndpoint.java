@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
 import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
@@ -11,8 +12,10 @@ import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.net.URI;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -25,7 +28,7 @@ import java.util.List;
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
-public class SpeakerEndpoint {
+public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
 
     // ======================================
     // =          Injection Points          =
@@ -34,8 +37,13 @@ public class SpeakerEndpoint {
     @Inject
     private SpeakerRepository speakerRepository;
 
-    @Context
-    private UriInfo uriInfo;
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public SpeakerEndpoint() {
+        super(SpeakerEndpoint.class);
+    }
 
     // ======================================
     // =          Business methods          =
@@ -74,7 +82,7 @@ public class SpeakerEndpoint {
             speaker.addCollectionLink(getURIForCollection());
             if (expand) {
                 for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
-                    acceptedTalk.addLink("self", uriInfo.getAbsolutePath().resolve(acceptedTalk.getId()));
+                    acceptedTalk.addLink("self", getUriInfo().getAbsolutePath().resolve(acceptedTalk.getId()));
                 }
             } else {
                 speaker.setBio(null);
@@ -113,22 +121,5 @@ public class SpeakerEndpoint {
     public Response remove(@PathParam("id") String id) {
         speakerRepository.delete(id);
         return Response.noContent().build();
-    }
-
-    // ======================================
-    // =           Private methods          =
-    // ======================================
-
-    private GenericEntity<List<Speaker>> buildEntity(final List<Speaker> speakerList) {
-        return new GenericEntity<List<Speaker>>(speakerList) {
-        };
-    }
-
-    private URI getURIForSelf(Speaker speaker) {
-        return uriInfo.getBaseUriBuilder().path(SpeakerEndpoint.class).path(speaker.getId()).build();
-    }
-
-    private URI getURIForCollection() {
-        return uriInfo.getBaseUriBuilder().path(SpeakerEndpoint.class).build();
     }
 }

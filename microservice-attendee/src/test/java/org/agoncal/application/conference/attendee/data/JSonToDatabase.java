@@ -36,7 +36,7 @@ public class JSonToDatabase {
         for (JsonObject result : results.getValuesAs(JsonObject.class)) {
             attendeeCreateSQLStatement = "INSERT INTO Attendee (id, firstName, lastName, company, twitter, avatarUrl) values (";
 
-            attendeeCreateSQLStatement += "'"+getSqlValue(result, "uuid").substring(1, 38).concat("att") + "', ";
+            attendeeCreateSQLStatement += "'" + getSqlValue(result, "uuid").substring(1, 38).concat("att") + "', ";
             attendeeCreateSQLStatement += getSqlValue(result, "firstName") + ", ";
             attendeeCreateSQLStatement += getSqlValue(result, "lastName") + ", ";
             attendeeCreateSQLStatement += getSqlValue(result, "company") + ", ";

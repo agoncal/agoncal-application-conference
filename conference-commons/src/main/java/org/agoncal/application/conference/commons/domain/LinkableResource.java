@@ -14,6 +14,10 @@ import java.util.Map;
 @XmlType(name = "links")
 public abstract class LinkableResource implements Identifiable {
 
+    // ======================================
+    // =             Constants              =
+    // ======================================
+
     public static final String SELF = "self";
     public static final String COLLECTION = "collection";
     public static final String FIRST = "first";
@@ -21,7 +25,15 @@ public abstract class LinkableResource implements Identifiable {
     public static final String NEXT = "next";
     public static final String LAST = "last";
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     private Map<String, URI> links;
+
+    // ======================================
+    // =          Business methods          =
+    // ======================================
 
     public void addSelfLink(URI uri) {
         addLink(SELF, uri);
@@ -43,7 +55,7 @@ public abstract class LinkableResource implements Identifiable {
         addLink(NEXT, uri);
     }
 
-    public void addLAST(URI uri) {
+    public void addLast(URI uri) {
         addLink(LAST, uri);
     }
 
@@ -52,6 +64,10 @@ public abstract class LinkableResource implements Identifiable {
             links = new HashMap<>();
         links.put(rel, uri);
     }
+
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
 
     public Map<String, URI> getLinks() {
         return links;

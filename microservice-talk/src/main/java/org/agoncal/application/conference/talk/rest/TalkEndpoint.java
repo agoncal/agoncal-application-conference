@@ -4,14 +4,17 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.talk.domain.Talk;
 import org.agoncal.application.conference.talk.repository.TalkRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.net.URI;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -24,7 +27,7 @@ import java.util.List;
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
-public class TalkEndpoint {
+public class TalkEndpoint extends LinkableEndpoint<Talk> {
 
     // ======================================
     // =          Injection Points          =
@@ -33,8 +36,13 @@ public class TalkEndpoint {
     @Inject
     private TalkRepository talkRepository;
 
-    @Context
-    private UriInfo uriInfo;
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public TalkEndpoint() {
+        super(TalkEndpoint.class);
+    }
 
     // ======================================
     // =          Business methods          =
@@ -103,22 +111,5 @@ public class TalkEndpoint {
     public Response remove(@PathParam("id") String id) {
         talkRepository.delete(id);
         return Response.noContent().build();
-    }
-
-    // ======================================
-    // =           Private methods          =
-    // ======================================
-
-    private GenericEntity<List<Talk>> buildEntity(final List<Talk> talkList) {
-        return new GenericEntity<List<Talk>>(talkList) {
-        };
-    }
-
-    private URI getURIForSelf(Talk talk) {
-        return uriInfo.getBaseUriBuilder().path(TalkEndpoint.class).path(talk.getId()).build();
-    }
-
-    private URI getURIForCollection() {
-        return uriInfo.getBaseUriBuilder().path(TalkEndpoint.class).build();
     }
 }

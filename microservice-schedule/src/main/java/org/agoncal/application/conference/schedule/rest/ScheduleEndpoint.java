@@ -1,14 +1,20 @@
 package org.agoncal.application.conference.schedule.rest;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.schedule.domain.Schedule;
 import org.agoncal.application.conference.schedule.repository.ScheduleRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.net.URI;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -21,7 +27,7 @@ import java.util.List;
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
-public class ScheduleEndpoint {
+public class ScheduleEndpoint extends LinkableEndpoint<Schedule> {
 
     // ======================================
     // =          Injection Points          =
@@ -30,8 +36,13 @@ public class ScheduleEndpoint {
     @Inject
     private ScheduleRepository scheduleRepository;
 
-    @Context
-    private UriInfo uriInfo;
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public ScheduleEndpoint() {
+        super(ScheduleEndpoint.class);
+    }
 
     // ======================================
     // =          Business methods          =
@@ -216,22 +227,5 @@ public class ScheduleEndpoint {
     public Response remove(@PathParam("id") String id) {
         scheduleRepository.delete(id);
         return Response.noContent().build();
-    }
-
-    // ======================================
-    // =           Private methods          =
-    // ======================================
-
-    private GenericEntity<List<Schedule>> buildEntity(final List<Schedule> scheduleList) {
-        return new GenericEntity<List<Schedule>>(scheduleList) {
-        };
-    }
-
-    private URI getURIForSelf(Schedule schedule) {
-        return uriInfo.getBaseUriBuilder().path(ScheduleEndpoint.class).path(schedule.getId()).build();
-    }
-
-    private URI getURIForCollection() {
-        return uriInfo.getBaseUriBuilder().path(ScheduleEndpoint.class).build();
     }
 }

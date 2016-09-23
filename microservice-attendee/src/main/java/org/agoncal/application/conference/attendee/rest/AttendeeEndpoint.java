@@ -6,12 +6,15 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
+import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.net.URI;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -24,7 +27,7 @@ import java.util.List;
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
-public class AttendeeEndpoint {
+public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
 
     // ======================================
     // =          Injection Points          =
@@ -33,8 +36,13 @@ public class AttendeeEndpoint {
     @Inject
     private AttendeeRepository speakerRepository;
 
-    @Context
-    private UriInfo uriInfo;
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public AttendeeEndpoint() {
+        super(AttendeeEndpoint.class);
+    }
 
     // ======================================
     // =          Business methods          =
@@ -104,22 +112,5 @@ public class AttendeeEndpoint {
     public Response remove(@PathParam("id") String id) {
         speakerRepository.delete(id);
         return Response.noContent().build();
-    }
-
-    // ======================================
-    // =           Private methods          =
-    // ======================================
-
-    private GenericEntity<List<Attendee>> buildEntity(final List<Attendee> speakerList) {
-        return new GenericEntity<List<Attendee>>(speakerList) {
-        };
-    }
-
-    private URI getURIForSelf(Attendee speaker) {
-        return uriInfo.getBaseUriBuilder().path(AttendeeEndpoint.class).path(speaker.getId()).build();
-    }
-
-    private URI getURIForCollection() {
-        return uriInfo.getBaseUriBuilder().path(AttendeeEndpoint.class).build();
     }
 }

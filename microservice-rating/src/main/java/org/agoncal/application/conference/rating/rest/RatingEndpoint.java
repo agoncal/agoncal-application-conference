@@ -1,14 +1,20 @@
 package org.agoncal.application.conference.rating.rest;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.net.URI;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -21,7 +27,7 @@ import java.util.List;
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
-public class RatingEndpoint {
+public class RatingEndpoint extends LinkableEndpoint<Rating> {
 
     // ======================================
     // =          Injection Points          =
@@ -30,8 +36,13 @@ public class RatingEndpoint {
     @Inject
     private RatingRepository ratingRepository;
 
-    @Context
-    private UriInfo uriInfo;
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public RatingEndpoint() {
+        super(RatingEndpoint.class);
+    }
 
     // ======================================
     // =          Business methods          =
@@ -128,22 +139,5 @@ public class RatingEndpoint {
     public Response remove(@PathParam("id") String id) {
         ratingRepository.delete(id);
         return Response.noContent().build();
-    }
-
-    // ======================================
-    // =           Private methods          =
-    // ======================================
-
-    private GenericEntity<List<Rating>> buildEntity(final List<Rating> ratingList) {
-        return new GenericEntity<List<Rating>>(ratingList) {
-        };
-    }
-
-    private URI getURIForSelf(Rating rating) {
-        return uriInfo.getBaseUriBuilder().path(RatingEndpoint.class).path(rating.getId()).build();
-    }
-
-    private URI getURIForCollection() {
-        return uriInfo.getBaseUriBuilder().path(RatingEndpoint.class).build();
     }
 }

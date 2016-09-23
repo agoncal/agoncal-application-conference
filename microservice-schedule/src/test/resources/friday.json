@@ -1,1 +1,512 @@
-{"slots":[{"roomId":"a_hall","notAllocated":false,"fromTimeMillis":1478849400000,"break":{"id":"dej","nameEN":"Breakfast","nameFR":"Accueil et petit-déjeuner","room":{"id":"a_hall","name":"Exhibition floor","capacity":1500,"setup":"special"}},"roomSetup":"special","talk":null,"fromTime":"08:30","toTimeMillis":1478853000000,"toTime":"09:30","roomCapacity":1500,"roomName":"Exhibition floor","slotId":"dej_friday_11_8h30_9h30","day":"friday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478853000000,"break":null,"roomSetup":"theatre","talk":{"trackId":"cloud","talkType":"Conference","track":"Cloud, Containers & Infrastructure","summaryAsHtml":"<p>Software-defined infrastructure is changing the way applications are deployed. There are multiple ways to create scalable architecture using containers. This action-packed and code-driven session will share learnings from running a scalable Couchbase cluster in different containers framework.</p>\n<p>Attendees will learn how classical cluster creation on VMs is mapped to each of the framework.  You’ll learn the recipes, design patterns and anti-patterns for deploying your own applications on the following frameworks:</p>\n<ul>\n<li>Docker Cloud</li>\n<li>Kubernetes on Google Cloud/Amazon</li>\n<li>Mesos + Marathon</li>\n<li>Red Hat OpenShift</li>\n</ul>\n<p>You will pick up nuggets of information that will make you productive by deploying your applications easily using containers.</p>\n","id":"WCQ-4448","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/69e5596a50112585d5acdb93e0a4da47a10a6a8d","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Arun Gupta"},"name":"Arun Gupta"}],"title":"Migrate your traditional VM-based clusters to Containers","lang":"en","summary":"Software-defined infrastructure is changing the way applications are deployed. There are multiple ways to create scalable architecture using containers. This action-packed and code-driven session will share learnings from running a scalable Couchbase cluster in different containers framework.\r\n\r\nAttendees will learn how classical cluster creation on VMs is mapped to each of the framework.  You’ll learn the recipes, design patterns and anti-patterns for deploying your own applications on the following frameworks:\r\n\r\n- Docker Cloud\r\n- Kubernetes on Google Cloud/Amazon\r\n- Mesos + Marathon\r\n- Red Hat OpenShift\r\n\r\nYou will pick up nuggets of information that will make you productive by deploying your applications easily using containers."},"fromTime":"09:30","toTimeMillis":1478856600000,"toTime":"10:30","roomCapacity":347,"roomName":"Room 4","slotId":"conf_room4_friday_11_9h30_10h30","day":"friday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478853000000,"break":null,"roomSetup":"theatre","talk":{"trackId":"ssj","talkType":"Conference","track":"Server Side Java","summaryAsHtml":"<p>The Spring Framework and the Reactor teams have been busy working on support for reactive programming models over the last 2 years. By the end of this year Reactor 2.5 will be GA and Spring Framework 5 will have a release candidate. This talk will explain the major paradigm shift that&#x27;s taking place and demonstrate what is arguably one of the most consequential additions to Spring Framework 5.</p>\n","id":"RZQ-2819","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/876066fcc0f3c0271dbee4beeddcb469475cc8c7","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Rossen Stoyanchev"},"name":"Rossen Stoyanchev"}],"title":"Reactive Web Applications with Spring 5","lang":"en","summary":"The Spring Framework and the Reactor teams have been busy working on support for reactive programming models over the last 2 years. By the end of this year Reactor 2.5 will be GA and Spring Framework 5 will have a release candidate. This talk will explain the major paradigm shift that's taking place and demonstrate what is arguably one of the most consequential additions to Spring Framework 5."},"fromTime":"09:30","toTimeMillis":1478856600000,"toTime":"10:30","roomCapacity":641,"roomName":"Room 5","slotId":"conf_room5_friday_11_9h30_10h30","day":"friday"},{"roomId":"room8","notAllocated":true,"fromTimeMillis":1478853000000,"break":null,"roomSetup":"theatre","talk":null,"fromTime":"09:30","toTimeMillis":1478856600000,"toTime":"10:30","roomCapacity":696,"roomName":"Room 8","slotId":"conf_room8_friday_11_9h30_10h30","day":"friday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478853000000,"break":null,"roomSetup":"theatre","talk":{"trackId":"mobile","talkType":"Conference","track":"Mobile & Embedded","summaryAsHtml":"<p>The past year has been huge for Android testing: Testing support lib, fast JVM unit tests, Espresso test recorder... Having such great tools means writing tests is a breeze! All your apps currently have &gt;80% code coverage, right? Yay! Or wait... is it really? Is all your common logic (networking, databases,...) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?</p>\n<p>In order to achieve this, you need to make use of mocks and stubs. And that&#x27;s exactly what this talk will be about: What is a mock? What&#x27;s the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? ...</p>\n<p>After having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how.</p>\n","id":"ZMW-0118","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/d8869ba5631e5cfbb1df89c9ef78963d4725b357","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Jeroen Mols"},"name":"Jeroen Mols"}],"title":"Testing made sweet with a Mockito","lang":"en","summary":"The past year has been huge for Android testing: Testing support lib, fast JVM unit tests, Espresso test recorder... Having such great tools means writing tests is a breeze! All your apps currently have >80% code coverage, right? Yay! Or wait... is it really? Is all your common logic (networking, databases,...) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?\r\n\r\nIn order to achieve this, you need to make use of mocks and stubs. And that's exactly what this talk will be about: What is a mock? What's the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? ...\r\n\r\nAfter having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how."},"fromTime":"09:30","toTimeMillis":1478856600000,"toTime":"10:30","roomCapacity":393,"roomName":"Room 9","slotId":"conf_room9_friday_11_9h30_10h30","day":"friday"},{"roomId":"room10","notAllocated":true,"fromTimeMillis":1478853000000,"break":null,"roomSetup":"theatre","talk":null,"fromTime":"09:30","toTimeMillis":1478856600000,"toTime":"10:30","roomCapacity":286,"roomName":"Room 10","slotId":"conf_room10_friday_11_9h30_10h30","day":"friday"},{"roomId":"a_hall","notAllocated":false,"fromTimeMillis":1478856600000,"break":{"id":"coffee","nameEN":"Coffee Break","nameFR":"Pause café","room":{"id":"a_hall","name":"Exhibition floor","capacity":1500,"setup":"special"}},"roomSetup":"special","talk":null,"fromTime":"10:30","toTimeMillis":1478857500000,"toTime":"10:45","roomCapacity":1500,"roomName":"Exhibition floor","slotId":"coffee_friday_11_10h30_10h45","day":"friday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478857500000,"break":null,"roomSetup":"theatre","talk":{"trackId":"lang","talkType":"Conference","track":"Programming languages","summaryAsHtml":"<p>In this talk we’ll have a look at Akka Streams and its relation to Reactive Streams, a standard for asynchronous stream processing with non-blocking back pressure. We’ll see how Reactive Streams principles enable the building of highly responsive applications that adapt to load changes and that are resilient to failure. Real-life scenarios will be shown where applying so-called back-pressure keeps systems fast and healthy at the same time.</p>\n","id":"XFU-9980","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/6ac127c3b063c3766eff1ac8fd3a82229c18cd4b","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Eric Loots"},"name":"Eric Loots"}],"title":"Reactive Streams principles applied in Akka Streams","lang":"en","summary":"In this talk we’ll have a look at Akka Streams and its relation to Reactive Streams, a standard for asynchronous stream processing with non-blocking back pressure. We’ll see how Reactive Streams principles enable the building of highly responsive applications that adapt to load changes and that are resilient to failure. Real-life scenarios will be shown where applying so-called back-pressure keeps systems fast and healthy at the same time."},"fromTime":"10:45","toTimeMillis":1478861100000,"toTime":"11:45","roomCapacity":347,"roomName":"Room 4","slotId":"conf_room4_friday_11_10h45_11h45","day":"friday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478857500000,"break":null,"roomSetup":"theatre","talk":{"trackId":"future","talkType":"Conference","track":"Future<Devoxx>","summaryAsHtml":"<p>A drone, a PC and a lot of patience. These are all the ingredients you need to start your adventure in the emerging world of flying services.  We, as fanatic real-time strategy gamers, wanted our drone to listen to our commands given at the map level, revealing the terrain below it as it flies and creating a coherent and smooth map.</p>\n<p>However funny and amusing, this will be a presentation about serious, high-level technology, unpredictable ideas and insistent scientific struggle to make all the algorithmic meat work on a flying machine.</p>\n<p>During this presentation we will tell you how we created our first successful prototype, we will show the demonstration videos and will explain our technology based on video processing, accelerometer data control and localization using particle filtering algorithm.</p>\n<p>If you are planning to remotely prepare the map of the Moon (or your living room), you cannot miss this presentation.</p>\n","id":"HYC-2710","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/3bc7a089957e657c4fd84db48383d1ed0dab1ea1","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Krzysztof Kudrynski"},"name":"Krzysztof Kudrynski"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/4534bb179a48d170a391fda2aaa9bb8ca2da9ee4","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Blazej Kubiak"},"name":"Blazej Kubiak"}],"title":"Flying services with the drone","lang":"en","summary":"A drone, a PC and a lot of patience. These are all the ingredients you need to start your adventure in the emerging world of flying services.  We, as fanatic real-time strategy gamers, wanted our drone to listen to our commands given at the map level, revealing the terrain below it as it flies and creating a coherent and smooth map. \r\n\r\nHowever funny and amusing, this will be a presentation about serious, high-level technology, unpredictable ideas and insistent scientific struggle to make all the algorithmic meat work on a flying machine.\r\n\r\nDuring this presentation we will tell you how we created our first successful prototype, we will show the demonstration videos and will explain our technology based on video processing, accelerometer data control and localization using particle filtering algorithm. \r\n\r\nIf you are planning to remotely prepare the map of the Moon (or your living room), you cannot miss this presentation."},"fromTime":"10:45","toTimeMillis":1478861100000,"toTime":"11:45","roomCapacity":641,"roomName":"Room 5","slotId":"conf_room5_friday_11_10h45_11h45","day":"friday"},{"roomId":"room8","notAllocated":false,"fromTimeMillis":1478857500000,"break":null,"roomSetup":"theatre","talk":{"trackId":"java","talkType":"Conference","track":"Java Language","summaryAsHtml":"<p>The Java 8 Streams library makes it easy to run code in parallel. A common error is code that works when run sequentially but that misbehaves when run in parallel. This is often caused by programmers who are stuck in a mode of imperative, left-to-right thinking. This leads to an iterative style where data is mutated, and where the next result depends on the result of the previous computation, creating barriers to parallel computation. This presentation covers alternative programming technique called &quot;array programming,&quot; where operations are applied on data aggregates instead of individual elements. It also includes examples and demonstrations that illustrate these techniques and how they lead easier-to-understand, parallel-ready code.</p>\n","id":"VNH-8902","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/a58ccd51e350fccb540ea5548cef107785624501","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Stuart Marks"},"name":"Stuart Marks"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/a4cb83b34e086e694a1dff20ef79d60060b719e2","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Brian Goetz"},"name":"Brian Goetz"}],"title":"Thinking In Parallel","lang":"en","summary":"The Java 8 Streams library makes it easy to run code in parallel. A common error is code that works when run sequentially but that misbehaves when run in parallel. This is often caused by programmers who are stuck in a mode of imperative, left-to-right thinking. This leads to an iterative style where data is mutated, and where the next result depends on the result of the previous computation, creating barriers to parallel computation. This presentation covers alternative programming technique called \"array programming,\" where operations are applied on data aggregates instead of individual elements. It also includes examples and demonstrations that illustrate these techniques and how they lead easier-to-understand, parallel-ready code."},"fromTime":"10:45","toTimeMillis":1478861100000,"toTime":"11:45","roomCapacity":696,"roomName":"Room 8","slotId":"conf_room8_friday_11_10h45_11h45","day":"friday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478857500000,"break":null,"roomSetup":"theatre","talk":{"trackId":"ssj","talkType":"Conference","track":"Server Side Java","summaryAsHtml":"<p>Like the Winter in some famous TV show, CDI 2.0 has been Coming for nearly 2 years. But now CDI 2.0 is Here (like the same Winter) and all the new stuff it brings will deeply change your Java EE, MicroProfile and Java SE experience.\nIn this session I will review the major features introduced in CDI 2.0 and I&#x27;ll demonstrate how  it can be used in various environment like Java EE 7 application server, MicroProfile platform or even Java SE.\nIf you still think that CDI is a simple Dependency Injection solution bound to Java EE or think that there&#x27;s only one platform to bootstrap advanced service on Java SE, come and see that the CDI &quot;Winter&quot; can compete with &quot;Spring&quot;.</p>\n","id":"LUB-6226","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/f51267a236f548f70af38b361fed5b91a82da496","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Antoine Sabot-Durand"},"name":"Antoine Sabot-Durand"}],"title":"CDI 2.0 is upon us","lang":"en","summary":"Like the Winter in some famous TV show, CDI 2.0 has been Coming for nearly 2 years. But now CDI 2.0 is Here (like the same Winter) and all the new stuff it brings will deeply change your Java EE, MicroProfile and Java SE experience.\r\nIn this session I will review the major features introduced in CDI 2.0 and I'll demonstrate how  it can be used in various environment like Java EE 7 application server, MicroProfile platform or even Java SE. \r\nIf you still think that CDI is a simple Dependency Injection solution bound to Java EE or think that there's only one platform to bootstrap advanced service on Java SE, come and see that the CDI \"Winter\" can compete with \"Spring\"."},"fromTime":"10:45","toTimeMillis":1478861100000,"toTime":"11:45","roomCapacity":393,"roomName":"Room 9","slotId":"conf_room9_friday_11_10h45_11h45","day":"friday"},{"roomId":"room10","notAllocated":true,"fromTimeMillis":1478857500000,"break":null,"roomSetup":"theatre","talk":null,"fromTime":"10:45","toTimeMillis":1478861100000,"toTime":"11:45","roomCapacity":286,"roomName":"Room 10","slotId":"conf_room10_friday_11_10h45_11h45","day":"friday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478861400000,"break":null,"roomSetup":"theatre","talk":{"trackId":"web","talkType":"Conference","track":"Modern Web","summaryAsHtml":"<p>With ScreenPlay, writing clean, maintainable automated acceptance tests becomes easy even for testers who are relatively new to automated testing.</p>\n<p>Learn how to write robust and articulate tests using the Screenplay Pattern, an innovative approach to writing BDD-style automated acceptance tests that are easier to understand, easier to extend and easier to maintain. You will also witness a demonstration of these principles in action, with live coding of Serenity BDD automated tests, and see how Serenity BDD turns the Screenplay tests into living documentation.</p>\n<p>While the demonstration will be in Java and will use the open source Serenity BDD library, the Screenplay pattern can be applied to any language or framework.</p>\n","id":"BIC-3525","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/a298ec44a3134ca0575b33a9a241cce5b5e3c189","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"John Smart"},"name":"John Smart"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/b261ac2e7720e0273aa99c0ae911137dbea6b43b","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Jan Molak"},"name":"Jan Molak"}],"title":"ScreenPlay: the next stage in automated acceptance testing ","lang":"en","summary":"With ScreenPlay, writing clean, maintainable automated acceptance tests becomes easy even for testers who are relatively new to automated testing. \r\n\r\nLearn how to write robust and articulate tests using the Screenplay Pattern, an innovative approach to writing BDD-style automated acceptance tests that are easier to understand, easier to extend and easier to maintain. You will also witness a demonstration of these principles in action, with live coding of Serenity BDD automated tests, and see how Serenity BDD turns the Screenplay tests into living documentation.\r\n\r\nWhile the demonstration will be in Java and will use the open source Serenity BDD library, the Screenplay pattern can be applied to any language or framework."},"fromTime":"11:50","toTimeMillis":1478865000000,"toTime":"12:50","roomCapacity":347,"roomName":"Room 4","slotId":"conf_room4_friday_11_11h50_12h50","day":"friday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478861400000,"break":null,"roomSetup":"theatre","talk":{"trackId":"bigdata","talkType":"Conference","track":"Big Data","summaryAsHtml":"<p>Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of &quot;tricks of the trade&quot; will do the job. No previous Python knowledge required.</p>\n","id":"CKK-4126","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Martin Görner"},"name":"Martin Görner"}],"title":"Tensorflow and deep learning - without at PhD","lang":"en","summary":"Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of \"tricks of the trade\" will do the job. No previous Python knowledge required."},"fromTime":"11:50","toTimeMillis":1478865000000,"toTime":"12:50","roomCapacity":641,"roomName":"Room 5","slotId":"conf_room5_friday_11_11h50_12h50","day":"friday"},{"roomId":"room8","notAllocated":false,"fromTimeMillis":1478861400000,"break":null,"roomSetup":"theatre","talk":{"trackId":"ssj","talkType":"Conference","track":"Server Side Java","summaryAsHtml":"<p>At Apple our Services need to be build with scale in mind as we handling millions of messages per second on transfering massive amount of data. Many of our java based services are built on top of Netty (an open source asynchronous event-driven networking framework). We are not only a big user of Netty but are also amongst the top contributes to this project and have made many performance related enhancements.</p>\n<p>This talk will highlight our experiences and challenges involved with Netty in a production environment at scale. We will discuss best-practices and also key contributions we made over the past few years to keep up with ever increasing load.</p>\n<p>You want want to learn how to get the most out of your Netty based services? This talk is for you!</p>\n","id":"XHW-5562","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/38d2691b5636d3ca7f90aac90a78913e96283fad","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Norman Maurer"},"name":"Norman Maurer"}],"title":"Netty @ Apple - Scaling to millions of messages per second","lang":"en","summary":"At Apple our Services need to be build with scale in mind as we handling millions of messages per second on transfering massive amount of data. Many of our java based services are built on top of Netty (an open source asynchronous event-driven networking framework). We are not only a big user of Netty but are also amongst the top contributes to this project and have made many performance related enhancements.\r\n\r\nThis talk will highlight our experiences and challenges involved with Netty in a production environment at scale. We will discuss best-practices and also key contributions we made over the past few years to keep up with ever increasing load.\r\n\r\nYou want want to learn how to get the most out of your Netty based services? This talk is for you!"},"fromTime":"11:50","toTimeMillis":1478865000000,"toTime":"12:50","roomCapacity":696,"roomName":"Room 8","slotId":"conf_room8_friday_11_11h50_12h50","day":"friday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478861400000,"break":null,"roomSetup":"theatre","talk":{"trackId":"future","talkType":"Conference","track":"Future<Devoxx>","summaryAsHtml":"<p>Chat bots in services like Slack and Facebook Messenger are becoming a standard way to interface with systems.  Bots enable users to perform queries and actions as well as receive event notifications right within the chat user interface the user is already in.  This session will walk through the basics of building chat bots for Slack and Facebook Messenger with Scala.</p>\n","id":"MQT-2690","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/90543f26e9c19a0ccedc90193530b77251caa390","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"James Ward"},"name":"James Ward"}],"title":"Building Chat Bots - The Next Gen UI","lang":"en","summary":"Chat bots in services like Slack and Facebook Messenger are becoming a standard way to interface with systems.  Bots enable users to perform queries and actions as well as receive event notifications right within the chat user interface the user is already in.  This session will walk through the basics of building chat bots for Slack and Facebook Messenger with Scala."},"fromTime":"11:50","toTimeMillis":1478865000000,"toTime":"12:50","roomCapacity":393,"roomName":"Room 9","slotId":"conf_room9_friday_11_11h50_12h50","day":"friday"},{"roomId":"room10","notAllocated":true,"fromTimeMillis":1478861400000,"break":null,"roomSetup":"theatre","talk":null,"fromTime":"11:50","toTimeMillis":1478865000000,"toTime":"12:50","roomCapacity":286,"roomName":"Room 10","slotId":"conf_room10_friday_11_11h50_12h50","day":"friday"}]}
+{
+    "slots": [
+        {
+            "roomId": "a_hall",
+            "notAllocated": false,
+            "fromTimeMillis": 1478849400000,
+            "break": {
+                "id": "dej",
+                "nameEN": "Breakfast",
+                "nameFR": "Accueil et petit-déjeuner",
+                "room": {
+                    "id": "a_hall",
+                    "name": "Exhibition floor",
+                    "capacity": 1500,
+                    "setup": "special"
+                }
+            },
+            "roomSetup": "special",
+            "talk": null,
+            "fromTime": "08:30",
+            "toTimeMillis": 1478853000000,
+            "toTime": "09:30",
+            "roomCapacity": 1500,
+            "roomName": "Exhibition floor",
+            "slotId": "dej_friday_11_8h30_9h30",
+            "day": "friday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478853000000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "cloud",
+                "talkType": "Conference",
+                "track": "Cloud, Containers & Infrastructure",
+                "summaryAsHtml": "<p>Software-defined infrastructure is changing the way applications are deployed. There are multiple ways to create scalable architecture using containers. This action-packed and code-driven session will share learnings from running a scalable Couchbase cluster in different containers framework.</p>\n<p>Attendees will learn how classical cluster creation on VMs is mapped to each of the framework.  You’ll learn the recipes, design patterns and anti-patterns for deploying your own applications on the following frameworks:</p>\n<ul>\n<li>Docker Cloud</li>\n<li>Kubernetes on Google Cloud/Amazon</li>\n<li>Mesos + Marathon</li>\n<li>Red Hat OpenShift</li>\n</ul>\n<p>You will pick up nuggets of information that will make you productive by deploying your applications easily using containers.</p>\n",
+                "id": "WCQ-4448",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/69e5596a50112585d5acdb93e0a4da47a10a6a8d",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Arun Gupta"
+                        },
+                        "name": "Arun Gupta"
+                    }
+                ],
+                "title": "Migrate your traditional VM-based clusters to Containers",
+                "lang": "en",
+                "summary": "Software-defined infrastructure is changing the way applications are deployed. There are multiple ways to create scalable architecture using containers. This action-packed and code-driven session will share learnings from running a scalable Couchbase cluster in different containers framework.\r\n\r\nAttendees will learn how classical cluster creation on VMs is mapped to each of the framework.  You’ll learn the recipes, design patterns and anti-patterns for deploying your own applications on the following frameworks:\r\n\r\n- Docker Cloud\r\n- Kubernetes on Google Cloud/Amazon\r\n- Mesos + Marathon\r\n- Red Hat OpenShift\r\n\r\nYou will pick up nuggets of information that will make you productive by deploying your applications easily using containers."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478856600000,
+            "toTime": "10:30",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "conf_room4_friday_11_9h30_10h30",
+            "day": "friday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478853000000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "ssj",
+                "talkType": "Conference",
+                "track": "Server Side Java",
+                "summaryAsHtml": "<p>The Spring Framework and the Reactor teams have been busy working on support for reactive programming models over the last 2 years. By the end of this year Reactor 2.5 will be GA and Spring Framework 5 will have a release candidate. This talk will explain the major paradigm shift that&#x27;s taking place and demonstrate what is arguably one of the most consequential additions to Spring Framework 5.</p>\n",
+                "id": "RZQ-2819",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/876066fcc0f3c0271dbee4beeddcb469475cc8c7",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Rossen Stoyanchev"
+                        },
+                        "name": "Rossen Stoyanchev"
+                    }
+                ],
+                "title": "Reactive Web Applications with Spring 5",
+                "lang": "en",
+                "summary": "The Spring Framework and the Reactor teams have been busy working on support for reactive programming models over the last 2 years. By the end of this year Reactor 2.5 will be GA and Spring Framework 5 will have a release candidate. This talk will explain the major paradigm shift that's taking place and demonstrate what is arguably one of the most consequential additions to Spring Framework 5."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478856600000,
+            "toTime": "10:30",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "conf_room5_friday_11_9h30_10h30",
+            "day": "friday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": true,
+            "fromTimeMillis": 1478853000000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": null,
+            "fromTime": "09:30",
+            "toTimeMillis": 1478856600000,
+            "toTime": "10:30",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "conf_room8_friday_11_9h30_10h30",
+            "day": "friday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478853000000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "mobile",
+                "talkType": "Conference",
+                "track": "Mobile & Embedded",
+                "summaryAsHtml": "<p>The past year has been huge for Android testing: Testing support lib, fast JVM unit tests, Espresso test recorder... Having such great tools means writing tests is a breeze! All your apps currently have &gt;80% code coverage, right? Yay! Or wait... is it really? Is all your common logic (networking, databases,...) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?</p>\n<p>In order to achieve this, you need to make use of mocks and stubs. And that&#x27;s exactly what this talk will be about: What is a mock? What&#x27;s the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? ...</p>\n<p>After having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how.</p>\n",
+                "id": "ZMW-0118",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/d8869ba5631e5cfbb1df89c9ef78963d4725b357",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Jeroen Mols"
+                        },
+                        "name": "Jeroen Mols"
+                    }
+                ],
+                "title": "Testing made sweet with a Mockito",
+                "lang": "en",
+                "summary": "The past year has been huge for Android testing: Testing support lib, fast JVM unit tests, Espresso test recorder... Having such great tools means writing tests is a breeze! All your apps currently have >80% code coverage, right? Yay! Or wait... is it really? Is all your common logic (networking, databases,...) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?\r\n\r\nIn order to achieve this, you need to make use of mocks and stubs. And that's exactly what this talk will be about: What is a mock? What's the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? ...\r\n\r\nAfter having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478856600000,
+            "toTime": "10:30",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "conf_room9_friday_11_9h30_10h30",
+            "day": "friday"
+        },
+        {
+            "roomId": "room10",
+            "notAllocated": true,
+            "fromTimeMillis": 1478853000000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": null,
+            "fromTime": "09:30",
+            "toTimeMillis": 1478856600000,
+            "toTime": "10:30",
+            "roomCapacity": 286,
+            "roomName": "Room 10",
+            "slotId": "conf_room10_friday_11_9h30_10h30",
+            "day": "friday"
+        },
+        {
+            "roomId": "a_hall",
+            "notAllocated": false,
+            "fromTimeMillis": 1478856600000,
+            "break": {
+                "id": "coffee",
+                "nameEN": "Coffee Break",
+                "nameFR": "Pause café",
+                "room": {
+                    "id": "a_hall",
+                    "name": "Exhibition floor",
+                    "capacity": 1500,
+                    "setup": "special"
+                }
+            },
+            "roomSetup": "special",
+            "talk": null,
+            "fromTime": "10:30",
+            "toTimeMillis": 1478857500000,
+            "toTime": "10:45",
+            "roomCapacity": 1500,
+            "roomName": "Exhibition floor",
+            "slotId": "coffee_friday_11_10h30_10h45",
+            "day": "friday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478857500000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "lang",
+                "talkType": "Conference",
+                "track": "Programming languages",
+                "summaryAsHtml": "<p>In this talk we’ll have a look at Akka Streams and its relation to Reactive Streams, a standard for asynchronous stream processing with non-blocking back pressure. We’ll see how Reactive Streams principles enable the building of highly responsive applications that adapt to load changes and that are resilient to failure. Real-life scenarios will be shown where applying so-called back-pressure keeps systems fast and healthy at the same time.</p>\n",
+                "id": "XFU-9980",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/6ac127c3b063c3766eff1ac8fd3a82229c18cd4b",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Eric Loots"
+                        },
+                        "name": "Eric Loots"
+                    }
+                ],
+                "title": "Reactive Streams principles applied in Akka Streams",
+                "lang": "en",
+                "summary": "In this talk we’ll have a look at Akka Streams and its relation to Reactive Streams, a standard for asynchronous stream processing with non-blocking back pressure. We’ll see how Reactive Streams principles enable the building of highly responsive applications that adapt to load changes and that are resilient to failure. Real-life scenarios will be shown where applying so-called back-pressure keeps systems fast and healthy at the same time."
+            },
+            "fromTime": "10:45",
+            "toTimeMillis": 1478861100000,
+            "toTime": "11:45",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "conf_room4_friday_11_10h45_11h45",
+            "day": "friday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478857500000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "future",
+                "talkType": "Conference",
+                "track": "Future<Devoxx>",
+                "summaryAsHtml": "<p>A drone, a PC and a lot of patience. These are all the ingredients you need to start your adventure in the emerging world of flying services.  We, as fanatic real-time strategy gamers, wanted our drone to listen to our commands given at the map level, revealing the terrain below it as it flies and creating a coherent and smooth map.</p>\n<p>However funny and amusing, this will be a presentation about serious, high-level technology, unpredictable ideas and insistent scientific struggle to make all the algorithmic meat work on a flying machine.</p>\n<p>During this presentation we will tell you how we created our first successful prototype, we will show the demonstration videos and will explain our technology based on video processing, accelerometer data control and localization using particle filtering algorithm.</p>\n<p>If you are planning to remotely prepare the map of the Moon (or your living room), you cannot miss this presentation.</p>\n",
+                "id": "HYC-2710",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3bc7a089957e657c4fd84db48383d1ed0dab1ea1",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Krzysztof Kudrynski"
+                        },
+                        "name": "Krzysztof Kudrynski"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/4534bb179a48d170a391fda2aaa9bb8ca2da9ee4",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Blazej Kubiak"
+                        },
+                        "name": "Blazej Kubiak"
+                    }
+                ],
+                "title": "Flying services with the drone",
+                "lang": "en",
+                "summary": "A drone, a PC and a lot of patience. These are all the ingredients you need to start your adventure in the emerging world of flying services.  We, as fanatic real-time strategy gamers, wanted our drone to listen to our commands given at the map level, revealing the terrain below it as it flies and creating a coherent and smooth map. \r\n\r\nHowever funny and amusing, this will be a presentation about serious, high-level technology, unpredictable ideas and insistent scientific struggle to make all the algorithmic meat work on a flying machine.\r\n\r\nDuring this presentation we will tell you how we created our first successful prototype, we will show the demonstration videos and will explain our technology based on video processing, accelerometer data control and localization using particle filtering algorithm. \r\n\r\nIf you are planning to remotely prepare the map of the Moon (or your living room), you cannot miss this presentation."
+            },
+            "fromTime": "10:45",
+            "toTimeMillis": 1478861100000,
+            "toTime": "11:45",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "conf_room5_friday_11_10h45_11h45",
+            "day": "friday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": false,
+            "fromTimeMillis": 1478857500000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "java",
+                "talkType": "Conference",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>The Java 8 Streams library makes it easy to run code in parallel. A common error is code that works when run sequentially but that misbehaves when run in parallel. This is often caused by programmers who are stuck in a mode of imperative, left-to-right thinking. This leads to an iterative style where data is mutated, and where the next result depends on the result of the previous computation, creating barriers to parallel computation. This presentation covers alternative programming technique called &quot;array programming,&quot; where operations are applied on data aggregates instead of individual elements. It also includes examples and demonstrations that illustrate these techniques and how they lead easier-to-understand, parallel-ready code.</p>\n",
+                "id": "VNH-8902",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/a58ccd51e350fccb540ea5548cef107785624501",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Stuart Marks"
+                        },
+                        "name": "Stuart Marks"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/a4cb83b34e086e694a1dff20ef79d60060b719e2",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Brian Goetz"
+                        },
+                        "name": "Brian Goetz"
+                    }
+                ],
+                "title": "Thinking In Parallel",
+                "lang": "en",
+                "summary": "The Java 8 Streams library makes it easy to run code in parallel. A common error is code that works when run sequentially but that misbehaves when run in parallel. This is often caused by programmers who are stuck in a mode of imperative, left-to-right thinking. This leads to an iterative style where data is mutated, and where the next result depends on the result of the previous computation, creating barriers to parallel computation. This presentation covers alternative programming technique called \"array programming,\" where operations are applied on data aggregates instead of individual elements. It also includes examples and demonstrations that illustrate these techniques and how they lead easier-to-understand, parallel-ready code."
+            },
+            "fromTime": "10:45",
+            "toTimeMillis": 1478861100000,
+            "toTime": "11:45",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "conf_room8_friday_11_10h45_11h45",
+            "day": "friday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478857500000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "ssj",
+                "talkType": "Conference",
+                "track": "Server Side Java",
+                "summaryAsHtml": "<p>Like the Winter in some famous TV show, CDI 2.0 has been Coming for nearly 2 years. But now CDI 2.0 is Here (like the same Winter) and all the new stuff it brings will deeply change your Java EE, MicroProfile and Java SE experience.\nIn this session I will review the major features introduced in CDI 2.0 and I&#x27;ll demonstrate how  it can be used in various environment like Java EE 7 application server, MicroProfile platform or even Java SE.\nIf you still think that CDI is a simple Dependency Injection solution bound to Java EE or think that there&#x27;s only one platform to bootstrap advanced service on Java SE, come and see that the CDI &quot;Winter&quot; can compete with &quot;Spring&quot;.</p>\n",
+                "id": "LUB-6226",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/f51267a236f548f70af38b361fed5b91a82da496",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Antoine Sabot-Durand"
+                        },
+                        "name": "Antoine Sabot-Durand"
+                    }
+                ],
+                "title": "CDI 2.0 is upon us",
+                "lang": "en",
+                "summary": "Like the Winter in some famous TV show, CDI 2.0 has been Coming for nearly 2 years. But now CDI 2.0 is Here (like the same Winter) and all the new stuff it brings will deeply change your Java EE, MicroProfile and Java SE experience.\r\nIn this session I will review the major features introduced in CDI 2.0 and I'll demonstrate how  it can be used in various environment like Java EE 7 application server, MicroProfile platform or even Java SE. \r\nIf you still think that CDI is a simple Dependency Injection solution bound to Java EE or think that there's only one platform to bootstrap advanced service on Java SE, come and see that the CDI \"Winter\" can compete with \"Spring\"."
+            },
+            "fromTime": "10:45",
+            "toTimeMillis": 1478861100000,
+            "toTime": "11:45",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "conf_room9_friday_11_10h45_11h45",
+            "day": "friday"
+        },
+        {
+            "roomId": "room10",
+            "notAllocated": true,
+            "fromTimeMillis": 1478857500000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": null,
+            "fromTime": "10:45",
+            "toTimeMillis": 1478861100000,
+            "toTime": "11:45",
+            "roomCapacity": 286,
+            "roomName": "Room 10",
+            "slotId": "conf_room10_friday_11_10h45_11h45",
+            "day": "friday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478861400000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "web",
+                "talkType": "Conference",
+                "track": "Modern Web",
+                "summaryAsHtml": "<p>With ScreenPlay, writing clean, maintainable automated acceptance tests becomes easy even for testers who are relatively new to automated testing.</p>\n<p>Learn how to write robust and articulate tests using the Screenplay Pattern, an innovative approach to writing BDD-style automated acceptance tests that are easier to understand, easier to extend and easier to maintain. You will also witness a demonstration of these principles in action, with live coding of Serenity BDD automated tests, and see how Serenity BDD turns the Screenplay tests into living documentation.</p>\n<p>While the demonstration will be in Java and will use the open source Serenity BDD library, the Screenplay pattern can be applied to any language or framework.</p>\n",
+                "id": "BIC-3525",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/a298ec44a3134ca0575b33a9a241cce5b5e3c189",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "John Smart"
+                        },
+                        "name": "John Smart"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b261ac2e7720e0273aa99c0ae911137dbea6b43b",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Jan Molak"
+                        },
+                        "name": "Jan Molak"
+                    }
+                ],
+                "title": "ScreenPlay: the next stage in automated acceptance testing ",
+                "lang": "en",
+                "summary": "With ScreenPlay, writing clean, maintainable automated acceptance tests becomes easy even for testers who are relatively new to automated testing. \r\n\r\nLearn how to write robust and articulate tests using the Screenplay Pattern, an innovative approach to writing BDD-style automated acceptance tests that are easier to understand, easier to extend and easier to maintain. You will also witness a demonstration of these principles in action, with live coding of Serenity BDD automated tests, and see how Serenity BDD turns the Screenplay tests into living documentation.\r\n\r\nWhile the demonstration will be in Java and will use the open source Serenity BDD library, the Screenplay pattern can be applied to any language or framework."
+            },
+            "fromTime": "11:50",
+            "toTimeMillis": 1478865000000,
+            "toTime": "12:50",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "conf_room4_friday_11_11h50_12h50",
+            "day": "friday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478861400000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "bigdata",
+                "talkType": "Conference",
+                "track": "Big Data",
+                "summaryAsHtml": "<p>Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of &quot;tricks of the trade&quot; will do the job. No previous Python knowledge required.</p>\n",
+                "id": "CKK-4126",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Martin Görner"
+                        },
+                        "name": "Martin Görner"
+                    }
+                ],
+                "title": "Tensorflow and deep learning - without at PhD",
+                "lang": "en",
+                "summary": "Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of \"tricks of the trade\" will do the job. No previous Python knowledge required."
+            },
+            "fromTime": "11:50",
+            "toTimeMillis": 1478865000000,
+            "toTime": "12:50",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "conf_room5_friday_11_11h50_12h50",
+            "day": "friday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": false,
+            "fromTimeMillis": 1478861400000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "ssj",
+                "talkType": "Conference",
+                "track": "Server Side Java",
+                "summaryAsHtml": "<p>At Apple our Services need to be build with scale in mind as we handling millions of messages per second on transfering massive amount of data. Many of our java based services are built on top of Netty (an open source asynchronous event-driven networking framework). We are not only a big user of Netty but are also amongst the top contributes to this project and have made many performance related enhancements.</p>\n<p>This talk will highlight our experiences and challenges involved with Netty in a production environment at scale. We will discuss best-practices and also key contributions we made over the past few years to keep up with ever increasing load.</p>\n<p>You want want to learn how to get the most out of your Netty based services? This talk is for you!</p>\n",
+                "id": "XHW-5562",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/38d2691b5636d3ca7f90aac90a78913e96283fad",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Norman Maurer"
+                        },
+                        "name": "Norman Maurer"
+                    }
+                ],
+                "title": "Netty @ Apple - Scaling to millions of messages per second",
+                "lang": "en",
+                "summary": "At Apple our Services need to be build with scale in mind as we handling millions of messages per second on transfering massive amount of data. Many of our java based services are built on top of Netty (an open source asynchronous event-driven networking framework). We are not only a big user of Netty but are also amongst the top contributes to this project and have made many performance related enhancements.\r\n\r\nThis talk will highlight our experiences and challenges involved with Netty in a production environment at scale. We will discuss best-practices and also key contributions we made over the past few years to keep up with ever increasing load.\r\n\r\nYou want want to learn how to get the most out of your Netty based services? This talk is for you!"
+            },
+            "fromTime": "11:50",
+            "toTimeMillis": 1478865000000,
+            "toTime": "12:50",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "conf_room8_friday_11_11h50_12h50",
+            "day": "friday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478861400000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "future",
+                "talkType": "Conference",
+                "track": "Future<Devoxx>",
+                "summaryAsHtml": "<p>Chat bots in services like Slack and Facebook Messenger are becoming a standard way to interface with systems.  Bots enable users to perform queries and actions as well as receive event notifications right within the chat user interface the user is already in.  This session will walk through the basics of building chat bots for Slack and Facebook Messenger with Scala.</p>\n",
+                "id": "MQT-2690",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/90543f26e9c19a0ccedc90193530b77251caa390",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "James Ward"
+                        },
+                        "name": "James Ward"
+                    }
+                ],
+                "title": "Building Chat Bots - The Next Gen UI",
+                "lang": "en",
+                "summary": "Chat bots in services like Slack and Facebook Messenger are becoming a standard way to interface with systems.  Bots enable users to perform queries and actions as well as receive event notifications right within the chat user interface the user is already in.  This session will walk through the basics of building chat bots for Slack and Facebook Messenger with Scala."
+            },
+            "fromTime": "11:50",
+            "toTimeMillis": 1478865000000,
+            "toTime": "12:50",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "conf_room9_friday_11_11h50_12h50",
+            "day": "friday"
+        },
+        {
+            "roomId": "room10",
+            "notAllocated": true,
+            "fromTimeMillis": 1478861400000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": null,
+            "fromTime": "11:50",
+            "toTimeMillis": 1478865000000,
+            "toTime": "12:50",
+            "roomCapacity": 286,
+            "roomName": "Room 10",
+            "slotId": "conf_room10_friday_11_11h50_12h50",
+            "day": "friday"
+        }
+    ]
+}

@@ -1,1 +1,1234 @@
-{"slots":[{"roomId":"a_hall","notAllocated":false,"fromTimeMillis":1478588400000,"break":{"id":"reg","nameEN":"Registration","nameFR":"Accueil","room":{"id":"a_hall","name":"Exhibition floor","capacity":1500,"setup":"special"}},"roomSetup":"special","talk":null,"fromTime":"08:00","toTimeMillis":1478593800000,"toTime":"09:30","roomCapacity":1500,"roomName":"Exhibition floor","slotId":"reg_tuesday_8_8h0_9h30","day":"tuesday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478593800000,"break":null,"roomSetup":"theatre","talk":{"trackId":"java","talkType":"University","track":"Java Language","summaryAsHtml":"<p>Should LinkedList be deprecated? This question might look like one more useless troll if had not been asked by Stuart Marks, Java/JDK/OpenJDK developer at Oracle, a true expert of the subject, currently working on the evolutions of the Collection Framework for Java 9 and beyond.</p>\n<p>Followed a long thread with many fine contributions that we will see. It turns out that answering this question takes us for quite a long journey, from algorithms and their complexity to memory footprint and CPU caches usage. We will show how to evaluate the performance and the main data structures in the Collection Framework: ArayList, LinkedList, HashSet, HashMap using JMH, now the JDK standard for microbenchmarking.  We will also see alternative Collection implementations.</p>\n<p>This talk will cover the notions of pointer chasing, CPU caches, and what Java 9 brings for the Collection Framework. Lastly, we will show how to implement collections and hashmaps with lambda expressions.</p>\n","id":"SBX-4851","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/35a6797008ce8295fcc76c03dcf0a58a07ab3070","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"José Paumard"},"name":"José Paumard"}],"title":"Array Linked to a List, the full story!","lang":"en","summary":"Should LinkedList be deprecated? This question might look like one more useless troll if had not been asked by Stuart Marks, Java/JDK/OpenJDK developer at Oracle, a true expert of the subject, currently working on the evolutions of the Collection Framework for Java 9 and beyond. \r\n\r\nFollowed a long thread with many fine contributions that we will see. It turns out that answering this question takes us for quite a long journey, from algorithms and their complexity to memory footprint and CPU caches usage. We will show how to evaluate the performance and the main data structures in the Collection Framework: ArayList, LinkedList, HashSet, HashMap using JMH, now the JDK standard for microbenchmarking.  We will also see alternative Collection implementations. \r\n\r\nThis talk will cover the notions of pointer chasing, CPU caches, and what Java 9 brings for the Collection Framework. Lastly, we will show how to implement collections and hashmaps with lambda expressions."},"fromTime":"09:30","toTimeMillis":1478604600000,"toTime":"12:30","roomCapacity":347,"roomName":"Room 4","slotId":"uni_room4_tuesday_8_9h30_12h30","day":"tuesday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478593800000,"break":null,"roomSetup":"theatre","talk":{"trackId":"cloud","talkType":"University","track":"Cloud, Containers & Infrastructure","summaryAsHtml":"<p>Docker is the developer-friendly container technology that enables creation of your application stack: OS, JVM, app server, app, database and all your custom configuration. So you are a Java developer but how comfortable are you and your team taking Docker from development to production? Are you hearing developers say, “But it works on my machine!” when code breaks in production? And if you are, how many hours are then spent standing up an accurate test environment to research and fix the bug that caused the problem?</p>\n<p>Docker provides PODA (Package Once Deploy Anywhere) and complements WORA (Write Once Run Anywhere) provided by Java. It also helps you reduce the impedance mismatch between dev, test, and production environment and simplifies Java application deployment.</p>\n<p>This workshop/session explains how to package, deploy, and scale Java applications using Docker.</p>\n","id":"KAV-4723","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/69e5596a50112585d5acdb93e0a4da47a10a6a8d","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Arun Gupta"},"name":"Arun Gupta"}],"title":"Nuts and Bolts of Docker","lang":"en","summary":"Docker is the developer-friendly container technology that enables creation of your application stack: OS, JVM, app server, app, database and all your custom configuration. So you are a Java developer but how comfortable are you and your team taking Docker from development to production? Are you hearing developers say, “But it works on my machine!” when code breaks in production? And if you are, how many hours are then spent standing up an accurate test environment to research and fix the bug that caused the problem?\r\n\r\nDocker provides PODA (Package Once Deploy Anywhere) and complements WORA (Write Once Run Anywhere) provided by Java. It also helps you reduce the impedance mismatch between dev, test, and production environment and simplifies Java application deployment.\r\n\r\nThis workshop/session explains how to package, deploy, and scale Java applications using Docker."},"fromTime":"09:30","toTimeMillis":1478604600000,"toTime":"12:30","roomCapacity":641,"roomName":"Room 5","slotId":"uni_room5_tuesday_8_9h30_12h30","day":"tuesday"},{"roomId":"room8","notAllocated":false,"fromTimeMillis":1478593800000,"break":null,"roomSetup":"theatre","talk":{"trackId":"java","talkType":"University","track":"Java Language","summaryAsHtml":"<p>Reactive Programming is receiving quite a bit of attention and for good reasons. It’s a nice logical next step from functional programming. It takes the concept of function composition and lazy evaluations to the next level. It streamlines handling of many critical issues that are architectural in nature: resilience, scale, responsiveness, and messaging. In this session, we will start with a quick introduction to reactive programming. We will then dive into code examples and learn how to create reactive applications. We’ll learn to implement observables, to deal with errors in a graceful manner, learn both synchronous and asynchronous solutions, hot vs. cold observables, and dealing with backpressures.</p>\n","id":"NXW-8662","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/49cba39de93b8bc6a79d7c768fd035c740c5483a","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Venkat Subramaniam"},"name":"Venkat Subramaniam"}],"title":"Reactive Programming","lang":"en","summary":"Reactive Programming is receiving quite a bit of attention and for good reasons. It’s a nice logical next step from functional programming. It takes the concept of function composition and lazy evaluations to the next level. It streamlines handling of many critical issues that are architectural in nature: resilience, scale, responsiveness, and messaging. In this session, we will start with a quick introduction to reactive programming. We will then dive into code examples and learn how to create reactive applications. We’ll learn to implement observables, to deal with errors in a graceful manner, learn both synchronous and asynchronous solutions, hot vs. cold observables, and dealing with backpressures."},"fromTime":"09:30","toTimeMillis":1478604600000,"toTime":"12:30","roomCapacity":696,"roomName":"Room 8","slotId":"uni_room8_tuesday_8_9h30_12h30","day":"tuesday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478593800000,"break":null,"roomSetup":"theatre","talk":{"trackId":"bigdata","talkType":"University","track":"Big Data","summaryAsHtml":"<p>Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of &quot;tricks of the trade&quot; will do the job. No previous Python knowledge required.</p>\n<p>This university session will cover the basics of deep learning, without any assumptions about the level of the participants. Machine learning beginners are welcome. We will cover:\n- fully connected neural networks\n- convolutional neural networks\n- regularisation techniques: dropout, learning rate decay, batch normalisation\n- recurrent neural networks\n- natural language analysis, word embeddings\n- transfer learning\n- image analysis\n- image generation\n- and many examples</p>\n","id":"ULT-2698","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Martin Görner"},"name":"Martin Görner"}],"title":"Tensorflow and deep learning - without at PhD","lang":"en","summary":"Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of \"tricks of the trade\" will do the job. No previous Python knowledge required.\r\n\r\nThis university session will cover the basics of deep learning, without any assumptions about the level of the participants. Machine learning beginners are welcome. We will cover:\r\n- fully connected neural networks\r\n- convolutional neural networks\r\n- regularisation techniques: dropout, learning rate decay, batch normalisation\r\n- recurrent neural networks\r\n- natural language analysis, word embeddings\r\n- transfer learning\r\n- image analysis\r\n- image generation\r\n- and many examples"},"fromTime":"09:30","toTimeMillis":1478604600000,"toTime":"12:30","roomCapacity":393,"roomName":"Room 9","slotId":"uni_room9_tuesday_8_9h30_12h30","day":"tuesday"},{"roomId":"bof1","notAllocated":false,"fromTimeMillis":1478593800000,"break":null,"roomSetup":"classroom","talk":{"trackId":"cloud","talkType":"Hands-on Labs","track":"Cloud, Containers & Infrastructure","summaryAsHtml":"<p>Today&#x27;s technology is moving fast towards using containers and managing a fleet of containers. This session will give hands-on experience with creating containers using Docker and deploy a fleet of containerized Java microservices into Kuberenetes. You&#x27;ll get to:\n- Build a Java microservice\n- Build Docker container\n- Deploy the container into a private container registry\n- Deploy a fleet of containerized microservices\n- Learn service discovery\n- Perform rolling update, canary, and roll backs</p>\n<p>In addition, we will also explore advanced features such as:\n- Secret - securely give your application the credentials and configurations\n- Daemon set - run the same workload across all of the cluster nodes\n- PetSet - running stateful applications such as Cassandra or Zookeeper\n- Persistent volume / claims - store persistent data using volume mounts in the pods\n- Health checks - check to see if your application is alive and ready to serve traffic\n- Autoscaling - automatic horizontal pod scaling using CPU utilization metric\n- Federation - managing multiple cluster across zones</p>\n<p>The lab can be self-paced - pick your own adventure depending on how familiar you are w/ Kubernetes.</p>\n","id":"DLX-1294","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/066f7793bfe0e9b04bd65aa50e54d74777d5b497","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Ray Tsang"},"name":"Ray Tsang"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/9c43a38cec7ddebf95339cecc5f273f8e3c9153f","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Rafael Benevides"},"name":"Rafael Benevides"}],"title":"Hands-on with Kubernetes - from basic to advanced features","lang":"en","summary":"Today's technology is moving fast towards using containers and managing a fleet of containers. This session will give hands-on experience with creating containers using Docker and deploy a fleet of containerized Java microservices into Kuberenetes. You'll get to: \r\n - Build a Java microservice\r\n - Build Docker container\r\n - Deploy the container into a private container registry\r\n - Deploy a fleet of containerized microservices\r\n - Learn service discovery\r\n - Perform rolling update, canary, and roll backs\r\n\r\nIn addition, we will also explore advanced features such as:\r\n - Secret - securely give your application the credentials and configurations\r\n - Daemon set - run the same workload across all of the cluster nodes\r\n - PetSet - running stateful applications such as Cassandra or Zookeeper\r\n - Persistent volume / claims - store persistent data using volume mounts in the pods\r\n - Health checks - check to see if your application is alive and ready to serve traffic\r\n - Autoscaling - automatic horizontal pod scaling using CPU utilization metric\r\n - Federation - managing multiple cluster across zones\r\n\r\nThe lab can be self-paced - pick your own adventure depending on how familiar you are w/ Kubernetes."},"fromTime":"09:30","toTimeMillis":1478604600000,"toTime":"12:30","roomCapacity":70,"roomName":"BOF 1","slotId":"lab_bof1_tuesday_8_9h30_12h30","day":"tuesday"},{"roomId":"bof2","notAllocated":false,"fromTimeMillis":1478593800000,"break":null,"roomSetup":"classroom","talk":{"trackId":"bigdata","talkType":"Hands-on Labs","track":"Big Data","summaryAsHtml":"<p>This workshop lasts 3 hours.</p>\n<p>I begin with a presentation of <strong>webscraping techniques</strong> (30min). Then, I introduce the Scrapy framework and its use (10min). With the presentation, people start the workshop faster.</p>\n<p>Then, we start the workshop. It lasts 2h20. People work gradually through <strong>4 challenges</strong>: the scraping of a single page, the scraping of multiple pages, the bypassing of several protections.</p>\n","id":"RPF-1880","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/040402c1f4650c82b23446bd1b5c76c907d6c2bf","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Fabien Vauchelles"},"name":"Fabien Vauchelles"}],"title":"Become an expert in webscraping (data extraction)","lang":"en","summary":"This workshop lasts 3 hours.\r\n\r\nI begin with a presentation of **webscraping techniques** (30min). Then, I introduce the Scrapy framework and its use (10min). With the presentation, people start the workshop faster.\r\n\r\nThen, we start the workshop. It lasts 2h20. People work gradually through **4 challenges**: the scraping of a single page, the scraping of multiple pages, the bypassing of several protections."},"fromTime":"09:30","toTimeMillis":1478604600000,"toTime":"12:30","roomCapacity":70,"roomName":"BOF 2","slotId":"lab_bof2_tuesday_8_9h30_12h30","day":"tuesday"},{"roomId":"a_hall","notAllocated":false,"fromTimeMillis":1478604600000,"break":{"id":"lunch","nameEN":"Lunch","nameFR":"Pause déjeuner","room":{"id":"a_hall","name":"Exhibition floor","capacity":1500,"setup":"special"}},"roomSetup":"special","talk":null,"fromTime":"12:30","toTimeMillis":1478608200000,"toTime":"13:30","roomCapacity":1500,"roomName":"Exhibition floor","slotId":"lunch_tuesday_8_12h30_13h30","day":"tuesday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478608200000,"break":null,"roomSetup":"theatre","talk":{"trackId":"java","talkType":"University","track":"Java Language","summaryAsHtml":"<p>The first part provides a gentle introduction, with examples, to the Java Platform Module System in JDK 9.  You will learn the basic concepts of the module system and be introduced to the modules that are built into the Java platform.  You will also find out how to develop a module from scratch and how to compile, test, and run it.</p>\n<p>Second part focuses on developing modules with the Java Platform Module System in JDK 9.  Using well-known libraries as examples, you will learn how to develop libraries and applications as modules and will also find out how to migrate existing code to modules. Migration poses many challenges, and in addition to learning about “bottom-up” migration, you will learn about “top-down” migration, where libraries and applications are migrated to modules without waiting for libraries they depend on to migrate first.</p>\n<p>The third part uses examples from the JDK, to show how to adopt services in your codebase and how to design APIs in a modular fashion.</p>\n","id":"BLY-5449","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/8a7d68a8a2b09105c969cbae7b37019d4fa470a5","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Mark Reinhold"},"name":"Mark Reinhold"}],"title":"Introduction to Modules and Services","lang":"en","summary":"The first part provides a gentle introduction, with examples, to the Java Platform Module System in JDK 9.  You will learn the basic concepts of the module system and be introduced to the modules that are built into the Java platform.  You will also find out how to develop a module from scratch and how to compile, test, and run it.\r\n\r\nSecond part focuses on developing modules with the Java Platform Module System in JDK 9.  Using well-known libraries as examples, you will learn how to develop libraries and applications as modules and will also find out how to migrate existing code to modules. Migration poses many challenges, and in addition to learning about “bottom-up” migration, you will learn about “top-down” migration, where libraries and applications are migrated to modules without waiting for libraries they depend on to migrate first.\r\n\r\nThe third part uses examples from the JDK, to show how to adopt services in your codebase and how to design APIs in a modular fashion."},"fromTime":"13:30","toTimeMillis":1478619000000,"toTime":"16:30","roomCapacity":347,"roomName":"Room 4","slotId":"uni_room4_tuesday_8_13h30_16h30","day":"tuesday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478608200000,"break":null,"roomSetup":"theatre","talk":{"trackId":"web","talkType":"University","track":"Modern Web","summaryAsHtml":"<p>Antonio is a Java programmer and knows nothing about UI. He uses his Mac to develop Java EE micro-services, executes them with WildFly Swarm, packages them into Docker and exposes REST interfaces.</p>\n<p>Sebastien is a TypeScript programmer and knows nothing about Java. Being a Microsoft employee he uses his PC to develop user interfaces with TypeScript and Angular2 to interact with the back-end.</p>\n<p>This University is targeted at Java developers who want to discover TypeScript and how to use an Angular2 front-end with a Java back-end. It will be divided into three parts. 1) Develop Java EE micro-services using WildFly Swarm. 2) Discover the language TypeScript. 3) Create an Angular2 web interface using TypeScript to interact with the REST back-end.</p>\n<p>Come to this talk. You will see plenty of code and nice demos running on a Mac, a Windows machine…. and in the Cloud !</p>\n","id":"MBV-6308","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/dc61d5c028dceb9ce4fd55623c6f725f3666ab46","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Antonio Goncalves"},"name":"Antonio Goncalves"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/b429871520f3c38025899634df6687ab92672a80","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Sébastien Pertus"},"name":"Sébastien Pertus"}],"title":"Java EE, TypeScript and Angular2","lang":"en","summary":"Antonio is a Java programmer and knows nothing about UI. He uses his Mac to develop Java EE micro-services, executes them with WildFly Swarm, packages them into Docker and exposes REST interfaces.\r\n\r\nSebastien is a TypeScript programmer and knows nothing about Java. Being a Microsoft employee he uses his PC to develop user interfaces with TypeScript and Angular2 to interact with the back-end.\r\n\r\nThis University is targeted at Java developers who want to discover TypeScript and how to use an Angular2 front-end with a Java back-end. It will be divided into three parts. 1) Develop Java EE micro-services using WildFly Swarm. 2) Discover the language TypeScript. 3) Create an Angular2 web interface using TypeScript to interact with the REST back-end.\r\n\r\nCome to this talk. You will see plenty of code and nice demos running on a Mac, a Windows machine…. and in the Cloud !"},"fromTime":"13:30","toTimeMillis":1478619000000,"toTime":"16:30","roomCapacity":641,"roomName":"Room 5","slotId":"uni_room5_tuesday_8_13h30_16h30","day":"tuesday"},{"roomId":"room8","notAllocated":false,"fromTimeMillis":1478608200000,"break":null,"roomSetup":"theatre","talk":{"trackId":"java","talkType":"University","track":"Java Language","summaryAsHtml":"<p>How we write code was greatly influenced by Java 8. How we package the code and interact with it will be impacted by Java 9. In this presentations, we will learn about the major features of Java 9. We will start by discussing the current concerns and how the module system tries to alleviate those pains. We will learn about modules, how to define dependencies, and also how to work with existing jar files. Finally we will explore Java 9 REPL, the reasons to use it, and various features that can benefit the programmers.</p>\n","id":"HHV-6547","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/49cba39de93b8bc6a79d7c768fd035c740c5483a","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Venkat Subramaniam"},"name":"Venkat Subramaniam"}],"title":"Exploring Java 9","lang":"en","summary":"How we write code was greatly influenced by Java 8. How we package the code and interact with it will be impacted by Java 9. In this presentations, we will learn about the major features of Java 9. We will start by discussing the current concerns and how the module system tries to alleviate those pains. We will learn about modules, how to define dependencies, and also how to work with existing jar files. Finally we will explore Java 9 REPL, the reasons to use it, and various features that can benefit the programmers."},"fromTime":"13:30","toTimeMillis":1478619000000,"toTime":"16:30","roomCapacity":696,"roomName":"Room 8","slotId":"uni_room8_tuesday_8_13h30_16h30","day":"tuesday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478608200000,"break":null,"roomSetup":"theatre","talk":{"trackId":"cloud","talkType":"University","track":"Cloud, Containers & Infrastructure","summaryAsHtml":"<p>The session will dive deep into how neural networks work with focus on inner workings of Watson as an AI platform . We will apply machine learning algorithms to real life situations. By the end of 3 hour session, you will understand exactly what Cognitive platform like Watson learns and evolves.  We will walk through algorithms that Watson uses to allow human like conversations and deep searches, how it learns and evolves.</p>\n","id":"XOR-6380","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/e7072231ed75ccc4c858b39ff383f3d9f581c982","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Sandhya Kapoor"},"name":"Sandhya Kapoor"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/645282f13989f415c5029d25f8b75ac99d937573","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Alfio Gliozzo"},"name":"Alfio Gliozzo"}],"title":"Deep dive into Watson's Neural Networks","lang":"en","summary":"The session will dive deep into how neural networks work with focus on inner workings of Watson as an AI platform . We will apply machine learning algorithms to real life situations. By the end of 3 hour session, you will understand exactly what Cognitive platform like Watson learns and evolves.  We will walk through algorithms that Watson uses to allow human like conversations and deep searches, how it learns and evolves. "},"fromTime":"13:30","toTimeMillis":1478619000000,"toTime":"16:30","roomCapacity":393,"roomName":"Room 9","slotId":"uni_room9_tuesday_8_13h30_16h30","day":"tuesday"},{"roomId":"bof1","notAllocated":false,"fromTimeMillis":1478608200000,"break":null,"roomSetup":"classroom","talk":{"trackId":"ssj","talkType":"Hands-on Labs","track":"Server Side Java","summaryAsHtml":"<p>This lab will introduce the developer to WildFly Swarm through the migration of  a Java EE monolith to Java EE microservices for parts of the stack. The services will be discoverable, provide failover with Netflix Ribbon, and utilize Netflix Hystrix for circuit breaking amongst other things.</p>\n<p>A simplified e-commerce application  (regular Java EE application) will be dissected into appropriate services while also retaining Java EE pieces that are appropriate. We will then walk through several aspects that are required for a full services architecture. Such as securing these services with Keycloak, registering services for discovery via JGroups, Consul or Zookeeper, service logging to external sources such as logstash, and capturing service metrics with Hawkular and DropWizard Metrics.</p>\n<p>By the end of the lab we will have converted some pieces of a Java EE application into services, while learning how WildFly Swarm integrates with external tools to provide a complete solution for service delivery.</p>\n","id":"YMI-7185","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/19783504be2af7964e5c5fcd31c3e81fc95f2a58","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Heiko Braun"},"name":"Heiko Braun"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/85eb850bb5c8fc040bbd1b2b8fb87a45b6edbcb8","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Dimitris Andreadis"},"name":"Dimitris Andreadis"}],"title":"Decomposing a Java EE monolith into WildFly Swarm microservices","lang":"en","summary":"This lab will introduce the developer to WildFly Swarm through the migration of  a Java EE monolith to Java EE microservices for parts of the stack. The services will be discoverable, provide failover with Netflix Ribbon, and utilize Netflix Hystrix for circuit breaking amongst other things.\r\n\r\nA simplified e-commerce application  (regular Java EE application) will be dissected into appropriate services while also retaining Java EE pieces that are appropriate. We will then walk through several aspects that are required for a full services architecture. Such as securing these services with Keycloak, registering services for discovery via JGroups, Consul or Zookeeper, service logging to external sources such as logstash, and capturing service metrics with Hawkular and DropWizard Metrics.\r\n\r\nBy the end of the lab we will have converted some pieces of a Java EE application into services, while learning how WildFly Swarm integrates with external tools to provide a complete solution for service delivery."},"fromTime":"13:30","toTimeMillis":1478619000000,"toTime":"16:30","roomCapacity":70,"roomName":"BOF 1","slotId":"lab_bof1_tuesday_8_13h30_16h30","day":"tuesday"},{"roomId":"bof2","notAllocated":false,"fromTimeMillis":1478608200000,"break":null,"roomSetup":"classroom","talk":{"trackId":"web","talkType":"Hands-on Labs","track":"Modern Web","summaryAsHtml":"<p>You love glory? You want to become rich and famous?</p>\n<p>Sorry, but we can&#x27;t help you ...</p>\n<p>However, if you like JavaScript and want to try out React, then come to our workshop dedicated to learn this great Javascript library.</p>\n<p>We will explore together how to handle React and its ecosystem, how to start a project, how to fetch all your project dependencies with NPM, how to configure your Webpack build to work with Babel, how to test your components and check your code quality, etc ...</p>\n<p>At the end of this lab, you will have created a wonderful application written entirely with ES2015, which will use redux and react-router (among others). And if you&#x27;re very fast, maybe you will be able to explore the creation of native mobile application using React Native. And all this with a simple text editor and a browser (and nodejs ;-)</p>\n<p>So, do not hesitate a moment and come react with us :-)</p>\n","id":"LJP-3156","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/24aa289736bc1385ecc6cb9d3ff28626f0f5069e","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Sébastien Prunier"},"name":"Sébastien Prunier"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/d4f627022d99644546b010cb43135cf5bda26cc7","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Mathieu ANCELIN"},"name":"Mathieu ANCELIN"}],"title":"Let's React: the workshop","lang":"en","summary":"You love glory? You want to become rich and famous?\r\n\r\nSorry, but we can't help you ...\r\n\r\nHowever, if you like JavaScript and want to try out React, then come to our workshop dedicated to learn this great Javascript library.\r\n\r\nWe will explore together how to handle React and its ecosystem, how to start a project, how to fetch all your project dependencies with NPM, how to configure your Webpack build to work with Babel, how to test your components and check your code quality, etc ...\r\n\r\nAt the end of this lab, you will have created a wonderful application written entirely with ES2015, which will use redux and react-router (among others). And if you're very fast, maybe you will be able to explore the creation of native mobile application using React Native. And all this with a simple text editor and a browser (and nodejs ;-)\r\n\r\nSo, do not hesitate a moment and come react with us :-)"},"fromTime":"13:30","toTimeMillis":1478619000000,"toTime":"16:30","roomCapacity":70,"roomName":"BOF 2","slotId":"lab_bof2_tuesday_8_13h30_16h30","day":"tuesday"},{"roomId":"a_hall","notAllocated":false,"fromTimeMillis":1478619000000,"break":{"id":"coffee","nameEN":"Coffee Break","nameFR":"Pause café","room":{"id":"a_hall","name":"Exhibition floor","capacity":1500,"setup":"special"}},"roomSetup":"special","talk":null,"fromTime":"16:30","toTimeMillis":1478619900000,"toTime":"16:45","roomCapacity":1500,"roomName":"Exhibition floor","slotId":"coffee_tuesday_8_16h30_16h45","day":"tuesday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478619900000,"break":null,"roomSetup":"theatre","talk":{"trackId":"java","talkType":"Tools-in-Action","track":"Java Language","summaryAsHtml":"<p>Are you tired of publishing a library to your local repository just to check whether your change fixed that elusive bug in the application? Are you working on a mono-repo and wish you could import just a small part of it into your IDE? Would you like your projects to automatically react to other projects being checked out next to them? Then you should learn about Gradle&#x27;s new Composite Build feature.</p>\n<p>Composite Builds allow you to combine multiple independent Gradle builds into a single one. Binary dependencies are automatically replaced with project dependencies. When you make a change to an upstream component, it is immediately visible to its dependents. You can import composite builds into the IDE and work on them as if you were looking at a single code base.</p>\n<p>Composite builds also make it easy to split a large mono-repo into smaller parts that can be worked on individually. This makes the migration path toward separated repositories simple. And thanks to Gradle&#x27;s rich DSL, you can compose builds dynamically.</p>\n<p>Don&#x27;t let your repository structure dictate how you work!</p>\n","id":"PLR-0807","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/20289fe27fc18853a767cec8d11e309ec8355896","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Stefan Oehme"},"name":"Stefan Oehme"}],"title":"Composite Builds with Gradle","lang":"en","summary":"Are you tired of publishing a library to your local repository just to check whether your change fixed that elusive bug in the application? Are you working on a mono-repo and wish you could import just a small part of it into your IDE? Would you like your projects to automatically react to other projects being checked out next to them? Then you should learn about Gradle's new Composite Build feature.\r\n\r\nComposite Builds allow you to combine multiple independent Gradle builds into a single one. Binary dependencies are automatically replaced with project dependencies. When you make a change to an upstream component, it is immediately visible to its dependents. You can import composite builds into the IDE and work on them as if you were looking at a single code base.\r\n\r\nComposite builds also make it easy to split a large mono-repo into smaller parts that can be worked on individually. This makes the migration path toward separated repositories simple. And thanks to Gradle's rich DSL, you can compose builds dynamically.\r\n\r\nDon't let your repository structure dictate how you work!"},"fromTime":"16:45","toTimeMillis":1478621700000,"toTime":"17:15","roomCapacity":347,"roomName":"Room 4","slotId":"tia_room4_tuesday_8_16h45_17h15","day":"tuesday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478619900000,"break":null,"roomSetup":"theatre","talk":{"trackId":"web","talkType":"Tools-in-Action","track":"Modern Web","summaryAsHtml":"<p>We know interactivity is the key to keep our user&#x27;s interest alive but we can&#x27;t reduce animation to UI anymore. Twitter, Waze, Slack... users are used to have real-time data in applications they love. But how can you turn your static API into a stream of data?</p>\n<p>When talking about data streaming, we often think about WebSockets. But have you ever heard of Server-Sent Events? In this tools-in-action we will compare both technologies to understand which one you should opt for depending on your usecase and I&#x27;ll show you how we have been even further by reducing the amount of data to transfer with JSON-Patch.</p>\n<p>And because real-time data is not only needed by web (and because it&#x27;s much more fun), I&#x27;ll show you how we can make drone dance on streamed APIs.</p>\n","id":"OAG-4537","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/a7748720f4f3b7d6442be252f2d77c5c4016cdad","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Audrey Neveu"},"name":"Audrey Neveu"}],"title":"The end of polling : why and how to transform a REST API into a Data Streaming API?","lang":"en","summary":"We know interactivity is the key to keep our user's interest alive but we can't reduce animation to UI anymore. Twitter, Waze, Slack... users are used to have real-time data in applications they love. But how can you turn your static API into a stream of data?\r\n\r\nWhen talking about data streaming, we often think about WebSockets. But have you ever heard of Server-Sent Events? In this tools-in-action we will compare both technologies to understand which one you should opt for depending on your usecase and I'll show you how we have been even further by reducing the amount of data to transfer with JSON-Patch.\r\n\r\nAnd because real-time data is not only needed by web (and because it's much more fun), I'll show you how we can make drone dance on streamed APIs."},"fromTime":"16:45","toTimeMillis":1478621700000,"toTime":"17:15","roomCapacity":641,"roomName":"Room 5","slotId":"tia_room5_tuesday_8_16h45_17h15","day":"tuesday"},{"roomId":"room8","notAllocated":false,"fromTimeMillis":1478619900000,"break":null,"roomSetup":"theatre","talk":{"trackId":"java","talkType":"Tools-in-Action","track":"Java Language","summaryAsHtml":"<p>Java 8&#x27;s lambdas empower us to create wonderful APIs. Javaslang lets us dive deeper into the world of functional programming by providing us with persistent data types, immutable collections and functional control structures. The results are beautiful and do just work.</p>\n<p>During this presentation we will recall Java8&#x27;s downsides and explore how Javaslang&#x27;s Scala-inspired features fill-in the gaps.</p>\n","id":"MSD-7684","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/dc9a936c05e293d5246bb04621b781a3547f4945","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Grzegorz Piwowarek"},"name":"Grzegorz Piwowarek"}],"title":"Javaslang - functional Java done right","lang":"en","summary":"Java 8's lambdas empower us to create wonderful APIs. Javaslang lets us dive deeper into the world of functional programming by providing us with persistent data types, immutable collections and functional control structures. The results are beautiful and do just work.\r\n\r\nDuring this presentation we will recall Java8's downsides and explore how Javaslang's Scala-inspired features fill-in the gaps."},"fromTime":"16:45","toTimeMillis":1478621700000,"toTime":"17:15","roomCapacity":696,"roomName":"Room 8","slotId":"tia_room8_tuesday_8_16h45_17h15","day":"tuesday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478619900000,"break":null,"roomSetup":"theatre","talk":{"trackId":"cloud","talkType":"Tools-in-Action","track":"Cloud, Containers & Infrastructure","summaryAsHtml":"<p>Docker is awesome, but how to use it in production?</p>\n<p>You&#x27;ve got your app built. You&#x27;ve dockerized it so it is self-contained and is running in Docker off your laptop. It&#x27;s tested and everything looks good, so time to ship it.</p>\n<p>Wait! Not so fast! Transitioning to a Docker production environment isn&#x27;t quite as easy as it sounds. How do you start your docker hosts? How do you integrate with AWS services like ELB and RDS? How do you orchestrate containers on multiple hosts? How do you deploy updates? How do you integrate monitoring and do log management?</p>\n<p>Come to this talk to see get an overview of different tool options you have in the AWS cloud to tackle these problem.</p>\n","id":"EBI-8705","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/89f2deba8bc1faf47588eef816d1f2a4db55d577","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Oliver Geisser"},"name":"Oliver Geisser"}],"title":"Running Docker in production on AWS","lang":"en","summary":"Docker is awesome, but how to use it in production?\r\n\r\nYou've got your app built. You've dockerized it so it is self-contained and is running in Docker off your laptop. It's tested and everything looks good, so time to ship it.\r\n\r\nWait! Not so fast! Transitioning to a Docker production environment isn't quite as easy as it sounds. How do you start your docker hosts? How do you integrate with AWS services like ELB and RDS? How do you orchestrate containers on multiple hosts? How do you deploy updates? How do you integrate monitoring and do log management?\r\n\r\nCome to this talk to see get an overview of different tool options you have in the AWS cloud to tackle these problem.\r\n"},"fromTime":"16:45","toTimeMillis":1478621700000,"toTime":"17:15","roomCapacity":393,"roomName":"Room 9","slotId":"tia_room9_tuesday_8_16h45_17h15","day":"tuesday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478622300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"mobile","talkType":"Tools-in-Action","track":"Mobile & Embedded","summaryAsHtml":"<p>XCode provides developers with two kinds of test : unit tests and UI tests.\nThis live coding session will introduce both of these concepts.</p>\n<p>Schedule :</p>\n<ul>\n<li>Why should I test my mobile app ?</li>\n<li>Live coding : synchronous and asynchronous tests</li>\n<li>Live coding : UI tests</li>\n<li>Code coverage</li>\n</ul>\n<p>Everything shown in the session is available on Github, no more excuses to skip the tests :)</p>\n","id":"UXX-4833","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/0d5a5fef63ad94f1de5ebe6ad32fcd0f82ce8a2d","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Maxime David"},"name":"Maxime David"}],"title":"How to test your awesome iOS mobile application ? ","lang":"en","summary":"XCode provides developers with two kinds of test : unit tests and UI tests.\r\nThis live coding session will introduce both of these concepts.\r\n\r\nSchedule : \r\n\r\n- Why should I test my mobile app ?\r\n- Live coding : synchronous and asynchronous tests \r\n- Live coding : UI tests\r\n- Code coverage\r\n\r\nEverything shown in the session is available on Github, no more excuses to skip the tests :)\r\n\r\n"},"fromTime":"17:25","toTimeMillis":1478624100000,"toTime":"17:55","roomCapacity":347,"roomName":"Room 4","slotId":"tia_room4_tuesday_8_17h25_17h55","day":"tuesday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478622300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"web","talkType":"Tools-in-Action","track":"Modern Web","summaryAsHtml":"<p>Let&#x27;s skip the boring plumbing parts of building a web app and head right to the fun stuff.</p>\n<p>Firebase handles a lot for you, like real time database syncing and user authentication, letting you focus on what makes your web app special. Now the newest version of Firebase empowers you to do even more, including file storage and the ability to hook into other cloud services. It&#x27;s all serverless so you can get up and running in minutes.</p>\n<p>In this talk we&#x27;ll live code a fun and surprisingly functional web-based game using some of the features of Firebase and release it live for the world to see.</p>\n","id":"JVY-2604","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/7d30948810c14651f08a7c5885b3a8fe30430d2a","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Bret McGowen"},"name":"Bret McGowen"}],"title":"Supercharge your web app with the new Firebase","lang":"en","summary":"Let's skip the boring plumbing parts of building a web app and head right to the fun stuff.\r\n\r\nFirebase handles a lot for you, like real time database syncing and user authentication, letting you focus on what makes your web app special. Now the newest version of Firebase empowers you to do even more, including file storage and the ability to hook into other cloud services. It's all serverless so you can get up and running in minutes. \r\n\r\nIn this talk we'll live code a fun and surprisingly functional web-based game using some of the features of Firebase and release it live for the world to see."},"fromTime":"17:25","toTimeMillis":1478624100000,"toTime":"17:55","roomCapacity":641,"roomName":"Room 5","slotId":"tia_room5_tuesday_8_17h25_17h55","day":"tuesday"},{"roomId":"room8","notAllocated":false,"fromTimeMillis":1478622300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"lang","talkType":"Tools-in-Action","track":"Programming languages","summaryAsHtml":"<p>Are your web tests hard to read and hard to maintain? Does their reporting leave something to be desired? Do you have trouble scaling your test suite? Indeed, these are common issues faced by teams working with automated web tests.</p>\n<p>The Screenplay pattern (https://dzone.com/articles/page-objects-refactored-solid-steps-to-the-screenp) presents an innovative answer to these problems, built around readability, reusability and solid design principles. More than just a simple design pattern, the Screenplay pattern represents the next step in writing articulate, declarative tests using a highly expressive DSL.</p>\n<p>In this talk we will demonstrate Serenity-JS, a TypeScript implementation of Serenity BDD that lets you test your Angular-JS apps using the Screenplay pattern, and also benefit from the powerful reporting features provided by Serenity BDD. Combining the advantages of Protractor, the expressive Screenplay DSL in TypeScript, and the powerful reporting features of Serenity BDD, Serenity-JS is set to become the tool of choice for your Angular-JS automated testing!</p>\n","id":"ICJ-3714","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/a298ec44a3134ca0575b33a9a241cce5b5e3c189","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"John Smart"},"name":"John Smart"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/b261ac2e7720e0273aa99c0ae911137dbea6b43b","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Jan Molak"},"name":"Jan Molak"}],"title":"Serenity-JS: next generation acceptance testing for Angular-JS in TypeScript","lang":"en","summary":"Are your web tests hard to read and hard to maintain? Does their reporting leave something to be desired? Do you have trouble scaling your test suite? Indeed, these are common issues faced by teams working with automated web tests.\r\n\r\nThe Screenplay pattern (https://dzone.com/articles/page-objects-refactored-solid-steps-to-the-screenp) presents an innovative answer to these problems, built around readability, reusability and solid design principles. More than just a simple design pattern, the Screenplay pattern represents the next step in writing articulate, declarative tests using a highly expressive DSL. \r\n\r\nIn this talk we will demonstrate Serenity-JS, a TypeScript implementation of Serenity BDD that lets you test your Angular-JS apps using the Screenplay pattern, and also benefit from the powerful reporting features provided by Serenity BDD. Combining the advantages of Protractor, the expressive Screenplay DSL in TypeScript, and the powerful reporting features of Serenity BDD, Serenity-JS is set to become the tool of choice for your Angular-JS automated testing!"},"fromTime":"17:25","toTimeMillis":1478624100000,"toTime":"17:55","roomCapacity":696,"roomName":"Room 8","slotId":"tia_room8_tuesday_8_17h25_17h55","day":"tuesday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478622300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"ssj","talkType":"Tools-in-Action","track":"Server Side Java","summaryAsHtml":"<p>Prometheus is an open source monitoring tool, which is conceptually based on Google&#x27;s internal Borgmon monitoring system. Unlike traditional tools like Nagios, Prometheus implements a white-box monitoring approach: Applications actively provide metrics, these metrics are stored in a time-series database, the time-series data is used as a source for generating alerts. Prometheus comes with a powerful query language allowing for statistical evaluation of metrics.</p>\n<p>Many modern infrastructure components have Prometheus metrics built-in, like Docker&#x27;s cAdvisor, Kubernetes, or Konsul. Moreover, there are libraries for instrumenting proprietary applications in a lot of programming languages.</p>\n<p>This talk gives an introduction to monitoring with Prometheus, and shows how Java applications can expose metrics for Prometheus monitoring environments. We show how to instrument applications directly in code, as well as how to expose JMX beans in legacy applications.</p>\n","id":"EAP-4528","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/bc76e6a7e689aef6550eb4b01e651ae0b4fa3f30","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Fabian Stäber"},"name":"Fabian Stäber"}],"title":"Prometheus Monitoring for Java Developers","lang":"en","summary":"Prometheus is an open source monitoring tool, which is conceptually based on Google's internal Borgmon monitoring system. Unlike traditional tools like Nagios, Prometheus implements a white-box monitoring approach: Applications actively provide metrics, these metrics are stored in a time-series database, the time-series data is used as a source for generating alerts. Prometheus comes with a powerful query language allowing for statistical evaluation of metrics.\r\n\r\nMany modern infrastructure components have Prometheus metrics built-in, like Docker's cAdvisor, Kubernetes, or Konsul. Moreover, there are libraries for instrumenting proprietary applications in a lot of programming languages.\r\n\r\nThis talk gives an introduction to monitoring with Prometheus, and shows how Java applications can expose metrics for Prometheus monitoring environments. We show how to instrument applications directly in code, as well as how to expose JMX beans in legacy applications."},"fromTime":"17:25","toTimeMillis":1478624100000,"toTime":"17:55","roomCapacity":393,"roomName":"Room 9","slotId":"tia_room9_tuesday_8_17h25_17h55","day":"tuesday"},{"roomId":"a_hall","notAllocated":false,"fromTimeMillis":1478624100000,"break":{"id":"exhib","nameEN":"Exhibition","nameFR":"Exhibition","room":{"id":"a_hall","name":"Exhibition floor","capacity":1500,"setup":"special"}},"roomSetup":"special","talk":null,"fromTime":"17:55","toTimeMillis":1478625300000,"toTime":"18:15","roomCapacity":1500,"roomName":"Exhibition floor","slotId":"exhib_tuesday_8_17h55_18h15","day":"tuesday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478625300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"mobile","talkType":"Tools-in-Action","track":"Mobile & Embedded","summaryAsHtml":"<p>Native apps are the best. They are the most performant and integrate well into the OS. They just feel <em>right</em>.\nIt&#x27;s just that implementing complex business logic for every platform separately is not fun at all. You keep reinventing the wheel and will end up fixing the same errors over and over again.</p>\n<p><a href=\"https://github.com/dropbox/djinni\">Djinni</a> is here to help!\nDjinni is a tool for generating cross-language type declarations and interface bindings. It enables writing C++ code that can easily be used from Java, Objective-C and Python. Djinni takes care of all the nasty and repetitive glue code to translate from one world to the other. That even includes passing exceptions from Java to C++ and back to Java!</p>\n<p>In this presentation I&#x27;ll show you how you only need to define your shared types and interfaces once, write their implementations in C++ and then use it like any other API native to iOS or Android.</p>\n<p>Let Djinni work its magic for you too!</p>\n","id":"XOE-6216","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/4c2fdcd016f9fac3822bfecf9b7ca0ad2e0806f6","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Stephan Jaetzold"},"name":"Stephan Jaetzold"}],"title":"Djinni in a bottle - Easily share code between iOS and Android using C++","lang":"en","summary":"Native apps are the best. They are the most performant and integrate well into the OS. They just feel _right_.\r\nIt's just that implementing complex business logic for every platform separately is not fun at all. You keep reinventing the wheel and will end up fixing the same errors over and over again.\r\n\r\n[Djinni](https://github.com/dropbox/djinni) is here to help!\r\nDjinni is a tool for generating cross-language type declarations and interface bindings. It enables writing C++ code that can easily be used from Java, Objective-C and Python. Djinni takes care of all the nasty and repetitive glue code to translate from one world to the other. That even includes passing exceptions from Java to C++ and back to Java!\r\n\r\nIn this presentation I'll show you how you only need to define your shared types and interfaces once, write their implementations in C++ and then use it like any other API native to iOS or Android.\r\n\r\nLet Djinni work its magic for you too!\r\n"},"fromTime":"18:15","toTimeMillis":1478627100000,"toTime":"18:45","roomCapacity":347,"roomName":"Room 4","slotId":"tia_room4_tuesday_8_18h15_18h45","day":"tuesday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478625300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"cloud","talkType":"Tools-in-Action","track":"Cloud, Containers & Infrastructure","summaryAsHtml":"<p>Github and Google recently released a <em>huge dataset</em> on BigQuery about <em>all the Open Source code contained on Github</em>, thanks to the data from the Github Archive project.</p>\n<p>What can you learn from such a dataset? What about learning about the most frequently used dependencies and imports? What are the most common Exceptions being handled or thrown? Are there common programming mistakes that we can spot? Guillaume will show you some concrete examples from the dataset, with examples applied to the Apache Groovy language, to learn more about our programming habits and pitfalls.</p>\n<p>And figure out on your own about your favorite language or framework usage patterns!</p>\n","id":"PPK-6316","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/435988122123af3eac633c104bf3374aa019bc28","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Guillaume Laforge"},"name":"Guillaume Laforge"}],"title":"What can you learn from thousands of source files in Github?","lang":"en","summary":"Github and Google recently released a *huge dataset* on BigQuery about *all the Open Source code contained on Github*, thanks to the data from the Github Archive project. \r\n\r\nWhat can you learn from such a dataset? What about learning about the most frequently used dependencies and imports? What are the most common Exceptions being handled or thrown? Are there common programming mistakes that we can spot? Guillaume will show you some concrete examples from the dataset, with examples applied to the Apache Groovy language, to learn more about our programming habits and pitfalls. \r\n\r\nAnd figure out on your own about your favorite language or framework usage patterns!"},"fromTime":"18:15","toTimeMillis":1478627100000,"toTime":"18:45","roomCapacity":641,"roomName":"Room 5","slotId":"tia_room5_tuesday_8_18h15_18h45","day":"tuesday"},{"roomId":"room8","notAllocated":false,"fromTimeMillis":1478625300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"method_archi","talkType":"Tools-in-Action","track":"Methodology & Architecture","summaryAsHtml":"<p>Java&#x27;s most ubiquitous library is getting an update!\nAnd this is the time to see what&#x27;s new and weigh in on its course.</p>\n<p>This talk will...</p>\n<ul>\n<li>show you how to write tests with JUnit 5</li>\n<li>walk you through the changes compared to JUnit 4</li>\n<li>present the new architecture</li>\n<li>discuss compatibility with previous JUnit versions, IDEs, and other testing tools</li>\n</ul>\n<p>Be careful, though:\nYou might end up with an urge to start using it right away.</p>\n","id":"PPQ-9247","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/d137ee90b1a9d0ef3313ce4f70be45206e63ae9d","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Nicolai Parlog"},"name":"Nicolai Parlog"}],"title":"JUnit 5: Next Generation Testing on the JVM","lang":"en","summary":"Java's most ubiquitous library is getting an update!\r\nAnd this is the time to see what's new and weigh in on its course.\r\n\r\nThis talk will...\r\n\r\n* show you how to write tests with JUnit 5\r\n* walk you through the changes compared to JUnit 4\r\n* present the new architecture\r\n* discuss compatibility with previous JUnit versions, IDEs, and other testing tools\r\n\r\nBe careful, though:\r\nYou might end up with an urge to start using it right away.\r\n"},"fromTime":"18:15","toTimeMillis":1478627100000,"toTime":"18:45","roomCapacity":696,"roomName":"Room 8","slotId":"tia_room8_tuesday_8_18h15_18h45","day":"tuesday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478625300000,"break":null,"roomSetup":"theatre","talk":{"trackId":"ssj","talkType":"Tools-in-Action","track":"Server Side Java","summaryAsHtml":"<p>With the rise of microservices achitecture the need of consuming REST services is indispensable. Netflix have create Feign to solve this issue. This livecoding session show the elegance and the extensibility of this API.</p>\n","id":"XVI-8392","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/562bf2901f61783fcc632bae34c9a41ae72939b6","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Igor Laborie"},"name":"Igor Laborie"}],"title":"Feign in Action","lang":"en","summary":"With the rise of microservices achitecture the need of consuming REST services is indispensable. Netflix have create Feign to solve this issue. This livecoding session show the elegance and the extensibility of this API."},"fromTime":"18:15","toTimeMillis":1478627100000,"toTime":"18:45","roomCapacity":393,"roomName":"Room 9","slotId":"tia_room9_tuesday_8_18h15_18h45","day":"tuesday"},{"roomId":"room4","notAllocated":false,"fromTimeMillis":1478627700000,"break":null,"roomSetup":"theatre","talk":{"trackId":"lang","talkType":"Tools-in-Action","track":"Programming languages","summaryAsHtml":"<p>IoT devices are becoming more intelligent, cheaper and they are connected to the internet. They could also handle personal data and therefore need to be secure.\nOn the other hand, they need full memory access. C/C++ can do this, but it’s also known to be complex and insecure memory management. Other languages (e.g. Java) protect the memory access but aren’t lightweight and it’s not possible to get full memory access. Rust is designed to have both 100% access and also be 100% secure.</p>\n<p>I will give an overview, demonstrate how Rust handles the memory access and how it can be cross-compiled to run natively on a small microcontroller and how it can be debugged on bare metal.</p>\n","id":"FVY-3267","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/d1a9eebcc55ffdf506c2b2de963fdaeb977a5625","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Lars Gregori"},"name":"Lars Gregori"}],"title":"Embedded Rust – Rust on IoT devices","lang":"en","summary":"IoT devices are becoming more intelligent, cheaper and they are connected to the internet. They could also handle personal data and therefore need to be secure.\r\nOn the other hand, they need full memory access. C/C++ can do this, but it’s also known to be complex and insecure memory management. Other languages (e.g. Java) protect the memory access but aren’t lightweight and it’s not possible to get full memory access. Rust is designed to have both 100% access and also be 100% secure.\r\n\r\nI will give an overview, demonstrate how Rust handles the memory access and how it can be cross-compiled to run natively on a small microcontroller and how it can be debugged on bare metal."},"fromTime":"18:55","toTimeMillis":1478629500000,"toTime":"19:25","roomCapacity":347,"roomName":"Room 4","slotId":"tia_room4_tuesday_8_18h55_19h25","day":"tuesday"},{"roomId":"room5","notAllocated":false,"fromTimeMillis":1478627700000,"break":null,"roomSetup":"theatre","talk":{"trackId":"ssj","talkType":"Tools-in-Action","track":"Server Side Java","summaryAsHtml":"<p>Maven. Everybody uses it. Everybody hates it (classic love hate relationship). Embracing it ain&#x27;t easy - but once done, it becomes a golden hammer.</p>\n<p>This title is a bit flame&#x27;ish - for a reason. In this showcase session I&#x27;ll complete a continuous delivery pipeline of a multi module project with pure Maven (+ plugins). Once that is done - adding a Jenkins (I mean a scheduler) is as easy as 1-2-3.</p>\n<p>So if you&#x27;ve been using Maven a bit but never gave it enough time - this is a talk for you!</p>\n","id":"GLJ-8229","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/698de7b880160572b00467a41063af3dde63b2d3","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Jakub Marchwicki"},"name":"Jakub Marchwicki"}],"title":"Maven  - your ultimate CD tool","lang":"en","summary":"Maven. Everybody uses it. Everybody hates it (classic love hate relationship). Embracing it ain't easy - but once done, it becomes a golden hammer. \r\n\r\nThis title is a bit flame'ish - for a reason. In this showcase session I'll complete a continuous delivery pipeline of a multi module project with pure Maven (+ plugins). Once that is done - adding a Jenkins (I mean a scheduler) is as easy as 1-2-3. \r\n\r\nSo if you've been using Maven a bit but never gave it enough time - this is a talk for you!"},"fromTime":"18:55","toTimeMillis":1478629500000,"toTime":"19:25","roomCapacity":641,"roomName":"Room 5","slotId":"tia_room5_tuesday_8_18h55_19h25","day":"tuesday"},{"roomId":"room8","notAllocated":true,"fromTimeMillis":1478627700000,"break":null,"roomSetup":"theatre","talk":null,"fromTime":"18:55","toTimeMillis":1478629500000,"toTime":"19:25","roomCapacity":696,"roomName":"Room 8","slotId":"tia_room8_tuesday_8_18h55_19h25","day":"tuesday"},{"roomId":"room9","notAllocated":false,"fromTimeMillis":1478627700000,"break":null,"roomSetup":"theatre","talk":{"trackId":"future","talkType":"Tools-in-Action","track":"Future<Devoxx>","summaryAsHtml":"<p>One important subject to be analysed on languages is its type system. Having a general overview of a type system can provide us information about syntax performance, optimisations and may help us to understand how statements are evaluated. And those are topics that we shall consider for language evolution and development. This talk will provide a gentle introduction to type theory, how it helps us with IDE&#x27;s and type inference and how can we apply some of its concepts in Java and other languages build on the top of JVM, such as Scala and Clojure, providing a comparison between the type system of such languages.\nTopics:</p>\n<ul>\n<li>Why Type Theory?</li>\n<li>Quick introduction to logic and Lambda Calculus</li>\n<li>Where are those concepts used?</li>\n<li>An analysis of Java Type System</li>\n<li>Clojure Type System</li>\n<li>Scala type system</li>\n</ul>\n","id":"BRC-3050","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/ae81ee16465977ffed76539db3ddcc8631cbb449","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Hanneli Tavante"},"name":"Hanneli Tavante"}],"title":"Notes on Type Theory for absolute beginners ","lang":"en","summary":"One important subject to be analysed on languages is its type system. Having a general overview of a type system can provide us information about syntax performance, optimisations and may help us to understand how statements are evaluated. And those are topics that we shall consider for language evolution and development. This talk will provide a gentle introduction to type theory, how it helps us with IDE's and type inference and how can we apply some of its concepts in Java and other languages build on the top of JVM, such as Scala and Clojure, providing a comparison between the type system of such languages. \r\nTopics: \r\n\r\n* Why Type Theory?\r\n* Quick introduction to logic and Lambda Calculus\r\n* Where are those concepts used? \r\n* An analysis of Java Type System \r\n* Clojure Type System\r\n* Scala type system"},"fromTime":"18:55","toTimeMillis":1478629500000,"toTime":"19:25","roomCapacity":393,"roomName":"Room 9","slotId":"tia_room9_tuesday_8_18h55_19h25","day":"tuesday"},{"roomId":"bof1","notAllocated":true,"fromTimeMillis":1478629800000,"break":null,"roomSetup":"classroom","talk":null,"fromTime":"19:30","toTimeMillis":1478633400000,"toTime":"20:30","roomCapacity":70,"roomName":"BOF 1","slotId":"bof_bof1_tuesday_8_19h30_20h30","day":"tuesday"},{"roomId":"bof2","notAllocated":false,"fromTimeMillis":1478629800000,"break":null,"roomSetup":"classroom","talk":{"trackId":"java","talkType":"BOF (Bird of a Feather)","track":"Java Language","summaryAsHtml":"<p>In this session Patrick Curran provides practical advice derived from his 30 years of experience in the IT industry. He explains how developers can manage their careers and create opportunities for further advancement by participating in collaborative activities such as open-source development projects and the Java Community Process. He also explains how Java is evolved through the Java Community Process and how you can participate in that evolution as an individual, as a representative of your employer, or as a member of a nonprofit organization such as a Java user group. Learn how enhance your career opportunities by making the future Java (Oh... and you&#x27;ll have fun too!)</p>\n","id":"SRM-9598","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/00cc2b259b5a0c29f7b2e7ff7faf59acea8904c3","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Heather VanCura"},"name":"Heather VanCura"}],"title":"The Java Community Process: Advance Your Career and Help Define Java's Future ","lang":"en","summary":"In this session Patrick Curran provides practical advice derived from his 30 years of experience in the IT industry. He explains how developers can manage their careers and create opportunities for further advancement by participating in collaborative activities such as open-source development projects and the Java Community Process. He also explains how Java is evolved through the Java Community Process and how you can participate in that evolution as an individual, as a representative of your employer, or as a member of a nonprofit organization such as a Java user group. Learn how enhance your career opportunities by making the future Java (Oh... and you'll have fun too!)"},"fromTime":"19:30","toTimeMillis":1478633400000,"toTime":"20:30","roomCapacity":70,"roomName":"BOF 2","slotId":"bof_bof2_tuesday_8_19h30_20h30","day":"tuesday"},{"roomId":"bof1","notAllocated":false,"fromTimeMillis":1478633400000,"break":null,"roomSetup":"classroom","talk":{"trackId":"method_archi","talkType":"BOF (Bird of a Feather)","track":"Methodology & Architecture","summaryAsHtml":"<p>People often say that documentation is boring. Not us! Let&#x27;s talk about documentation. How do you write it? How do you publish it? What tools do you use? How do you encourage other people to write? Let&#x27;s share ways to get other people to love and appreciate documentation just as we do.</p>\n","id":"TFF-9852","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/43ce34bea56fe72ae8953bb9d0fb435d8c9d0640","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Dan Allen"},"name":"Dan Allen"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/45f704377f504f2f5696fa38d27fcb123c1cf1fe","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Hubert Sablonnière"},"name":"Hubert Sablonnière"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/cc3a8573c1f955659203ddc442a9cc2a38bcedd4","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Alex Soto"},"name":"Alex Soto"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/18600860ed96adfddf5ec1b55a59cb8224ede06f","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Guillaume Scheibel"},"name":"Guillaume Scheibel"},{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/95e8ca0120c1f54e22257af55c2d3e2ecc3bbc69","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Robert Panzer"},"name":"Robert Panzer"}],"title":"Writers Write! The Documentation BOF","lang":"en","summary":"People often say that documentation is boring. Not us! Let's talk about documentation. How do you write it? How do you publish it? What tools do you use? How do you encourage other people to write? Let's share ways to get other people to love and appreciate documentation just as we do."},"fromTime":"20:30","toTimeMillis":1478637000000,"toTime":"21:30","roomCapacity":70,"roomName":"BOF 1","slotId":"bof_bof1_tuesday_8_20h30_21h30","day":"tuesday"},{"roomId":"bof2","notAllocated":false,"fromTimeMillis":1478633400000,"break":null,"roomSetup":"classroom","talk":{"trackId":"method_archi","talkType":"BOF (Bird of a Feather)","track":"Methodology & Architecture","summaryAsHtml":"<p>In this BOF you will have the great chance to discuss DevOps with leading experts. Ask questions you always wanted to ask. Contribute and give answers to questions the group will have, and show you are an experienced DevOps professional. Or just be curious and drop by to learn more about the practices that make up DevOps.</p>\n","id":"FNC-3081","speakers":[{"link":{"href":"http://cfp.devoxx.be/api/conferences/DV16/speakers/ec702c20a7862950c6aadeafe8ae7d2bc973601b","rel":"http://cfp.devoxx.be/api/profile/speaker","title":"Michael Hüttermann"},"name":"Michael Hüttermann"}],"title":"DevOps: State of the Union","lang":"en","summary":"In this BOF you will have the great chance to discuss DevOps with leading experts. Ask questions you always wanted to ask. Contribute and give answers to questions the group will have, and show you are an experienced DevOps professional. Or just be curious and drop by to learn more about the practices that make up DevOps."},"fromTime":"20:30","toTimeMillis":1478637000000,"toTime":"21:30","roomCapacity":70,"roomName":"BOF 2","slotId":"bof_bof2_tuesday_8_20h30_21h30","day":"tuesday"}]}
+{
+    "slots": [
+        {
+            "roomId": "a_hall",
+            "notAllocated": false,
+            "fromTimeMillis": 1478588400000,
+            "break": {
+                "id": "reg",
+                "nameEN": "Registration",
+                "nameFR": "Accueil",
+                "room": {
+                    "id": "a_hall",
+                    "name": "Exhibition floor",
+                    "capacity": 1500,
+                    "setup": "special"
+                }
+            },
+            "roomSetup": "special",
+            "talk": null,
+            "fromTime": "08:00",
+            "toTimeMillis": 1478593800000,
+            "toTime": "09:30",
+            "roomCapacity": 1500,
+            "roomName": "Exhibition floor",
+            "slotId": "reg_tuesday_8_8h0_9h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478593800000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "java",
+                "talkType": "University",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>Should LinkedList be deprecated? This question might look like one more useless troll if had not been asked by Stuart Marks, Java/JDK/OpenJDK developer at Oracle, a true expert of the subject, currently working on the evolutions of the Collection Framework for Java 9 and beyond.</p>\n<p>Followed a long thread with many fine contributions that we will see. It turns out that answering this question takes us for quite a long journey, from algorithms and their complexity to memory footprint and CPU caches usage. We will show how to evaluate the performance and the main data structures in the Collection Framework: ArayList, LinkedList, HashSet, HashMap using JMH, now the JDK standard for microbenchmarking.  We will also see alternative Collection implementations.</p>\n<p>This talk will cover the notions of pointer chasing, CPU caches, and what Java 9 brings for the Collection Framework. Lastly, we will show how to implement collections and hashmaps with lambda expressions.</p>\n",
+                "id": "SBX-4851",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/35a6797008ce8295fcc76c03dcf0a58a07ab3070",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "José Paumard"
+                        },
+                        "name": "José Paumard"
+                    }
+                ],
+                "title": "Array Linked to a List, the full story!",
+                "lang": "en",
+                "summary": "Should LinkedList be deprecated? This question might look like one more useless troll if had not been asked by Stuart Marks, Java/JDK/OpenJDK developer at Oracle, a true expert of the subject, currently working on the evolutions of the Collection Framework for Java 9 and beyond. \r\n\r\nFollowed a long thread with many fine contributions that we will see. It turns out that answering this question takes us for quite a long journey, from algorithms and their complexity to memory footprint and CPU caches usage. We will show how to evaluate the performance and the main data structures in the Collection Framework: ArayList, LinkedList, HashSet, HashMap using JMH, now the JDK standard for microbenchmarking.  We will also see alternative Collection implementations. \r\n\r\nThis talk will cover the notions of pointer chasing, CPU caches, and what Java 9 brings for the Collection Framework. Lastly, we will show how to implement collections and hashmaps with lambda expressions."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478604600000,
+            "toTime": "12:30",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "uni_room4_tuesday_8_9h30_12h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478593800000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "cloud",
+                "talkType": "University",
+                "track": "Cloud, Containers & Infrastructure",
+                "summaryAsHtml": "<p>Docker is the developer-friendly container technology that enables creation of your application stack: OS, JVM, app server, app, database and all your custom configuration. So you are a Java developer but how comfortable are you and your team taking Docker from development to production? Are you hearing developers say, “But it works on my machine!” when code breaks in production? And if you are, how many hours are then spent standing up an accurate test environment to research and fix the bug that caused the problem?</p>\n<p>Docker provides PODA (Package Once Deploy Anywhere) and complements WORA (Write Once Run Anywhere) provided by Java. It also helps you reduce the impedance mismatch between dev, test, and production environment and simplifies Java application deployment.</p>\n<p>This workshop/session explains how to package, deploy, and scale Java applications using Docker.</p>\n",
+                "id": "KAV-4723",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/69e5596a50112585d5acdb93e0a4da47a10a6a8d",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Arun Gupta"
+                        },
+                        "name": "Arun Gupta"
+                    }
+                ],
+                "title": "Nuts and Bolts of Docker",
+                "lang": "en",
+                "summary": "Docker is the developer-friendly container technology that enables creation of your application stack: OS, JVM, app server, app, database and all your custom configuration. So you are a Java developer but how comfortable are you and your team taking Docker from development to production? Are you hearing developers say, “But it works on my machine!” when code breaks in production? And if you are, how many hours are then spent standing up an accurate test environment to research and fix the bug that caused the problem?\r\n\r\nDocker provides PODA (Package Once Deploy Anywhere) and complements WORA (Write Once Run Anywhere) provided by Java. It also helps you reduce the impedance mismatch between dev, test, and production environment and simplifies Java application deployment.\r\n\r\nThis workshop/session explains how to package, deploy, and scale Java applications using Docker."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478604600000,
+            "toTime": "12:30",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "uni_room5_tuesday_8_9h30_12h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": false,
+            "fromTimeMillis": 1478593800000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "java",
+                "talkType": "University",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>Reactive Programming is receiving quite a bit of attention and for good reasons. It’s a nice logical next step from functional programming. It takes the concept of function composition and lazy evaluations to the next level. It streamlines handling of many critical issues that are architectural in nature: resilience, scale, responsiveness, and messaging. In this session, we will start with a quick introduction to reactive programming. We will then dive into code examples and learn how to create reactive applications. We’ll learn to implement observables, to deal with errors in a graceful manner, learn both synchronous and asynchronous solutions, hot vs. cold observables, and dealing with backpressures.</p>\n",
+                "id": "NXW-8662",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/49cba39de93b8bc6a79d7c768fd035c740c5483a",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Venkat Subramaniam"
+                        },
+                        "name": "Venkat Subramaniam"
+                    }
+                ],
+                "title": "Reactive Programming",
+                "lang": "en",
+                "summary": "Reactive Programming is receiving quite a bit of attention and for good reasons. It’s a nice logical next step from functional programming. It takes the concept of function composition and lazy evaluations to the next level. It streamlines handling of many critical issues that are architectural in nature: resilience, scale, responsiveness, and messaging. In this session, we will start with a quick introduction to reactive programming. We will then dive into code examples and learn how to create reactive applications. We’ll learn to implement observables, to deal with errors in a graceful manner, learn both synchronous and asynchronous solutions, hot vs. cold observables, and dealing with backpressures."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478604600000,
+            "toTime": "12:30",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "uni_room8_tuesday_8_9h30_12h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478593800000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "bigdata",
+                "talkType": "University",
+                "track": "Big Data",
+                "summaryAsHtml": "<p>Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of &quot;tricks of the trade&quot; will do the job. No previous Python knowledge required.</p>\n<p>This university session will cover the basics of deep learning, without any assumptions about the level of the participants. Machine learning beginners are welcome. We will cover:\n- fully connected neural networks\n- convolutional neural networks\n- regularisation techniques: dropout, learning rate decay, batch normalisation\n- recurrent neural networks\n- natural language analysis, word embeddings\n- transfer learning\n- image analysis\n- image generation\n- and many examples</p>\n",
+                "id": "ULT-2698",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Martin Görner"
+                        },
+                        "name": "Martin Görner"
+                    }
+                ],
+                "title": "Tensorflow and deep learning - without at PhD",
+                "lang": "en",
+                "summary": "Google has recently open-sourced its framework for machine learning and neural networks called Tensorflow. With this new tool, deep machine learning transitions from an area of research into mainstream software engineering. In this session, we will teach you how to choose the right neural network for your problem and how to make it behave. Familiarity with differential equations is no longer required. Instead, a couple of lines ofTensorflow Python, and a bag of \"tricks of the trade\" will do the job. No previous Python knowledge required.\r\n\r\nThis university session will cover the basics of deep learning, without any assumptions about the level of the participants. Machine learning beginners are welcome. We will cover:\r\n- fully connected neural networks\r\n- convolutional neural networks\r\n- regularisation techniques: dropout, learning rate decay, batch normalisation\r\n- recurrent neural networks\r\n- natural language analysis, word embeddings\r\n- transfer learning\r\n- image analysis\r\n- image generation\r\n- and many examples"
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478604600000,
+            "toTime": "12:30",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "uni_room9_tuesday_8_9h30_12h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof1",
+            "notAllocated": false,
+            "fromTimeMillis": 1478593800000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": {
+                "trackId": "cloud",
+                "talkType": "Hands-on Labs",
+                "track": "Cloud, Containers & Infrastructure",
+                "summaryAsHtml": "<p>Today&#x27;s technology is moving fast towards using containers and managing a fleet of containers. This session will give hands-on experience with creating containers using Docker and deploy a fleet of containerized Java microservices into Kuberenetes. You&#x27;ll get to:\n- Build a Java microservice\n- Build Docker container\n- Deploy the container into a private container registry\n- Deploy a fleet of containerized microservices\n- Learn service discovery\n- Perform rolling update, canary, and roll backs</p>\n<p>In addition, we will also explore advanced features such as:\n- Secret - securely give your application the credentials and configurations\n- Daemon set - run the same workload across all of the cluster nodes\n- PetSet - running stateful applications such as Cassandra or Zookeeper\n- Persistent volume / claims - store persistent data using volume mounts in the pods\n- Health checks - check to see if your application is alive and ready to serve traffic\n- Autoscaling - automatic horizontal pod scaling using CPU utilization metric\n- Federation - managing multiple cluster across zones</p>\n<p>The lab can be self-paced - pick your own adventure depending on how familiar you are w/ Kubernetes.</p>\n",
+                "id": "DLX-1294",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/066f7793bfe0e9b04bd65aa50e54d74777d5b497",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Ray Tsang"
+                        },
+                        "name": "Ray Tsang"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/9c43a38cec7ddebf95339cecc5f273f8e3c9153f",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Rafael Benevides"
+                        },
+                        "name": "Rafael Benevides"
+                    }
+                ],
+                "title": "Hands-on with Kubernetes - from basic to advanced features",
+                "lang": "en",
+                "summary": "Today's technology is moving fast towards using containers and managing a fleet of containers. This session will give hands-on experience with creating containers using Docker and deploy a fleet of containerized Java microservices into Kuberenetes. You'll get to: \r\n - Build a Java microservice\r\n - Build Docker container\r\n - Deploy the container into a private container registry\r\n - Deploy a fleet of containerized microservices\r\n - Learn service discovery\r\n - Perform rolling update, canary, and roll backs\r\n\r\nIn addition, we will also explore advanced features such as:\r\n - Secret - securely give your application the credentials and configurations\r\n - Daemon set - run the same workload across all of the cluster nodes\r\n - PetSet - running stateful applications such as Cassandra or Zookeeper\r\n - Persistent volume / claims - store persistent data using volume mounts in the pods\r\n - Health checks - check to see if your application is alive and ready to serve traffic\r\n - Autoscaling - automatic horizontal pod scaling using CPU utilization metric\r\n - Federation - managing multiple cluster across zones\r\n\r\nThe lab can be self-paced - pick your own adventure depending on how familiar you are w/ Kubernetes."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478604600000,
+            "toTime": "12:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 1",
+            "slotId": "lab_bof1_tuesday_8_9h30_12h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof2",
+            "notAllocated": false,
+            "fromTimeMillis": 1478593800000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": {
+                "trackId": "bigdata",
+                "talkType": "Hands-on Labs",
+                "track": "Big Data",
+                "summaryAsHtml": "<p>This workshop lasts 3 hours.</p>\n<p>I begin with a presentation of <strong>webscraping techniques</strong> (30min). Then, I introduce the Scrapy framework and its use (10min). With the presentation, people start the workshop faster.</p>\n<p>Then, we start the workshop. It lasts 2h20. People work gradually through <strong>4 challenges</strong>: the scraping of a single page, the scraping of multiple pages, the bypassing of several protections.</p>\n",
+                "id": "RPF-1880",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/040402c1f4650c82b23446bd1b5c76c907d6c2bf",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Fabien Vauchelles"
+                        },
+                        "name": "Fabien Vauchelles"
+                    }
+                ],
+                "title": "Become an expert in webscraping (data extraction)",
+                "lang": "en",
+                "summary": "This workshop lasts 3 hours.\r\n\r\nI begin with a presentation of **webscraping techniques** (30min). Then, I introduce the Scrapy framework and its use (10min). With the presentation, people start the workshop faster.\r\n\r\nThen, we start the workshop. It lasts 2h20. People work gradually through **4 challenges**: the scraping of a single page, the scraping of multiple pages, the bypassing of several protections."
+            },
+            "fromTime": "09:30",
+            "toTimeMillis": 1478604600000,
+            "toTime": "12:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 2",
+            "slotId": "lab_bof2_tuesday_8_9h30_12h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "a_hall",
+            "notAllocated": false,
+            "fromTimeMillis": 1478604600000,
+            "break": {
+                "id": "lunch",
+                "nameEN": "Lunch",
+                "nameFR": "Pause déjeuner",
+                "room": {
+                    "id": "a_hall",
+                    "name": "Exhibition floor",
+                    "capacity": 1500,
+                    "setup": "special"
+                }
+            },
+            "roomSetup": "special",
+            "talk": null,
+            "fromTime": "12:30",
+            "toTimeMillis": 1478608200000,
+            "toTime": "13:30",
+            "roomCapacity": 1500,
+            "roomName": "Exhibition floor",
+            "slotId": "lunch_tuesday_8_12h30_13h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478608200000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "java",
+                "talkType": "University",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>The first part provides a gentle introduction, with examples, to the Java Platform Module System in JDK 9.  You will learn the basic concepts of the module system and be introduced to the modules that are built into the Java platform.  You will also find out how to develop a module from scratch and how to compile, test, and run it.</p>\n<p>Second part focuses on developing modules with the Java Platform Module System in JDK 9.  Using well-known libraries as examples, you will learn how to develop libraries and applications as modules and will also find out how to migrate existing code to modules. Migration poses many challenges, and in addition to learning about “bottom-up” migration, you will learn about “top-down” migration, where libraries and applications are migrated to modules without waiting for libraries they depend on to migrate first.</p>\n<p>The third part uses examples from the JDK, to show how to adopt services in your codebase and how to design APIs in a modular fashion.</p>\n",
+                "id": "BLY-5449",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/8a7d68a8a2b09105c969cbae7b37019d4fa470a5",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Mark Reinhold"
+                        },
+                        "name": "Mark Reinhold"
+                    }
+                ],
+                "title": "Introduction to Modules and Services",
+                "lang": "en",
+                "summary": "The first part provides a gentle introduction, with examples, to the Java Platform Module System in JDK 9.  You will learn the basic concepts of the module system and be introduced to the modules that are built into the Java platform.  You will also find out how to develop a module from scratch and how to compile, test, and run it.\r\n\r\nSecond part focuses on developing modules with the Java Platform Module System in JDK 9.  Using well-known libraries as examples, you will learn how to develop libraries and applications as modules and will also find out how to migrate existing code to modules. Migration poses many challenges, and in addition to learning about “bottom-up” migration, you will learn about “top-down” migration, where libraries and applications are migrated to modules without waiting for libraries they depend on to migrate first.\r\n\r\nThe third part uses examples from the JDK, to show how to adopt services in your codebase and how to design APIs in a modular fashion."
+            },
+            "fromTime": "13:30",
+            "toTimeMillis": 1478619000000,
+            "toTime": "16:30",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "uni_room4_tuesday_8_13h30_16h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478608200000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "web",
+                "talkType": "University",
+                "track": "Modern Web",
+                "summaryAsHtml": "<p>Antonio is a Java programmer and knows nothing about UI. He uses his Mac to develop Java EE micro-services, executes them with WildFly Swarm, packages them into Docker and exposes REST interfaces.</p>\n<p>Sebastien is a TypeScript programmer and knows nothing about Java. Being a Microsoft employee he uses his PC to develop user interfaces with TypeScript and Angular2 to interact with the back-end.</p>\n<p>This University is targeted at Java developers who want to discover TypeScript and how to use an Angular2 front-end with a Java back-end. It will be divided into three parts. 1) Develop Java EE micro-services using WildFly Swarm. 2) Discover the language TypeScript. 3) Create an Angular2 web interface using TypeScript to interact with the REST back-end.</p>\n<p>Come to this talk. You will see plenty of code and nice demos running on a Mac, a Windows machine…. and in the Cloud !</p>\n",
+                "id": "MBV-6308",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/dc61d5c028dceb9ce4fd55623c6f725f3666ab46",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Antonio Goncalves"
+                        },
+                        "name": "Antonio Goncalves"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b429871520f3c38025899634df6687ab92672a80",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Sébastien Pertus"
+                        },
+                        "name": "Sébastien Pertus"
+                    }
+                ],
+                "title": "Java EE, TypeScript and Angular2",
+                "lang": "en",
+                "summary": "Antonio is a Java programmer and knows nothing about UI. He uses his Mac to develop Java EE micro-services, executes them with WildFly Swarm, packages them into Docker and exposes REST interfaces.\r\n\r\nSebastien is a TypeScript programmer and knows nothing about Java. Being a Microsoft employee he uses his PC to develop user interfaces with TypeScript and Angular2 to interact with the back-end.\r\n\r\nThis University is targeted at Java developers who want to discover TypeScript and how to use an Angular2 front-end with a Java back-end. It will be divided into three parts. 1) Develop Java EE micro-services using WildFly Swarm. 2) Discover the language TypeScript. 3) Create an Angular2 web interface using TypeScript to interact with the REST back-end.\r\n\r\nCome to this talk. You will see plenty of code and nice demos running on a Mac, a Windows machine…. and in the Cloud !"
+            },
+            "fromTime": "13:30",
+            "toTimeMillis": 1478619000000,
+            "toTime": "16:30",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "uni_room5_tuesday_8_13h30_16h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": false,
+            "fromTimeMillis": 1478608200000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "java",
+                "talkType": "University",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>How we write code was greatly influenced by Java 8. How we package the code and interact with it will be impacted by Java 9. In this presentations, we will learn about the major features of Java 9. We will start by discussing the current concerns and how the module system tries to alleviate those pains. We will learn about modules, how to define dependencies, and also how to work with existing jar files. Finally we will explore Java 9 REPL, the reasons to use it, and various features that can benefit the programmers.</p>\n",
+                "id": "HHV-6547",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/49cba39de93b8bc6a79d7c768fd035c740c5483a",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Venkat Subramaniam"
+                        },
+                        "name": "Venkat Subramaniam"
+                    }
+                ],
+                "title": "Exploring Java 9",
+                "lang": "en",
+                "summary": "How we write code was greatly influenced by Java 8. How we package the code and interact with it will be impacted by Java 9. In this presentations, we will learn about the major features of Java 9. We will start by discussing the current concerns and how the module system tries to alleviate those pains. We will learn about modules, how to define dependencies, and also how to work with existing jar files. Finally we will explore Java 9 REPL, the reasons to use it, and various features that can benefit the programmers."
+            },
+            "fromTime": "13:30",
+            "toTimeMillis": 1478619000000,
+            "toTime": "16:30",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "uni_room8_tuesday_8_13h30_16h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478608200000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "cloud",
+                "talkType": "University",
+                "track": "Cloud, Containers & Infrastructure",
+                "summaryAsHtml": "<p>The session will dive deep into how neural networks work with focus on inner workings of Watson as an AI platform . We will apply machine learning algorithms to real life situations. By the end of 3 hour session, you will understand exactly what Cognitive platform like Watson learns and evolves.  We will walk through algorithms that Watson uses to allow human like conversations and deep searches, how it learns and evolves.</p>\n",
+                "id": "XOR-6380",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/e7072231ed75ccc4c858b39ff383f3d9f581c982",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Sandhya Kapoor"
+                        },
+                        "name": "Sandhya Kapoor"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/645282f13989f415c5029d25f8b75ac99d937573",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Alfio Gliozzo"
+                        },
+                        "name": "Alfio Gliozzo"
+                    }
+                ],
+                "title": "Deep dive into Watson's Neural Networks",
+                "lang": "en",
+                "summary": "The session will dive deep into how neural networks work with focus on inner workings of Watson as an AI platform . We will apply machine learning algorithms to real life situations. By the end of 3 hour session, you will understand exactly what Cognitive platform like Watson learns and evolves.  We will walk through algorithms that Watson uses to allow human like conversations and deep searches, how it learns and evolves. "
+            },
+            "fromTime": "13:30",
+            "toTimeMillis": 1478619000000,
+            "toTime": "16:30",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "uni_room9_tuesday_8_13h30_16h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof1",
+            "notAllocated": false,
+            "fromTimeMillis": 1478608200000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": {
+                "trackId": "ssj",
+                "talkType": "Hands-on Labs",
+                "track": "Server Side Java",
+                "summaryAsHtml": "<p>This lab will introduce the developer to WildFly Swarm through the migration of  a Java EE monolith to Java EE microservices for parts of the stack. The services will be discoverable, provide failover with Netflix Ribbon, and utilize Netflix Hystrix for circuit breaking amongst other things.</p>\n<p>A simplified e-commerce application  (regular Java EE application) will be dissected into appropriate services while also retaining Java EE pieces that are appropriate. We will then walk through several aspects that are required for a full services architecture. Such as securing these services with Keycloak, registering services for discovery via JGroups, Consul or Zookeeper, service logging to external sources such as logstash, and capturing service metrics with Hawkular and DropWizard Metrics.</p>\n<p>By the end of the lab we will have converted some pieces of a Java EE application into services, while learning how WildFly Swarm integrates with external tools to provide a complete solution for service delivery.</p>\n",
+                "id": "YMI-7185",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/19783504be2af7964e5c5fcd31c3e81fc95f2a58",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Heiko Braun"
+                        },
+                        "name": "Heiko Braun"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/85eb850bb5c8fc040bbd1b2b8fb87a45b6edbcb8",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Dimitris Andreadis"
+                        },
+                        "name": "Dimitris Andreadis"
+                    }
+                ],
+                "title": "Decomposing a Java EE monolith into WildFly Swarm microservices",
+                "lang": "en",
+                "summary": "This lab will introduce the developer to WildFly Swarm through the migration of  a Java EE monolith to Java EE microservices for parts of the stack. The services will be discoverable, provide failover with Netflix Ribbon, and utilize Netflix Hystrix for circuit breaking amongst other things.\r\n\r\nA simplified e-commerce application  (regular Java EE application) will be dissected into appropriate services while also retaining Java EE pieces that are appropriate. We will then walk through several aspects that are required for a full services architecture. Such as securing these services with Keycloak, registering services for discovery via JGroups, Consul or Zookeeper, service logging to external sources such as logstash, and capturing service metrics with Hawkular and DropWizard Metrics.\r\n\r\nBy the end of the lab we will have converted some pieces of a Java EE application into services, while learning how WildFly Swarm integrates with external tools to provide a complete solution for service delivery."
+            },
+            "fromTime": "13:30",
+            "toTimeMillis": 1478619000000,
+            "toTime": "16:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 1",
+            "slotId": "lab_bof1_tuesday_8_13h30_16h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof2",
+            "notAllocated": false,
+            "fromTimeMillis": 1478608200000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": {
+                "trackId": "web",
+                "talkType": "Hands-on Labs",
+                "track": "Modern Web",
+                "summaryAsHtml": "<p>You love glory? You want to become rich and famous?</p>\n<p>Sorry, but we can&#x27;t help you ...</p>\n<p>However, if you like JavaScript and want to try out React, then come to our workshop dedicated to learn this great Javascript library.</p>\n<p>We will explore together how to handle React and its ecosystem, how to start a project, how to fetch all your project dependencies with NPM, how to configure your Webpack build to work with Babel, how to test your components and check your code quality, etc ...</p>\n<p>At the end of this lab, you will have created a wonderful application written entirely with ES2015, which will use redux and react-router (among others). And if you&#x27;re very fast, maybe you will be able to explore the creation of native mobile application using React Native. And all this with a simple text editor and a browser (and nodejs ;-)</p>\n<p>So, do not hesitate a moment and come react with us :-)</p>\n",
+                "id": "LJP-3156",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/24aa289736bc1385ecc6cb9d3ff28626f0f5069e",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Sébastien Prunier"
+                        },
+                        "name": "Sébastien Prunier"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/d4f627022d99644546b010cb43135cf5bda26cc7",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Mathieu ANCELIN"
+                        },
+                        "name": "Mathieu ANCELIN"
+                    }
+                ],
+                "title": "Let's React: the workshop",
+                "lang": "en",
+                "summary": "You love glory? You want to become rich and famous?\r\n\r\nSorry, but we can't help you ...\r\n\r\nHowever, if you like JavaScript and want to try out React, then come to our workshop dedicated to learn this great Javascript library.\r\n\r\nWe will explore together how to handle React and its ecosystem, how to start a project, how to fetch all your project dependencies with NPM, how to configure your Webpack build to work with Babel, how to test your components and check your code quality, etc ...\r\n\r\nAt the end of this lab, you will have created a wonderful application written entirely with ES2015, which will use redux and react-router (among others). And if you're very fast, maybe you will be able to explore the creation of native mobile application using React Native. And all this with a simple text editor and a browser (and nodejs ;-)\r\n\r\nSo, do not hesitate a moment and come react with us :-)"
+            },
+            "fromTime": "13:30",
+            "toTimeMillis": 1478619000000,
+            "toTime": "16:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 2",
+            "slotId": "lab_bof2_tuesday_8_13h30_16h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "a_hall",
+            "notAllocated": false,
+            "fromTimeMillis": 1478619000000,
+            "break": {
+                "id": "coffee",
+                "nameEN": "Coffee Break",
+                "nameFR": "Pause café",
+                "room": {
+                    "id": "a_hall",
+                    "name": "Exhibition floor",
+                    "capacity": 1500,
+                    "setup": "special"
+                }
+            },
+            "roomSetup": "special",
+            "talk": null,
+            "fromTime": "16:30",
+            "toTimeMillis": 1478619900000,
+            "toTime": "16:45",
+            "roomCapacity": 1500,
+            "roomName": "Exhibition floor",
+            "slotId": "coffee_tuesday_8_16h30_16h45",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478619900000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "java",
+                "talkType": "Tools-in-Action",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>Are you tired of publishing a library to your local repository just to check whether your change fixed that elusive bug in the application? Are you working on a mono-repo and wish you could import just a small part of it into your IDE? Would you like your projects to automatically react to other projects being checked out next to them? Then you should learn about Gradle&#x27;s new Composite Build feature.</p>\n<p>Composite Builds allow you to combine multiple independent Gradle builds into a single one. Binary dependencies are automatically replaced with project dependencies. When you make a change to an upstream component, it is immediately visible to its dependents. You can import composite builds into the IDE and work on them as if you were looking at a single code base.</p>\n<p>Composite builds also make it easy to split a large mono-repo into smaller parts that can be worked on individually. This makes the migration path toward separated repositories simple. And thanks to Gradle&#x27;s rich DSL, you can compose builds dynamically.</p>\n<p>Don&#x27;t let your repository structure dictate how you work!</p>\n",
+                "id": "PLR-0807",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/20289fe27fc18853a767cec8d11e309ec8355896",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Stefan Oehme"
+                        },
+                        "name": "Stefan Oehme"
+                    }
+                ],
+                "title": "Composite Builds with Gradle",
+                "lang": "en",
+                "summary": "Are you tired of publishing a library to your local repository just to check whether your change fixed that elusive bug in the application? Are you working on a mono-repo and wish you could import just a small part of it into your IDE? Would you like your projects to automatically react to other projects being checked out next to them? Then you should learn about Gradle's new Composite Build feature.\r\n\r\nComposite Builds allow you to combine multiple independent Gradle builds into a single one. Binary dependencies are automatically replaced with project dependencies. When you make a change to an upstream component, it is immediately visible to its dependents. You can import composite builds into the IDE and work on them as if you were looking at a single code base.\r\n\r\nComposite builds also make it easy to split a large mono-repo into smaller parts that can be worked on individually. This makes the migration path toward separated repositories simple. And thanks to Gradle's rich DSL, you can compose builds dynamically.\r\n\r\nDon't let your repository structure dictate how you work!"
+            },
+            "fromTime": "16:45",
+            "toTimeMillis": 1478621700000,
+            "toTime": "17:15",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "tia_room4_tuesday_8_16h45_17h15",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478619900000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "web",
+                "talkType": "Tools-in-Action",
+                "track": "Modern Web",
+                "summaryAsHtml": "<p>We know interactivity is the key to keep our user&#x27;s interest alive but we can&#x27;t reduce animation to UI anymore. Twitter, Waze, Slack... users are used to have real-time data in applications they love. But how can you turn your static API into a stream of data?</p>\n<p>When talking about data streaming, we often think about WebSockets. But have you ever heard of Server-Sent Events? In this tools-in-action we will compare both technologies to understand which one you should opt for depending on your usecase and I&#x27;ll show you how we have been even further by reducing the amount of data to transfer with JSON-Patch.</p>\n<p>And because real-time data is not only needed by web (and because it&#x27;s much more fun), I&#x27;ll show you how we can make drone dance on streamed APIs.</p>\n",
+                "id": "OAG-4537",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/a7748720f4f3b7d6442be252f2d77c5c4016cdad",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Audrey Neveu"
+                        },
+                        "name": "Audrey Neveu"
+                    }
+                ],
+                "title": "The end of polling : why and how to transform a REST API into a Data Streaming API?",
+                "lang": "en",
+                "summary": "We know interactivity is the key to keep our user's interest alive but we can't reduce animation to UI anymore. Twitter, Waze, Slack... users are used to have real-time data in applications they love. But how can you turn your static API into a stream of data?\r\n\r\nWhen talking about data streaming, we often think about WebSockets. But have you ever heard of Server-Sent Events? In this tools-in-action we will compare both technologies to understand which one you should opt for depending on your usecase and I'll show you how we have been even further by reducing the amount of data to transfer with JSON-Patch.\r\n\r\nAnd because real-time data is not only needed by web (and because it's much more fun), I'll show you how we can make drone dance on streamed APIs."
+            },
+            "fromTime": "16:45",
+            "toTimeMillis": 1478621700000,
+            "toTime": "17:15",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "tia_room5_tuesday_8_16h45_17h15",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": false,
+            "fromTimeMillis": 1478619900000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "java",
+                "talkType": "Tools-in-Action",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>Java 8&#x27;s lambdas empower us to create wonderful APIs. Javaslang lets us dive deeper into the world of functional programming by providing us with persistent data types, immutable collections and functional control structures. The results are beautiful and do just work.</p>\n<p>During this presentation we will recall Java8&#x27;s downsides and explore how Javaslang&#x27;s Scala-inspired features fill-in the gaps.</p>\n",
+                "id": "MSD-7684",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/dc9a936c05e293d5246bb04621b781a3547f4945",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Grzegorz Piwowarek"
+                        },
+                        "name": "Grzegorz Piwowarek"
+                    }
+                ],
+                "title": "Javaslang - functional Java done right",
+                "lang": "en",
+                "summary": "Java 8's lambdas empower us to create wonderful APIs. Javaslang lets us dive deeper into the world of functional programming by providing us with persistent data types, immutable collections and functional control structures. The results are beautiful and do just work.\r\n\r\nDuring this presentation we will recall Java8's downsides and explore how Javaslang's Scala-inspired features fill-in the gaps."
+            },
+            "fromTime": "16:45",
+            "toTimeMillis": 1478621700000,
+            "toTime": "17:15",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "tia_room8_tuesday_8_16h45_17h15",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478619900000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "cloud",
+                "talkType": "Tools-in-Action",
+                "track": "Cloud, Containers & Infrastructure",
+                "summaryAsHtml": "<p>Docker is awesome, but how to use it in production?</p>\n<p>You&#x27;ve got your app built. You&#x27;ve dockerized it so it is self-contained and is running in Docker off your laptop. It&#x27;s tested and everything looks good, so time to ship it.</p>\n<p>Wait! Not so fast! Transitioning to a Docker production environment isn&#x27;t quite as easy as it sounds. How do you start your docker hosts? How do you integrate with AWS services like ELB and RDS? How do you orchestrate containers on multiple hosts? How do you deploy updates? How do you integrate monitoring and do log management?</p>\n<p>Come to this talk to see get an overview of different tool options you have in the AWS cloud to tackle these problem.</p>\n",
+                "id": "EBI-8705",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/89f2deba8bc1faf47588eef816d1f2a4db55d577",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Oliver Geisser"
+                        },
+                        "name": "Oliver Geisser"
+                    }
+                ],
+                "title": "Running Docker in production on AWS",
+                "lang": "en",
+                "summary": "Docker is awesome, but how to use it in production?\r\n\r\nYou've got your app built. You've dockerized it so it is self-contained and is running in Docker off your laptop. It's tested and everything looks good, so time to ship it.\r\n\r\nWait! Not so fast! Transitioning to a Docker production environment isn't quite as easy as it sounds. How do you start your docker hosts? How do you integrate with AWS services like ELB and RDS? How do you orchestrate containers on multiple hosts? How do you deploy updates? How do you integrate monitoring and do log management?\r\n\r\nCome to this talk to see get an overview of different tool options you have in the AWS cloud to tackle these problem.\r\n"
+            },
+            "fromTime": "16:45",
+            "toTimeMillis": 1478621700000,
+            "toTime": "17:15",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "tia_room9_tuesday_8_16h45_17h15",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478622300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "mobile",
+                "talkType": "Tools-in-Action",
+                "track": "Mobile & Embedded",
+                "summaryAsHtml": "<p>XCode provides developers with two kinds of test : unit tests and UI tests.\nThis live coding session will introduce both of these concepts.</p>\n<p>Schedule :</p>\n<ul>\n<li>Why should I test my mobile app ?</li>\n<li>Live coding : synchronous and asynchronous tests</li>\n<li>Live coding : UI tests</li>\n<li>Code coverage</li>\n</ul>\n<p>Everything shown in the session is available on Github, no more excuses to skip the tests :)</p>\n",
+                "id": "UXX-4833",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/0d5a5fef63ad94f1de5ebe6ad32fcd0f82ce8a2d",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Maxime David"
+                        },
+                        "name": "Maxime David"
+                    }
+                ],
+                "title": "How to test your awesome iOS mobile application ? ",
+                "lang": "en",
+                "summary": "XCode provides developers with two kinds of test : unit tests and UI tests.\r\nThis live coding session will introduce both of these concepts.\r\n\r\nSchedule : \r\n\r\n- Why should I test my mobile app ?\r\n- Live coding : synchronous and asynchronous tests \r\n- Live coding : UI tests\r\n- Code coverage\r\n\r\nEverything shown in the session is available on Github, no more excuses to skip the tests :)\r\n\r\n"
+            },
+            "fromTime": "17:25",
+            "toTimeMillis": 1478624100000,
+            "toTime": "17:55",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "tia_room4_tuesday_8_17h25_17h55",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478622300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "web",
+                "talkType": "Tools-in-Action",
+                "track": "Modern Web",
+                "summaryAsHtml": "<p>Let&#x27;s skip the boring plumbing parts of building a web app and head right to the fun stuff.</p>\n<p>Firebase handles a lot for you, like real time database syncing and user authentication, letting you focus on what makes your web app special. Now the newest version of Firebase empowers you to do even more, including file storage and the ability to hook into other cloud services. It&#x27;s all serverless so you can get up and running in minutes.</p>\n<p>In this talk we&#x27;ll live code a fun and surprisingly functional web-based game using some of the features of Firebase and release it live for the world to see.</p>\n",
+                "id": "JVY-2604",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/7d30948810c14651f08a7c5885b3a8fe30430d2a",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Bret McGowen"
+                        },
+                        "name": "Bret McGowen"
+                    }
+                ],
+                "title": "Supercharge your web app with the new Firebase",
+                "lang": "en",
+                "summary": "Let's skip the boring plumbing parts of building a web app and head right to the fun stuff.\r\n\r\nFirebase handles a lot for you, like real time database syncing and user authentication, letting you focus on what makes your web app special. Now the newest version of Firebase empowers you to do even more, including file storage and the ability to hook into other cloud services. It's all serverless so you can get up and running in minutes. \r\n\r\nIn this talk we'll live code a fun and surprisingly functional web-based game using some of the features of Firebase and release it live for the world to see."
+            },
+            "fromTime": "17:25",
+            "toTimeMillis": 1478624100000,
+            "toTime": "17:55",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "tia_room5_tuesday_8_17h25_17h55",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": false,
+            "fromTimeMillis": 1478622300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "lang",
+                "talkType": "Tools-in-Action",
+                "track": "Programming languages",
+                "summaryAsHtml": "<p>Are your web tests hard to read and hard to maintain? Does their reporting leave something to be desired? Do you have trouble scaling your test suite? Indeed, these are common issues faced by teams working with automated web tests.</p>\n<p>The Screenplay pattern (https://dzone.com/articles/page-objects-refactored-solid-steps-to-the-screenp) presents an innovative answer to these problems, built around readability, reusability and solid design principles. More than just a simple design pattern, the Screenplay pattern represents the next step in writing articulate, declarative tests using a highly expressive DSL.</p>\n<p>In this talk we will demonstrate Serenity-JS, a TypeScript implementation of Serenity BDD that lets you test your Angular-JS apps using the Screenplay pattern, and also benefit from the powerful reporting features provided by Serenity BDD. Combining the advantages of Protractor, the expressive Screenplay DSL in TypeScript, and the powerful reporting features of Serenity BDD, Serenity-JS is set to become the tool of choice for your Angular-JS automated testing!</p>\n",
+                "id": "ICJ-3714",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/a298ec44a3134ca0575b33a9a241cce5b5e3c189",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "John Smart"
+                        },
+                        "name": "John Smart"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b261ac2e7720e0273aa99c0ae911137dbea6b43b",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Jan Molak"
+                        },
+                        "name": "Jan Molak"
+                    }
+                ],
+                "title": "Serenity-JS: next generation acceptance testing for Angular-JS in TypeScript",
+                "lang": "en",
+                "summary": "Are your web tests hard to read and hard to maintain? Does their reporting leave something to be desired? Do you have trouble scaling your test suite? Indeed, these are common issues faced by teams working with automated web tests.\r\n\r\nThe Screenplay pattern (https://dzone.com/articles/page-objects-refactored-solid-steps-to-the-screenp) presents an innovative answer to these problems, built around readability, reusability and solid design principles. More than just a simple design pattern, the Screenplay pattern represents the next step in writing articulate, declarative tests using a highly expressive DSL. \r\n\r\nIn this talk we will demonstrate Serenity-JS, a TypeScript implementation of Serenity BDD that lets you test your Angular-JS apps using the Screenplay pattern, and also benefit from the powerful reporting features provided by Serenity BDD. Combining the advantages of Protractor, the expressive Screenplay DSL in TypeScript, and the powerful reporting features of Serenity BDD, Serenity-JS is set to become the tool of choice for your Angular-JS automated testing!"
+            },
+            "fromTime": "17:25",
+            "toTimeMillis": 1478624100000,
+            "toTime": "17:55",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "tia_room8_tuesday_8_17h25_17h55",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478622300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "ssj",
+                "talkType": "Tools-in-Action",
+                "track": "Server Side Java",
+                "summaryAsHtml": "<p>Prometheus is an open source monitoring tool, which is conceptually based on Google&#x27;s internal Borgmon monitoring system. Unlike traditional tools like Nagios, Prometheus implements a white-box monitoring approach: Applications actively provide metrics, these metrics are stored in a time-series database, the time-series data is used as a source for generating alerts. Prometheus comes with a powerful query language allowing for statistical evaluation of metrics.</p>\n<p>Many modern infrastructure components have Prometheus metrics built-in, like Docker&#x27;s cAdvisor, Kubernetes, or Konsul. Moreover, there are libraries for instrumenting proprietary applications in a lot of programming languages.</p>\n<p>This talk gives an introduction to monitoring with Prometheus, and shows how Java applications can expose metrics for Prometheus monitoring environments. We show how to instrument applications directly in code, as well as how to expose JMX beans in legacy applications.</p>\n",
+                "id": "EAP-4528",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/bc76e6a7e689aef6550eb4b01e651ae0b4fa3f30",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Fabian Stäber"
+                        },
+                        "name": "Fabian Stäber"
+                    }
+                ],
+                "title": "Prometheus Monitoring for Java Developers",
+                "lang": "en",
+                "summary": "Prometheus is an open source monitoring tool, which is conceptually based on Google's internal Borgmon monitoring system. Unlike traditional tools like Nagios, Prometheus implements a white-box monitoring approach: Applications actively provide metrics, these metrics are stored in a time-series database, the time-series data is used as a source for generating alerts. Prometheus comes with a powerful query language allowing for statistical evaluation of metrics.\r\n\r\nMany modern infrastructure components have Prometheus metrics built-in, like Docker's cAdvisor, Kubernetes, or Konsul. Moreover, there are libraries for instrumenting proprietary applications in a lot of programming languages.\r\n\r\nThis talk gives an introduction to monitoring with Prometheus, and shows how Java applications can expose metrics for Prometheus monitoring environments. We show how to instrument applications directly in code, as well as how to expose JMX beans in legacy applications."
+            },
+            "fromTime": "17:25",
+            "toTimeMillis": 1478624100000,
+            "toTime": "17:55",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "tia_room9_tuesday_8_17h25_17h55",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "a_hall",
+            "notAllocated": false,
+            "fromTimeMillis": 1478624100000,
+            "break": {
+                "id": "exhib",
+                "nameEN": "Exhibition",
+                "nameFR": "Exhibition",
+                "room": {
+                    "id": "a_hall",
+                    "name": "Exhibition floor",
+                    "capacity": 1500,
+                    "setup": "special"
+                }
+            },
+            "roomSetup": "special",
+            "talk": null,
+            "fromTime": "17:55",
+            "toTimeMillis": 1478625300000,
+            "toTime": "18:15",
+            "roomCapacity": 1500,
+            "roomName": "Exhibition floor",
+            "slotId": "exhib_tuesday_8_17h55_18h15",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478625300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "mobile",
+                "talkType": "Tools-in-Action",
+                "track": "Mobile & Embedded",
+                "summaryAsHtml": "<p>Native apps are the best. They are the most performant and integrate well into the OS. They just feel <em>right</em>.\nIt&#x27;s just that implementing complex business logic for every platform separately is not fun at all. You keep reinventing the wheel and will end up fixing the same errors over and over again.</p>\n<p><a href=\"https://github.com/dropbox/djinni\">Djinni</a> is here to help!\nDjinni is a tool for generating cross-language type declarations and interface bindings. It enables writing C++ code that can easily be used from Java, Objective-C and Python. Djinni takes care of all the nasty and repetitive glue code to translate from one world to the other. That even includes passing exceptions from Java to C++ and back to Java!</p>\n<p>In this presentation I&#x27;ll show you how you only need to define your shared types and interfaces once, write their implementations in C++ and then use it like any other API native to iOS or Android.</p>\n<p>Let Djinni work its magic for you too!</p>\n",
+                "id": "XOE-6216",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/4c2fdcd016f9fac3822bfecf9b7ca0ad2e0806f6",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Stephan Jaetzold"
+                        },
+                        "name": "Stephan Jaetzold"
+                    }
+                ],
+                "title": "Djinni in a bottle - Easily share code between iOS and Android using C++",
+                "lang": "en",
+                "summary": "Native apps are the best. They are the most performant and integrate well into the OS. They just feel _right_.\r\nIt's just that implementing complex business logic for every platform separately is not fun at all. You keep reinventing the wheel and will end up fixing the same errors over and over again.\r\n\r\n[Djinni](https://github.com/dropbox/djinni) is here to help!\r\nDjinni is a tool for generating cross-language type declarations and interface bindings. It enables writing C++ code that can easily be used from Java, Objective-C and Python. Djinni takes care of all the nasty and repetitive glue code to translate from one world to the other. That even includes passing exceptions from Java to C++ and back to Java!\r\n\r\nIn this presentation I'll show you how you only need to define your shared types and interfaces once, write their implementations in C++ and then use it like any other API native to iOS or Android.\r\n\r\nLet Djinni work its magic for you too!\r\n"
+            },
+            "fromTime": "18:15",
+            "toTimeMillis": 1478627100000,
+            "toTime": "18:45",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "tia_room4_tuesday_8_18h15_18h45",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478625300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "cloud",
+                "talkType": "Tools-in-Action",
+                "track": "Cloud, Containers & Infrastructure",
+                "summaryAsHtml": "<p>Github and Google recently released a <em>huge dataset</em> on BigQuery about <em>all the Open Source code contained on Github</em>, thanks to the data from the Github Archive project.</p>\n<p>What can you learn from such a dataset? What about learning about the most frequently used dependencies and imports? What are the most common Exceptions being handled or thrown? Are there common programming mistakes that we can spot? Guillaume will show you some concrete examples from the dataset, with examples applied to the Apache Groovy language, to learn more about our programming habits and pitfalls.</p>\n<p>And figure out on your own about your favorite language or framework usage patterns!</p>\n",
+                "id": "PPK-6316",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/435988122123af3eac633c104bf3374aa019bc28",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Guillaume Laforge"
+                        },
+                        "name": "Guillaume Laforge"
+                    }
+                ],
+                "title": "What can you learn from thousands of source files in Github?",
+                "lang": "en",
+                "summary": "Github and Google recently released a *huge dataset* on BigQuery about *all the Open Source code contained on Github*, thanks to the data from the Github Archive project. \r\n\r\nWhat can you learn from such a dataset? What about learning about the most frequently used dependencies and imports? What are the most common Exceptions being handled or thrown? Are there common programming mistakes that we can spot? Guillaume will show you some concrete examples from the dataset, with examples applied to the Apache Groovy language, to learn more about our programming habits and pitfalls. \r\n\r\nAnd figure out on your own about your favorite language or framework usage patterns!"
+            },
+            "fromTime": "18:15",
+            "toTimeMillis": 1478627100000,
+            "toTime": "18:45",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "tia_room5_tuesday_8_18h15_18h45",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": false,
+            "fromTimeMillis": 1478625300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "method_archi",
+                "talkType": "Tools-in-Action",
+                "track": "Methodology & Architecture",
+                "summaryAsHtml": "<p>Java&#x27;s most ubiquitous library is getting an update!\nAnd this is the time to see what&#x27;s new and weigh in on its course.</p>\n<p>This talk will...</p>\n<ul>\n<li>show you how to write tests with JUnit 5</li>\n<li>walk you through the changes compared to JUnit 4</li>\n<li>present the new architecture</li>\n<li>discuss compatibility with previous JUnit versions, IDEs, and other testing tools</li>\n</ul>\n<p>Be careful, though:\nYou might end up with an urge to start using it right away.</p>\n",
+                "id": "PPQ-9247",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/d137ee90b1a9d0ef3313ce4f70be45206e63ae9d",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Nicolai Parlog"
+                        },
+                        "name": "Nicolai Parlog"
+                    }
+                ],
+                "title": "JUnit 5: Next Generation Testing on the JVM",
+                "lang": "en",
+                "summary": "Java's most ubiquitous library is getting an update!\r\nAnd this is the time to see what's new and weigh in on its course.\r\n\r\nThis talk will...\r\n\r\n* show you how to write tests with JUnit 5\r\n* walk you through the changes compared to JUnit 4\r\n* present the new architecture\r\n* discuss compatibility with previous JUnit versions, IDEs, and other testing tools\r\n\r\nBe careful, though:\r\nYou might end up with an urge to start using it right away.\r\n"
+            },
+            "fromTime": "18:15",
+            "toTimeMillis": 1478627100000,
+            "toTime": "18:45",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "tia_room8_tuesday_8_18h15_18h45",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478625300000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "ssj",
+                "talkType": "Tools-in-Action",
+                "track": "Server Side Java",
+                "summaryAsHtml": "<p>With the rise of microservices achitecture the need of consuming REST services is indispensable. Netflix have create Feign to solve this issue. This livecoding session show the elegance and the extensibility of this API.</p>\n",
+                "id": "XVI-8392",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/562bf2901f61783fcc632bae34c9a41ae72939b6",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Igor Laborie"
+                        },
+                        "name": "Igor Laborie"
+                    }
+                ],
+                "title": "Feign in Action",
+                "lang": "en",
+                "summary": "With the rise of microservices achitecture the need of consuming REST services is indispensable. Netflix have create Feign to solve this issue. This livecoding session show the elegance and the extensibility of this API."
+            },
+            "fromTime": "18:15",
+            "toTimeMillis": 1478627100000,
+            "toTime": "18:45",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "tia_room9_tuesday_8_18h15_18h45",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room4",
+            "notAllocated": false,
+            "fromTimeMillis": 1478627700000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "lang",
+                "talkType": "Tools-in-Action",
+                "track": "Programming languages",
+                "summaryAsHtml": "<p>IoT devices are becoming more intelligent, cheaper and they are connected to the internet. They could also handle personal data and therefore need to be secure.\nOn the other hand, they need full memory access. C/C++ can do this, but it’s also known to be complex and insecure memory management. Other languages (e.g. Java) protect the memory access but aren’t lightweight and it’s not possible to get full memory access. Rust is designed to have both 100% access and also be 100% secure.</p>\n<p>I will give an overview, demonstrate how Rust handles the memory access and how it can be cross-compiled to run natively on a small microcontroller and how it can be debugged on bare metal.</p>\n",
+                "id": "FVY-3267",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/d1a9eebcc55ffdf506c2b2de963fdaeb977a5625",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Lars Gregori"
+                        },
+                        "name": "Lars Gregori"
+                    }
+                ],
+                "title": "Embedded Rust – Rust on IoT devices",
+                "lang": "en",
+                "summary": "IoT devices are becoming more intelligent, cheaper and they are connected to the internet. They could also handle personal data and therefore need to be secure.\r\nOn the other hand, they need full memory access. C/C++ can do this, but it’s also known to be complex and insecure memory management. Other languages (e.g. Java) protect the memory access but aren’t lightweight and it’s not possible to get full memory access. Rust is designed to have both 100% access and also be 100% secure.\r\n\r\nI will give an overview, demonstrate how Rust handles the memory access and how it can be cross-compiled to run natively on a small microcontroller and how it can be debugged on bare metal."
+            },
+            "fromTime": "18:55",
+            "toTimeMillis": 1478629500000,
+            "toTime": "19:25",
+            "roomCapacity": 347,
+            "roomName": "Room 4",
+            "slotId": "tia_room4_tuesday_8_18h55_19h25",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room5",
+            "notAllocated": false,
+            "fromTimeMillis": 1478627700000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "ssj",
+                "talkType": "Tools-in-Action",
+                "track": "Server Side Java",
+                "summaryAsHtml": "<p>Maven. Everybody uses it. Everybody hates it (classic love hate relationship). Embracing it ain&#x27;t easy - but once done, it becomes a golden hammer.</p>\n<p>This title is a bit flame&#x27;ish - for a reason. In this showcase session I&#x27;ll complete a continuous delivery pipeline of a multi module project with pure Maven (+ plugins). Once that is done - adding a Jenkins (I mean a scheduler) is as easy as 1-2-3.</p>\n<p>So if you&#x27;ve been using Maven a bit but never gave it enough time - this is a talk for you!</p>\n",
+                "id": "GLJ-8229",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/698de7b880160572b00467a41063af3dde63b2d3",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Jakub Marchwicki"
+                        },
+                        "name": "Jakub Marchwicki"
+                    }
+                ],
+                "title": "Maven  - your ultimate CD tool",
+                "lang": "en",
+                "summary": "Maven. Everybody uses it. Everybody hates it (classic love hate relationship). Embracing it ain't easy - but once done, it becomes a golden hammer. \r\n\r\nThis title is a bit flame'ish - for a reason. In this showcase session I'll complete a continuous delivery pipeline of a multi module project with pure Maven (+ plugins). Once that is done - adding a Jenkins (I mean a scheduler) is as easy as 1-2-3. \r\n\r\nSo if you've been using Maven a bit but never gave it enough time - this is a talk for you!"
+            },
+            "fromTime": "18:55",
+            "toTimeMillis": 1478629500000,
+            "toTime": "19:25",
+            "roomCapacity": 641,
+            "roomName": "Room 5",
+            "slotId": "tia_room5_tuesday_8_18h55_19h25",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room8",
+            "notAllocated": true,
+            "fromTimeMillis": 1478627700000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": null,
+            "fromTime": "18:55",
+            "toTimeMillis": 1478629500000,
+            "toTime": "19:25",
+            "roomCapacity": 696,
+            "roomName": "Room 8",
+            "slotId": "tia_room8_tuesday_8_18h55_19h25",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "room9",
+            "notAllocated": false,
+            "fromTimeMillis": 1478627700000,
+            "break": null,
+            "roomSetup": "theatre",
+            "talk": {
+                "trackId": "future",
+                "talkType": "Tools-in-Action",
+                "track": "Future<Devoxx>",
+                "summaryAsHtml": "<p>One important subject to be analysed on languages is its type system. Having a general overview of a type system can provide us information about syntax performance, optimisations and may help us to understand how statements are evaluated. And those are topics that we shall consider for language evolution and development. This talk will provide a gentle introduction to type theory, how it helps us with IDE&#x27;s and type inference and how can we apply some of its concepts in Java and other languages build on the top of JVM, such as Scala and Clojure, providing a comparison between the type system of such languages.\nTopics:</p>\n<ul>\n<li>Why Type Theory?</li>\n<li>Quick introduction to logic and Lambda Calculus</li>\n<li>Where are those concepts used?</li>\n<li>An analysis of Java Type System</li>\n<li>Clojure Type System</li>\n<li>Scala type system</li>\n</ul>\n",
+                "id": "BRC-3050",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/ae81ee16465977ffed76539db3ddcc8631cbb449",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Hanneli Tavante"
+                        },
+                        "name": "Hanneli Tavante"
+                    }
+                ],
+                "title": "Notes on Type Theory for absolute beginners ",
+                "lang": "en",
+                "summary": "One important subject to be analysed on languages is its type system. Having a general overview of a type system can provide us information about syntax performance, optimisations and may help us to understand how statements are evaluated. And those are topics that we shall consider for language evolution and development. This talk will provide a gentle introduction to type theory, how it helps us with IDE's and type inference and how can we apply some of its concepts in Java and other languages build on the top of JVM, such as Scala and Clojure, providing a comparison between the type system of such languages. \r\nTopics: \r\n\r\n* Why Type Theory?\r\n* Quick introduction to logic and Lambda Calculus\r\n* Where are those concepts used? \r\n* An analysis of Java Type System \r\n* Clojure Type System\r\n* Scala type system"
+            },
+            "fromTime": "18:55",
+            "toTimeMillis": 1478629500000,
+            "toTime": "19:25",
+            "roomCapacity": 393,
+            "roomName": "Room 9",
+            "slotId": "tia_room9_tuesday_8_18h55_19h25",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof1",
+            "notAllocated": true,
+            "fromTimeMillis": 1478629800000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": null,
+            "fromTime": "19:30",
+            "toTimeMillis": 1478633400000,
+            "toTime": "20:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 1",
+            "slotId": "bof_bof1_tuesday_8_19h30_20h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof2",
+            "notAllocated": false,
+            "fromTimeMillis": 1478629800000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": {
+                "trackId": "java",
+                "talkType": "BOF (Bird of a Feather)",
+                "track": "Java Language",
+                "summaryAsHtml": "<p>In this session Patrick Curran provides practical advice derived from his 30 years of experience in the IT industry. He explains how developers can manage their careers and create opportunities for further advancement by participating in collaborative activities such as open-source development projects and the Java Community Process. He also explains how Java is evolved through the Java Community Process and how you can participate in that evolution as an individual, as a representative of your employer, or as a member of a nonprofit organization such as a Java user group. Learn how enhance your career opportunities by making the future Java (Oh... and you&#x27;ll have fun too!)</p>\n",
+                "id": "SRM-9598",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/00cc2b259b5a0c29f7b2e7ff7faf59acea8904c3",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Heather VanCura"
+                        },
+                        "name": "Heather VanCura"
+                    }
+                ],
+                "title": "The Java Community Process: Advance Your Career and Help Define Java's Future ",
+                "lang": "en",
+                "summary": "In this session Patrick Curran provides practical advice derived from his 30 years of experience in the IT industry. He explains how developers can manage their careers and create opportunities for further advancement by participating in collaborative activities such as open-source development projects and the Java Community Process. He also explains how Java is evolved through the Java Community Process and how you can participate in that evolution as an individual, as a representative of your employer, or as a member of a nonprofit organization such as a Java user group. Learn how enhance your career opportunities by making the future Java (Oh... and you'll have fun too!)"
+            },
+            "fromTime": "19:30",
+            "toTimeMillis": 1478633400000,
+            "toTime": "20:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 2",
+            "slotId": "bof_bof2_tuesday_8_19h30_20h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof1",
+            "notAllocated": false,
+            "fromTimeMillis": 1478633400000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": {
+                "trackId": "method_archi",
+                "talkType": "BOF (Bird of a Feather)",
+                "track": "Methodology & Architecture",
+                "summaryAsHtml": "<p>People often say that documentation is boring. Not us! Let&#x27;s talk about documentation. How do you write it? How do you publish it? What tools do you use? How do you encourage other people to write? Let&#x27;s share ways to get other people to love and appreciate documentation just as we do.</p>\n",
+                "id": "TFF-9852",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/43ce34bea56fe72ae8953bb9d0fb435d8c9d0640",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Dan Allen"
+                        },
+                        "name": "Dan Allen"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/45f704377f504f2f5696fa38d27fcb123c1cf1fe",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Hubert Sablonnière"
+                        },
+                        "name": "Hubert Sablonnière"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/cc3a8573c1f955659203ddc442a9cc2a38bcedd4",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Alex Soto"
+                        },
+                        "name": "Alex Soto"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/18600860ed96adfddf5ec1b55a59cb8224ede06f",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Guillaume Scheibel"
+                        },
+                        "name": "Guillaume Scheibel"
+                    },
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/95e8ca0120c1f54e22257af55c2d3e2ecc3bbc69",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Robert Panzer"
+                        },
+                        "name": "Robert Panzer"
+                    }
+                ],
+                "title": "Writers Write! The Documentation BOF",
+                "lang": "en",
+                "summary": "People often say that documentation is boring. Not us! Let's talk about documentation. How do you write it? How do you publish it? What tools do you use? How do you encourage other people to write? Let's share ways to get other people to love and appreciate documentation just as we do."
+            },
+            "fromTime": "20:30",
+            "toTimeMillis": 1478637000000,
+            "toTime": "21:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 1",
+            "slotId": "bof_bof1_tuesday_8_20h30_21h30",
+            "day": "tuesday"
+        },
+        {
+            "roomId": "bof2",
+            "notAllocated": false,
+            "fromTimeMillis": 1478633400000,
+            "break": null,
+            "roomSetup": "classroom",
+            "talk": {
+                "trackId": "method_archi",
+                "talkType": "BOF (Bird of a Feather)",
+                "track": "Methodology & Architecture",
+                "summaryAsHtml": "<p>In this BOF you will have the great chance to discuss DevOps with leading experts. Ask questions you always wanted to ask. Contribute and give answers to questions the group will have, and show you are an experienced DevOps professional. Or just be curious and drop by to learn more about the practices that make up DevOps.</p>\n",
+                "id": "FNC-3081",
+                "speakers": [
+                    {
+                        "link": {
+                            "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/ec702c20a7862950c6aadeafe8ae7d2bc973601b",
+                            "rel": "http://cfp.devoxx.be/api/profile/speaker",
+                            "title": "Michael Hüttermann"
+                        },
+                        "name": "Michael Hüttermann"
+                    }
+                ],
+                "title": "DevOps: State of the Union",
+                "lang": "en",
+                "summary": "In this BOF you will have the great chance to discuss DevOps with leading experts. Ask questions you always wanted to ask. Contribute and give answers to questions the group will have, and show you are an experienced DevOps professional. Or just be curious and drop by to learn more about the practices that make up DevOps."
+            },
+            "fromTime": "20:30",
+            "toTimeMillis": 1478637000000,
+            "toTime": "21:30",
+            "roomCapacity": 70,
+            "roomName": "BOF 2",
+            "slotId": "bof_bof2_tuesday_8_20h30_21h30",
+            "day": "tuesday"
+        }
+    ]
+}

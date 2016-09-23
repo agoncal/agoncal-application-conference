@@ -64,7 +64,7 @@ public class JSonToDatabase {
 
                 joinTableCreateSQLStatement = "INSERT INTO Talk_Speaker (Talk_id, speakers_id) values (";
                 joinTableCreateSQLStatement += "'" + talk.getString("id") + "', ";
-                joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href")+ "'");
+                joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href") + "'");
                 joinTableCreateSQLStatement += ");";
 
                 System.out.println(joinTableCreateSQLStatement);
@@ -74,7 +74,7 @@ public class JSonToDatabase {
     }
 
     private static String getId(String href) {
-        return href.substring(href.lastIndexOf('/')+1, href.length());
+        return href.substring(href.lastIndexOf('/') + 1, href.length());
     }
 
     private static String getSqlValue(JsonObject jsonObject, String key) {

@@ -4,14 +4,17 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.venue.domain.Room;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.net.URI;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -24,7 +27,7 @@ import java.util.List;
 @RequestScoped
 @Produces("application/json")
 @Consumes("application/json")
-public class RoomEndpoint {
+public class RoomEndpoint extends LinkableEndpoint<Room> {
 
     // ======================================
     // =          Injection Points          =
@@ -33,8 +36,13 @@ public class RoomEndpoint {
     @Inject
     private RoomRepository roomRepository;
 
-    @Context
-    private UriInfo uriInfo;
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public RoomEndpoint() {
+        super(RoomEndpoint.class);
+    }
 
     // ======================================
     // =          Business methods          =
@@ -117,22 +125,5 @@ public class RoomEndpoint {
         room.addSelfLink(getURIForSelf(room));
         room.addCollectionLink(getURIForCollection());
         return Response.ok(room).build();
-    }
-
-    // ======================================
-    // =           Private methods          =
-    // ======================================
-
-    private GenericEntity<List<Room>> buildEntity(final List<Room> roomList) {
-        return new GenericEntity<List<Room>>(roomList) {
-        };
-    }
-
-    private URI getURIForSelf(Room room) {
-        return uriInfo.getBaseUriBuilder().path(RoomEndpoint.class).path(room.getId()).build();
-    }
-
-    private URI getURIForCollection() {
-        return uriInfo.getBaseUriBuilder().path(RoomEndpoint.class).build();
     }
 }
