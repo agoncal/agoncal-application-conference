@@ -53,6 +53,7 @@
     </properties>
 
     <modules>
+        <module>commons</module>
         <module>microservice-rating</module>
         <module>microservice-schedule</module>
         <module>microservice-speaker</module>
@@ -62,6 +63,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- CONFERENCE -->
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>conference-commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!-- JAVA EE -->
             <dependency>
                 <groupId>javax</groupId>

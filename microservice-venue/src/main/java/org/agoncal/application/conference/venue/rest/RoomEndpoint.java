@@ -1,6 +1,9 @@
 package org.agoncal.application.conference.venue.rest;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.venue.domain.Room;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 
@@ -66,8 +69,8 @@ public class RoomEndpoint {
 
         // cached resource did change -> serve updated content
         if (preconditions == null) {
-            room.addLink("self", getURIForSelf(room));
-            room.addLink("collection", getURIForCollection());
+            room.addSelf(getURIForSelf(room));
+            room.addCollection(getURIForCollection());
             preconditions = Response.ok(room).tag(etag);
         }
 
@@ -86,7 +89,7 @@ public class RoomEndpoint {
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Room room : allRooms) {
-            room.addLink("self", getURIForSelf(room));
+            room.addSelf(getURIForSelf(room));
         }
         return Response.ok(buildEntity(allRooms)).build();
     }
@@ -111,8 +114,8 @@ public class RoomEndpoint {
     )
     public Response update(Room room) {
         roomRepository.update(room);
-        room.addLink("self", getURIForSelf(room));
-        room.addLink("collection", getURIForCollection());
+        room.addSelf(getURIForSelf(room));
+        room.addCollection(getURIForCollection());
         return Response.ok(room).build();
     }
 

@@ -1,11 +1,10 @@
 package org.agoncal.application.conference.venue.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -15,14 +14,13 @@ import java.util.Objects;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Room implements Cloneable {
+public class Room extends LinkableResource implements Cloneable {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
     private String id;
-    private Map<String, URI> links;
     private String name;
     private Integer capacity;
     private String setup;
@@ -83,12 +81,6 @@ public class Room implements Cloneable {
         this.setup = setup;
     }
 
-    public void addLink(String rel, URI uri) {
-        if (links == null)
-            links = new HashMap<>();
-        links.put(rel, uri);
-    }
-
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
@@ -120,7 +112,7 @@ public class Room implements Cloneable {
     public String toString() {
         return "Room{" +
             "id='" + id + '\'' +
-            ", links=" + links +
+            ", links=" + getLinks() +
             ", name='" + name + '\'' +
             ", capacity=" + capacity +
             ", setup='" + setup + '\'' +
