@@ -4,6 +4,7 @@ import org.agoncal.application.conference.commons.domain.Identifiable;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
@@ -34,6 +35,10 @@ public abstract class LinkableEndpoint<E extends Identifiable> {
     // ======================================
     // =          Business methods          =
     // ======================================
+
+    public UriBuilder getUriBuilderForRoot() {
+        return uriInfo.getBaseUriBuilder().path(type);
+    }
 
     public URI getURIForSelf(E identiable) {
         return uriInfo.getBaseUriBuilder().path(type).path(identiable.getId()).build();

@@ -1,7 +1,7 @@
 package org.agoncal.application.conference.schedule.rest;
 
-import org.agoncal.application.conference.schedule.domain.Schedule;
-import org.agoncal.application.conference.schedule.repository.ScheduleRepository;
+import org.agoncal.application.conference.schedule.domain.Session;
+import org.agoncal.application.conference.schedule.repository.SessionRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -35,14 +35,14 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 @RunAsClient
-public class ScheduleEndpointTest {
+public class SessionEndpointTest {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    private static final Schedule TEST_TALK = new Schedule("id", "monday");
-    private static String rateId;
+    private static final Session TEST_TALK = new Session("id", "monday");
+    private static String sessionId;
     private Client client;
     private WebTarget webTarget;
 
@@ -65,8 +65,8 @@ public class ScheduleEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addPackage(Schedule.class.getPackage())
-            .addClasses(ScheduleEndpoint.class, ScheduleRepository.class, Application.class)
+            .addPackage(Session.class.getPackage())
+            .addClasses(SessionEndpoint.class, SessionRepository.class, Application.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);
@@ -79,7 +79,7 @@ public class ScheduleEndpointTest {
     @Before
     public void initWebTarget() {
         client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("api/schedules");
+        webTarget = client.target(baseURL).path("api/sessions");
     }
 
     // ======================================
@@ -88,38 +88,51 @@ public class ScheduleEndpointTest {
 
     @Test
     @InSequence(1)
-    public void shouldGetAllTalks() throws Exception {
+    public void shouldGetAllSessions() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 10 links", 10, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 0 talk", 0, jsonObject.getJsonArray("data").size());
     }
 
     @Test
     @InSequence(2)
-    public void shouldCreateTalk() throws Exception {
+    public void shouldCreateSession() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_TALK, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
-        rateId = getSpeakerId(response);
+        sessionId = getSpeakerId(response);
     }
 
     @Test
     @InSequence(3)
-    public void shouldGetAlreadyCreatedTalk() throws Exception {
-        Response response = webTarget.path(rateId).request(APPLICATION_JSON_TYPE).get();
+    public void shouldGetAlreadyCreatedSessions() throws Exception {
+        Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals(rateId, jsonObject.getString("id"));
+        assertEquals(sessionId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
-        assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/schedules/" + rateId));
-        assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/schedules"));
+        assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/sessions/" + sessionId));
+        assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/sessions"));
         assertEquals(TEST_TALK.getDay(), jsonObject.getString("day"));
     }
 
     @Test
     @InSequence(4)
-    public void shouldRemoveTalk() throws Exception {
-        Response response = webTarget.path(rateId).request(APPLICATION_JSON_TYPE).delete();
+    public void shouldCheckCollectionOfSessions() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 10 links", 10, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
+    }
+
+    @Test
+    @InSequence(5)
+    public void shouldRemoveSession() throws Exception {
+        Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
-        Response checkResponse = webTarget.path(rateId).request(APPLICATION_JSON_TYPE).get();
+        Response checkResponse = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
     }
 

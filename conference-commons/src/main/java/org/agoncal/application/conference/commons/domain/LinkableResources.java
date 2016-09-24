@@ -68,7 +68,7 @@ public class LinkableResources<R extends LinkableResource> {
         addLink(LAST, uri);
     }
 
-    private void addLink(String rel, URI uri) {
+    public void addLink(String rel, URI uri) {
         if (links == null)
             links = new HashMap<>();
         links.put(rel, uri);

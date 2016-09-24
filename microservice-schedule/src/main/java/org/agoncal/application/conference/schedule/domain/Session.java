@@ -17,21 +17,23 @@ import java.util.UUID;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Schedule.FIND_ALL, query = "SELECT s FROM Schedule s ORDER BY s.id DESC"),
-    @NamedQuery(name = Schedule.FIND_BY_DAY, query = "SELECT s FROM Schedule s WHERE s.day = :day ORDER BY s.id DESC"),
-    @NamedQuery(name = Schedule.FIND_BY_DAY_AND_ROOM, query = "SELECT s FROM Schedule s WHERE s.day = :day AND s.room.id = :roomId ORDER BY s.id DESC")
+    @NamedQuery(name = Session.FIND_ALL, query = "SELECT s FROM Session s ORDER BY s.id DESC"),
+    @NamedQuery(name = Session.FIND_BY_DAY, query = "SELECT s FROM Session s WHERE s.day = :day ORDER BY s.id DESC"),
+    @NamedQuery(name = Session.FIND_BY_DAY_AND_ROOM, query = "SELECT s FROM Session s WHERE s.day = :day AND s.room.id = :roomId ORDER BY s.id DESC"),
+    @NamedQuery(name = Session.COUNT_ALL, query = "SELECT COUNT(s) FROM Session s")
 })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Schedule extends LinkableResource {
+public class Session extends LinkableResource {
 
     // ======================================
     // =             Constants              =
     // ======================================
 
-    public static final String FIND_ALL = "Schedule.findAll";
-    public static final String FIND_BY_DAY = "Schedule.findByDay";
-    public static final String FIND_BY_DAY_AND_ROOM = "Schedule.findByDayAndRoom";
+    public static final String FIND_ALL = "Session.findAll";
+    public static final String COUNT_ALL = "Session.countAll";
+    public static final String FIND_BY_DAY = "Session.findByDay";
+    public static final String FIND_BY_DAY_AND_ROOM = "Session.findByDayAndRoom";
 
     // ======================================
     // =             Attributes             =
@@ -57,10 +59,10 @@ public class Schedule extends LinkableResource {
     // =            Constructors            =
     // ======================================
 
-    public Schedule() {
+    public Session() {
     }
 
-    public Schedule(String id, String day) {
+    public Session(String id, String day) {
         this.id = id;
         this.day = day;
     }
@@ -166,7 +168,7 @@ public class Schedule extends LinkableResource {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Schedule that = (Schedule) o;
+        Session that = (Session) o;
         return Objects.equals(id, that.id);
     }
 

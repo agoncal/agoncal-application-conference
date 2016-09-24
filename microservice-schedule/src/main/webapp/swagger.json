@@ -9,30 +9,38 @@
   "basePath" : "/api",
   "schemes" : [ "http", "https" ],
   "paths" : {
-    "/schedules" : {
+    "/sessions" : {
       "get" : {
-        "summary" : "Finds all the schedules",
+        "summary" : "Finds all the sessions",
         "description" : "",
-        "operationId" : "allSchedules",
+        "operationId" : "allSessions",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "default" : 1,
+          "format" : "int32"
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Schedule"
+                "$ref" : "#/definitions/Session"
               }
             }
           },
           "404" : {
-            "description" : "Schedules not found"
+            "description" : "Sessions not found"
           }
         }
       },
       "post" : {
-        "summary" : "Adds a new schedule to the conference",
+        "summary" : "Adds a new session to the conference",
         "description" : "",
         "operationId" : "add",
         "consumes" : [ "application/json" ],
@@ -44,11 +52,11 @@
         }
       }
     },
-    "/schedules/friday" : {
+    "/sessions/friday" : {
       "get" : {
-        "summary" : "Finds all the schedules for Friday",
+        "summary" : "Finds all the sessions for Friday",
         "description" : "",
-        "operationId" : "allSchedulesFriday",
+        "operationId" : "allSessionsFriday",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
@@ -57,73 +65,21 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Schedule"
+                "$ref" : "#/definitions/Session"
               }
             }
           },
           "404" : {
-            "description" : "Schedules not found"
+            "description" : "Sessions not found"
           }
         }
       }
     },
-    "/schedules/friday/{roomId}" : {
+    "/sessions/friday/{roomId}" : {
       "get" : {
-        "summary" : "Finds all the schedules for Friday on a specific room",
+        "summary" : "Finds all the sessions for Friday on a specific room",
         "description" : "",
-        "operationId" : "allSchedulesFridayByRoom",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "roomId",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Schedule"
-              }
-            }
-          },
-          "404" : {
-            "description" : "Schedules not found"
-          }
-        }
-      }
-    },
-    "/schedules/monday" : {
-      "get" : {
-        "summary" : "Finds all the schedules for Monday",
-        "description" : "",
-        "operationId" : "allSchedulesMonday",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Schedule"
-              }
-            }
-          },
-          "404" : {
-            "description" : "Schedules not found"
-          }
-        }
-      }
-    },
-    "/schedules/monday/{roomId}" : {
-      "get" : {
-        "summary" : "Finds all the schedules for Monday on a specific room",
-        "description" : "",
-        "operationId" : "allSchedulesMondayByRoom",
+        "operationId" : "allSessionsFridayByRoom",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -138,21 +94,21 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Schedule"
+                "$ref" : "#/definitions/Session"
               }
             }
           },
           "404" : {
-            "description" : "Schedules not found"
+            "description" : "Sessions not found"
           }
         }
       }
     },
-    "/schedules/thursday" : {
+    "/sessions/monday" : {
       "get" : {
-        "summary" : "Finds all the schedules for Thursday",
+        "summary" : "Finds all the sessions for Monday",
         "description" : "",
-        "operationId" : "allSchedulesThursday",
+        "operationId" : "allSessionsMonday",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
@@ -161,73 +117,21 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Schedule"
+                "$ref" : "#/definitions/Session"
               }
             }
           },
           "404" : {
-            "description" : "Schedules not found"
+            "description" : "Sessions not found"
           }
         }
       }
     },
-    "/schedules/thursday/{roomId}" : {
+    "/sessions/monday/{roomId}" : {
       "get" : {
-        "summary" : "Finds all the schedules for Thursday on a specific room",
+        "summary" : "Finds all the sessions for Monday on a specific room",
         "description" : "",
-        "operationId" : "allSchedulesThursdayByRoom",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "roomId",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Schedule"
-              }
-            }
-          },
-          "404" : {
-            "description" : "Schedules not found"
-          }
-        }
-      }
-    },
-    "/schedules/tuesday" : {
-      "get" : {
-        "summary" : "Finds all the schedules for Tuesday",
-        "description" : "",
-        "operationId" : "allSchedulesTuesday",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Schedule"
-              }
-            }
-          },
-          "404" : {
-            "description" : "Schedules not found"
-          }
-        }
-      }
-    },
-    "/schedules/tuesday/{roomId}" : {
-      "get" : {
-        "summary" : "Finds all the schedules for Tuesday on a specific room",
-        "description" : "",
-        "operationId" : "allSchedulesTuesdayByRoom",
+        "operationId" : "allSessionsMondayByRoom",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -242,21 +146,21 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Schedule"
+                "$ref" : "#/definitions/Session"
               }
             }
           },
           "404" : {
-            "description" : "Schedules not found"
+            "description" : "Sessions not found"
           }
         }
       }
     },
-    "/schedules/wednesday" : {
+    "/sessions/thursday" : {
       "get" : {
-        "summary" : "Finds all the schedules for Wednesday",
+        "summary" : "Finds all the sessions for Thursday",
         "description" : "",
-        "operationId" : "allSchedulesWednesday",
+        "operationId" : "allSessionsThursday",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
@@ -265,21 +169,21 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Schedule"
+                "$ref" : "#/definitions/Session"
               }
             }
           },
           "404" : {
-            "description" : "Schedules not found"
+            "description" : "Sessions not found"
           }
         }
       }
     },
-    "/schedules/wednesday/{roomId}" : {
+    "/sessions/thursday/{roomId}" : {
       "get" : {
-        "summary" : "Finds all the schedules for Wednesday on a specific room",
+        "summary" : "Finds all the sessions for Thursday on a specific room",
         "description" : "",
-        "operationId" : "allSchedulesWednesdayByRoom",
+        "operationId" : "allSessionsThursdayByRoom",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -294,19 +198,123 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Schedule"
+                "$ref" : "#/definitions/Session"
               }
             }
           },
           "404" : {
-            "description" : "Schedules not found"
+            "description" : "Sessions not found"
           }
         }
       }
     },
-    "/schedules/{id}" : {
+    "/sessions/tuesday" : {
       "get" : {
-        "summary" : "Finds a schedule by ID",
+        "summary" : "Finds all the sessions for Tuesday",
+        "description" : "",
+        "operationId" : "allSessionsTuesday",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Session"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Sessions not found"
+          }
+        }
+      }
+    },
+    "/sessions/tuesday/{roomId}" : {
+      "get" : {
+        "summary" : "Finds all the sessions for Tuesday on a specific room",
+        "description" : "",
+        "operationId" : "allSessionsTuesdayByRoom",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roomId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Session"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Sessions not found"
+          }
+        }
+      }
+    },
+    "/sessions/wednesday" : {
+      "get" : {
+        "summary" : "Finds all the sessions for Wednesday",
+        "description" : "",
+        "operationId" : "allSessionsWednesday",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Session"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Sessions not found"
+          }
+        }
+      }
+    },
+    "/sessions/wednesday/{roomId}" : {
+      "get" : {
+        "summary" : "Finds all the sessions for Wednesday on a specific room",
+        "description" : "",
+        "operationId" : "allSessionsWednesdayByRoom",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roomId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Session"
+              }
+            }
+          },
+          "404" : {
+            "description" : "Sessions not found"
+          }
+        }
+      }
+    },
+    "/sessions/{id}" : {
+      "get" : {
+        "summary" : "Finds a session by ID",
         "description" : "",
         "operationId" : "retrieve",
         "consumes" : [ "application/json" ],
@@ -321,19 +329,19 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/Schedule"
+              "$ref" : "#/definitions/Session"
             }
           },
           "400" : {
             "description" : "Invalid input"
           },
           "404" : {
-            "description" : "Schedule not found"
+            "description" : "Session not found"
           }
         }
       },
       "delete" : {
-        "summary" : "Deletes a schedule",
+        "summary" : "Deletes a session",
         "description" : "",
         "operationId" : "remove",
         "consumes" : [ "application/json" ],
@@ -346,7 +354,7 @@
         } ],
         "responses" : {
           "400" : {
-            "description" : "Invalid schedule value"
+            "description" : "Invalid session value"
           }
         }
       }
@@ -361,7 +369,7 @@
         }
       }
     },
-    "Schedule" : {
+    "Session" : {
       "type" : "object",
       "properties" : {
         "links" : {
