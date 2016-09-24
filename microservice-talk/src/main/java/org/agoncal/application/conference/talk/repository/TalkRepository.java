@@ -8,6 +8,8 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static org.agoncal.application.conference.commons.domain.LinkableResources.PAGE_SIZE;
+
 /**
  * @author Antonio Goncalves
  *         http://www.antoniogoncalves.org
@@ -32,9 +34,19 @@ public class TalkRepository {
         return talk;
     }
 
-    public List<Talk> findAllTalks() {
+    public List<Talk> findAllTalks(Integer pageNumber) {
         TypedQuery<Talk> query = em.createNamedQuery(Talk.FIND_ALL, Talk.class);
+        query.setFirstResult((pageNumber - 1) * PAGE_SIZE);
+        query.setMaxResults(PAGE_SIZE);
+
         return query.getResultList();
+    }
+
+    public Integer getNumberOfPages() {
+        TypedQuery<Long> query = em.createNamedQuery(Talk.COUNT_ALL, Long.class);
+
+        Long countResult = query.getSingleResult();
+        return (Integer) (int) ((countResult / PAGE_SIZE) + 1);
     }
 
     public Talk findById(String id) {

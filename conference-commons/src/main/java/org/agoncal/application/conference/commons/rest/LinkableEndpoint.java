@@ -43,6 +43,10 @@ public abstract class LinkableEndpoint<E extends Identifiable> {
         return uriInfo.getBaseUriBuilder().path(type).build();
     }
 
+    public URI getURIForPage(Integer pageNumber) {
+        return uriInfo.getBaseUriBuilder().path(type).queryParam("page", pageNumber).build();
+    }
+
     public UriInfo getUriInfo() {
         return uriInfo;
     }

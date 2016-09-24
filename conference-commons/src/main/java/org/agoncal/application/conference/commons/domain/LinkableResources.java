@@ -1,5 +1,6 @@
 package org.agoncal.application.conference.commons.domain;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.net.URI;
 import java.util.ArrayList;
@@ -16,14 +17,32 @@ import static org.agoncal.application.conference.commons.domain.Links.*;
  *         Marks REST resources that represent a list of linkable resources.
  */
 @XmlType(name = "links")
-public abstract class LinkableResources<R extends LinkableResource> {
+public class LinkableResources<R extends LinkableResource> {
+
+    // ======================================
+    // =             Constants              =
+    // ======================================
+
+    public static final Integer PAGE_SIZE = 20;
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
     private Map<String, URI> links;
+    @XmlElement(name = "data")
     private List<R> linkableResources;
+
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public LinkableResources() {
+    }
+
+    public LinkableResources(List<R> resources) {
+        linkableResources = resources;
+    }
 
     // ======================================
     // =          Business methods          =

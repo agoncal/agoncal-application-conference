@@ -2,6 +2,7 @@ package org.agoncal.application.conference.talk.rest;
 
 import org.agoncal.application.conference.talk.domain.Speaker;
 import org.agoncal.application.conference.talk.domain.Talk;
+import org.agoncal.application.conference.talk.domain.Talks;
 import org.agoncal.application.conference.talk.repository.TalkRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -66,7 +67,7 @@ public class TalkEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Talk.class, Speaker.class, TalkEndpoint.class, TalkRepository.class, Application.class)
+            .addClasses(Talk.class, Talks.class, Speaker.class, TalkEndpoint.class, TalkRepository.class, Application.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);
@@ -91,6 +92,9 @@ public class TalkEndpointTest {
     public void shouldGetAllTalks() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 0 talk", 0, jsonObject.getJsonArray("data").size());
     }
 
     @Test
@@ -116,6 +120,16 @@ public class TalkEndpointTest {
 
     @Test
     @InSequence(4)
+    public void shouldCheckCollectionOfTalks() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
+    }
+
+    @Test
+    @InSequence(5)
     public void shouldRemoveTalk() throws Exception {
         Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());

@@ -6,15 +6,13 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.talk.domain.Talk;
+import org.agoncal.application.conference.talk.domain.Talks;
 import org.agoncal.application.conference.talk.repository.TalkRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.util.List;
 
 /**
@@ -90,8 +88,8 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @ApiResponses(value = {
         @ApiResponse(code = 404, message = "Rooms not found")}
     )
-    public Response allTalks() {
-        List<Talk> allTalks = talkRepository.findAllTalks();
+    public Response allTalks(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
+        List<Talk> allTalks = talkRepository.findAllTalks(pageNumber);
 
         if (allTalks == null)
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -99,7 +97,30 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
         for (Talk talk : allTalks) {
             talk.addSelfLink(getURIForSelf(talk));
         }
-        return Response.ok(buildEntity(allTalks)).build();
+        Talks talks = new Talks(allTalks);
+        Integer last = talkRepository.getNumberOfPages();
+        talks.addSelfLink(getURIForPage(pageNumber));
+        talks.addFirst(getURIForPage(1));
+        talks.addLast(getURIForPage(last));
+
+        Integer next;
+        if (pageNumber < last)
+            next = pageNumber + 1;
+        else
+            next = last;
+        talks.addNext(getURIForPage(next));
+
+        Integer previous;
+        if (pageNumber == 1)
+            previous = 1;
+        else
+            previous = pageNumber - 1;
+        talks.addPrevious(getURIForPage(previous));
+
+
+        return Response.ok(buildEntities(talks)).build();
+
+
     }
 
     @DELETE
@@ -111,5 +132,11 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     public Response remove(@PathParam("id") String id) {
         talkRepository.delete(id);
         return Response.noContent().build();
+    }
+
+
+    public GenericEntity<Talks> buildEntities(final Talks talks) {
+        return new GenericEntity<Talks>(talks) {
+        };
     }
 }
