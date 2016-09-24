@@ -58,10 +58,10 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
 
     @GET
     @Path("/{id}")
-    @ApiOperation(value = "Finds a room by ID", response = Talk.class)
+    @ApiOperation(value = "Finds a talk by ID", response = Talk.class)
     @ApiResponses(value = {
         @ApiResponse(code = 400, message = "Invalid input"),
-        @ApiResponse(code = 404, message = "Room not found")}
+        @ApiResponse(code = 404, message = "Talk not found")}
     )
     public Response retrieve(@PathParam("id") String id, @Context Request request) {
 

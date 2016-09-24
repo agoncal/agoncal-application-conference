@@ -5,16 +5,14 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.attendee.domain.Attendee;
+import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.util.List;
 
 /**
@@ -79,7 +77,6 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
         if (preconditions == null) {
             attendee.addSelfLink(getURIForSelf(attendee));
             attendee.addCollectionLink(getURIForCollection());
-
             preconditions = Response.ok(attendee).tag(etag);
         }
 
@@ -91,8 +88,8 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @ApiResponses(value = {
         @ApiResponse(code = 404, message = "Attendees not found")}
     )
-    public Response allAttendees() {
-        List<Attendee> allAttendees = attendeeRepository.findAllAttendees();
+    public Response allAttendees(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
+        List<Attendee> allAttendees = attendeeRepository.findAllAttendees(pageNumber);
 
         if (allAttendees == null)
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -100,7 +97,16 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
         for (Attendee attendee : allAttendees) {
             attendee.addSelfLink(getURIForSelf(attendee));
         }
-        return Response.ok(buildEntity(allAttendees)).build();
+
+        Attendees attendees = new Attendees(allAttendees);
+        Integer last = attendeeRepository.getNumberOfPages();
+        attendees.addSelfLink(getURIForPage(pageNumber));
+        attendees.addFirst(getURIForPage(1));
+        attendees.addLast(getURIForPage(last));
+        attendees.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
+        attendees.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
+
+        return Response.ok(buildEntities(attendees)).build();
     }
 
     @DELETE
@@ -112,5 +118,14 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     public Response remove(@PathParam("id") String id) {
         attendeeRepository.delete(id);
         return Response.noContent().build();
+    }
+
+    // ======================================
+    // =           Private methods          =
+    // ======================================
+
+    private GenericEntity<Attendees> buildEntities(final Attendees talks) {
+        return new GenericEntity<Attendees>(talks) {
+        };
     }
 }

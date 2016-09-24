@@ -2,10 +2,7 @@ package org.agoncal.application.conference.attendee.domain;
 
 import org.agoncal.application.conference.commons.domain.LinkableResource;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -18,7 +15,10 @@ import java.util.UUID;
  *         --
  */
 @Entity
-@NamedQuery(name = Attendee.FIND_ALL, query = "SELECT a FROM Attendee a ORDER BY a.lastName DESC")
+@NamedQueries({
+    @NamedQuery(name = Attendee.FIND_ALL, query = "SELECT a FROM Attendee a ORDER BY a.lastName DESC"),
+    @NamedQuery(name = Attendee.COUNT_ALL, query = "SELECT COUNT(a) FROM Attendee a")
+})
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Attendee extends LinkableResource {
@@ -28,6 +28,7 @@ public class Attendee extends LinkableResource {
     // ======================================
 
     public static final String FIND_ALL = "Attendee.findAll";
+    public static final String COUNT_ALL = "Attendee.countAll";
 
     // ======================================
     // =             Attributes             =

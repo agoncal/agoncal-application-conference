@@ -54,7 +54,7 @@
     },
     "/talks/{id}" : {
       "get" : {
-        "summary" : "Finds a room by ID",
+        "summary" : "Finds a talk by ID",
         "description" : "",
         "operationId" : "retrieve",
         "consumes" : [ "application/json" ],
@@ -76,7 +76,7 @@
             "description" : "Invalid input"
           },
           "404" : {
-            "description" : "Room not found"
+            "description" : "Talk not found"
           }
         }
       },

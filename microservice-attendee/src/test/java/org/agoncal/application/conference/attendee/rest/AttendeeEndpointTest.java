@@ -1,6 +1,7 @@
 package org.agoncal.application.conference.attendee.rest;
 
 import org.agoncal.application.conference.attendee.domain.Attendee;
+import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -65,7 +66,7 @@ public class AttendeeEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Attendee.class, AttendeeEndpoint.class, AttendeeRepository.class, Application.class)
+            .addClasses(Attendee.class, Attendees.class, AttendeeEndpoint.class, AttendeeRepository.class, Application.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);
@@ -90,8 +91,10 @@ public class AttendeeEndpointTest {
     public void shouldGetAllAttendees() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 0 talk", 0, jsonObject.getJsonArray("data").size());
     }
-
 
     @Test
     @InSequence(2)
@@ -112,6 +115,16 @@ public class AttendeeEndpointTest {
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/attendees/" + attendeeId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/attendees"));
         assertEquals(TEST_ATTENDEE.getLastName(), jsonObject.getString("lastName"));
+    }
+
+    @Test
+    @InSequence(4)
+    public void shouldCheckCollectionOfAttendees() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
     }
 
     @Test
