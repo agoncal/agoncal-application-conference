@@ -16,7 +16,10 @@ import java.util.UUID;
  *         --
  */
 @Entity
-@NamedQuery(name = Speaker.FIND_ALL, query = "SELECT s FROM Speaker s ORDER BY s.lastName DESC")
+@NamedQueries({
+    @NamedQuery(name = Speaker.FIND_ALL, query = "SELECT s FROM Speaker s ORDER BY s.lastName DESC"),
+    @NamedQuery(name = Speaker.COUNT_ALL, query = "SELECT COUNT(s) FROM Speaker s")
+})
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Speaker extends LinkableResource {
@@ -26,6 +29,7 @@ public class Speaker extends LinkableResource {
     // ======================================
 
     public static final String FIND_ALL = "Speaker.findAll";
+    public static final String COUNT_ALL = "Speaker.countAll";
 
     // ======================================
     // =             Attributes             =

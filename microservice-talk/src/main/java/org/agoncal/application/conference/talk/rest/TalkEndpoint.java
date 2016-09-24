@@ -97,30 +97,16 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
         for (Talk talk : allTalks) {
             talk.addSelfLink(getURIForSelf(talk));
         }
+
         Talks talks = new Talks(allTalks);
         Integer last = talkRepository.getNumberOfPages();
         talks.addSelfLink(getURIForPage(pageNumber));
         talks.addFirst(getURIForPage(1));
         talks.addLast(getURIForPage(last));
-
-        Integer next;
-        if (pageNumber < last)
-            next = pageNumber + 1;
-        else
-            next = last;
-        talks.addNext(getURIForPage(next));
-
-        Integer previous;
-        if (pageNumber == 1)
-            previous = 1;
-        else
-            previous = pageNumber - 1;
-        talks.addPrevious(getURIForPage(previous));
-
+        talks.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
+        talks.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
 
         return Response.ok(buildEntities(talks)).build();
-
-
     }
 
     @DELETE
@@ -134,8 +120,11 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
         return Response.noContent().build();
     }
 
+    // ======================================
+    // =           Private methods          =
+    // ======================================
 
-    public GenericEntity<Talks> buildEntities(final Talks talks) {
+    private GenericEntity<Talks> buildEntities(final Talks talks) {
         return new GenericEntity<Talks>(talks) {
         };
     }

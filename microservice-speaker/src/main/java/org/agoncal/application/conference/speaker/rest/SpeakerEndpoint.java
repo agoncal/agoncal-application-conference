@@ -7,15 +7,13 @@ import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
+import org.agoncal.application.conference.speaker.domain.Speakers;
 import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.util.List;
 
 /**
@@ -50,7 +48,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     // ======================================
 
     @POST
-    @ApiOperation(value = "Adds a new speacker to the conference")
+    @ApiOperation(value = "Adds a new speaker to the conference")
     @ApiResponses(value = {
         @ApiResponse(code = 405, message = "Invalid input")}
     )
@@ -61,7 +59,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
 
     @GET
     @Path("/{id}")
-    @ApiOperation(value = "Finds a room by ID", response = Speaker.class)
+    @ApiOperation(value = "Finds a speaker by ID", response = Speaker.class)
     @ApiResponses(value = {
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Speaker not found")}
@@ -100,8 +98,8 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @ApiResponses(value = {
         @ApiResponse(code = 404, message = "Speakers not found")}
     )
-    public Response allSpeakers() {
-        List<Speaker> allSpeakers = speakerRepository.findAllSpeakers();
+    public Response allSpeakers(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
+        List<Speaker> allSpeakers = speakerRepository.findAllSpeakers(pageNumber);
 
         if (allSpeakers == null)
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -109,7 +107,16 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
         for (Speaker speaker : allSpeakers) {
             speaker.addSelfLink(getURIForSelf(speaker));
         }
-        return Response.ok(buildEntity(allSpeakers)).build();
+
+        Speakers spakers = new Speakers(allSpeakers);
+        Integer last = speakerRepository.getNumberOfPages();
+        spakers.addSelfLink(getURIForPage(pageNumber));
+        spakers.addFirst(getURIForPage(1));
+        spakers.addLast(getURIForPage(last));
+        spakers.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
+        spakers.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
+
+        return Response.ok(buildEntities(spakers)).build();
     }
 
     @DELETE
@@ -121,5 +128,14 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     public Response remove(@PathParam("id") String id) {
         speakerRepository.delete(id);
         return Response.noContent().build();
+    }
+
+    // ======================================
+    // =           Private methods          =
+    // ======================================
+
+    private GenericEntity<Speakers> buildEntities(final Speakers speakers) {
+        return new GenericEntity<Speakers>(speakers) {
+        };
     }
 }

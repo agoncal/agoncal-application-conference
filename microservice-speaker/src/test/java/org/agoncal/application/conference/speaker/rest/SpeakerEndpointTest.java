@@ -2,6 +2,7 @@ package org.agoncal.application.conference.speaker.rest;
 
 import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
+import org.agoncal.application.conference.speaker.domain.Speakers;
 import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -66,7 +67,7 @@ public class SpeakerEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Speaker.class, AcceptedTalk.class, SpeakerEndpoint.class, SpeakerRepository.class, Application.class)
+            .addClasses(Speaker.class, Speakers.class, AcceptedTalk.class, SpeakerEndpoint.class, SpeakerRepository.class, Application.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);
@@ -91,8 +92,10 @@ public class SpeakerEndpointTest {
     public void shouldGetAllSpeakers() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 0 talk", 0, jsonObject.getJsonArray("data").size());
     }
-
 
     @Test
     @InSequence(2)
@@ -104,7 +107,7 @@ public class SpeakerEndpointTest {
 
     @Test
     @InSequence(3)
-    public void shouldGetAlreadyCreatedRoom() throws Exception {
+    public void shouldGetAlreadyCreatedSpeaker() throws Exception {
         Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
@@ -117,7 +120,17 @@ public class SpeakerEndpointTest {
 
     @Test
     @InSequence(4)
-    public void shouldRemoveRoom() throws Exception {
+    public void shouldCheckCollectionOfSpeakers() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
+    }
+
+    @Test
+    @InSequence(4)
+    public void shouldRemoveSpeaker() throws Exception {
         Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();

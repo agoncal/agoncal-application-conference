@@ -38,13 +38,11 @@ public class TalkRepository {
         TypedQuery<Talk> query = em.createNamedQuery(Talk.FIND_ALL, Talk.class);
         query.setFirstResult((pageNumber - 1) * PAGE_SIZE);
         query.setMaxResults(PAGE_SIZE);
-
         return query.getResultList();
     }
 
     public Integer getNumberOfPages() {
         TypedQuery<Long> query = em.createNamedQuery(Talk.COUNT_ALL, Long.class);
-
         Long countResult = query.getSingleResult();
         return (Integer) (int) ((countResult / PAGE_SIZE) + 1);
     }

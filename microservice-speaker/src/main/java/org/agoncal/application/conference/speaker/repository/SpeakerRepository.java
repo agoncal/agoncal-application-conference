@@ -8,6 +8,8 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static org.agoncal.application.conference.commons.domain.LinkableResources.PAGE_SIZE;
+
 /**
  * @author Antonio Goncalves
  *         http://www.antoniogoncalves.org
@@ -32,9 +34,17 @@ public class SpeakerRepository {
         return speaker;
     }
 
-    public List<Speaker> findAllSpeakers() {
+    public List<Speaker> findAllSpeakers(Integer pageNumber) {
         TypedQuery<Speaker> query = em.createNamedQuery(Speaker.FIND_ALL, Speaker.class);
+        query.setFirstResult((pageNumber - 1) * PAGE_SIZE);
+        query.setMaxResults(PAGE_SIZE);
         return query.getResultList();
+    }
+
+    public Integer getNumberOfPages() {
+        TypedQuery<Long> query = em.createNamedQuery(Speaker.COUNT_ALL, Long.class);
+        Long countResult = query.getSingleResult();
+        return (Integer) (int) ((countResult / PAGE_SIZE) + 1);
     }
 
     public Speaker findById(String id) {

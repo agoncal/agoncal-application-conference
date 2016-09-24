@@ -1,4 +1,4 @@
-package org.agoncal.application.conference.talk.domain;
+package org.agoncal.application.conference.speaker.domain;
 
 import org.agoncal.application.conference.commons.domain.LinkableResources;
 
@@ -14,13 +14,13 @@ import java.util.List;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Talks extends LinkableResources<Talk> {
+public class Speakers extends LinkableResources<Speaker> {
 
     // ======================================
     // =            Constructors            =
     // ======================================
 
-    public Talks(List<Talk> talks) {
-        super(talks);
+    public Speakers(List<Speaker> speakers) {
+        super(speakers);
     }
 }
