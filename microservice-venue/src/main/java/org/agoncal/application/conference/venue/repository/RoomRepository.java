@@ -32,13 +32,13 @@ public class RoomRepository {
     @PostConstruct
     private void intializeRoomMapWithDummyData() {
         roomMap = new HashMap<>();
-        roomMap.put("room8", new Room("room8", "Room 8", 696, "theatre"));
+        roomMap.put("room3", new Room("room3", "Room 3", 300, "theatre"));
+        roomMap.put("room4", new Room("room4", "Room 4", 347, "theatre"));
         roomMap.put("room5", new Room("room5", "Room 5", 641, "theatre"));
-        roomMap.put("room9", new Room("room9", "Room 9", 393, "theatre"));
         roomMap.put("room6", new Room("room6", "Room 6", 372, "theatre"));
         roomMap.put("room7", new Room("room7", "Room 7", 370, "theatre"));
-        roomMap.put("room4", new Room("room4", "Room 4", 347, "theatre"));
-        roomMap.put("room3", new Room("room3", "Room 3", 300, "theatre"));
+        roomMap.put("room8", new Room("room8", "Room 8", 696, "theatre"));
+        roomMap.put("room9", new Room("room9", "Room 9", 393, "theatre"));
         roomMap.put("room10", new Room("room10", "Room 10", 286, "theatre"));
         roomMap.put("bof1", new Room("bof1", "BOF 1", 70, "classroom"));
         roomMap.put("bof2", new Room("bof2", "BOF 2", 70, "classroom"));

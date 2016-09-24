@@ -111,7 +111,7 @@ public class SessionEndpointTest {
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(sessionId, jsonObject.getString("id"));
-        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 11 links", 11, jsonObject.getJsonObject("links").size());
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/sessions/" + sessionId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/sessions"));
         assertEquals(TEST_TALK.getDay(), jsonObject.getString("day"));

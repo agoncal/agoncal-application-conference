@@ -77,6 +77,10 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         if (preconditions == null) {
             session.addSelfLink(getURIForSelf(session));
             session.addCollectionLink(getURIForCollection());
+            session.addLink(session.getDay(), getUriBuilderForRoot().path(session.getDay()).build());
+            for (int i = 3; i < 11; i++) {
+                session.addLink("room" + i, getUriBuilderForRoot().path(session.getDay()).path("room" + i).build());
+            }
             preconditions = Response.ok(session).tag(etag);
         }
 
@@ -233,16 +237,26 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         List<Session> allSessions = sessionRepository.findAllSessionsByDay(day);
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
+            session.addCollectionLink(getURIForCollection());
+            session.addLink(day, getUriBuilderForRoot().path(day).build());
         }
-        return Response.ok(buildEntity(allSessions)).build();
+
+        Sessions sessions = new Sessions(allSessions);
+        sessions.addSelfLink(getUriBuilderForRoot().path(day).build());
+        return Response.ok(buildEntities(sessions)).build();
     }
 
     private Response allSessionsByDayAndRoom(String day, String roomId) {
         List<Session> allSessions = sessionRepository.findAllSessionsByDayAndRoom(day, roomId);
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
+            session.addCollectionLink(getURIForCollection());
+            session.addLink(day, getUriBuilderForRoot().path(day).path(roomId).build());
         }
-        return Response.ok(buildEntity(allSessions)).build();
+
+        Sessions sessions = new Sessions(allSessions);
+        sessions.addSelfLink(getUriBuilderForRoot().path(day).path(roomId).build());
+        return Response.ok(buildEntities(sessions)).build();
     }
 
     private GenericEntity<Sessions> buildEntities(final Sessions talks) {

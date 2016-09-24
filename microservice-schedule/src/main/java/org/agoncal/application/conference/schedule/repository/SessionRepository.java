@@ -2,7 +2,6 @@ package org.agoncal.application.conference.schedule.repository;
 
 
 import org.agoncal.application.conference.schedule.domain.Session;
-import org.agoncal.application.conference.schedule.domain.Talk;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
