@@ -29,8 +29,8 @@ import java.io.StringReader;
 import java.net.URI;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
-import static org.agoncal.application.conference.commons.domain.LinkableResource.COLLECTION;
-import static org.agoncal.application.conference.commons.domain.LinkableResource.SELF;
+import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
+import static org.agoncal.application.conference.commons.domain.Links.SELF;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
