@@ -1,5 +1,6 @@
 package org.agoncal.application.conference.attendee.domain;
 
+import org.agoncal.application.conference.attendee.util.PasswordUtils;
 import org.agoncal.application.conference.commons.domain.LinkableResource;
 
 import javax.persistence.*;
@@ -38,6 +39,10 @@ public class Attendee extends LinkableResource {
     private String id;
     private String lastName;
     private String firstName;
+    @Column(length = 10, nullable = false)
+    private String login;
+    @Column(length = 256, nullable = false)
+    private String password;
     private String twitter;
     private String avatarUrl;
     private String company;
@@ -52,6 +57,14 @@ public class Attendee extends LinkableResource {
     public Attendee(String id, String lastName) {
         this.id = id;
         this.lastName = lastName;
+    }
+
+    public Attendee(String id, String lastName, String firstName, String login, String password) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.login = login;
+        this.password = password;
     }
 
     public Attendee(String id, String lastName, String firstName, String twitter, String avatarUrl, String company) {
@@ -69,7 +82,8 @@ public class Attendee extends LinkableResource {
 
     @PrePersist
     private void setUUID() {
-        this.id = UUID.randomUUID().toString().replace("-", "");
+        id = UUID.randomUUID().toString().replace("-", "");
+        password = PasswordUtils.digestPassword(password);
     }
 
     // ======================================
@@ -98,6 +112,22 @@ public class Attendee extends LinkableResource {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTwitter() {

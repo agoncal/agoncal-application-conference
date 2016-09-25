@@ -3,6 +3,7 @@ package org.agoncal.application.conference.attendee.rest;
 import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
+import org.agoncal.application.conference.attendee.util.PasswordUtils;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -42,7 +43,7 @@ public class AttendeeEndpointTest {
     // =             Attributes             =
     // ======================================
 
-    private static final Attendee TEST_ATTENDEE = new Attendee("id", "last name");
+    private static final Attendee TEST_ATTENDEE = new Attendee("id", "last name", "first name", "login", "password");
     private static String attendeeId;
     private Client client;
     private WebTarget webTarget;
@@ -66,7 +67,7 @@ public class AttendeeEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Attendee.class, Attendees.class, AttendeeEndpoint.class, AttendeeRepository.class, Application.class)
+            .addClasses(Attendee.class, Attendees.class, AttendeeEndpoint.class, AttendeeRepository.class, Application.class, PasswordUtils.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);

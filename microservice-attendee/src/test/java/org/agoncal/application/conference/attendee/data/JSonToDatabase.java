@@ -1,5 +1,7 @@
 package org.agoncal.application.conference.attendee.data;
 
+import org.agoncal.application.conference.attendee.util.PasswordUtils;
+
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -8,8 +10,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Antonio Goncalves
@@ -27,11 +27,14 @@ public class JSonToDatabase {
 
         JsonArray results = rdr.readArray();
         for (JsonObject result : results.getValuesAs(JsonObject.class)) {
-            attendeeCreateSQLStatement = "INSERT INTO Attendee (id, firstName, lastName, company, twitter, avatarUrl) values (";
+            attendeeCreateSQLStatement = "INSERT INTO Attendee (id, login, firstName, lastName, password, company, twitter, avatarUrl) values (";
+            String login = getLogin(result);
 
             attendeeCreateSQLStatement += "'" + getSqlValue(result, "uuid").substring(1, 38).concat("att") + "', ";
+            attendeeCreateSQLStatement += "'" + login + "', ";
             attendeeCreateSQLStatement += getSqlValue(result, "firstName") + ", ";
             attendeeCreateSQLStatement += getSqlValue(result, "lastName") + ", ";
+            attendeeCreateSQLStatement += "'" + PasswordUtils.digestPassword(login) + "', ";
             attendeeCreateSQLStatement += getSqlValue(result, "company") + ", ";
             attendeeCreateSQLStatement += getSqlValue(result, "twitter") + ", ";
             attendeeCreateSQLStatement += getSqlValue(result, "avatarURL") + ", ";
@@ -39,6 +42,13 @@ public class JSonToDatabase {
             attendeeCreateSQLStatement += ");";
             System.out.println(attendeeCreateSQLStatement);
         }
+    }
+
+    private static String getLogin(JsonObject result) {
+        String firstName = result.getString("firstName");
+        String lastName = result.getString("lastName");
+        String name = firstName.trim().toLowerCase().concat(lastName.trim().toLowerCase()).replaceAll("[ \\t\\r\\n\\-\\+\\.\\^:,'“”šäöéá]", "");
+        return name.substring(0, name.length() > 10 ? 10 : name.length());
     }
 
     private static String getSqlValue(JsonObject jsonObject, String key) {
