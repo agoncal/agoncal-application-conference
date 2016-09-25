@@ -1,13 +1,13 @@
 package org.agoncal.application.conference.schedule.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -26,8 +26,6 @@ public class Talk {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
     private String title;
     private String talkType;
     private String track;
@@ -90,11 +88,6 @@ public class Talk {
         this.speakers = speakers;
     }
 
-    public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
-        links.put(rel, uri);
-    }
-
     // ======================================
     // =   Methods hash, equals, toString   =
     // ======================================
@@ -116,7 +109,6 @@ public class Talk {
     public String toString() {
         return "Talk{" +
             "id='" + id + '\'' +
-            ", links=" + links +
             ", title='" + title + '\'' +
             ", talkType='" + talkType + '\'' +
             ", track='" + track + '\'' +

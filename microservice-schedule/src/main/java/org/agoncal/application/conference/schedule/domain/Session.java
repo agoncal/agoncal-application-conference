@@ -179,7 +179,7 @@ public class Session extends LinkableResource {
 
     @Override
     public String toString() {
-        return "Schedule{" +
+        return "Session{" +
             "id='" + id + '\'' +
             ", links=" + getLinks() +
             ", notAllocated=" + notAllocated +

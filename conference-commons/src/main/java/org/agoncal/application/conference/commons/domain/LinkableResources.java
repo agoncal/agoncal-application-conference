@@ -52,6 +52,10 @@ public class LinkableResources<R extends LinkableResource> {
         addLink(SELF, uri);
     }
 
+    public void addCollectionLink(URI uri) {
+        addLink(COLLECTION, uri);
+    }
+
     public void addFirst(URI uri) {
         addLink(FIRST, uri);
     }
