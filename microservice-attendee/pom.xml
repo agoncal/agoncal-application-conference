@@ -28,7 +28,7 @@
                             <springmvc>false</springmvc>
                             <locations>org.agoncal.application.conference.attendee.rest</locations>
                             <schemes>http,https</schemes>
-                            <host>localhost:8083</host>
+                            <host>localhost:8081</host>
                             <basePath>/api</basePath>
                             <info>
                                 <title>Attendee</title>
@@ -103,7 +103,7 @@
                         <artifactId>wildfly-swarm-plugin</artifactId>
                         <configuration>
                             <properties>
-                                <swarm.http.port>8083</swarm.http.port>
+                                <swarm.http.port>8081</swarm.http.port>
                                 <swarm.context.path>/</swarm.context.path>
                             </properties>
                         </configuration>

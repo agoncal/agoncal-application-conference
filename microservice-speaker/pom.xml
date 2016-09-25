@@ -103,7 +103,7 @@
                         <artifactId>wildfly-swarm-plugin</artifactId>
                         <configuration>
                             <properties>
-                                <swarm.http.port>8083</swarm.http.port>
+                                <swarm.http.port>8084</swarm.http.port>
                                 <swarm.context.path>/</swarm.context.path>
                             </properties>
                         </configuration>

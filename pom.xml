@@ -303,12 +303,7 @@
                     <plugin>
                         <groupId>org.wildfly.swarm</groupId>
                         <artifactId>wildfly-swarm-plugin</artifactId>
-                        <configuration>
-                            <properties>
-                                <swarm.http.port>8081</swarm.http.port>
-                                <swarm.context.path>/</swarm.context.path>
-                            </properties>
-                        </configuration>
+                        <version>${version.wildfly-swarm}</version>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
