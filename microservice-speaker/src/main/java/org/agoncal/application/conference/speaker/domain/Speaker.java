@@ -48,7 +48,7 @@ public class Speaker extends LinkableResource {
     private String avatarUrl;
     private String company;
     private String blog;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<AcceptedTalk> acceptedTalks;
 
     // ======================================
@@ -58,13 +58,7 @@ public class Speaker extends LinkableResource {
     public Speaker() {
     }
 
-    public Speaker(String id, String lastName) {
-        this.id = id;
-        this.lastName = lastName;
-    }
-
-    public Speaker(String id, String lastName, String firstName, String bio, String language, String twitter, String avatarUrl, String company, String blog) {
-        this.id = id;
+    public Speaker(String lastName, String firstName, String bio, String language, String twitter, String avatarUrl, String company, String blog) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.bio = bio;

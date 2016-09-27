@@ -28,10 +28,12 @@ import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
 import java.net.URI;
+import java.util.Arrays;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
+import static org.agoncal.application.conference.commons.domain.Links.SUMMARY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -43,7 +45,8 @@ public class SpeakerEndpointTest {
     // =             Attributes             =
     // ======================================
 
-    private static final Speaker TEST_SPEAKER = new Speaker("id", "last name");
+    private static final Speaker TEST_SPEAKER = new Speaker("last name", "first name", "bio", "en", "twitter", "avatar url", "company", "blog");
+    private static final AcceptedTalk TEST_ACCEPTED_TALK = new AcceptedTalk("id", "title", "en");
     private static String speakerId;
     private Client client;
     private WebTarget webTarget;
@@ -100,6 +103,7 @@ public class SpeakerEndpointTest {
     @Test
     @InSequence(2)
     public void shouldCreateSpeaker() throws Exception {
+        TEST_SPEAKER.setAcceptedTalks(Arrays.asList(TEST_ACCEPTED_TALK));
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_SPEAKER, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         speakerId = getSpeakerId(response);
@@ -111,11 +115,25 @@ public class SpeakerEndpointTest {
         Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 11 attributes", 11, jsonObject.size());
         assertEquals(speakerId, jsonObject.getString("id"));
-        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 3 links", 3, jsonObject.getJsonObject("links").size());
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/speakers/" + speakerId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/speakers"));
+        assertTrue(jsonObject.getJsonObject("links").getString(SUMMARY).contains("/api/speakers"));
         assertEquals(TEST_SPEAKER.getLastName(), jsonObject.getString("lastName"));
+        assertEquals(TEST_SPEAKER.getFirstName(), jsonObject.getString("firstName"));
+        assertEquals(TEST_SPEAKER.getBio(), jsonObject.getString("bio"));
+        assertEquals(TEST_SPEAKER.getLanguage(), jsonObject.getString("language"));
+        assertEquals(TEST_SPEAKER.getTwitter(), jsonObject.getString("twitter"));
+        assertEquals(TEST_SPEAKER.getAvatarUrl(), jsonObject.getString("avatarUrl"));
+        assertEquals(TEST_SPEAKER.getCompany(), jsonObject.getString("company"));
+        assertEquals(TEST_SPEAKER.getBlog(), jsonObject.getString("blog"));
+        assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("acceptedTalks").size());
+        assertEquals(TEST_ACCEPTED_TALK.getId(), jsonObject.getJsonArray("acceptedTalks").getJsonObject(0).getString("id"));
+        assertEquals(TEST_ACCEPTED_TALK.getTitle(), jsonObject.getJsonArray("acceptedTalks").getJsonObject(0).getString("title"));
+        assertEquals(TEST_ACCEPTED_TALK.getLanguage(), jsonObject.getJsonArray("acceptedTalks").getJsonObject(0).getString("language"));
+        assertEquals("Should have 1 link", 1, jsonObject.getJsonArray("acceptedTalks").getJsonObject(0).getJsonObject("links").size());
     }
 
     @Test
