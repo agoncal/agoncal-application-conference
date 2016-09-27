@@ -1,6 +1,9 @@
 package org.agoncal.application.conference.schedule.rest;
 
+import org.agoncal.application.conference.schedule.domain.Room;
 import org.agoncal.application.conference.schedule.domain.Session;
+import org.agoncal.application.conference.schedule.domain.Speaker;
+import org.agoncal.application.conference.schedule.domain.Talk;
 import org.agoncal.application.conference.schedule.repository.SessionRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -41,7 +44,10 @@ public class SessionEndpointTest {
     // =             Attributes             =
     // ======================================
 
-    private static final Session TEST_TALK = new Session("id", "monday");
+    private static final Speaker TEST_SPEAKER = new Speaker("idspeaker", "name");
+    private static final Room TEST_ROOM = new Room("idroom");
+    private static final Talk TEST_TALK = new Talk("idtalk", "title", "talkType", "track", TEST_SPEAKER);
+    private static final Session TEST_SESSION = new Session(true, true, 12345L, "12345", 23456L, "23456", "monday", TEST_ROOM, TEST_TALK);
     private static String sessionId;
     private Client client;
     private WebTarget webTarget;
@@ -99,7 +105,7 @@ public class SessionEndpointTest {
     @Test
     @InSequence(2)
     public void shouldCreateSession() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_TALK, APPLICATION_JSON_TYPE));
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_SESSION, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         sessionId = getSpeakerId(response);
     }
@@ -110,11 +116,25 @@ public class SessionEndpointTest {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals(sessionId, jsonObject.getString("id"));
         assertEquals("Should have 11 links", 11, jsonObject.getJsonObject("links").size());
+        assertEquals(sessionId, jsonObject.getString("id"));
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/sessions/" + sessionId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/sessions"));
-        assertEquals(TEST_TALK.getDay(), jsonObject.getString("day"));
+        assertEquals(TEST_SESSION.getNotAllocated(), jsonObject.getBoolean("notAllocated"));
+        assertEquals(TEST_SESSION.getIsaBreak(), jsonObject.getBoolean("isaBreak"));
+        assertEquals(TEST_SESSION.getFromTime(), jsonObject.getString("fromTime"));
+        assertEquals(TEST_SESSION.getFromTimeMillis(), new Long(jsonObject.getInt("fromTimeMillis")));
+        assertEquals(TEST_SESSION.getToTime(), jsonObject.getString("toTime"));
+        assertEquals(TEST_SESSION.getToTimeMillis(), new Long(jsonObject.getInt("toTimeMillis")));
+        assertEquals(TEST_SESSION.getDay(), jsonObject.getString("day"));
+        assertEquals(TEST_ROOM.getId(), jsonObject.getJsonObject("room").getString("id"));
+        assertEquals("Should have 1 link", 1, jsonObject.getJsonObject("room").getJsonObject("links").size());
+        assertEquals(TEST_TALK.getId(), jsonObject.getJsonObject("talk").getString("id"));
+        assertEquals(TEST_TALK.getTitle(), jsonObject.getJsonObject("talk").getString("title"));
+        assertEquals(TEST_TALK.getTalkType(), jsonObject.getJsonObject("talk").getString("talkType"));
+        assertEquals(TEST_TALK.getTrack(), jsonObject.getJsonObject("talk").getString("track"));
+        assertEquals("Should have 1 link", 1, jsonObject.getJsonObject("talk").getJsonObject("links").size());
+        assertEquals("Should have 1 speaker", 1, jsonObject.getJsonObject("talk").getJsonArray("speakers").size());
     }
 
     @Test

@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 import java.util.UUID;
 
+import static javax.persistence.CascadeType.PERSIST;
+
 /**
  * @author Antonio Goncalves
  *         http://www.antoniogoncalves.org
@@ -49,9 +51,9 @@ public class Session extends LinkableResource {
     private Long toTimeMillis;
     private String toTime;
     private String day;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = PERSIST)
     private Room room;
-    @ManyToOne
+    @ManyToOne(cascade = PERSIST)
     @XmlElement(nillable = true)
     private Talk talk;
 
@@ -62,9 +64,16 @@ public class Session extends LinkableResource {
     public Session() {
     }
 
-    public Session(String id, String day) {
-        this.id = id;
+    public Session(Boolean notAllocated, Boolean isaBreak, Long fromTimeMillis, String fromTime, Long toTimeMillis, String toTime, String day, Room room, Talk talk) {
+        this.notAllocated = notAllocated;
+        this.isaBreak = isaBreak;
+        this.fromTimeMillis = fromTimeMillis;
+        this.fromTime = fromTime;
+        this.toTimeMillis = toTimeMillis;
+        this.toTime = toTime;
         this.day = day;
+        this.room = room;
+        this.talk = talk;
     }
 
     // ======================================

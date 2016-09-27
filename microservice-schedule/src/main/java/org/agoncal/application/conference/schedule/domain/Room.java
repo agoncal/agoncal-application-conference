@@ -1,5 +1,7 @@
 package org.agoncal.application.conference.schedule.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ import java.util.Objects;
 @Table(name = "sc_room")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Room {
+public class Room extends LinkableResource {
 
     // ======================================
     // =             Attributes             =
@@ -29,8 +31,6 @@ public class Room {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
 
     // ======================================
     // =            Constructors            =
@@ -53,13 +53,6 @@ public class Room {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void addLink(String rel, URI uri) {
-        if (links == null)
-            links = new HashMap<>();
-        if (!links.containsKey(rel))
-            links.put(rel, uri);
     }
 
     // ======================================

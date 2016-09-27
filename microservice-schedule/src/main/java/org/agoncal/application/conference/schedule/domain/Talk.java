@@ -1,14 +1,15 @@
 package org.agoncal.application.conference.schedule.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+
+import static javax.persistence.CascadeType.PERSIST;
 
 /**
  * @author Antonio Goncalves
@@ -19,7 +20,7 @@ import java.util.Objects;
 @Table(name = "sc_talk")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Talk {
+public class Talk extends LinkableResource {
 
     // ======================================
     // =             Attributes             =
@@ -27,12 +28,10 @@ public class Talk {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
     private String title;
     private String talkType;
     private String track;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = PERSIST)
     private List<Speaker> speakers;
 
     // ======================================
@@ -42,9 +41,12 @@ public class Talk {
     public Talk() {
     }
 
-    public Talk(String id, String title) {
+    public Talk(String id, String title, String talkType, String track, Speaker... speakers) {
         this.id = id;
         this.title = title;
+        this.talkType = talkType;
+        this.track = track;
+        this.speakers = Arrays.asList(speakers);
     }
 
     // ======================================
@@ -89,13 +91,6 @@ public class Talk {
 
     public void setSpeakers(List<Speaker> speakers) {
         this.speakers = speakers;
-    }
-
-    public void addLink(String rel, URI uri) {
-        if (links == null)
-            links = new HashMap<>();
-        if (!links.containsKey(rel))
-            links.put(rel, uri);
     }
 
     // ======================================
