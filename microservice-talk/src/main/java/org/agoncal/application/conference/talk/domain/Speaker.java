@@ -1,5 +1,7 @@
 package org.agoncal.application.conference.talk.domain;
 
+import org.agoncal.application.conference.commons.domain.LinkableResource;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ import java.util.Objects;
 @Table(name = "t_speaker")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Speaker {
+public class Speaker extends LinkableResource {
 
     // ======================================
     // =             Attributes             =
@@ -29,8 +31,6 @@ public class Speaker {
 
     @Id
     private String id;
-    @Transient
-    private Map<String, URI> links;
     private String name;
 
     // ======================================
@@ -63,13 +63,6 @@ public class Speaker {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void addLink(String rel, URI uri) {
-        if (links == null)
-            links = new HashMap<>();
-        if (!links.containsKey(rel))
-            links.put(rel, uri);
     }
 
     // ======================================

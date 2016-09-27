@@ -28,6 +28,7 @@ import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
 import java.net.URI;
+import java.util.Arrays;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
@@ -43,7 +44,8 @@ public class TalkEndpointTest {
     // =             Attributes             =
     // ======================================
 
-    private static final Talk TEST_TALK = new Talk("id", "last name", "language");
+    private static final Talk TEST_TALK = new Talk("title", "language", "talk type", "track", "summary");
+    private static final Speaker TEST_SPEAKER = new Speaker("id", "name");
     private static String talkId;
     private Client client;
     private WebTarget webTarget;
@@ -100,6 +102,7 @@ public class TalkEndpointTest {
     @Test
     @InSequence(2)
     public void shouldCreateTalk() throws Exception {
+        TEST_TALK.setSpeakers(Arrays.asList(TEST_SPEAKER));
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_TALK, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         talkId = getSpeakerId(response);
@@ -111,11 +114,20 @@ public class TalkEndpointTest {
         Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 8 attributes", 8, jsonObject.size());
         assertEquals(talkId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/talks/" + talkId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/talks"));
         assertEquals(TEST_TALK.getTitle(), jsonObject.getString("title"));
+        assertEquals(TEST_TALK.getLanguage(), jsonObject.getString("language"));
+        assertEquals(TEST_TALK.getTalkType(), jsonObject.getString("talkType"));
+        assertEquals(TEST_TALK.getTrack(), jsonObject.getString("track"));
+        assertEquals(TEST_TALK.getSummary(), jsonObject.getString("summary"));
+        assertEquals("Should have 1 speaker", 1, jsonObject.getJsonArray("speakers").size());
+        assertEquals(TEST_SPEAKER.getId(), jsonObject.getJsonArray("speakers").getJsonObject(0).getString("id"));
+        assertEquals(TEST_SPEAKER.getName(), jsonObject.getJsonArray("speakers").getJsonObject(0).getString("name"));
+        assertEquals("Should have 1 link", 1, jsonObject.getJsonArray("speakers").getJsonObject(0).getJsonObject("links").size());
     }
 
     @Test

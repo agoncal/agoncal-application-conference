@@ -44,7 +44,7 @@ public class Talk extends LinkableResource {
     private String track;
     @Column(length = 5000)
     private String summary;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Speaker> speakers;
 
     // ======================================
@@ -54,10 +54,12 @@ public class Talk extends LinkableResource {
     public Talk() {
     }
 
-    public Talk(String id, String title, String language) {
-        this.id = id;
+    public Talk(String title, String language, String talkType, String track, String summary) {
         this.title = title;
         this.language = language;
+        this.talkType = talkType;
+        this.track = track;
+        this.summary = summary;
     }
 
     // ======================================
