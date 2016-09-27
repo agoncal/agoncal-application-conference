@@ -2,6 +2,7 @@ package org.agoncal.application.conference.talk.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,6 +18,7 @@ import java.util.Objects;
  *         --
  */
 @Entity
+@Table(name = "t_speaker")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Speaker {

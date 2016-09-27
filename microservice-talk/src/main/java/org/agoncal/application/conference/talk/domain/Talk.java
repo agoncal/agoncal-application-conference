@@ -16,6 +16,7 @@ import java.util.UUID;
  *         --
  */
 @Entity
+@Table(name = "t_talk")
 @NamedQueries({
     @NamedQuery(name = Talk.FIND_ALL, query = "SELECT t FROM Talk t ORDER BY t.title DESC"),
     @NamedQuery(name = Talk.COUNT_ALL, query = "SELECT COUNT(t) FROM Talk t")
@@ -118,6 +119,14 @@ public class Talk extends LinkableResource {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public List<Speaker> getSpeakers() {
+        return speakers;
+    }
+
+    public void setSpeakers(List<Speaker> speakers) {
+        this.speakers = speakers;
     }
 
     // ======================================

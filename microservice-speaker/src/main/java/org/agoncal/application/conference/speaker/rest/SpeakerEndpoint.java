@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.domain.Links;
+import org.agoncal.application.conference.commons.registry.Talk;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
@@ -15,6 +17,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
+
+import static org.agoncal.application.conference.commons.domain.Links.SELF;
 
 /**
  * @author Antonio Goncalves
@@ -34,6 +38,9 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
 
     @Inject
     private SpeakerRepository speakerRepository;
+
+    @Inject @Talk
+    private UriBuilder uriTalk;
 
     // ======================================
     // =            Constructors            =
@@ -64,7 +71,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Speaker not found")}
     )
-    public Response retrieve(@PathParam("id") String id, @DefaultValue("false") @QueryParam("expand") boolean expand, @Context Request request) {
+    public Response retrieve(@PathParam("id") String id, @DefaultValue("true") @QueryParam("expand") boolean expand, @Context Request request) {
 
         Speaker speaker = speakerRepository.findById(id);
 
@@ -78,9 +85,10 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
         if (preconditions == null) {
             speaker.addSelfLink(getURIForSelf(speaker));
             speaker.addCollectionLink(getURIForCollection());
+            speaker.addLink(Links.SUMMARY, getURIBuilderForSelf(speaker).queryParam("expand", false).build());
             if (expand) {
                 for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
-                    acceptedTalk.addLink("self", getUriInfo().getAbsolutePath().resolve(acceptedTalk.getId()));
+                    acceptedTalk.addLink(SELF, uriTalk.path(acceptedTalk.getId()).build());
                 }
             } else {
                 speaker.setBio(null);
@@ -106,6 +114,9 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
 
         for (Speaker speaker : allSpeakers) {
             speaker.addSelfLink(getURIForSelf(speaker));
+            speaker.addLink(Links.SUMMARY, getURIBuilderForSelf(speaker).queryParam("expand", false).build());
+            speaker.setBio(null);
+            speaker.setAcceptedTalks(null);
         }
 
         Speakers spakers = new Speakers(allSpeakers);

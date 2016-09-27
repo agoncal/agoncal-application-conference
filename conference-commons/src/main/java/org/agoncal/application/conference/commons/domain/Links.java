@@ -17,4 +17,5 @@ public interface Links {
     String PREVIOUS = "prev";
     String NEXT = "next";
     String LAST = "last";
+    String SUMMARY = "summary";
 }

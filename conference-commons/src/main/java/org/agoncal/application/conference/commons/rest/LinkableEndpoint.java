@@ -44,6 +44,10 @@ public abstract class LinkableEndpoint<E extends Identifiable> {
         return uriInfo.getBaseUriBuilder().path(type).path(identiable.getId()).build();
     }
 
+    public UriBuilder getURIBuilderForSelf(E identiable) {
+        return uriInfo.getBaseUriBuilder().path(type).path(identiable.getId());
+    }
+
     public URI getURIForCollection() {
         return uriInfo.getBaseUriBuilder().path(type).build();
     }

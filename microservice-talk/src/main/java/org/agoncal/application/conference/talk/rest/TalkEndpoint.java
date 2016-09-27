@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
+import org.agoncal.application.conference.talk.domain.Speaker;
 import org.agoncal.application.conference.talk.domain.Talk;
 import org.agoncal.application.conference.talk.domain.Talks;
 import org.agoncal.application.conference.talk.repository.TalkRepository;
@@ -14,6 +15,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
+
+import static org.agoncal.application.conference.commons.domain.Links.SELF;
 
 /**
  * @author Antonio Goncalves
@@ -33,6 +36,9 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
 
     @Inject
     private TalkRepository talkRepository;
+
+    @Inject @org.agoncal.application.conference.commons.registry.Speaker
+    private UriBuilder uriSpeaker;
 
     // ======================================
     // =            Constructors            =
@@ -77,6 +83,11 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
         if (preconditions == null) {
             talk.addSelfLink(getURIForSelf(talk));
             talk.addCollectionLink(getURIForCollection());
+
+            for(Speaker speaker: talk.getSpeakers()) {
+                speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+            }
+
             preconditions = Response.ok(talk).tag(etag);
         }
 
@@ -96,6 +107,10 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
 
         for (Talk talk : allTalks) {
             talk.addSelfLink(getURIForSelf(talk));
+
+            for(Speaker speaker: talk.getSpeakers()) {
+                speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+            }
         }
 
         Talks talks = new Talks(allTalks);

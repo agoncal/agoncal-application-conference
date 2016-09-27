@@ -19,9 +19,9 @@ import java.util.Map;
 public class JSonToDatabase {
 
     /**
-     * create table Talk (id varchar(255) not null, language varchar(255), summary varchar(255), talkType varchar(255), title varchar(255), track varchar(255), primary key (id))
-     * create table Speaker (id varchar(255) not null, name varchar(255), primary key (id))
-     * create table Talk_Speaker (Talk_id varchar(255) not null, speakers_id varchar(255) not null)
+     * create table t_speaker (id varchar(255) not null, name varchar(255), primary key (id))
+     * create table t_talk (id varchar(255) not null, language varchar(255), summary varchar(5000), talkType varchar(255), title varchar(255), track varchar(255), primary key (id))
+     * create table t_talk_t_speaker (Talk_id varchar(255) not null, speakers_id varchar(255) not null)
      */
 
     private static String talkCreateSQLStatement;
@@ -37,7 +37,7 @@ public class JSonToDatabase {
         JsonArray results = rdr.readArray();
         for (JsonObject talk : results.getValuesAs(JsonObject.class)) {
 
-            talkCreateSQLStatement = "INSERT INTO Talk (id, title, language, talkType, track, summary) values (";
+            talkCreateSQLStatement = "INSERT INTO T_Talk (id, title, language, talkType, track, summary) values (";
             talkCreateSQLStatement += "'" + talk.getString("id") + "', ";
             talkCreateSQLStatement += getSqlValue(talk, "title") + ", ";
             talkCreateSQLStatement += getSqlValue(talk, "lang") + ", ";
@@ -54,7 +54,7 @@ public class JSonToDatabase {
                 if (!speakersAlreadyExist.containsKey(speaker.getJsonObject("link").getString("href"))) {
 
                     speakersAlreadyExist.put(speaker.getJsonObject("link").getString("href"), "exists");
-                    speakerCreateSQLStatement = "INSERT INTO Speaker (id, name) values (";
+                    speakerCreateSQLStatement = "INSERT INTO T_Speaker (id, name) values (";
                     speakerCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href")) + "', ";
                     speakerCreateSQLStatement += getSqlValue(speaker, "name");
                     speakerCreateSQLStatement += ");";
@@ -62,7 +62,7 @@ public class JSonToDatabase {
                     System.out.println(speakerCreateSQLStatement);
                 }
 
-                joinTableCreateSQLStatement = "INSERT INTO Talk_Speaker (Talk_id, speakers_id) values (";
+                joinTableCreateSQLStatement = "INSERT INTO T_Talk_T_Speaker (Talk_id, speakers_id) values (";
                 joinTableCreateSQLStatement += "'" + talk.getString("id") + "', ";
                 joinTableCreateSQLStatement += "'" + getId(speaker.getJsonObject("link").getString("href") + "'");
                 joinTableCreateSQLStatement += ");";

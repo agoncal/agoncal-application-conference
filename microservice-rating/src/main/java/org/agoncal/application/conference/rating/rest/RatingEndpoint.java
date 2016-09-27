@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.agoncal.application.conference.commons.registry.Registry;
+import org.agoncal.application.conference.commons.registry.MultiplePortRegistry;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
@@ -80,8 +80,8 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
         if (preconditions == null) {
             rating.addSelfLink(getURIForSelf(rating));
             rating.addCollectionLink(getURIForCollection());
-            rating.setAttendeeId(Registry.getURIAttendee().path(rating.getAttendeeId()).build().toString());
-            rating.setSessionId(Registry.getURISession().path(rating.getSessionId()).build().toString());
+            rating.setAttendeeId(MultiplePortRegistry.getURIAttendee().path(rating.getAttendeeId()).build().toString());
+            rating.setSessionId(MultiplePortRegistry.getURISession().path(rating.getSessionId()).build().toString());
             preconditions = Response.ok(rating).tag(etag);
         }
 
@@ -101,8 +101,8 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
 
         for (Rating rating : allRatings) {
             rating.addSelfLink(getURIForSelf(rating));
-            rating.setAttendeeId(Registry.getURIAttendee().path(rating.getAttendeeId()).build().toString());
-            rating.setSessionId(Registry.getURISession().path(rating.getSessionId()).build().toString());
+            rating.setAttendeeId(MultiplePortRegistry.getURIAttendee().path(rating.getAttendeeId()).build().toString());
+            rating.setSessionId(MultiplePortRegistry.getURISession().path(rating.getSessionId()).build().toString());
         }
         return Response.ok(buildEntity(allRatings)).build();
     }

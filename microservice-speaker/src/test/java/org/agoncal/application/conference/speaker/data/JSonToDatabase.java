@@ -40,7 +40,7 @@ public class JSonToDatabase {
         JsonArray results = rdr.readArray();
         for (JsonObject result : results.getValuesAs(JsonObject.class)) {
             acceptedTalkCreateSQLStatements = new ArrayList<>();
-            speakerCreateSQLStatement = "INSERT INTO Speaker (id, firstName, lastName, company, twitter, avatarUrl, language, blog, bio) values (";
+            speakerCreateSQLStatement = "INSERT INTO SP_Speaker (id, firstName, lastName, company, twitter, avatarUrl, language, blog, bio) values (";
 
             speakerCreateSQLStatement += getSqlValue(result, "uuid") + ", ";
             speakerCreateSQLStatement += getSqlValue(result, "firstName") + ", ";
@@ -95,7 +95,7 @@ public class JSonToDatabase {
 
             if (!talksAlreadyExist.containsKey(result.getString("id"))) {
                 talksAlreadyExist.put(result.getString("id"), "exists");
-                acceptedTalkCreateSQLStatement = "INSERT INTO AcceptedTalk (id, title, language) values (";
+                acceptedTalkCreateSQLStatement = "INSERT INTO SP_Talk (id, title, language) values (";
                 acceptedTalkCreateSQLStatement += "'" + result.getString("id") + "', ";
                 acceptedTalkCreateSQLStatement += getSqlValue(result, "title") + ", ";
                 acceptedTalkCreateSQLStatement += getSqlValue(result, "lang");
@@ -103,7 +103,7 @@ public class JSonToDatabase {
                 sqlStatements.add(acceptedTalkCreateSQLStatement);
             }
 
-            joinTableCreateSQLStatement = "INSERT INTO Speaker_AcceptedTalk (Speaker_id, acceptedTalks_id) values (";
+            joinTableCreateSQLStatement = "INSERT INTO SP_Speaker_SP_Talk (Speaker_id, acceptedTalks_id) values (";
             joinTableCreateSQLStatement += "'" + speakerUUID + "', ";
             joinTableCreateSQLStatement += "'" + result.getString("id") + "', ";
             joinTableCreateSQLStatement += ");";
