@@ -66,8 +66,10 @@ public class Speaker {
     }
 
     public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
-        links.put(rel, uri);
+        if (links == null)
+            links = new HashMap<>();
+        if (!links.containsKey(rel))
+            links.put(rel, uri);
     }
 
     // ======================================

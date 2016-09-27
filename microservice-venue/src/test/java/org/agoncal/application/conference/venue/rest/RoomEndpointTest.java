@@ -104,11 +104,14 @@ public class RoomEndpointTest {
         Response response = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 attributes", 5, jsonObject.size());
         assertEquals(roomId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/rooms/" + roomId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/rooms"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
+        assertEquals(TEST_ROOM.getCapacity(), new Integer(jsonObject.getInt("capacity")));
+        assertEquals(TEST_ROOM.getSetup(), jsonObject.getString("setup"));
     }
 
     @Test

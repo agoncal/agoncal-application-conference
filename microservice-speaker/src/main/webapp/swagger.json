@@ -69,7 +69,7 @@
           "in" : "query",
           "required" : false,
           "type" : "boolean",
-          "default" : false
+          "default" : true
         } ],
         "responses" : {
           "200" : {

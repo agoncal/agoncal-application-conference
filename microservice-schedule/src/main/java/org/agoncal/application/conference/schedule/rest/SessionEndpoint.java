@@ -4,9 +4,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.registry.SpeakerMicroService;
+import org.agoncal.application.conference.commons.registry.TalkMicroService;
+import org.agoncal.application.conference.commons.registry.VenueMicroService;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.schedule.domain.Session;
 import org.agoncal.application.conference.schedule.domain.Sessions;
+import org.agoncal.application.conference.schedule.domain.Speaker;
 import org.agoncal.application.conference.schedule.repository.SessionRepository;
 
 import javax.enterprise.context.RequestScoped;
@@ -14,6 +18,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
+
+import static org.agoncal.application.conference.commons.domain.Links.SELF;
 
 /**
  * @author Antonio Goncalves
@@ -33,6 +39,18 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
 
     @Inject
     private SessionRepository sessionRepository;
+
+    @Inject
+    @VenueMicroService
+    private UriBuilder uriVenue;
+
+    @Inject
+    @SpeakerMicroService
+    private UriBuilder uriSpeaker;
+
+    @Inject
+    @TalkMicroService
+    private UriBuilder uriTalk;
 
     // ======================================
     // =            Constructors            =
@@ -81,6 +99,15 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
             for (int i = 3; i < 11; i++) {
                 session.addLink("room" + i, getUriBuilderForRoot().path(session.getDay()).path("room" + i).build());
             }
+
+            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+
+            if (session.getTalk() != null) {
+                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                for (Speaker speaker : session.getTalk().getSpeakers()) {
+                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                }
+            }
             preconditions = Response.ok(session).tag(etag);
         }
 
@@ -100,6 +127,13 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
 
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
+            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+            if (session.getTalk() != null) {
+                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                for (Speaker speaker : session.getTalk().getSpeakers()) {
+                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                }
+            }
         }
 
         Sessions sessions = new Sessions(allSessions);
@@ -237,12 +271,21 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         List<Session> allSessions = sessionRepository.findAllSessionsByDay(day);
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
-            session.addCollectionLink(getURIForCollection());
-            session.addLink(day, getUriBuilderForRoot().path(day).build());
+            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+            if (session.getTalk() != null) {
+                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                for (Speaker speaker : session.getTalk().getSpeakers()) {
+                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                }
+            }
         }
 
         Sessions sessions = new Sessions(allSessions);
         sessions.addSelfLink(getUriBuilderForRoot().path(day).build());
+        sessions.addCollectionLink(getURIForCollection());
+        for (int i = 3; i < 11; i++) {
+            sessions.addLink("room" + i, getUriBuilderForRoot().path(day).path("room" + i).build());
+        }
         return Response.ok(buildEntities(sessions)).build();
     }
 
@@ -250,12 +293,19 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         List<Session> allSessions = sessionRepository.findAllSessionsByDayAndRoom(day, roomId);
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
-            session.addCollectionLink(getURIForCollection());
-            session.addLink(day, getUriBuilderForRoot().path(day).path(roomId).build());
+            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+            if (session.getTalk() != null) {
+                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                for (Speaker speaker : session.getTalk().getSpeakers()) {
+                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                }
+            }
         }
 
         Sessions sessions = new Sessions(allSessions);
         sessions.addSelfLink(getUriBuilderForRoot().path(day).path(roomId).build());
+        sessions.addCollectionLink(getURIForCollection());
+        sessions.addLink(day, getUriBuilderForRoot().path(day).build());
         return Response.ok(buildEntities(sessions)).build();
     }
 

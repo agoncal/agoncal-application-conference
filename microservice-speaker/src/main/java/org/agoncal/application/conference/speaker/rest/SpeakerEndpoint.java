@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.commons.domain.Links;
-import org.agoncal.application.conference.commons.registry.Talk;
+import org.agoncal.application.conference.commons.registry.TalkMicroService;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
@@ -39,7 +39,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @Inject
     private SpeakerRepository speakerRepository;
 
-    @Inject @Talk
+    @Inject @TalkMicroService
     private UriBuilder uriTalk;
 
     // ======================================

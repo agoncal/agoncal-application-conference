@@ -12,32 +12,32 @@ import javax.ws.rs.core.UriBuilder;
 @Alternative
 public class MultiplePortRegistry implements Registry {
 
-    @Produces @Attendee
+    @Produces @AttendeeMicroService
     public UriBuilder getURIAttendee() {
         return UriBuilder.fromUri("http://localhost:8081/api/attendees");
     }
 
-    @Produces @Rating
+    @Produces @RatingMicroService
     public UriBuilder getURIRating() {
         return UriBuilder.fromUri("http://localhost:8082/api/ratings");
     }
 
-    @Produces @Session
+    @Produces @SessionMicroService
     public UriBuilder getURISession() {
         return UriBuilder.fromUri("http://localhost:8083/api/sessions");
     }
 
-    @Produces @Speaker
+    @Produces @SpeakerMicroService
     public UriBuilder getURISpeaker() {
         return UriBuilder.fromUri("http://localhost:8084/api/speakers");
     }
 
-    @Produces @Talk
+    @Produces @TalkMicroService
     public UriBuilder getURITalk() {
         return UriBuilder.fromUri("http://localhost:8084/api/talks");
     }
 
-    @Produces @Attendee
+    @Produces @VenueMicroService
     public UriBuilder getURIVenue() {
         return UriBuilder.fromUri("http://localhost:8085/api/rooms");
     }

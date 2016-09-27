@@ -1,13 +1,13 @@
 package org.agoncal.application.conference.schedule.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -16,6 +16,7 @@ import java.util.Objects;
  *         --
  */
 @Entity
+@Table(name = "sc_talk")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Talk {
@@ -26,6 +27,8 @@ public class Talk {
 
     @Id
     private String id;
+    @Transient
+    private Map<String, URI> links;
     private String title;
     private String talkType;
     private String track;
@@ -86,6 +89,13 @@ public class Talk {
 
     public void setSpeakers(List<Speaker> speakers) {
         this.speakers = speakers;
+    }
+
+    public void addLink(String rel, URI uri) {
+        if (links == null)
+            links = new HashMap<>();
+        if (!links.containsKey(rel))
+            links.put(rel, uri);
     }
 
     // ======================================

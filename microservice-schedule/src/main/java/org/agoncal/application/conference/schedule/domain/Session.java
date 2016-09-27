@@ -16,6 +16,7 @@ import java.util.UUID;
  *         --
  */
 @Entity
+@Table(name = "sc_session")
 @NamedQueries({
     @NamedQuery(name = Session.FIND_ALL, query = "SELECT s FROM Session s ORDER BY s.id DESC"),
     @NamedQuery(name = Session.FIND_BY_DAY, query = "SELECT s FROM Session s WHERE s.day = :day ORDER BY s.id DESC"),

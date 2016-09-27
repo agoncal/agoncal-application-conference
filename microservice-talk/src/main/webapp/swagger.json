@@ -101,6 +101,17 @@
     }
   },
   "definitions" : {
+    "Speaker" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
     "Talk" : {
       "type" : "object",
       "properties" : {
@@ -128,6 +139,12 @@
         },
         "summary" : {
           "type" : "string"
+        },
+        "speakers" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Speaker"
+          }
         }
       }
     }

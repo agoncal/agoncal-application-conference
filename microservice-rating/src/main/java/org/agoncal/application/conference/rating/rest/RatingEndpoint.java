@@ -4,7 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.agoncal.application.conference.commons.registry.MultiplePortRegistry;
+import org.agoncal.application.conference.commons.registry.AttendeeMicroService;
+import org.agoncal.application.conference.commons.registry.SessionMicroService;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
@@ -12,10 +13,7 @@ import org.agoncal.application.conference.rating.repository.RatingRepository;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.util.List;
 
 /**
@@ -36,6 +34,14 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
 
     @Inject
     private RatingRepository ratingRepository;
+
+    @Inject
+    @AttendeeMicroService
+    private UriBuilder uriAttendee;
+
+    @Inject
+    @SessionMicroService
+    private UriBuilder uriSession;
 
     // ======================================
     // =            Constructors            =
@@ -80,8 +86,8 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
         if (preconditions == null) {
             rating.addSelfLink(getURIForSelf(rating));
             rating.addCollectionLink(getURIForCollection());
-            rating.setAttendeeId(MultiplePortRegistry.getURIAttendee().path(rating.getAttendeeId()).build().toString());
-            rating.setSessionId(MultiplePortRegistry.getURISession().path(rating.getSessionId()).build().toString());
+            rating.setAttendeeId(uriAttendee.path(rating.getAttendeeId()).build().toString());
+            rating.setSessionId(uriSession.path(rating.getSessionId()).build().toString());
             preconditions = Response.ok(rating).tag(etag);
         }
 
@@ -101,8 +107,8 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
 
         for (Rating rating : allRatings) {
             rating.addSelfLink(getURIForSelf(rating));
-            rating.setAttendeeId(MultiplePortRegistry.getURIAttendee().path(rating.getAttendeeId()).build().toString());
-            rating.setSessionId(MultiplePortRegistry.getURISession().path(rating.getSessionId()).build().toString());
+            rating.setAttendeeId(uriAttendee.path(rating.getAttendeeId()).build().toString());
+            rating.setSessionId(uriSession.path(rating.getSessionId()).build().toString());
         }
         return Response.ok(buildEntity(allRatings)).build();
     }

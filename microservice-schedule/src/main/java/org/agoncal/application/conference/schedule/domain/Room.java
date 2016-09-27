@@ -2,6 +2,7 @@ package org.agoncal.application.conference.schedule.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,6 +18,7 @@ import java.util.Objects;
  *         --
  */
 @Entity
+@Table(name = "sc_room")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Room {
@@ -54,8 +56,10 @@ public class Room {
     }
 
     public void addLink(String rel, URI uri) {
-        links = new HashMap<>();
-        links.put(rel, uri);
+        if (links == null)
+            links = new HashMap<>();
+        if (!links.containsKey(rel))
+            links.put(rel, uri);
     }
 
     // ======================================

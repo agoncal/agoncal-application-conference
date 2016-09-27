@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Attendee"
   },
-  "host" : "localhost:8083",
+  "host" : "localhost:8081",
   "basePath" : "/api",
   "schemes" : [ "http", "https" ],
   "paths" : {

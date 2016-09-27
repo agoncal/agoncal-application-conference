@@ -15,5 +15,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Qualifier
 @Retention(RUNTIME)
 @Target({FIELD, METHOD, TYPE, PARAMETER})
-public @interface Speaker {
+public @interface VenueMicroService {
 }

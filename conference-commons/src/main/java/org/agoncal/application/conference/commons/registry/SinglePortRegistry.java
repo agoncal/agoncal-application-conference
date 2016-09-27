@@ -10,32 +10,32 @@ import javax.ws.rs.core.UriBuilder;
  */
 public class SinglePortRegistry implements Registry {
 
-    @Produces @Attendee
+    @Produces @AttendeeMicroService
     public UriBuilder getURIAttendee() {
         return UriBuilder.fromUri("http://localhost:8080/api/attendees");
     }
 
-    @Produces @Rating
+    @Produces @RatingMicroService
     public UriBuilder getURIRating() {
         return UriBuilder.fromUri("http://localhost:8080/api/ratings");
     }
 
-    @Produces @Session
+    @Produces @SessionMicroService
     public UriBuilder getURISession() {
         return UriBuilder.fromUri("http://localhost:8080/api/sessions");
     }
 
-    @Produces @Speaker
+    @Produces @SpeakerMicroService
     public UriBuilder getURISpeaker() {
         return UriBuilder.fromUri("http://localhost:8080/api/speakers");
     }
 
-    @Produces @Talk
+    @Produces @TalkMicroService
     public UriBuilder getURITalk() {
         return UriBuilder.fromUri("http://localhost:8080/conference-talk/api/talks");
     }
 
-    @Produces @Attendee
+    @Produces @VenueMicroService
     public UriBuilder getURIVenue() {
         return UriBuilder.fromUri("http://localhost:8080/conference-venue/api/rooms");
     }
