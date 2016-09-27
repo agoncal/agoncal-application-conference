@@ -49,8 +49,7 @@ public class Session extends LinkableResource {
     private Long toTimeMillis;
     private String toTime;
     private String day;
-    @ManyToOne
-    @XmlElement(nillable = false)
+    @ManyToOne(optional = false)
     private Room room;
     @ManyToOne
     @XmlElement(nillable = true)
