@@ -86,7 +86,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
             talk.addCollectionLink(getURIForCollection());
 
             for(Speaker speaker: talk.getSpeakers()) {
-                speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                speaker.addLink(SELF, uriSpeaker.clone().path(speaker.getId()).build());
             }
 
             preconditions = Response.ok(talk).tag(etag);
@@ -110,7 +110,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
             talk.addSelfLink(getURIForSelf(talk));
 
             for(Speaker speaker: talk.getSpeakers()) {
-                speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                speaker.addLink(SELF, uriSpeaker.clone().path(speaker.getId()).build());
             }
         }
 

@@ -86,8 +86,8 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
         if (preconditions == null) {
             rating.addSelfLink(getURIForSelf(rating));
             rating.addCollectionLink(getURIForCollection());
-            rating.setAttendeeId(uriAttendee.path(rating.getAttendeeId()).build().toString());
-            rating.setSessionId(uriSession.path(rating.getSessionId()).build().toString());
+            rating.setAttendeeId(uriAttendee.clone().path(rating.getAttendeeId()).build().toString());
+            rating.setSessionId(uriSession.clone().path(rating.getSessionId()).build().toString());
             preconditions = Response.ok(rating).tag(etag);
         }
 
@@ -107,8 +107,8 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
 
         for (Rating rating : allRatings) {
             rating.addSelfLink(getURIForSelf(rating));
-            rating.setAttendeeId(uriAttendee.path(rating.getAttendeeId()).build().toString());
-            rating.setSessionId(uriSession.path(rating.getSessionId()).build().toString());
+            rating.setAttendeeId(uriAttendee.clone().path(rating.getAttendeeId()).build().toString());
+            rating.setSessionId(uriSession.clone().path(rating.getSessionId()).build().toString());
         }
         return Response.ok(buildEntity(allRatings)).build();
     }

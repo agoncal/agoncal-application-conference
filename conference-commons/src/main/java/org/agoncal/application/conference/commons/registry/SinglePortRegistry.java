@@ -12,22 +12,22 @@ public class SinglePortRegistry implements Registry {
 
     @Produces @AttendeeMicroService
     public UriBuilder getURIAttendee() {
-        return UriBuilder.fromUri("http://localhost:8080/api/attendees");
+        return UriBuilder.fromUri("http://localhost:8080/conference-attendee/api/attendees");
     }
 
     @Produces @RatingMicroService
     public UriBuilder getURIRating() {
-        return UriBuilder.fromUri("http://localhost:8080/api/ratings");
+        return UriBuilder.fromUri("http://localhost:8080/conference-rating/api/ratings");
     }
 
     @Produces @SessionMicroService
     public UriBuilder getURISession() {
-        return UriBuilder.fromUri("http://localhost:8080/api/sessions");
+        return UriBuilder.fromUri("http://localhost:8080/conference-schedule/api/sessions");
     }
 
     @Produces @SpeakerMicroService
     public UriBuilder getURISpeaker() {
-        return UriBuilder.fromUri("http://localhost:8080/api/speakers");
+        return UriBuilder.fromUri("http://localhost:8080/conference-speaker/api/speakers");
     }
 
     @Produces @TalkMicroService

@@ -88,7 +88,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
             speaker.addLink(Links.SUMMARY, getURIBuilderForSelf(speaker).queryParam("expand", false).build());
             if (expand) {
                 for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
-                    acceptedTalk.addLink(SELF, uriTalk.path(acceptedTalk.getId()).build());
+                    acceptedTalk.addLink(SELF, uriTalk.clone().path(acceptedTalk.getId()).build());
                 }
             } else {
                 speaker.setBio(null);

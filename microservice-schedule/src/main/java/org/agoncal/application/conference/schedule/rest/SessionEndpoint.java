@@ -100,12 +100,12 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
                 session.addLink("room" + i, getUriBuilderForRoot().path(session.getDay()).path("room" + i).build());
             }
 
-            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+            session.getRoom().addLink(SELF, uriVenue.clone().path(session.getRoom().getId()).build());
 
             if (session.getTalk() != null) {
-                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                session.getTalk().addLink(SELF, uriTalk.clone().path(session.getTalk().getId()).build());
                 for (Speaker speaker : session.getTalk().getSpeakers()) {
-                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                    speaker.addLink(SELF, uriSpeaker.clone().path(speaker.getId()).build());
                 }
             }
             preconditions = Response.ok(session).tag(etag);
@@ -127,11 +127,11 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
 
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
-            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+            session.getRoom().addLink(SELF, uriVenue.clone().path(session.getRoom().getId()).build());
             if (session.getTalk() != null) {
-                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                session.getTalk().addLink(SELF, uriTalk.clone().path(session.getTalk().getId()).build());
                 for (Speaker speaker : session.getTalk().getSpeakers()) {
-                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                    speaker.addLink(SELF, uriSpeaker.clone().path(speaker.getId()).build());
                 }
             }
         }
@@ -271,11 +271,11 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         List<Session> allSessions = sessionRepository.findAllSessionsByDay(day);
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
-            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+            session.getRoom().addLink(SELF, uriVenue.clone().path(session.getRoom().getId()).build());
             if (session.getTalk() != null) {
-                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                session.getTalk().addLink(SELF, uriTalk.clone().path(session.getTalk().getId()).build());
                 for (Speaker speaker : session.getTalk().getSpeakers()) {
-                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                    speaker.addLink(SELF, uriSpeaker.clone().path(speaker.getId()).build());
                 }
             }
         }
@@ -293,11 +293,11 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         List<Session> allSessions = sessionRepository.findAllSessionsByDayAndRoom(day, roomId);
         for (Session session : allSessions) {
             session.addSelfLink(getURIForSelf(session));
-            session.getRoom().addLink(SELF, uriVenue.path(session.getRoom().getId()).build());
+            session.getRoom().addLink(SELF, uriVenue.clone().path(session.getRoom().getId()).build());
             if (session.getTalk() != null) {
-                session.getTalk().addLink(SELF, uriTalk.path(session.getTalk().getId()).build());
+                session.getTalk().addLink(SELF, uriTalk.clone().path(session.getTalk().getId()).build());
                 for (Speaker speaker : session.getTalk().getSpeakers()) {
-                    speaker.addLink(SELF, uriSpeaker.path(speaker.getId()).build());
+                    speaker.addLink(SELF, uriSpeaker.clone().path(speaker.getId()).build());
                 }
             }
         }
