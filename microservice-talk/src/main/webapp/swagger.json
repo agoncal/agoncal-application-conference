@@ -104,6 +104,13 @@
     "Speaker" : {
       "type" : "object",
       "properties" : {
+        "links" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
         "id" : {
           "type" : "string"
         },
