@@ -22,28 +22,33 @@
         <version.clean.plugin>3.0.0</version.clean.plugin>
         <version.compiler.plugin>3.5.1</version.compiler.plugin>
         <version.dependency.plugin>2.10</version.dependency.plugin>
+        <version.deploy.plugin>2.8.2</version.deploy.plugin>
         <version.exec.plugin>1.5.0</version.exec.plugin>
         <version.failsafe.plugin>2.19.1</version.failsafe.plugin>
+        <version.helper.plugin>1.12</version.helper.plugin>
         <version.install.plugin>2.5.2</version.install.plugin>
         <version.jar.plugin>3.0.2</version.jar.plugin>
-        <version.processor.plugin>3.1.0</version.processor.plugin>
+        <version.processor.plugin>3.2.0</version.processor.plugin>
         <version.resources.plugin>3.0.1</version.resources.plugin>
         <version.site.plugin>3.5.1</version.site.plugin>
         <version.surefire.plugin>2.19.1</version.surefire.plugin>
         <version.swagger.plugin>3.1.4</version.swagger.plugin>
-        <version.war.plugin>2.6</version.war.plugin>
+        <version.war.plugin>3.0.0</version.war.plugin>
 
         <!-- Test -->
+        <version.shrinkwrap>1.2.6</version.shrinkwrap>
+        <version.shrinkwrap.maven.resolver>2.2.4</version.shrinkwrap.maven.resolver>
         <version.arquillian>1.0.0.Alpha4</version.arquillian>
+        <version.arquillian.junit>1.1.11.Final</version.arquillian.junit>
         <version.arquillian.wildfly.remote>8.2.1.Final</version.arquillian.wildfly.remote>
         <version.arquillian.wildfly.managed>8.2.1.Final</version.arquillian.wildfly.managed>
         <version.junit>4.12</version.junit>
-        <version.resteasy>3.0.18.Final</version.resteasy>
+        <version.resteasy>3.0.19.Final</version.resteasy>
         <version.json>1.0.4</version.json>
         <version.assertj>3.5.2</version.assertj>
 
         <!-- App servers -->
-        <version.wildfly-swarm>2016.9</version.wildfly-swarm>
+        <version.wildfly-swarm>2016.10.0</version.wildfly-swarm>
         <version.wildfly>10.1.0.Final</version.wildfly>
 
         <!-- Dependencies -->
@@ -51,6 +56,10 @@
         <version.swagger>1.5.10</version.swagger>
         <version.jjwt>0.7.0</version.jjwt>
     </properties>
+
+    <prerequisites>
+        <maven>3.1</maven>
+    </prerequisites>
 
     <modules>
         <module>conference-commons</module>
@@ -107,6 +116,21 @@
                 <version>${version.arquillian}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-core</artifactId>
+                <version>${version.arquillian.junit}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-api</artifactId>
+                <version>${version.shrinkwrap}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-api-maven</artifactId>
+                <version>${version.shrinkwrap.maven.resolver}</version>
             </dependency>
 
             <!-- TEST -->
@@ -171,6 +195,11 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${version.deploy.plugin}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>${version.exec.plugin}</version>
@@ -226,6 +255,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${version.surefire.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${version.helper.plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>com.github.kongchen</groupId>
