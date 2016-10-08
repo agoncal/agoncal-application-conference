@@ -98,7 +98,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @GET
     @ApiOperation(value = "Finds all the talks", response = Talk.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Rooms not found")}
+        @ApiResponse(code = 404, message = "Talks not found")}
     )
     public Response allTalks(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
         List<Talk> allTalks = talkRepository.findAllTalks(pageNumber);

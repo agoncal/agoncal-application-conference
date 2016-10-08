@@ -9,6 +9,8 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static org.agoncal.application.conference.commons.domain.LinkableResources.PAGE_SIZE;
+
 /**
  * @author Antonio Goncalves
  *         http://www.antoniogoncalves.org
@@ -49,9 +51,17 @@ public class RatingRepository {
         return query.getResultList();
     }
 
-    public List<Rating> findAllRatings() {
+    public List<Rating> findAllRatings(Integer pageNumber) {
         TypedQuery<Rating> query = em.createNamedQuery(Rating.FIND_ALL, Rating.class);
+        query.setFirstResult((pageNumber - 1) * PAGE_SIZE);
+        query.setMaxResults(PAGE_SIZE);
         return query.getResultList();
+    }
+
+    public Integer getNumberOfPages() {
+        TypedQuery<Long> query = em.createNamedQuery(Rating.COUNT_ALL, Long.class);
+        Long countResult = query.getSingleResult();
+        return (Integer) (int) ((countResult / PAGE_SIZE) + 1);
     }
 
     public Rating findById(String id) {

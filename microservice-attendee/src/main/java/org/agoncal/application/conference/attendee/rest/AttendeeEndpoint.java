@@ -15,6 +15,8 @@ import org.agoncal.application.conference.commons.security.KeyGenerator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.security.Key;
@@ -70,10 +72,9 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @Consumes(APPLICATION_FORM_URLENCODED)
     @ApiOperation(value = "Logs an attendee with a user and password")
     @ApiResponses(value = {
-        @ApiResponse(code = 405, message = "Invalid input"),
+        @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 401, message = "Invalid login/password")
-    }
-    )
+    })
     public Response authenticateUser(@FormParam("login") @NotEmpty String login,
                                      @FormParam("password") @NotEmpty String password) {
 
@@ -100,9 +101,9 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @POST
     @ApiOperation(value = "Adds a new attendee to the conference")
     @ApiResponses(value = {
-        @ApiResponse(code = 405, message = "Invalid input")}
+        @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(Attendee attendee) {
+    public Response add(@NotNull Attendee attendee) {
         Attendee created = attendeeRepository.create(attendee);
         return Response.created(getURIForSelf(attendee)).entity(created).build();
     }
@@ -137,12 +138,13 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @GET
     @ApiOperation(value = "Finds all the attendees", response = Attendee.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Attendees not found")}
     )
-    public Response allAttendees(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
+    public Response allAttendees(@DefaultValue("1") @QueryParam("page") @Min(1) Integer pageNumber) {
         List<Attendee> allAttendees = attendeeRepository.findAllAttendees(pageNumber);
 
-        if (allAttendees == null)
+        if (allAttendees == null || allAttendees.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Attendee attendee : allAttendees) {
@@ -164,9 +166,9 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes an attendee")
     @ApiResponses(value = {
-        @ApiResponse(code = 400, message = "Invalid attendee value")}
+        @ApiResponse(code = 405, message = "Invalid input")}
     )
-    public Response remove(@PathParam("id") String id) {
+    public Response remove(@PathParam("id") @NotEmpty String id) {
         attendeeRepository.delete(id);
         return Response.noContent().build();
     }
@@ -175,8 +177,8 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     // =           Private methods          =
     // ======================================
 
-    private GenericEntity<Attendees> buildEntities(final Attendees talks) {
-        return new GenericEntity<Attendees>(talks) {
+    private GenericEntity<Attendees> buildEntities(final Attendees attendees) {
+        return new GenericEntity<Attendees>(attendees) {
         };
     }
 

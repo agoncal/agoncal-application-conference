@@ -94,29 +94,51 @@ public class AttendeeEndpointTest {
 
     @Test
     @InSequence(1)
-    public void shouldFailLogin() throws Exception {
+    public void shouldFailLoginWithInvalidValues() throws Exception {
         Form form = new Form();
-        form.param("login", "dummyLogin");
-        form.param("password", "dummyPassword");
+        form.param("login", "");
+        form.param("password", "");
 
         Response response = webTarget.path("login").request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-
-        assertEquals(401, response.getStatus());
+        assertEquals(400, response.getStatus());
         assertNull(response.getHeaderString(HttpHeaders.AUTHORIZATION));
     }
 
     @Test
     @InSequence(2)
-    public void shouldGetAllAttendees() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
-        JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
-        assertEquals("Should have 0 talk", 0, jsonObject.getJsonArray("data").size());
+    public void shouldFailLoginWithInvalidUserPassword() throws Exception {
+        Form form = new Form();
+        form.param("login", "dummyLogin");
+        form.param("password", "dummyPassword");
+
+        Response response = webTarget.path("login").request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+        assertEquals(401, response.getStatus());
+        assertNull(response.getHeaderString(HttpHeaders.AUTHORIZATION));
     }
 
     @Test
     @InSequence(3)
+    public void shouldFailGetingAttendeesWithZeroPage() throws Exception {
+        Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
+    @InSequence(4)
+    public void shouldGetNoAttendees() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(404, response.getStatus());
+    }
+
+    @Test
+    @InSequence(5)
+    public void shouldFailCreatingInvalidAttendee() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
+    @InSequence(6)
     public void shouldCreateAttendee() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_ATTENDEE, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
@@ -124,7 +146,7 @@ public class AttendeeEndpointTest {
     }
 
     @Test
-    @InSequence(4)
+    @InSequence(7)
     public void shouldGetAlreadyCreatedAttendee() throws Exception {
         Response response = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -137,7 +159,7 @@ public class AttendeeEndpointTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(8)
     public void shouldLogUserIn() throws Exception {
         Form form = new Form();
         form.param("login", TEST_ATTENDEE.getLogin());
@@ -162,7 +184,7 @@ public class AttendeeEndpointTest {
     }
 
     @Test
-    @InSequence(6)
+    @InSequence(9)
     public void shouldCheckCollectionOfAttendees() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -172,12 +194,19 @@ public class AttendeeEndpointTest {
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(10)
     public void shouldRemoveAttendee() throws Exception {
         Response response = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+    }
+
+    @Test
+    @InSequence(11)
+    public void shouldRemoveWithInvalidInput() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
+        assertEquals(405, response.getStatus());
     }
 
     // ======================================

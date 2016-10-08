@@ -1,6 +1,10 @@
 package org.agoncal.application.conference.rating.rest;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.agoncal.application.conference.commons.security.SimpleKeyGenerator;
 import org.agoncal.application.conference.rating.domain.Rating;
+import org.agoncal.application.conference.rating.domain.Ratings;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -22,11 +26,18 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Form;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
 import java.net.URI;
+import java.security.Key;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
@@ -65,7 +76,7 @@ public class RatingEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addPackage(Rating.class.getPackage())
+            .addClasses(Rating.class, Ratings.class)
             .addClasses(RatingEndpoint.class, RatingRepository.class, Application.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
@@ -87,16 +98,26 @@ public class RatingEndpointTest {
     // ======================================
 
     @Test
+    @InSequence(3)
+    public void shouldFailGetingRatingsWithZeroPage() throws Exception {
+        Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
     @InSequence(1)
-    public void shouldGetAllRatings() throws Exception {
+    public void shouldGetNoRatings() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     @InSequence(2)
-    public void shouldCreateARating() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_RATING, APPLICATION_JSON_TYPE));
+    public void shouldRateASession() throws Exception {
+        Form form = new Form();
+        form.param("mark", TEST_RATING.getMark().toString());
+
+        Response response = webTarget.path(TEST_RATING.getSessionId()).request(APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, issueToken()).post(Entity.entity(form, APPLICATION_FORM_URLENCODED));
         assertEquals(201, response.getStatus());
         ratingId = getRatingId(response);
     }
@@ -111,16 +132,33 @@ public class RatingEndpointTest {
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/ratings/" + ratingId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/ratings"));
-        assertEquals(TEST_RATING.getRating(), new Integer(jsonObject.getInt("rating")));
+        assertEquals(TEST_RATING.getMark(), new Integer(jsonObject.getInt("mark")));
     }
 
     @Test
     @InSequence(4)
+    public void shouldCheckCollectionOfRatings() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(200, response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
+    }
+
+    @Test
+    @InSequence(5)
     public void shouldRemoveRating() throws Exception {
         Response response = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+    }
+
+    @Test
+    @InSequence(6)
+    public void shouldRemoveWithInvalidInput() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
+        assertEquals(405, response.getStatus());
     }
 
     // ======================================
@@ -141,5 +179,21 @@ public class RatingEndpointTest {
         String competitionJson = response.readEntity(String.class);
         StringReader stringReader = new StringReader(competitionJson);
         return Json.createReader(stringReader);
+    }
+
+    private String issueToken() {
+        Key key = new SimpleKeyGenerator().generateKey();
+        String jwtToken = Jwts.builder()
+            .setSubject(TEST_RATING.getAttendeeId())
+            .setIssuer(baseURL.toString())
+            .setIssuedAt(new Date())
+            .setExpiration(toDate(LocalDateTime.now().plusMinutes(15L)))
+            .signWith(SignatureAlgorithm.HS512, key)
+            .compact();
+        return "Bearer " + jwtToken;
+    }
+
+    private Date toDate(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 }

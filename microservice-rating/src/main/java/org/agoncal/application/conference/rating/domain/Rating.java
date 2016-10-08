@@ -16,9 +16,10 @@ import java.util.UUID;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Rating.FIND_ALL, query = "SELECT r FROM Rating r ORDER BY r.rating DESC"),
-    @NamedQuery(name = Rating.FIND_BY_SESSION, query = "SELECT r FROM Rating r WHERE r.sessionId = :sessionId ORDER BY r.rating DESC"),
-    @NamedQuery(name = Rating.FIND_BY_ATTENDEE, query = "SELECT r FROM Rating r WHERE r.attendeeId = :attendeeId ORDER BY r.rating DESC")
+    @NamedQuery(name = Rating.FIND_ALL, query = "SELECT r FROM Rating r ORDER BY r.mark DESC"),
+    @NamedQuery(name = Rating.COUNT_ALL, query = "SELECT COUNT(r) FROM Rating r"),
+    @NamedQuery(name = Rating.FIND_BY_SESSION, query = "SELECT r FROM Rating r WHERE r.sessionId = :sessionId ORDER BY r.mark DESC"),
+    @NamedQuery(name = Rating.FIND_BY_ATTENDEE, query = "SELECT r FROM Rating r WHERE r.attendeeId = :attendeeId ORDER BY r.mark DESC")
 })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,6 +30,7 @@ public class Rating extends LinkableResource {
     // ======================================
 
     public static final String FIND_ALL = "Rating.findAll";
+    public static final String COUNT_ALL = "Rating.countAll";
     public static final String FIND_BY_SESSION = "Rating.findBySession";
     public static final String FIND_BY_ATTENDEE = "Rating.findByAttendee";
 
@@ -40,7 +42,7 @@ public class Rating extends LinkableResource {
     private String id;
     private String sessionId;
     private String attendeeId;
-    private Integer rating;
+    private Integer mark;
 
     // ======================================
     // =            Constructors            =
@@ -49,10 +51,10 @@ public class Rating extends LinkableResource {
     public Rating() {
     }
 
-    public Rating(String sessionId, String attendeeId, Integer rating) {
+    public Rating(String sessionId, String attendeeId, Integer mark) {
         this.sessionId = sessionId;
         this.attendeeId = attendeeId;
-        this.rating = rating;
+        this.mark = mark;
     }
 
     // ======================================
@@ -92,12 +94,12 @@ public class Rating extends LinkableResource {
         this.attendeeId = attendeeId;
     }
 
-    public Integer getRating() {
-        return rating;
+    public Integer getMark() {
+        return mark;
     }
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
+    public void setMark(Integer mark) {
+        this.mark = mark;
     }
 
     // ======================================
@@ -124,7 +126,7 @@ public class Rating extends LinkableResource {
             ", links=" + getLinks() +
             ", sessionId='" + sessionId + '\'' +
             ", attendeeId='" + attendeeId + '\'' +
-            ", rating=" + rating +
+            ", rating=" + mark +
             '}';
     }
 }
