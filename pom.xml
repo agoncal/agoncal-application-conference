@@ -49,7 +49,7 @@
         <!-- Dependencies -->
         <version.javaee>7.0</version.javaee>
         <version.swagger>1.5.10</version.swagger>
-
+        <version.jjwt>0.7.0</version.jjwt>
     </properties>
 
     <modules>
@@ -93,6 +93,11 @@
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
                 <version>${version.swagger}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${version.jjwt}</version>
             </dependency>
 
             <!-- ARQUILLIAN TEST -->

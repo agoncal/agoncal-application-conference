@@ -3,7 +3,7 @@ package org.agoncal.application.conference.attendee.rest;
 import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
-import org.agoncal.application.conference.attendee.util.PasswordUtils;
+import org.agoncal.application.conference.commons.security.PasswordUtils;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;

@@ -1,4 +1,4 @@
-package org.agoncal.application.conference.attendee.util;
+package org.agoncal.application.conference.commons.security;
 
 import java.security.MessageDigest;
 import java.util.Base64;

@@ -1,6 +1,7 @@
 package org.agoncal.application.conference.attendee.repository;
 
 import org.agoncal.application.conference.attendee.domain.Attendee;
+import org.agoncal.application.conference.commons.security.PasswordUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,6 +33,13 @@ public class AttendeeRepository {
     public Attendee create(Attendee attendee) {
         em.persist(attendee);
         return attendee;
+    }
+
+    public Attendee findByLoginPassWord(String login, String password) {
+        TypedQuery<Attendee> query = em.createNamedQuery(Attendee.FIND_BY_LOGIN_PASSWORD, Attendee.class);
+        query.setParameter("login", login);
+        query.setParameter("password", PasswordUtils.digestPassword(password));
+        return query.getSingleResult();
     }
 
     public List<Attendee> findAllAttendees(Integer pageNumber) {

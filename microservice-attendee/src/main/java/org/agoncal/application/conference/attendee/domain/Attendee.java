@@ -1,7 +1,7 @@
 package org.agoncal.application.conference.attendee.domain;
 
-import org.agoncal.application.conference.attendee.util.PasswordUtils;
 import org.agoncal.application.conference.commons.domain.LinkableResource;
+import org.agoncal.application.conference.commons.security.PasswordUtils;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,7 +18,8 @@ import java.util.UUID;
 @Entity
 @NamedQueries({
     @NamedQuery(name = Attendee.FIND_ALL, query = "SELECT a FROM Attendee a ORDER BY a.lastName DESC"),
-    @NamedQuery(name = Attendee.COUNT_ALL, query = "SELECT COUNT(a) FROM Attendee a")
+    @NamedQuery(name = Attendee.COUNT_ALL, query = "SELECT COUNT(a) FROM Attendee a"),
+    @NamedQuery(name = Attendee.FIND_BY_LOGIN_PASSWORD, query = "SELECT a FROM Attendee a WHERE a.login = :login AND a.password = :password")
 })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -30,6 +31,7 @@ public class Attendee extends LinkableResource {
 
     public static final String FIND_ALL = "Attendee.findAll";
     public static final String COUNT_ALL = "Attendee.countAll";
+    public static final String FIND_BY_LOGIN_PASSWORD = "Attendee.findByLoginAndPassword";
 
     // ======================================
     // =             Attributes             =

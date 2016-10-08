@@ -1,5 +1,7 @@
 package org.agoncal.application.conference.attendee.rest;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -8,12 +10,22 @@ import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
+import org.agoncal.application.conference.commons.security.KeyGenerator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.security.Key;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
+
+import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
+import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
+import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 /**
  * @author Antonio Goncalves
@@ -32,6 +44,12 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     // ======================================
 
     @Inject
+    private Logger logger;
+
+    @Inject
+    private KeyGenerator keyGenerator;
+
+    @Inject
     private AttendeeRepository attendeeRepository;
 
     // ======================================
@@ -45,6 +63,32 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     // ======================================
     // =          Business methods          =
     // ======================================
+
+    @POST
+    @Path("/login")
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public Response authenticateUser(@FormParam("login") String login,
+                                     @FormParam("password") String password) {
+
+        try {
+
+            logger.info("#### login/password : " + login + "/" + password);
+
+            // Authenticate the user using the credentials provided
+            Attendee attendee = attendeeRepository.findByLoginPassWord(login, password);
+            if (attendee == null)
+                throw new SecurityException("Invalid user/password");
+
+            // Issue a token for the user
+            String token = issueToken(login);
+
+            // Return the token on the response
+            return Response.ok().header(AUTHORIZATION, "Bearer " + token).build();
+
+        } catch (Exception e) {
+            return Response.status(UNAUTHORIZED).build();
+        }
+    }
 
     @POST
     @ApiOperation(value = "Adds a new attendee to the conference")
@@ -127,5 +171,23 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     private GenericEntity<Attendees> buildEntities(final Attendees talks) {
         return new GenericEntity<Attendees>(talks) {
         };
+    }
+
+    private String issueToken(String login) {
+        Key key = keyGenerator.generateKey();
+        String jwtToken = Jwts.builder()
+            .setSubject(login)
+            .setIssuer(getUriInfo().getAbsolutePath().toString())
+            .setIssuedAt(new Date())
+            .setExpiration(toDate(LocalDateTime.now().plusMinutes(15L)))
+            .signWith(SignatureAlgorithm.HS512, key)
+            .compact();
+        logger.info("#### generating token for a key : " + jwtToken);
+        return jwtToken;
+
+    }
+
+    private Date toDate(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 }
