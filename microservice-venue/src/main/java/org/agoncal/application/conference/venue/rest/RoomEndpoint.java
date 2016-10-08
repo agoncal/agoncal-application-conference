@@ -11,10 +11,7 @@ import org.agoncal.application.conference.venue.repository.RoomRepository;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.util.List;
 
 /**
@@ -25,8 +22,8 @@ import java.util.List;
 @Path("/rooms")
 @Api(description = "Rooms REST Endpoint")
 @RequestScoped
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class RoomEndpoint extends LinkableEndpoint<Room> {
 
     // ======================================
@@ -116,9 +113,7 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
     @PUT
     @ApiOperation(value = "Update an existing room")
     @ApiResponses(value = {
-        @ApiResponse(code = 400, message = "Invalid ID supplied"),
-        @ApiResponse(code = 404, message = "Pet not found"),
-        @ApiResponse(code = 405, message = "Validation exception")}
+        @ApiResponse(code = 405, message = "Invalid values")}
     )
     public Response update(Room room) {
         roomRepository.update(room);

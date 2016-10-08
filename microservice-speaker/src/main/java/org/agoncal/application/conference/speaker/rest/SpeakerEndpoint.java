@@ -28,8 +28,8 @@ import static org.agoncal.application.conference.commons.domain.Links.SELF;
 @Path("/speakers")
 @Api(description = "Speakers REST Endpoint")
 @RequestScoped
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
 
     // ======================================

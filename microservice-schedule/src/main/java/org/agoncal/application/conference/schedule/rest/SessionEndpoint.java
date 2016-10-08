@@ -29,8 +29,8 @@ import static org.agoncal.application.conference.commons.domain.Links.SELF;
 @Path("/sessions")
 @Api(description = "Session REST Endpoint")
 @RequestScoped
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class SessionEndpoint extends LinkableEndpoint<Session> {
 
     // ======================================

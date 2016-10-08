@@ -52,6 +52,34 @@
         }
       }
     },
+    "/attendees/login" : {
+      "post" : {
+        "summary" : "Logs an attendee with a user and password",
+        "description" : "",
+        "operationId" : "authenticateUser",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "login",
+          "in" : "formData",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "password",
+          "in" : "formData",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "Invalid login/password"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      }
+    },
     "/attendees/{id}" : {
       "get" : {
         "summary" : "Finds an attendee by ID",

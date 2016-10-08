@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
+import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.commons.security.KeyGenerator;
 
@@ -35,8 +36,8 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 @Path("/attendees")
 @Api(description = "Attendees REST Endpoint")
 @RequestScoped
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
 
     // ======================================
@@ -67,8 +68,14 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @POST
     @Path("/login")
     @Consumes(APPLICATION_FORM_URLENCODED)
-    public Response authenticateUser(@FormParam("login") String login,
-                                     @FormParam("password") String password) {
+    @ApiOperation(value = "Logs an attendee with a user and password")
+    @ApiResponses(value = {
+        @ApiResponse(code = 405, message = "Invalid input"),
+        @ApiResponse(code = 401, message = "Invalid login/password")
+    }
+    )
+    public Response authenticateUser(@FormParam("login") @NotEmpty String login,
+                                     @FormParam("password") @NotEmpty String password) {
 
         try {
 

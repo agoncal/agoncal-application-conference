@@ -50,14 +50,8 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "Pet not found"
-          },
           "405" : {
-            "description" : "Validation exception"
+            "description" : "Invalid values"
           }
         }
       }

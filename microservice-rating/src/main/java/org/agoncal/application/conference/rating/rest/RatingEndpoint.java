@@ -24,8 +24,8 @@ import java.util.List;
 @Path("/ratings")
 @Api(description = "Rating REST Endpoint")
 @RequestScoped
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class RatingEndpoint extends LinkableEndpoint<Rating> {
 
     // ======================================
