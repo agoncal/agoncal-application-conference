@@ -35,7 +35,7 @@
             }
           },
           "404" : {
-            "description" : "Rooms not found"
+            "description" : "Talks not found"
           }
         }
       },

@@ -84,34 +84,6 @@
         }
       }
     },
-    "/attendees/vote/{talkId}" : {
-      "post" : {
-        "summary" : "Allows an attendee to vote for a talk",
-        "description" : "",
-        "operationId" : "vote",
-        "consumes" : [ "application/x-www-form-urlencoded" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "talkId",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "mark",
-          "in" : "formData",
-          "required" : false,
-          "type" : "integer",
-          "maximum" : 5.0,
-          "minimum" : 1.0,
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "400" : {
-            "description" : "Invalid input"
-          }
-        }
-      }
-    },
     "/attendees/{id}" : {
       "get" : {
         "summary" : "Finds an attendee by ID",

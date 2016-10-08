@@ -3,6 +3,7 @@
 ## Maven
 
 * `mvn versions:display-plugin-updates` checks plugin versions
+* `mvn swagger:generate` generates swagger.json file
 
 ## References
 
