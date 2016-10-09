@@ -22,6 +22,7 @@
           "required" : false,
           "type" : "integer",
           "default" : 1,
+          "minimum" : 1.0,
           "format" : "int32"
         } ],
         "responses" : {
@@ -46,7 +47,7 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
-          "405" : {
+          "400" : {
             "description" : "Invalid input"
           }
         }
@@ -353,8 +354,8 @@
           "type" : "string"
         } ],
         "responses" : {
-          "400" : {
-            "description" : "Invalid session value"
+          "405" : {
+            "description" : "Invalid input"
           }
         }
       }

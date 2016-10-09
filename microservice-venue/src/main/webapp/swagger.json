@@ -38,7 +38,7 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
-          "405" : {
+          "400" : {
             "description" : "Invalid input"
           }
         }
@@ -97,7 +97,7 @@
           "type" : "string"
         } ],
         "responses" : {
-          "400" : {
+          "405" : {
             "description" : "Invalid room value"
           }
         }
