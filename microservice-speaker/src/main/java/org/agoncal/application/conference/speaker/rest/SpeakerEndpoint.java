@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.domain.Links;
 import org.agoncal.application.conference.commons.registry.TalkMicroService;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
@@ -14,6 +15,8 @@ import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
@@ -57,9 +60,9 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @POST
     @ApiOperation(value = "Adds a new speaker to the conference")
     @ApiResponses(value = {
-        @ApiResponse(code = 405, message = "Invalid input")}
+        @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(Speaker speaker) {
+    public Response add(@NotNull Speaker speaker) {
         Speaker created = speakerRepository.create(speaker);
         return Response.created(getURIForSelf(speaker)).entity(created).build();
     }
@@ -104,12 +107,13 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @GET
     @ApiOperation(value = "Finds all the speakers", response = Speaker.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Speakers not found")}
     )
-    public Response allSpeakers(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
+    public Response allSpeakers(@DefaultValue("1") @QueryParam("page") @Min(1) Integer pageNumber) {
         List<Speaker> allSpeakers = speakerRepository.findAllSpeakers(pageNumber);
 
-        if (allSpeakers == null)
+        if (allSpeakers == null || allSpeakers.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Speaker speaker : allSpeakers) {
@@ -134,9 +138,9 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a speaker")
     @ApiResponses(value = {
-        @ApiResponse(code = 400, message = "Invalid speaker value")}
+        @ApiResponse(code = 405, message = "Invalid speaker value")}
     )
-    public Response remove(@PathParam("id") String id) {
+    public Response remove(@PathParam("id") @NotEmpty String id) {
         speakerRepository.delete(id);
         return Response.noContent().build();
     }

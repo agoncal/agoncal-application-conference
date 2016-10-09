@@ -84,9 +84,9 @@ public class RoomEndpointTest {
 
     @Test
     @InSequence(1)
-    public void shouldGetAllRooms() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+    public void shouldFailCreatingInvalidRoom() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
+        assertEquals(400, response.getStatus());
     }
 
     @Test
@@ -146,6 +146,13 @@ public class RoomEndpointTest {
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+    }
+
+    @Test
+    @InSequence(7)
+    public void shouldRemoveWithInvalidInput() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
+        assertEquals(405, response.getStatus());
     }
 
     // ======================================

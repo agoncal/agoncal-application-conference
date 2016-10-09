@@ -91,16 +91,27 @@ public class TalkEndpointTest {
 
     @Test
     @InSequence(1)
-    public void shouldGetAllTalks() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
-        JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
-        assertEquals("Should have 0 talk", 0, jsonObject.getJsonArray("data").size());
+    public void shouldFailGetingTalksWithZeroPage() throws Exception {
+        Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
+        assertEquals(400, response.getStatus());
     }
 
     @Test
     @InSequence(2)
+    public void shouldGetNoTalks() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(404, response.getStatus());
+    }
+
+    @Test
+    @InSequence(3)
+    public void shouldFailCreatingInvalidTalk() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
+    @InSequence(4)
     public void shouldCreateTalk() throws Exception {
         TEST_TALK.setSpeakers(Arrays.asList(TEST_SPEAKER));
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_TALK, APPLICATION_JSON_TYPE));
@@ -109,7 +120,7 @@ public class TalkEndpointTest {
     }
 
     @Test
-    @InSequence(3)
+    @InSequence(5)
     public void shouldGetAlreadyCreatedTalk() throws Exception {
         Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -131,7 +142,7 @@ public class TalkEndpointTest {
     }
 
     @Test
-    @InSequence(4)
+    @InSequence(6)
     public void shouldCheckCollectionOfTalks() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -141,12 +152,19 @@ public class TalkEndpointTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(7)
     public void shouldRemoveTalk() throws Exception {
         Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+    }
+
+    @Test
+    @InSequence(8)
+    public void shouldRemoveWithInvalidInput() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
+        assertEquals(405, response.getStatus());
     }
 
     // ======================================

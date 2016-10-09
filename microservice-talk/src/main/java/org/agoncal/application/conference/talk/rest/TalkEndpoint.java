@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.registry.SpeakerMicroService;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.talk.domain.Speaker;
@@ -13,6 +14,8 @@ import org.agoncal.application.conference.talk.repository.TalkRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
@@ -56,9 +59,9 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @POST
     @ApiOperation(value = "Adds a new talk to the conference")
     @ApiResponses(value = {
-        @ApiResponse(code = 405, message = "Invalid input")}
+        @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(Talk talk) {
+    public Response add(@NotNull Talk talk) {
         Talk created = talkRepository.create(talk);
         return Response.created(getURIForSelf(created)).entity(created).build();
     }
@@ -98,12 +101,13 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @GET
     @ApiOperation(value = "Finds all the talks", response = Talk.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Talks not found")}
     )
-    public Response allTalks(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
+    public Response allTalks(@DefaultValue("1") @QueryParam("page") @Min(1) Integer pageNumber) {
         List<Talk> allTalks = talkRepository.findAllTalks(pageNumber);
 
-        if (allTalks == null)
+        if (allTalks == null || allTalks.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Talk talk : allTalks) {
@@ -129,9 +133,9 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a talk")
     @ApiResponses(value = {
-        @ApiResponse(code = 400, message = "Invalid talk value")}
+        @ApiResponse(code = 405, message = "Invalid input")}
     )
-    public Response remove(@PathParam("id") String id) {
+    public Response remove(@PathParam("id") @NotEmpty String id) {
         talkRepository.delete(id);
         return Response.noContent().build();
     }
