@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.registry.SpeakerMicroService;
 import org.agoncal.application.conference.commons.registry.TalkMicroService;
 import org.agoncal.application.conference.commons.registry.VenueMicroService;
@@ -15,6 +16,8 @@ import org.agoncal.application.conference.schedule.repository.SessionRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
@@ -67,9 +70,9 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @POST
     @ApiOperation(value = "Adds a new session to the conference")
     @ApiResponses(value = {
-        @ApiResponse(code = 405, message = "Invalid input")}
+        @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(Session session) {
+    public Response add(@NotNull Session session) {
         Session created = sessionRepository.create(session);
         return Response.created(getURIForSelf(session)).entity(created).build();
     }
@@ -119,10 +122,10 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @ApiResponses(value = {
         @ApiResponse(code = 404, message = "Sessions not found")}
     )
-    public Response allSessions(@DefaultValue("1") @QueryParam("page") Integer pageNumber) {
+    public Response allSessions(@DefaultValue("1") @QueryParam("page") @Min(1) Integer pageNumber) {
         List<Session> allSessions = sessionRepository.findAllSessions(pageNumber);
 
-        if (allSessions == null)
+        if (allSessions == null || allSessions.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
 
         for (Session session : allSessions) {
@@ -256,9 +259,9 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a session")
     @ApiResponses(value = {
-        @ApiResponse(code = 400, message = "Invalid session value")}
+        @ApiResponse(code = 405, message = "Invalid input")}
     )
-    public Response remove(@PathParam("id") String id) {
+    public Response remove(@PathParam("id") @NotEmpty String id) {
         sessionRepository.delete(id);
         return Response.noContent().build();
     }

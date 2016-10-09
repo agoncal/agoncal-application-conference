@@ -94,16 +94,27 @@ public class SessionEndpointTest {
 
     @Test
     @InSequence(1)
-    public void shouldGetAllSessions() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
-        JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 10 links", 10, jsonObject.getJsonObject("links").size());
-        assertEquals("Should have 0 talk", 0, jsonObject.getJsonArray("data").size());
+    public void shouldFailGetingSessionsWithZeroPage() throws Exception {
+        Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
+        assertEquals(400, response.getStatus());
     }
 
     @Test
     @InSequence(2)
+    public void shouldGetNoSessions() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(404, response.getStatus());
+    }
+
+    @Test
+    @InSequence(3)
+    public void shouldFailCreatingInvalidSession() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
+    @InSequence(4)
     public void shouldCreateSession() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_SESSION, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
@@ -111,7 +122,7 @@ public class SessionEndpointTest {
     }
 
     @Test
-    @InSequence(3)
+    @InSequence(5)
     public void shouldGetAlreadyCreatedSessions() throws Exception {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -138,7 +149,7 @@ public class SessionEndpointTest {
     }
 
     @Test
-    @InSequence(4)
+    @InSequence(6)
     public void shouldCheckCollectionOfSessions() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -148,12 +159,19 @@ public class SessionEndpointTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(7)
     public void shouldRemoveSession() throws Exception {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+    }
+
+    @Test
+    @InSequence(8)
+    public void shouldRemoveWithInvalidInput() throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
+        assertEquals(405, response.getStatus());
     }
 
     // ======================================
