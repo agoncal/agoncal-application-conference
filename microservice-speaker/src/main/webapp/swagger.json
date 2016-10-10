@@ -22,6 +22,7 @@
           "required" : false,
           "type" : "integer",
           "default" : 1,
+          "minimum" : 1.0,
           "format" : "int32"
         } ],
         "responses" : {
@@ -33,6 +34,9 @@
                 "$ref" : "#/definitions/Speaker"
               }
             }
+          },
+          "400" : {
+            "description" : "Invalid input"
           },
           "404" : {
             "description" : "Speakers not found"
@@ -46,7 +50,7 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "responses" : {
-          "405" : {
+          "400" : {
             "description" : "Invalid input"
           }
         }
@@ -99,7 +103,7 @@
           "type" : "string"
         } ],
         "responses" : {
-          "400" : {
+          "405" : {
             "description" : "Invalid speaker value"
           }
         }
