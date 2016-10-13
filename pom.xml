@@ -23,6 +23,7 @@
         <version.compiler.plugin>3.5.1</version.compiler.plugin>
         <version.dependency.plugin>2.10</version.dependency.plugin>
         <version.deploy.plugin>2.8.2</version.deploy.plugin>
+        <version.docker.plugin>0.4.13</version.docker.plugin>
         <version.exec.plugin>1.5.0</version.exec.plugin>
         <version.failsafe.plugin>2.19.1</version.failsafe.plugin>
         <version.helper.plugin>1.12</version.helper.plugin>
@@ -245,6 +246,15 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${version.resources.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <goals>
+                                <goal>resources</goal>
+                            </goals>
+                            <phase>process-resources</phase>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -454,6 +464,72 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+        </profile>
+
+        <profile>
+            <id>build-docker</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+
+                <resources>
+                    <resource>
+                        <directory>src/main/docker</directory>
+                        <targetPath>${project.build.directory}/docker</targetPath>
+                        <includes>
+                            <include>Dockerfile</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                </resources>
+
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>${version.docker.plugin}</version>
+                        <configuration>
+                            <dockerDirectory>${project.build.directory}/docker</dockerDirectory>
+                            <imageName>agoncal/${project.artifactId}
+                            </imageName>
+                            <imageTags>
+                                <imageTag>${project.version}</imageTag>
+                                <imageTag>latest</imageTag>
+                            </imageTags>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>${project.build.finalName}.war</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-build</id>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
