@@ -5,50 +5,43 @@ services:
         image: traefik
         command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
         ports:
-            - "90:80"
-            - "9090:8080"
+            - "80:80"
+            - "8080:8080"
+            - "443:443"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - /dev/null:/traefik.toml
-    ms-attendee:
-        image: agoncal/microservice-attendee
-        labels:
-            - "traefik.backend=attendee"
-            - "traefik.frontend.rule=Host:attendee.docker.localhost"
-        ports:
-            - "8081:8080"
-    ms-rating:
-        image: agoncal/microservice-rating
-        labels:
-            - "traefik.backend=rating"
-            - "traefik.frontend.rule=Host:rating.docker.localhost"
-        ports:
-            - "8082:8080"
-    ms-schedule:
-        image: agoncal/microservice-schedule
-        labels:
-            - "traefik.backend=schedule"
-            - "traefik.frontend.rule=Host:schedule.docker.localhost"
-        ports:
-            - "8083:8080"
-    ms-speaker:
-        image: agoncal/microservice-speaker
-        labels:
-            - "traefik.backend=speaker"
-            - "traefik.frontend.rule=Host:speaker.docker.localhost"
-        ports:
-            - "8084:8080"
-    ms-talk:
-        image: agoncal/microservice-talk
-        labels:
-            - "traefik.backend=talk"
-            - "traefik.frontend.rule=Host:talk.docker.localhost"
-        ports:
-            - "8085:8080"
+#    ms-attendee:
+#        image: agoncal/microservice-attendee
+#        labels:
+#            - "traefik.backend=attendee"
+#            - "traefik.port=8080"
+#            - "traefik.frontend.rule=Host:api.attendee.io;PathPrefixStrip:/conference-attendee"
+#    ms-rating:
+#        image: agoncal/microservice-rating
+#        labels:
+#            - "traefik.backend=rating"
+#            - "traefik.port=8080"
+#            - "traefik.frontend.rule=Host:api.rating.io;PathPrefixStrip:/conference-rating"
+#    ms-schedule:
+#        image: agoncal/microservice-schedule
+#        ports:
+#            - "8083:8080"
+#            - "9993:9990"
+#    ms-speaker:
+#        image: agoncal/microservice-speaker
+#        ports:
+#            - "8084:8080"
+#            - "9994:9990"
+#    ms-talk:
+#        image: agoncal/microservice-talk
+#        ports:
+#            - "8085:8080"
+#            - "9995:9990"
     ms-venue:
         image: agoncal/microservice-venue
         labels:
             - "traefik.backend=venue"
-            - "traefik.frontend.rule=Host:venue.docker.localhost"
-        ports:
-            - "8086:8080"
+            - "traefik.port=8080"
+            - "traefik.frontend.passHostHeader=false"
+            - "traefik.frontend.rule=PathPrefixStrip:/conference-venue"

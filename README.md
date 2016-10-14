@@ -44,6 +44,7 @@ Go to the following URLs to test the swagger.json
 ## Docker Compose
 
 * `docker-compose --project-name devoxx up -d`
+* `docker-compose -f docker-compose-traeffic.yml up -d`
 
 ## References
 
