@@ -7,6 +7,8 @@
 
 ## Docker
 
+* `/bin/bash -c 'docker rm -fv $(docker ps -aq)'`
+
 ### Building Images
 
 * `docker build -t agoncal/conference-venue -f src/docker/Dockerfile .`
@@ -14,12 +16,12 @@
 
 ### Running Images
 
-* `docker run -d --name=microservice-attendee -p 8081:8080 agoncal/microservice-attendee:latest`
-* `docker run -d --name=microservice-rating -p 8082:8080 agoncal/microservice-rating:latest`
-* `docker run -d --name=microservice-schedule -p 8083:8080 agoncal/microservice-schedule:latest`
-* `docker run -d --name=microservice-speaker -p 8084:8080 agoncal/microservice-speaker:latest`
-* `docker run -d --name=microservice-talk -p 8085:8080 agoncal/microservice-talk:latest`
-* `docker run -d --name=microservice-venue -p 8086:8080 agoncal/microservice-venue:latest`
+* `docker run -d --name=microservice-attendee -p 8081:8080 -p 9991:9990 agoncal/microservice-attendee:latest`
+* `docker run -d --name=microservice-rating   -p 8082:8080 -p 9992:9990 agoncal/microservice-rating:latest`
+* `docker run -d --name=microservice-schedule -p 8083:8080 -p 9993:9990 agoncal/microservice-schedule:latest`
+* `docker run -d --name=microservice-speaker  -p 8084:8080 -p 9994:9990 agoncal/microservice-speaker:latest`
+* `docker run -d --name=microservice-talk     -p 8085:8080 -p 9995:9990 agoncal/microservice-talk:latest`
+* `docker run -d --name=microservice-venue    -p 8086:8080 -p 9996:9990 agoncal/microservice-venue:latest`
 
 Go to the following URLs to test the APIs
 
@@ -38,6 +40,10 @@ Go to the following URLs to test the swagger.json
 * http://localhost:8084/conference-speaker/swagger.json
 * http://localhost:8085/conference-talk/swagger.json
 * http://localhost:8086/conference-venue/swagger.json
+
+## Docker Compose
+
+* `docker-compose --project-name devoxx up -d`
 
 ## References
 
