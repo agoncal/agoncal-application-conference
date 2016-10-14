@@ -15,6 +15,7 @@ import java.util.UUID;
  *         --
  */
 @Entity
+@Table(name = "r_rating")
 @NamedQueries({
     @NamedQuery(name = Rating.FIND_ALL, query = "SELECT r FROM Rating r ORDER BY r.mark DESC"),
     @NamedQuery(name = Rating.COUNT_ALL, query = "SELECT COUNT(r) FROM Rating r"),
