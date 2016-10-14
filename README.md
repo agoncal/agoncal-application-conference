@@ -21,7 +21,7 @@
 * `docker run -d --name=microservice-talk -p 8085:8080 agoncal/microservice-talk:latest`
 * `docker run -d --name=microservice-venue -p 8086:8080 agoncal/microservice-venue:latest`
 
-Go to the following URLs
+Go to the following URLs to test the APIs
 
 * http://localhost:8081/conference-attendee/api/attendees
 * http://localhost:8082/conference-rating/api/ratings
@@ -29,6 +29,15 @@ Go to the following URLs
 * http://localhost:8084/conference-speaker/api/speakers
 * http://localhost:8085/conference-talk/api/talks
 * http://localhost:8086/conference-venue/api/rooms
+
+Go to the following URLs to test the swagger.json
+
+* http://localhost:8081/conference-attendee/swagger.json
+* http://localhost:8082/conference-rating/swagger.json
+* http://localhost:8083/conference-schedule/swagger.json
+* http://localhost:8084/conference-speaker/swagger.json
+* http://localhost:8085/conference-talk/swagger.json
+* http://localhost:8086/conference-venue/swagger.json
 
 ## References
 

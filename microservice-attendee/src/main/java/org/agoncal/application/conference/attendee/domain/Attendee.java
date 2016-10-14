@@ -16,6 +16,7 @@ import java.util.UUID;
  *         --
  */
 @Entity
+@Table(name = "a_attendee")
 @NamedQueries({
     @NamedQuery(name = Attendee.FIND_ALL, query = "SELECT a FROM Attendee a ORDER BY a.lastName DESC"),
     @NamedQuery(name = Attendee.COUNT_ALL, query = "SELECT COUNT(a) FROM Attendee a"),
