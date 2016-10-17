@@ -307,7 +307,7 @@ INSERT INTO SP_Speaker (id, firstName, lastName, company, twitter, avatarUrl, la
 INSERT INTO SP_Talk (id, title, language) values ('TOU-7137', 'Lagom Microservice Workshop', 'en');
 INSERT INTO SP_Speaker_SP_Talk (Speaker_id, acceptedTalks_id) values ('d26edf9da1fc430dc7c69fa40a388074ac287919', 'TOU-7137', );
 
-INSERT INTO SP_Speaker (id, firstName, lastName, company, twitter, avatarUrl, language, blog, bio) values ('ec702c20a7862950c6aadeafe8ae7d2bc973601b', 'Michael', 'Hüttermann', 'http //huettermann net', '@huettermann', 'https //lh4 googleusercontent com/ _OTy4JUSeCE/AAAAAAAAAAI/AAAAAAAAAk0/p 2ybwxEaXU/photo jpg', 'fr', 'http //huettermann net', 'http //huettermann net');
+INSERT INTO SP_Speaker (id, firstName, lastName, company, twitter, avatarUrl, language, blog, bio) values ('ec702c20a7862950c6aadeafe8ae7d2bc973601b', 'Michael', 'Huttermann', 'http //huettermann net', '@huettermann', 'https //lh4 googleusercontent com/ _OTy4JUSeCE/AAAAAAAAAAI/AAAAAAAAAk0/p 2ybwxEaXU/photo jpg', 'fr', 'http //huettermann net', 'http //huettermann net');
 INSERT INTO SP_Talk (id, title, language) values ('FNC-3081', 'DevOps  State of the Union', 'en');
 INSERT INTO SP_Speaker_SP_Talk (Speaker_id, acceptedTalks_id) values ('ec702c20a7862950c6aadeafe8ae7d2bc973601b', 'FNC-3081', );
 

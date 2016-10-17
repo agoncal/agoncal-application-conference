@@ -348,7 +348,7 @@ INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('TFF-9852', '95e8c
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('bof_bof1_tuesday_8_20h30_21h30', 'tuesday', '20:30', 1164650176, false, 'TFF-9852', false, '21:30', 1168250176, 'bof1');
 
 INSERT INTO SC_Talk (id, talkType, title, track) values ('FNC-3081', 'BOF (Bird of a Feather)', 'DevOps  State of the Union', 'Methodology & Architecture');
-INSERT INTO SC_Speaker (id, name) values ('ec702c20a7862950c6aadeafe8ae7d2bc973601b', 'Michael Hüttermann');
+INSERT INTO SC_Speaker (id, name) values ('ec702c20a7862950c6aadeafe8ae7d2bc973601b', 'Michael Huttermann');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('FNC-3081', 'ec702c20a7862950c6aadeafe8ae7d2bc973601b');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('bof_bof2_tuesday_8_20h30_21h30', 'tuesday', '20:30', 1164650176, false, 'FNC-3081', false, '21:30', 1168250176, 'bof2');
 
