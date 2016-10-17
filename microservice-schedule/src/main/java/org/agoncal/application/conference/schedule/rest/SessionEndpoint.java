@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
+import org.agoncal.application.conference.commons.registry.RatingMicroService;
 import org.agoncal.application.conference.commons.registry.SpeakerMicroService;
 import org.agoncal.application.conference.commons.registry.TalkMicroService;
 import org.agoncal.application.conference.commons.registry.VenueMicroService;
@@ -55,6 +56,10 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @TalkMicroService
     private UriBuilder uriTalk;
 
+    @Inject
+    @RatingMicroService
+    private UriBuilder uriRating;
+
     // ======================================
     // =            Constructors            =
     // ======================================
@@ -99,6 +104,7 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
             session.addSelfLink(getURIForSelf(session));
             session.addCollectionLink(getURIForCollection());
             session.addLink(session.getDay(), getUriBuilderForRoot().path(session.getDay()).build());
+            session.addLink("vote", uriRating.path(session.getId()).build());
             for (int i = 3; i < 11; i++) {
                 session.addLink("room" + i, getUriBuilderForRoot().path(session.getDay()).path("room" + i).build());
             }

@@ -127,10 +127,11 @@ public class SessionEndpointTest {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 11 links", 11, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 12 links", 12, jsonObject.getJsonObject("links").size());
         assertEquals(sessionId, jsonObject.getString("id"));
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/sessions/" + sessionId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/sessions"));
+        assertTrue(jsonObject.getJsonObject("links").getString("vote").contains("/api/ratings"));
         assertEquals(TEST_SESSION.getNotAllocated(), jsonObject.getBoolean("notAllocated"));
         assertEquals(TEST_SESSION.getIsaBreak(), jsonObject.getBoolean("isaBreak"));
         assertEquals(TEST_SESSION.getFromTime(), jsonObject.getString("fromTime"));
