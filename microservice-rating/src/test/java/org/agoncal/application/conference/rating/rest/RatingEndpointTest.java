@@ -42,6 +42,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
@@ -98,22 +99,32 @@ public class RatingEndpointTest {
     // ======================================
 
     @Test
-    @InSequence(3)
+    @InSequence(1)
     public void shouldFailGetingRatingsWithZeroPage() throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
         assertEquals(400, response.getStatus());
     }
 
     @Test
-    @InSequence(1)
+    @InSequence(2)
     public void shouldGetNoRatings() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, response.getStatus());
     }
 
     @Test
-    @InSequence(2)
-    public void shouldRateASession() throws Exception {
+    @InSequence(3)
+    public void shouldFailTryingToRateASessionWithNoToken() throws Exception {
+        Form form = new Form();
+        form.param("mark", TEST_RATING.getMark().toString());
+
+        Response response = webTarget.path(TEST_RATING.getSessionId()).request(APPLICATION_JSON_TYPE).post(Entity.entity(form, APPLICATION_FORM_URLENCODED));
+        assertEquals(401, response.getStatus());
+    }
+
+    @Test
+    @InSequence(4)
+    public void shouldRateASessionWithToken() throws Exception {
         Form form = new Form();
         form.param("mark", TEST_RATING.getMark().toString());
 
@@ -123,7 +134,7 @@ public class RatingEndpointTest {
     }
 
     @Test
-    @InSequence(3)
+    @InSequence(5)
     public void shouldGetAlreadyCreatedRating() throws Exception {
         Response response = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -136,7 +147,7 @@ public class RatingEndpointTest {
     }
 
     @Test
-    @InSequence(4)
+    @InSequence(6)
     public void shouldCheckCollectionOfRatings() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -146,7 +157,7 @@ public class RatingEndpointTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(7)
     public void shouldRemoveRating() throws Exception {
         Response response = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
@@ -155,7 +166,7 @@ public class RatingEndpointTest {
     }
 
     @Test
-    @InSequence(6)
+    @InSequence(8)
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());
