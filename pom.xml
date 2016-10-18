@@ -340,7 +340,7 @@
                         <imageName>agoncal/${project.artifactId}
                         </imageName>
                         <imageTags>
-                            <imageTag>${project.version}</imageTag>
+                            <!--<imageTag>${project.version}</imageTag>-->
                             <imageTag>latest</imageTag>
                         </imageTags>
                         <resources>

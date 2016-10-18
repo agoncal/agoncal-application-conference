@@ -98,7 +98,7 @@
 
     <profiles>
         <profile>
-            <id>build-docker</id>
+            <id>docker</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>

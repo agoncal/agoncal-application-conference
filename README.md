@@ -8,11 +8,13 @@
 ## Docker
 
 * `/bin/bash -c 'docker rm -fv $(docker ps -aq)'`
+* `/bin/bash -c 'docker rmi -f $(docker images -q --filter dangling=true)'`
+* `/bin/bash -c 'docker rmi -f $(docker images "agoncal/microservice*" -q)'`
 
 ### Building Images
 
 * `docker build -t agoncal/conference-venue -f src/docker/Dockerfile .`
-* `mvn clean package -Pbuild-docker`
+* `mvn clean package -Pdocker`
 
 ### Running Images
 
