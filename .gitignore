@@ -13,3 +13,4 @@ node_modules/
 *.swp
 .idea
 *.log
+*dummy*
