@@ -11,18 +11,22 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>conference-commons</artifactId>
-    <name>Conference :: Commons</name>
+    <artifactId>conference-commons-jwt</artifactId>
+    <name>Conference :: Commons JWT</name>
     <packaging>jar</packaging>
 
     <build>
-        <finalName>conference-commons</finalName>
+        <finalName>conference-commons-jwt</finalName>
     </build>
 
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
         </dependency>
     </dependencies>
 </project>

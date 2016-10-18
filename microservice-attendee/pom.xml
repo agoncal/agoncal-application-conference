@@ -49,6 +49,10 @@
             <artifactId>conference-commons</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.agoncal.application.conference</groupId>
+            <artifactId>conference-commons-jwt</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>

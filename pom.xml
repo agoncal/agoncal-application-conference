@@ -64,6 +64,7 @@
 
     <modules>
         <module>conference-commons</module>
+        <module>conference-commons-jwt</module>
         <module>microservice-attendee</module>
         <module>microservice-rating</module>
         <module>microservice-schedule</module>
@@ -78,6 +79,11 @@
             <dependency>
                 <groupId>org.agoncal.application.conference</groupId>
                 <artifactId>conference-commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>conference-commons-jwt</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
