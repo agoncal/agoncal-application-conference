@@ -2,7 +2,7 @@ package org.agoncal.application.conference.rating.rest;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.agoncal.application.conference.commons.security.SimpleKeyGenerator;
+import org.agoncal.application.conference.commons.jwt.SimpleKeyGenerator;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.domain.Ratings;
 import org.agoncal.application.conference.rating.repository.RatingRepository;

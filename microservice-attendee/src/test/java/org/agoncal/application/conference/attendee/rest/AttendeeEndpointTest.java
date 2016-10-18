@@ -4,7 +4,7 @@ import io.jsonwebtoken.Jwts;
 import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
-import org.agoncal.application.conference.commons.security.SimpleKeyGenerator;
+import org.agoncal.application.conference.commons.jwt.SimpleKeyGenerator;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;

@@ -1,6 +1,6 @@
 package org.agoncal.application.conference.attendee.data;
 
-import org.agoncal.application.conference.commons.security.PasswordUtils;
+import org.agoncal.application.conference.commons.jwt.PasswordUtils;
 
 import javax.json.Json;
 import javax.json.JsonArray;

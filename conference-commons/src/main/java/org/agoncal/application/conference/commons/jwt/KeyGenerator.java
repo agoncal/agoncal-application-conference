@@ -1,4 +1,4 @@
-package org.agoncal.application.conference.commons.security;
+package org.agoncal.application.conference.commons.jwt;
 
 import java.security.Key;
 

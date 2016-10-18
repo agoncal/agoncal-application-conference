@@ -1,7 +1,7 @@
 package org.agoncal.application.conference.attendee.repository;
 
 import org.agoncal.application.conference.attendee.domain.Attendee;
-import org.agoncal.application.conference.commons.security.PasswordUtils;
+import org.agoncal.application.conference.commons.jwt.PasswordUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

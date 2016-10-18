@@ -1,7 +1,7 @@
 package org.agoncal.application.conference.attendee.domain;
 
 import org.agoncal.application.conference.commons.domain.LinkableResource;
-import org.agoncal.application.conference.commons.security.PasswordUtils;
+import org.agoncal.application.conference.commons.jwt.PasswordUtils;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;

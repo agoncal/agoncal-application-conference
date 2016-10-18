@@ -11,7 +11,7 @@ import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
-import org.agoncal.application.conference.commons.security.KeyGenerator;
+import org.agoncal.application.conference.commons.jwt.KeyGenerator;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
