@@ -7,4 +7,7 @@
     <!--<alternatives>-->
         <!--<class>org.agoncal.application.conference.commons.registry.MultiplePortRegistry</class>-->
     <!--</alternatives>-->
+    <alternatives>
+        <class>org.agoncal.application.conference.commons.registry.TraefikPortRegistry</class>
+    </alternatives>
 </beans>

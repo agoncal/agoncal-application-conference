@@ -14,39 +14,23 @@ services:
 #    ms-attendee:
 #        image: agoncal/microservice-attendee
 #        labels:
-#            - "traefik.backend=attendee"
-#            - "traefik.frontend=attendee"
-#            - "traefik.frontend.route=route-tf-attendee"
-#            - "traefik.frontend.rule=Host:tf-attendee"
+#            - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-attendee"
 #            - "traefik.port=8080"
-#            - "traefik.frontend.rule=Host:api.attendee.io"
-#            - "traefik.frontend.rule=Host:api.attendee.io;PathPrefixStrip:/conference-attendee"
 #    ms-rating:
 #        image: agoncal/microservice-rating
 #        labels:
-#            - "traefik.backend=rating"
+#            - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-rating"
 #            - "traefik.port=8080"
-#            - "traefik.frontend.rule=Host:api.rating.io;PathPrefixStrip:/conference-rating"
-#    ms-schedule:
-#        image: agoncal/microservice-schedule
-#        ports:
-#            - "8083:8080"
-#            - "9993:9990"
-#    ms-speaker:
-#        image: agoncal/microservice-speaker
-#        ports:
-#            - "8084:8080"
-#            - "9994:9990"
-#    ms-talk:
-#        image: agoncal/microservice-talk
-#        ports:
-#            - "8085:8080"
-#            - "9995:9990"
-#    ms-talk:
-#        image: agoncal/microservice-talk
-#        labels:
-#            - "traefik.frontend.rule=Host:conference.docker.localhost"
-#            - "traefik.port=8080"
+    ms-schedule:
+        image: agoncal/microservice-schedule
+        labels:
+            - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-schedule"
+            - "traefik.port=8080"
+    ms-speaker:
+        image: agoncal/microservice-speaker
+        labels:
+            - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-speaker"
+            - "traefik.port=8080"
     ms-talk:
         image: agoncal/microservice-talk
         labels:
@@ -57,6 +41,3 @@ services:
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-venue"
             - "traefik.port=8080"
-#            - "traefik.backend=venue"
-#            - "traefik.frontend.passHostHeader=false"
-#            - "traefik.frontend.rule=Host:conference.io"
