@@ -8,6 +8,6 @@
         <!--<class>org.agoncal.application.conference.commons.registry.MultiplePortRegistry</class>-->
     <!--</alternatives>-->
     <alternatives>
-        <class>org.agoncal.application.conference.commons.registry.TraefikPortRegistry</class>
+        <class>org.agoncal.application.conference.commons.registry.TraefikRegistry</class>
     </alternatives>
 </beans>

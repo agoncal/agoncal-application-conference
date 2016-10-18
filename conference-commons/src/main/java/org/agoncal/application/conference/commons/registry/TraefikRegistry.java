@@ -10,7 +10,7 @@ import javax.ws.rs.core.UriBuilder;
  *         --
  */
 @Alternative
-public class TraefikPortRegistry implements Registry {
+public class TraefikRegistry implements Registry {
 
     @Produces @AttendeeMicroService
     public UriBuilder getURIAttendee() {

@@ -20,7 +20,7 @@ INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, no
 
 INSERT INTO SC_Room (id) values ('bof1');
 INSERT INTO SC_Talk (id, talkType, title, track) values ('XMX-6190', 'Hands on Labs', 'Codelab  Tensorflow and deep learning   without at PhD', 'Big Data');
-INSERT INTO SC_Speaker (id, name) values ('3b4de9092cd9236a4953c5e8bffed0c5de2f7537', 'Martin Görner');
+INSERT INTO SC_Speaker (id, name) values ('3b4de9092cd9236a4953c5e8bffed0c5de2f7537', 'Martin Gorner');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('XMX-6190', '3b4de9092cd9236a4953c5e8bffed0c5de2f7537');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('lab_bof1_monday_7_9h30_12h30', 'monday', '09:30', 1038650176, false, 'XMX-6190', false, '12:30', 1049450176, 'bof1');
 
@@ -146,7 +146,7 @@ INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('STH-6071', '700bb
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('tia_room4_monday_7_18h55_19h25', 'monday', '18:55', 1072550176, false, 'STH-6071', false, '19:25', 1074350176, 'room4');
 
 INSERT INTO SC_Talk (id, talkType, title, track) values ('VEI-8748', 'Tools in Action', 'Behavior Driven Development in Java with JGiven', 'Methodology & Architecture');
-INSERT INTO SC_Speaker (id, name) values ('47a71873e0979f9e913204eb9bf9f0a10e6bc75e', 'Jan Schäfer');
+INSERT INTO SC_Speaker (id, name) values ('47a71873e0979f9e913204eb9bf9f0a10e6bc75e', 'Jan Schafer');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('VEI-8748', '47a71873e0979f9e913204eb9bf9f0a10e6bc75e');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('tia_room5_monday_7_18h55_19h25', 'monday', '18:55', 1072550176, false, 'VEI-8748', false, '19:25', 1074350176, 'room5');
 
@@ -286,7 +286,7 @@ INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('ICJ-3714', 'b261a
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('tia_room8_tuesday_8_17h25_17h55', 'tuesday', '17:25', 1153550176, false, 'ICJ-3714', false, '17:55', 1155350176, 'room8');
 
 INSERT INTO SC_Talk (id, talkType, title, track) values ('EAP-4528', 'Tools in Action', 'Prometheus Monitoring for Java Developers', 'Server Side Java');
-INSERT INTO SC_Speaker (id, name) values ('bc76e6a7e689aef6550eb4b01e651ae0b4fa3f30', 'Fabian Stäber');
+INSERT INTO SC_Speaker (id, name) values ('bc76e6a7e689aef6550eb4b01e651ae0b4fa3f30', 'Fabian Staber');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('EAP-4528', 'bc76e6a7e689aef6550eb4b01e651ae0b4fa3f30');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('tia_room9_tuesday_8_17h25_17h55', 'tuesday', '17:25', 1153550176, false, 'EAP-4528', false, '17:55', 1155350176, 'room9');
 
@@ -725,7 +725,7 @@ INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('OQN-8982', '8e1d4
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('conf_room5_thursday_10_9h30_10h30', 'thursday', '09:30', 1297850176, false, 'OQN-8982', false, '10:30', 1301450176, 'room5');
 
 INSERT INTO SC_Talk (id, talkType, title, track) values ('UYS-1254', 'Conference', 'Programming your body with chip implants', 'Future<Devoxx>');
-INSERT INTO SC_Speaker (id, name) values ('d0b43eaf98c70f5fc9f248e4be9acfdd01383162', 'Pär Sikö');
+INSERT INTO SC_Speaker (id, name) values ('d0b43eaf98c70f5fc9f248e4be9acfdd01383162', 'Par Siko');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('UYS-1254', 'd0b43eaf98c70f5fc9f248e4be9acfdd01383162');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('conf_room9_thursday_10_9h30_10h30', 'thursday', '09:30', 1297850176, false, 'UYS-1254', false, '10:30', 1301450176, 'room9');
 
