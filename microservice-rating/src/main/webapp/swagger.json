@@ -22,7 +22,6 @@
           "required" : false,
           "type" : "integer",
           "default" : 1,
-          "minimum" : 1.0,
           "format" : "int32"
         } ],
         "responses" : {
@@ -169,8 +168,6 @@
           "in" : "formData",
           "required" : false,
           "type" : "integer",
-          "maximum" : 5.0,
-          "minimum" : 1.0,
           "format" : "int32"
         } ],
         "responses" : {
