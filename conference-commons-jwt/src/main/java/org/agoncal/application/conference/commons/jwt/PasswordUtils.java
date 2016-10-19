@@ -25,4 +25,8 @@ public class PasswordUtils {
             throw new RuntimeException("Exception encoding password", e);
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println(digestPassword("spertus"));
+    }
 }

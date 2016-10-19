@@ -80,12 +80,12 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
 
         try {
 
-            logger.info("#### login/password : " + login + "/" + password);
-
             // Authenticate the user using the credentials provided
             Attendee attendee = attendeeRepository.findByLoginPassWord(login, password);
-            if (attendee == null)
+            if (attendee == null) {
+                logger.warning("Invalid user/password");
                 throw new SecurityException("Invalid user/password");
+            }
 
             // Issue a token for the user
             String token = issueToken(login);
@@ -94,6 +94,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
             return Response.ok().header(AUTHORIZATION, "Bearer " + token).build();
 
         } catch (Exception e) {
+            logger.warning("UNAUTHORIZED " + e.toString());
             return Response.status(UNAUTHORIZED).build();
         }
     }
