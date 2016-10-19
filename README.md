@@ -45,8 +45,22 @@ Go to the following URLs to test the swagger.json
 
 ## Docker Compose
 
-* `docker-compose --project-name devoxx up -d`
-* `docker-compose -f docker-compose-traeffic.yml up -d`
+* `docker-compose up`
+* `docker-compose up -d` (in detached mode)
+* `docker-compose down`
+* `docker-compose ps`
+* `docker-compose scale ms-attendee=5`
+
+Go to the following URLs to test the APIs
+
+* http://localhost:8080/dashboard/ (Traeffik console)
+* http://conference.docker.localhost/conference-attendee/api/attendees
+* http://conference.docker.localhost/conference-rating/api/ratings
+* http://conference.docker.localhost/conference-schedule/api/sessions
+* http://conference.docker.localhost/conference-speaker/api/speakers
+* http://conference.docker.localhost/conference-talk/api/talks
+* http://conference.docker.localhost/conference-venue/api/rooms
+
 
 ## References
 
