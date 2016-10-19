@@ -30,9 +30,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/24aa289736bc1385ecc6cb9d3ff28626f0f5069e",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Sébastien Prunier"
+                    "title": "Sebastien Prunier"
                 },
-                "name": "Sébastien Prunier"
+                "name": "Sebastien Prunier"
             },
             {
                 "link": {
@@ -622,9 +622,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/83958251b66f2ad1f09ec0353209f36d289df00f",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Sébastien Deleuze"
+                    "title": "Sebastien Deleuze"
                 },
-                "name": "Sébastien Deleuze"
+                "name": "Sebastien Deleuze"
             }
         ],
         "title": "The Spring BOF",
@@ -879,7 +879,7 @@
         "trackId": "ssj",
         "talkType": "University",
         "track": "Server Side Java",
-        "summaryAsHtml": "<p>Sébastien and Brian promise one thing here: you&#x27;ll leave that room with a good sense of what&#x27;s <strong>reactive programming</strong>, where the  <strong>Reactor project fits into the ecosystem</strong>, and how to use a reactive API in <strong>concrete, real-world use cases</strong> (web application calling external web services, mobile backend, big data).</p>\n<p>First, we need to answer the burning question &quot;Why go reactive in the first place?&quot; (Hint: performance is not the primary reason). After an overview of the reactive programming landscape on the JVM, Android and in the browser, we will go into a live coding session, introducing the reactive programming model using the light and efficient <a href=\"http://projectreactor.io/\">Reactor Core 3.0 library</a>.</p>\n<p>We’ll complete coding labs that will teach us how to use the built-in reactive types like <code>Flux</code> and <code>Mono</code>, which are at the heart of what&#x27;s achieving Reactor: a powerful and concise Reactive eXtensions API based on JDK8 and Reactive Streams. We’ll apply those concepts to concrete use cases and show the power of Reactor operators such as <code>cache</code>, <code>retry</code>, <code>timeout</code>, etc.</p>\n",
+        "summaryAsHtml": "<p>Sebastien and Brian promise one thing here: you&#x27;ll leave that room with a good sense of what&#x27;s <strong>reactive programming</strong>, where the  <strong>Reactor project fits into the ecosystem</strong>, and how to use a reactive API in <strong>concrete, real-world use cases</strong> (web application calling external web services, mobile backend, big data).</p>\n<p>First, we need to answer the burning question &quot;Why go reactive in the first place?&quot; (Hint: performance is not the primary reason). After an overview of the reactive programming landscape on the JVM, Android and in the browser, we will go into a live coding session, introducing the reactive programming model using the light and efficient <a href=\"http://projectreactor.io/\">Reactor Core 3.0 library</a>.</p>\n<p>We’ll complete coding labs that will teach us how to use the built-in reactive types like <code>Flux</code> and <code>Mono</code>, which are at the heart of what&#x27;s achieving Reactor: a powerful and concise Reactive eXtensions API based on JDK8 and Reactive Streams. We’ll apply those concepts to concrete use cases and show the power of Reactor operators such as <code>cache</code>, <code>retry</code>, <code>timeout</code>, etc.</p>\n",
         "id": "DYM-1744",
         "speakers": [
             {
@@ -894,14 +894,14 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/83958251b66f2ad1f09ec0353209f36d289df00f",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Sébastien Deleuze"
+                    "title": "Sebastien Deleuze"
                 },
-                "name": "Sébastien Deleuze"
+                "name": "Sebastien Deleuze"
             }
         ],
         "title": "Developing Reactive applications with Reactive Streams and Java 8",
         "lang": "en",
-        "summary": "Sébastien and Brian promise one thing here: you'll leave that room with a good sense of what's **reactive programming**, where the  **Reactor project fits into the ecosystem**, and how to use a reactive API in **concrete, real-world use cases** (web application calling external web services, mobile backend, big data).\r\n\r\nFirst, we need to answer the burning question \"Why go reactive in the first place?\" (Hint: performance is not the primary reason). After an overview of the reactive programming landscape on the JVM, Android and in the browser, we will go into a live coding session, introducing the reactive programming model using the light and efficient [Reactor Core 3.0 library](http://projectreactor.io/).\r\n\r\nWe’ll complete coding labs that will teach us how to use the built-in reactive types like `Flux` and `Mono`, which are at the heart of what's achieving Reactor: a powerful and concise Reactive eXtensions API based on JDK8 and Reactive Streams. We’ll apply those concepts to concrete use cases and show the power of Reactor operators such as `cache`, `retry`, `timeout`, etc."
+        "summary": "Sebastien and Brian promise one thing here: you'll leave that room with a good sense of what's **reactive programming**, where the  **Reactor project fits into the ecosystem**, and how to use a reactive API in **concrete, real-world use cases** (web application calling external web services, mobile backend, big data).\r\n\r\nFirst, we need to answer the burning question \"Why go reactive in the first place?\" (Hint: performance is not the primary reason). After an overview of the reactive programming landscape on the JVM, Android and in the browser, we will go into a live coding session, introducing the reactive programming model using the light and efficient [Reactor Core 3.0 library](http://projectreactor.io/).\r\n\r\nWe’ll complete coding labs that will teach us how to use the built-in reactive types like `Flux` and `Mono`, which are at the heart of what's achieving Reactor: a powerful and concise Reactive eXtensions API based on JDK8 and Reactive Streams. We’ll apply those concepts to concrete use cases and show the power of Reactor operators such as `cache`, `retry`, `timeout`, etc."
     },
     {
         "trackId": "bigdata",
@@ -1466,9 +1466,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b429871520f3c38025899634df6687ab92672a80",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Sébastien Pertus"
+                    "title": "Sebastien Pertus"
                 },
-                "name": "Sébastien Pertus"
+                "name": "Sebastien Pertus"
             }
         ],
         "title": "Java EE, TypeScript and Angular2",
@@ -1514,9 +1514,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b4b847566dd06007e0a8b83dbaf60e8ef653ea2c",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "David González"
+                    "title": "David Gonzalez"
                 },
-                "name": "David González"
+                "name": "David Gonzalez"
             }
         ],
         "title": "Android Architecture Blueprints",
@@ -1654,9 +1654,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Martin Görner"
+                    "title": "Martin Gorner"
                 },
-                "name": "Martin Görner"
+                "name": "Martin Gorner"
             }
         ],
         "title": "Tensorflow and deep learning - without at PhD",
@@ -1674,9 +1674,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Martin Görner"
+                    "title": "Martin Gorner"
                 },
-                "name": "Martin Görner"
+                "name": "Martin Gorner"
             }
         ],
         "title": "Tensorflow and deep learning - without at PhD",
@@ -1694,9 +1694,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Martin Görner"
+                    "title": "Martin Gorner"
                 },
-                "name": "Martin Görner"
+                "name": "Martin Gorner"
             }
         ],
         "title": "Codelab: Tensorflow and deep learning - without at PhD",
@@ -4126,9 +4126,9 @@
                 "link": {
                     "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/c9855784c64bebd1c451293f8e613eaf8aa74931",
                     "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                    "title": "Oleg Šelajev"
+                    "title": "Oleg Selajev"
                 },
-                "name": "Oleg Šelajev"
+                "name": "Oleg Selajev"
             }
         ],
         "title": "How to Create a New JVM Language in Under an Hour",

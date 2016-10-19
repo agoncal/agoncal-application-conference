@@ -8,7 +8,7 @@ INSERT INTO SC_Room (id) values ('room5');
 INSERT INTO SC_Talk (id, talkType, title, track) values ('DYM-1744', 'University', 'Developing Reactive applications with Reactive Streams and Java 8', 'Server Side Java');
 INSERT INTO SC_Speaker (id, name) values ('fe013e6b8075a360bd8a19277143eb8515a5264c', 'Brian Clozel');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('DYM-1744', 'fe013e6b8075a360bd8a19277143eb8515a5264c');
-INSERT INTO SC_Speaker (id, name) values ('83958251b66f2ad1f09ec0353209f36d289df00f', 'Sébastien Deleuze');
+INSERT INTO SC_Speaker (id, name) values ('83958251b66f2ad1f09ec0353209f36d289df00f', 'Sebastien Deleuze');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('DYM-1744', '83958251b66f2ad1f09ec0353209f36d289df00f');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('uni_room5_monday_7_9h30_12h30', 'monday', '09:30', 1038650176, false, 'DYM-1744', false, '12:30', 1049450176, 'room5');
 
@@ -219,7 +219,7 @@ INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, no
 INSERT INTO SC_Talk (id, talkType, title, track) values ('MBV-6308', 'University', 'Java EE  TypeScript and Angular2', 'Modern Web');
 INSERT INTO SC_Speaker (id, name) values ('dc61d5c028dceb9ce4fd55623c6f725f3666ab46', 'Antonio Goncalves');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('MBV-6308', 'dc61d5c028dceb9ce4fd55623c6f725f3666ab46');
-INSERT INTO SC_Speaker (id, name) values ('b429871520f3c38025899634df6687ab92672a80', 'Sébastien Pertus');
+INSERT INTO SC_Speaker (id, name) values ('b429871520f3c38025899634df6687ab92672a80', 'Sebastien Pertus');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('MBV-6308', 'b429871520f3c38025899634df6687ab92672a80');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('uni_room5_tuesday_8_13h30_16h30', 'tuesday', '13:30', 1139450176, false, 'MBV-6308', false, '16:30', 1150250176, 'room5');
 
@@ -242,7 +242,7 @@ INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('YMI-7185', '85eb8
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('lab_bof1_tuesday_8_13h30_16h30', 'tuesday', '13:30', 1139450176, false, 'YMI-7185', false, '16:30', 1150250176, 'bof1');
 
 INSERT INTO SC_Talk (id, talkType, title, track) values ('LJP-3156', 'Hands on Labs', 'Let s React  the workshop', 'Modern Web');
-INSERT INTO SC_Speaker (id, name) values ('24aa289736bc1385ecc6cb9d3ff28626f0f5069e', 'Sébastien Prunier');
+INSERT INTO SC_Speaker (id, name) values ('24aa289736bc1385ecc6cb9d3ff28626f0f5069e', 'Sebastien Prunier');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('LJP-3156', '24aa289736bc1385ecc6cb9d3ff28626f0f5069e');
 INSERT INTO SC_Speaker (id, name) values ('d4f627022d99644546b010cb43135cf5bda26cc7', 'Mathieu ANCELIN');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('LJP-3156', 'd4f627022d99644546b010cb43135cf5bda26cc7');
@@ -784,7 +784,7 @@ INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('QFW-7960', '2c997
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('conf_room4_thursday_10_10h50_11h50', 'thursday', '10:50', 1302650176, false, 'QFW-7960', false, '11:50', 1306250176, 'room4');
 
 INSERT INTO SC_Talk (id, talkType, title, track) values ('CQZ-1658', 'Conference', 'How to Create a New JVM Language in Under an Hour', 'Programming languages');
-INSERT INTO SC_Speaker (id, name) values ('c9855784c64bebd1c451293f8e613eaf8aa74931', 'Oleg Šelajev');
+INSERT INTO SC_Speaker (id, name) values ('c9855784c64bebd1c451293f8e613eaf8aa74931', 'Oleg Selajev');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('CQZ-1658', 'c9855784c64bebd1c451293f8e613eaf8aa74931');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('conf_room3_thursday_10_10h50_11h50', 'thursday', '10:50', 1302650176, false, 'CQZ-1658', false, '11:50', 1306250176, 'room3');
 
@@ -994,7 +994,7 @@ INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('CNY-0635', '8a7d6
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('conf_room5_thursday_10_15h10_16h10', 'thursday', '15:10', 1318250176, false, 'CNY-0635', false, '16:10', 1321850176, 'room5');
 
 INSERT INTO SC_Talk (id, talkType, title, track) values ('JLM-7245', 'Conference', 'Android Architecture Blueprints', 'Mobile & Embedded');
-INSERT INTO SC_Speaker (id, name) values ('b4b847566dd06007e0a8b83dbaf60e8ef653ea2c', 'David González');
+INSERT INTO SC_Speaker (id, name) values ('b4b847566dd06007e0a8b83dbaf60e8ef653ea2c', 'David Gonzalez');
 INSERT INTO SC_Talk_SC_Speaker (Talk_id, speakers_id) values ('JLM-7245', 'b4b847566dd06007e0a8b83dbaf60e8ef653ea2c');
 INSERT INTO SC_Session (id, day, fromTime, fromTimeMillis, isaBreak, talk_id, notAllocated, toTime, toTimeMillis, room_id) values ('conf_room9_thursday_10_15h10_16h10', 'thursday', '15:10', 1318250176, false, 'JLM-7245', false, '16:10', 1321850176, 'room9');
 

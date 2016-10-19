@@ -42,12 +42,12 @@ public class JSonToDatabase {
             acceptedTalkCreateSQLStatements = new ArrayList<>();
             speakerCreateSQLStatement = "INSERT INTO SP_Speaker (id, firstName, lastName, company, twitter, avatarUrl, language, blog, bio) values (";
 
-            speakerCreateSQLStatement += getSqlValue(result, "uuid") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "firstName") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "lastName") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "company") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "twitter") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "avatarURL") + ", ";
+            speakerCreateSQLStatement += getFormattedValue(result, "uuid") + ", ";
+            speakerCreateSQLStatement += getFormattedValue(result, "firstName") + ", ";
+            speakerCreateSQLStatement += getFormattedValue(result, "lastName") + ", ";
+            speakerCreateSQLStatement += getFormattedValue(result, "company") + ", ";
+            speakerCreateSQLStatement += getFormattedValue(result, "twitter") + ", ";
+            speakerCreateSQLStatement += getValue(result, "avatarURL") + ", ";
 
             JsonArray links = result.getJsonArray("links");
             for (JsonObject link : links.getValuesAs(JsonObject.class)) {
@@ -68,9 +68,9 @@ public class JSonToDatabase {
         try (InputStream is = url.openStream(); JsonReader rdr = Json.createReader(is)) {
 
             JsonObject result = rdr.readObject();
-            speakerCreateSQLStatement += getSqlValue(result, "lang") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "blog") + ", ";
-            speakerCreateSQLStatement += getSqlValue(result, "bio");
+            speakerCreateSQLStatement += getFormattedValue(result, "lang") + ", ";
+            speakerCreateSQLStatement += getValue(result, "blog") + ", ";
+            speakerCreateSQLStatement += getFormattedValue(result, "bio");
 
             JsonArray acceptedTalks = result.getJsonArray("acceptedTalks");
             for (int i = 0; i < acceptedTalks.size(); i++) {
@@ -97,8 +97,8 @@ public class JSonToDatabase {
                 talksAlreadyExist.put(result.getString("id"), "exists");
                 acceptedTalkCreateSQLStatement = "INSERT INTO SP_Talk (id, title, language) values (";
                 acceptedTalkCreateSQLStatement += "'" + result.getString("id") + "', ";
-                acceptedTalkCreateSQLStatement += getSqlValue(result, "title") + ", ";
-                acceptedTalkCreateSQLStatement += getSqlValue(result, "lang");
+                acceptedTalkCreateSQLStatement += getFormattedValue(result, "title") + ", ";
+                acceptedTalkCreateSQLStatement += getFormattedValue(result, "lang");
                 acceptedTalkCreateSQLStatement += ");";
                 sqlStatements.add(acceptedTalkCreateSQLStatement);
             }
@@ -112,13 +112,26 @@ public class JSonToDatabase {
         return sqlStatements;
     }
 
-    private static String getSqlValue(JsonObject jsonObject, String key) {
+    private static String getFormattedValue(JsonObject jsonObject, String key) {
         try {
             String value = jsonObject.getString(key);
             if (value == null) {
                 return "null";
             } else {
                 return "'" + value.replaceAll("[\\t\\r\\n\\-\\+\\.\\^:,'“”]", " ").trim() + "'";
+            }
+        } catch (Exception e) {
+            return "null";
+        }
+    }
+
+    private static String getValue(JsonObject jsonObject, String key) {
+        try {
+            String value = jsonObject.getString(key);
+            if (value == null) {
+                return "null";
+            } else {
+                return "'" + value.trim() + "'";
             }
         } catch (Exception e) {
             return "null";

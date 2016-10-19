@@ -408,9 +408,9 @@
                         "link": {
                             "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537",
                             "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                            "title": "Martin Görner"
+                            "title": "Martin Gorner"
                         },
-                        "name": "Martin Görner"
+                        "name": "Martin Gorner"
                     }
                 ],
                 "title": "Tensorflow and deep learning - without at PhD",

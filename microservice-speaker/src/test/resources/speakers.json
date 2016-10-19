@@ -562,10 +562,10 @@
             {
                 "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/83958251b66f2ad1f09ec0353209f36d289df00f",
                 "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                "title": "Sébastien Deleuze"
+                "title": "Sebastien Deleuze"
             }
         ],
-        "firstName": "Sébastien",
+        "firstName": "Sebastien",
         "avatarURL": "http://web2day.co/wp-content/uploads/2016/06/3eLnSc1Y.jpg",
         "twitter": "@sdeleuze"
     },
@@ -802,7 +802,7 @@
             {
                 "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b4b847566dd06007e0a8b83dbaf60e8ef653ea2c",
                 "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                "title": "David González"
+                "title": "David Gonzalez"
             }
         ],
         "firstName": "David",
@@ -892,7 +892,7 @@
             {
                 "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/3b4de9092cd9236a4953c5e8bffed0c5de2f7537",
                 "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                "title": "Martin Görner"
+                "title": "Martin Gorner"
             }
         ],
         "firstName": "Martin",
@@ -1657,10 +1657,10 @@
             {
                 "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b429871520f3c38025899634df6687ab92672a80",
                 "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                "title": "Sébastien Pertus"
+                "title": "Sebastien Pertus"
             }
         ],
-        "firstName": "Sébastien",
+        "firstName": "Sebastien",
         "avatarURL": "http://www.dotmim.com/SiteFiles/Seb2.jpg",
         "twitter": "@sebastienpertus"
     },
@@ -1762,10 +1762,10 @@
             {
                 "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/24aa289736bc1385ecc6cb9d3ff28626f0f5069e",
                 "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                "title": "Sébastien Prunier"
+                "title": "Sebastien Prunier"
             }
         ],
-        "firstName": "Sébastien",
+        "firstName": "Sebastien",
         "avatarURL": "http://www.gravatar.com/avatar/9ec96799dd90029b4f1caf6d1475c1bb",
         "twitter": "@sebprunier"
     },
@@ -2687,12 +2687,12 @@
     {
         "uuid": "c9855784c64bebd1c451293f8e613eaf8aa74931",
         "company": "ZeroTurnaround",
-        "lastName": "Šelajev",
+        "lastName": "Selajev",
         "links": [
             {
                 "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/c9855784c64bebd1c451293f8e613eaf8aa74931",
                 "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                "title": "Oleg Šelajev"
+                "title": "Oleg Selajev"
             }
         ],
         "firstName": "Oleg",

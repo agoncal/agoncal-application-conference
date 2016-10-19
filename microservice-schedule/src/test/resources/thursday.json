@@ -643,9 +643,9 @@
                         "link": {
                             "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/c9855784c64bebd1c451293f8e613eaf8aa74931",
                             "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                            "title": "Oleg Šelajev"
+                            "title": "Oleg Selajev"
                         },
-                        "name": "Oleg Šelajev"
+                        "name": "Oleg Selajev"
                     }
                 ],
                 "title": "How to Create a New JVM Language in Under an Hour",
@@ -2165,9 +2165,9 @@
                         "link": {
                             "href": "http://cfp.devoxx.be/api/conferences/DV16/speakers/b4b847566dd06007e0a8b83dbaf60e8ef653ea2c",
                             "rel": "http://cfp.devoxx.be/api/profile/speaker",
-                            "title": "David González"
+                            "title": "David Gonzalez"
                         },
-                        "name": "David González"
+                        "name": "David Gonzalez"
                     }
                 ],
                 "title": "Android Architecture Blueprints",
