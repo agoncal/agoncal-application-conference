@@ -156,7 +156,7 @@
                         <configuration>
                             <properties>
                                 <swarm.http.port>8085</swarm.http.port>
-                                <swarm.context.path>/</swarm.context.path>
+                                <swarm.context.path>${project.build.finalName}</swarm.context.path>
                             </properties>
                         </configuration>
                     </plugin>
