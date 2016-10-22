@@ -99,6 +99,7 @@ public class SessionEndpointTest {
     public void shouldFailGetingSessionsWithZeroPage() throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
         assertEquals(400, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -106,6 +107,7 @@ public class SessionEndpointTest {
     public void shouldGetNoSessions() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -113,6 +115,7 @@ public class SessionEndpointTest {
     public void shouldFailCreatingInvalidSession() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
         assertEquals(400, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -121,6 +124,7 @@ public class SessionEndpointTest {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_SESSION, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         sessionId = getSpeakerId(response);
+        checkHeaders(response);
     }
 
     @Test
@@ -149,6 +153,7 @@ public class SessionEndpointTest {
         assertEquals(TEST_TALK.getTrack(), jsonObject.getJsonObject("talk").getString("track"));
         assertEquals("Should have 1 link", 1, jsonObject.getJsonObject("talk").getJsonObject("links").size());
         assertEquals("Should have 1 speaker", 1, jsonObject.getJsonObject("talk").getJsonArray("speakers").size());
+        checkHeaders(response);
     }
 
     @Test
@@ -162,6 +167,7 @@ public class SessionEndpointTest {
         Response response2 = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
         assertNotNull(response2.getEntityTag());
         assertEquals(304, response2.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -172,6 +178,7 @@ public class SessionEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 10 links", 10, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
+        checkHeaders(response);
     }
 
     @Test
@@ -181,6 +188,7 @@ public class SessionEndpointTest {
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -188,6 +196,7 @@ public class SessionEndpointTest {
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());
+        checkHeaders(response);
     }
 
     // ======================================
@@ -208,5 +217,14 @@ public class SessionEndpointTest {
         String competitionJson = response.readEntity(String.class);
         StringReader stringReader = new StringReader(competitionJson);
         return Json.createReader(stringReader);
+    }
+
+    private void checkHeaders(Response response) {
+        // TODO FIXME
+        // assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
+        // assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
+        // assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
+        // assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
+        // assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
     }
 }

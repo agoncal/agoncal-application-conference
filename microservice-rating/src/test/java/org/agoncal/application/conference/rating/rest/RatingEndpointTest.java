@@ -42,7 +42,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
@@ -103,6 +102,7 @@ public class RatingEndpointTest {
     public void shouldFailGetingRatingsWithZeroPage() throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
         assertEquals(400, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -110,6 +110,7 @@ public class RatingEndpointTest {
     public void shouldGetNoRatings() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -120,6 +121,7 @@ public class RatingEndpointTest {
 
         Response response = webTarget.path(TEST_RATING.getSessionId()).request(APPLICATION_JSON_TYPE).post(Entity.entity(form, APPLICATION_FORM_URLENCODED));
         assertEquals(401, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -131,6 +133,7 @@ public class RatingEndpointTest {
         Response response = webTarget.path(TEST_RATING.getSessionId()).request(APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, issueToken()).post(Entity.entity(form, APPLICATION_FORM_URLENCODED));
         assertEquals(201, response.getStatus());
         ratingId = getRatingId(response);
+        checkHeaders(response);
     }
 
     @Test
@@ -144,6 +147,7 @@ public class RatingEndpointTest {
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/ratings/" + ratingId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/ratings"));
         assertEquals(TEST_RATING.getMark(), new Integer(jsonObject.getInt("mark")));
+        checkHeaders(response);
     }
 
     @Test
@@ -154,6 +158,7 @@ public class RatingEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
+        checkHeaders(response);
     }
 
     @Test
@@ -163,6 +168,7 @@ public class RatingEndpointTest {
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -170,6 +176,7 @@ public class RatingEndpointTest {
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());
+        checkHeaders(response);
     }
 
     // ======================================
@@ -206,5 +213,13 @@ public class RatingEndpointTest {
 
     private Date toDate(LocalDateTime localDateTime) {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    private void checkHeaders(Response response) {
+        assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
+        assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
+        assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
+        assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
+        assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
     }
 }

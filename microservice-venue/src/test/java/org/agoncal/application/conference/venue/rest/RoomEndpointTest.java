@@ -87,6 +87,7 @@ public class RoomEndpointTest {
     public void shouldFailCreatingInvalidRoom() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
         assertEquals(400, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -96,6 +97,7 @@ public class RoomEndpointTest {
         assertEquals(201, response.getStatus());
         roomId = getRoomId(response);
         TEST_ROOM.setId(roomId);
+        checkHeaders(response);
     }
 
     @Test
@@ -112,6 +114,7 @@ public class RoomEndpointTest {
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
         assertEquals(TEST_ROOM.getCapacity(), new Integer(jsonObject.getInt("capacity")));
         assertEquals(TEST_ROOM.getSetup(), jsonObject.getString("setup"));
+        checkHeaders(response);
     }
 
     @Test
@@ -125,6 +128,7 @@ public class RoomEndpointTest {
         Response response2 = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
         assertNotNull(response2.getEntityTag());
         assertEquals(304, response2.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -137,6 +141,7 @@ public class RoomEndpointTest {
         assertEquals(roomId, jsonObject.getString("id"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
         assertEquals(2, jsonObject.getJsonObject("links").size());
+        checkHeaders(response);
     }
 
     @Test
@@ -146,6 +151,7 @@ public class RoomEndpointTest {
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(roomId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -153,6 +159,7 @@ public class RoomEndpointTest {
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());
+        checkHeaders(response);
     }
 
     // ======================================
@@ -173,5 +180,14 @@ public class RoomEndpointTest {
         String competitionJson = response.readEntity(String.class);
         StringReader stringReader = new StringReader(competitionJson);
         return Json.createReader(stringReader);
+    }
+
+    private void checkHeaders(Response response) {
+        // TODO FIXME
+        // assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
+        // assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
+        // assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
+        // assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
+        // assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
     }
 }

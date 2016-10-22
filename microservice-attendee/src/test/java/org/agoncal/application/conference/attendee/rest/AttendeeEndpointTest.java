@@ -99,6 +99,7 @@ public class AttendeeEndpointTest {
         Response response = webTarget.path("login").request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
         assertEquals(400, response.getStatus());
         assertNull(response.getHeaderString(HttpHeaders.AUTHORIZATION));
+        checkHeaders(response);
     }
 
     @Test
@@ -111,6 +112,7 @@ public class AttendeeEndpointTest {
         Response response = webTarget.path("login").request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
         assertEquals(401, response.getStatus());
         assertNull(response.getHeaderString(HttpHeaders.AUTHORIZATION));
+        checkHeaders(response);
     }
 
     @Test
@@ -118,6 +120,7 @@ public class AttendeeEndpointTest {
     public void shouldFailGetingAttendeesWithZeroPage() throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
         assertEquals(400, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -125,6 +128,7 @@ public class AttendeeEndpointTest {
     public void shouldGetNoAttendees() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -132,6 +136,7 @@ public class AttendeeEndpointTest {
     public void shouldFailCreatingInvalidAttendee() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
         assertEquals(400, response.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -140,6 +145,7 @@ public class AttendeeEndpointTest {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_ATTENDEE, APPLICATION_JSON_TYPE));
         assertEquals(201, response.getStatus());
         attendeeId = getAttendeeId(response);
+        checkHeaders(response);
     }
 
     @Test
@@ -153,6 +159,7 @@ public class AttendeeEndpointTest {
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/attendees/" + attendeeId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/attendees"));
         assertEquals(TEST_ATTENDEE.getLastName(), jsonObject.getString("lastName"));
+        checkHeaders(response);
     }
 
     @Test
@@ -166,6 +173,7 @@ public class AttendeeEndpointTest {
         Response response2 = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
         assertNotNull(response2.getEntityTag());
         assertEquals(304, response2.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -191,6 +199,7 @@ public class AttendeeEndpointTest {
         assertEquals(baseURL.toString().concat("api/attendees/login"), Jwts.parser().setSigningKey(key).parseClaimsJws(justTheToken).getBody().getIssuer());
         assertNotNull(Jwts.parser().setSigningKey(key).parseClaimsJws(justTheToken).getBody().getIssuedAt());
         assertNotNull(Jwts.parser().setSigningKey(key).parseClaimsJws(justTheToken).getBody().getExpiration());
+        checkHeaders(response);
     }
 
     @Test
@@ -201,6 +210,7 @@ public class AttendeeEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
+        checkHeaders(response);
     }
 
     @Test
@@ -210,6 +220,7 @@ public class AttendeeEndpointTest {
         assertEquals(204, response.getStatus());
         Response checkResponse = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(404, checkResponse.getStatus());
+        checkHeaders(response);
     }
 
     @Test
@@ -217,6 +228,7 @@ public class AttendeeEndpointTest {
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());
+        checkHeaders(response);
     }
 
     // ======================================
@@ -237,5 +249,13 @@ public class AttendeeEndpointTest {
         String competitionJson = response.readEntity(String.class);
         StringReader stringReader = new StringReader(competitionJson);
         return Json.createReader(stringReader);
+    }
+
+    private void checkHeaders(Response response) {
+        assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
+        assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
+        assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
+        assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
+        assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
     }
 }
