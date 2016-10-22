@@ -25,10 +25,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Form;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.io.File;
 import java.io.StringReader;
 import java.net.URI;
@@ -160,6 +157,19 @@ public class AttendeeEndpointTest {
 
     @Test
     @InSequence(8)
+    public void shouldGetCreatedAttendeeWithEtag() throws Exception {
+        Response response = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).get();
+        EntityTag etag = response.getEntityTag();
+        assertNotNull(etag);
+        assertEquals(200, response.getStatus());
+        response.close();
+        Response response2 = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
+        assertNotNull(response2.getEntityTag());
+        assertEquals(304, response2.getStatus());
+    }
+
+    @Test
+    @InSequence(9)
     public void shouldLogUserIn() throws Exception {
         Form form = new Form();
         form.param("login", TEST_ATTENDEE.getLogin());
@@ -184,7 +194,7 @@ public class AttendeeEndpointTest {
     }
 
     @Test
-    @InSequence(9)
+    @InSequence(10)
     public void shouldCheckCollectionOfAttendees() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -194,7 +204,7 @@ public class AttendeeEndpointTest {
     }
 
     @Test
-    @InSequence(10)
+    @InSequence(11)
     public void shouldRemoveAttendee() throws Exception {
         Response response = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
@@ -203,7 +213,7 @@ public class AttendeeEndpointTest {
     }
 
     @Test
-    @InSequence(11)
+    @InSequence(12)
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());

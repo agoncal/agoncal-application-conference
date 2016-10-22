@@ -6,11 +6,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
+import org.agoncal.application.conference.commons.jwt.JWTTokenNeeded;
+import org.agoncal.application.conference.commons.jwt.KeyGenerator;
 import org.agoncal.application.conference.commons.registry.AttendeeMicroService;
 import org.agoncal.application.conference.commons.registry.SessionMicroService;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
-import org.agoncal.application.conference.commons.jwt.JWTTokenNeeded;
-import org.agoncal.application.conference.commons.jwt.KeyGenerator;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.domain.Ratings;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
@@ -110,19 +110,12 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
         if (rating == null)
             return Response.status(Response.Status.NOT_FOUND).build();
 
-        EntityTag etag = new EntityTag(Integer.toString(rating.hashCode()));
-        Response.ResponseBuilder preconditions = request.evaluatePreconditions(etag);
+        rating.addSelfLink(getURIForSelf(rating));
+        rating.addCollectionLink(getURIForCollection());
+        rating.setAttendeeId(uriAttendee.clone().path(rating.getAttendeeId()).build().toString());
+        rating.setSessionId(uriSession.clone().path(rating.getSessionId()).build().toString());
 
-        // cached resource did change -> serve updated content
-        if (preconditions == null) {
-            rating.addSelfLink(getURIForSelf(rating));
-            rating.addCollectionLink(getURIForCollection());
-            rating.setAttendeeId(uriAttendee.clone().path(rating.getAttendeeId()).build().toString());
-            rating.setSessionId(uriSession.clone().path(rating.getSessionId()).build().toString());
-            preconditions = Response.ok(rating).tag(etag);
-        }
-
-        return preconditions.build();
+        return Response.ok(rating).build();
     }
 
     @GET

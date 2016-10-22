@@ -24,6 +24,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
@@ -31,10 +32,9 @@ import java.net.URI;
 import java.util.Arrays;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
-import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
-import static org.agoncal.application.conference.commons.domain.Links.SELF;
-import static org.agoncal.application.conference.commons.domain.Links.SUMMARY;
+import static org.agoncal.application.conference.commons.domain.Links.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
@@ -149,6 +149,19 @@ public class SpeakerEndpointTest {
 
     @Test
     @InSequence(6)
+    public void shouldGetCreatedSpeakerWithEtag() throws Exception {
+        Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
+        EntityTag etag = response.getEntityTag();
+        assertNotNull(etag);
+        assertEquals(200, response.getStatus());
+        response.close();
+        Response response2 = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
+        assertNotNull(response2.getEntityTag());
+        assertEquals(304, response2.getStatus());
+    }
+
+    @Test
+    @InSequence(7)
     public void shouldCheckCollectionOfSpeakers() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -158,7 +171,7 @@ public class SpeakerEndpointTest {
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(8)
     public void shouldRemoveSpeaker() throws Exception {
         Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
@@ -167,7 +180,7 @@ public class SpeakerEndpointTest {
     }
 
     @Test
-    @InSequence(8)
+    @InSequence(9)
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());

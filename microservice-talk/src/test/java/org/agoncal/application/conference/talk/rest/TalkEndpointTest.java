@@ -24,6 +24,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
@@ -34,6 +35,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
@@ -143,6 +145,19 @@ public class TalkEndpointTest {
 
     @Test
     @InSequence(6)
+    public void shouldGetCreatedTalkWithEtag() throws Exception {
+        Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).get();
+        EntityTag etag = response.getEntityTag();
+        assertNotNull(etag);
+        assertEquals(200, response.getStatus());
+        response.close();
+        Response response2 = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
+        assertNotNull(response2.getEntityTag());
+        assertEquals(304, response2.getStatus());
+    }
+
+    @Test
+    @InSequence(7)
     public void shouldCheckCollectionOfTalks() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(200, response.getStatus());
@@ -152,7 +167,7 @@ public class TalkEndpointTest {
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(8)
     public void shouldRemoveTalk() throws Exception {
         Response response = webTarget.path(talkId).request(APPLICATION_JSON_TYPE).delete();
         assertEquals(204, response.getStatus());
@@ -161,7 +176,7 @@ public class TalkEndpointTest {
     }
 
     @Test
-    @InSequence(8)
+    @InSequence(9)
     public void shouldRemoveWithInvalidInput() throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
         assertEquals(405, response.getStatus());
