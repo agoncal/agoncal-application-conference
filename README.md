@@ -4,6 +4,7 @@
 
 * `mvn versions:display-plugin-updates` checks plugin versions
 * `mvn swagger:generate` generates swagger.json file
+* `/bin/bash -c 'mvn -f microservice-attendee/pom.xml swagger:generate && mvn -f microservice-rating/pom.xml swagger:generate && mvn -f microservice-schedule/pom.xml swagger:generate && mvn -f microservice-speaker/pom.xml swagger:generate && mvn -f microservice-talk/pom.xml swagger:generate && mvn -f microservice-venue/pom.xml swagger:generate'`
 
 ## Docker
 
@@ -53,14 +54,20 @@ Go to the following URLs to test the swagger.json
 
 Go to the following URLs to test the APIs
 
-* http://localhost:8080/dashboard/ (Traeffik console)
-* http://conference.docker.localhost/conference-attendee/api/attendees
-* http://conference.docker.localhost/conference-rating/api/ratings
-* http://conference.docker.localhost/conference-schedule/api/sessions
-* http://conference.docker.localhost/conference-speaker/api/speakers
-* http://conference.docker.localhost/conference-talk/api/talks
-* http://conference.docker.localhost/conference-venue/api/rooms
+* http://conference.docker.localhost:8080/dashboard/ (Traeffik console)
+* http://conference.docker.localhost:90/conference-attendee/api/attendees
+* http://conference.docker.localhost:90/conference-rating/api/ratings
+* http://conference.docker.localhost:90/conference-schedule/api/sessions
+* http://conference.docker.localhost:90/conference-speaker/api/speakers
+* http://conference.docker.localhost:90/conference-talk/api/talks
+* http://conference.docker.localhost:90/conference-venue/api/rooms
 
+
+### cURL
+
+curl http://conference.docker.localhost:90/conference-attendee/api/attendees
+curl -X POST http://conference.docker.localhost:90/conference-attendee/api/attendees/login -H 'Accept: application/json' -H 'Content-Type: application/x-www-form-urlencoded' -d 'login=agoncal&password=agoncal' -v
+curl 'http://conference.docker.localhost:90/conference-rating/api/ratings/uni_room9_tuesday_8_9h30_12h30' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: http://conference.docker.localhost:90/conference-schedule/api/sessions/uni_room9_tuesday_8_9h30_12h30' -H 'Connection: keep-alive' --compressed
 
 ## References
 
