@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.agoncal.application.conference</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>conference-tests</artifactId>
+    <name>Conference :: Tests</name>
+    <packaging>war</packaging>
+
+    <build>
+        <finalName>conference-tests</finalName>
+
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.agoncal.application.conference</groupId>
+            <artifactId>conference-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.agoncal.application.conference</groupId>
+            <artifactId>conference-commons-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.agoncal.application.conference</groupId>
+            <artifactId>microservice-attendee</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
+            <!--<scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.agoncal.application.conference</groupId>
+            <artifactId>microservice-rating</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
+            <!--<scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+
+        <!-- TEST -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.agoncal.application.conference</groupId>
+            <artifactId>conference-commons</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-junit</artifactId>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
+            <version>${version.shrinkwrap.maven.resolver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson-provider</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

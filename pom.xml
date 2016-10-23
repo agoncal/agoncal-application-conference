@@ -65,6 +65,7 @@
     <modules>
         <module>conference-commons</module>
         <module>conference-commons-jwt</module>
+        <module>conference-tests</module>
         <module>microservice-attendee</module>
         <module>microservice-rating</module>
         <module>microservice-schedule</module>
@@ -91,6 +92,36 @@
             <dependency>
                 <groupId>org.agoncal.application.conference</groupId>
                 <artifactId>conference-commons-jwt</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>microservice-attendee</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>microservice-rating</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>microservice-schedule</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>microservice-speaker</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>microservice-talk</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>microservice-venue</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
