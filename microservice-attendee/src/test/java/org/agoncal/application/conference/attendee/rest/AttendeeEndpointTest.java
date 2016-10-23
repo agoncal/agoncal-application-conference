@@ -254,5 +254,6 @@ public class AttendeeEndpointTest {
 
     private void checkHeaders(Response response) {
         CORSFilterTest.checkCORSHeaders(response);
+        assertNotNull(response.getHeaders().get("Host"));
     }
 }

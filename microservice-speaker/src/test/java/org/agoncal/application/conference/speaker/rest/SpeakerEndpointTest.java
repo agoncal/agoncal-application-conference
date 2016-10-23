@@ -216,5 +216,6 @@ public class SpeakerEndpointTest {
 
     private void checkHeaders(Response response) {
         CORSFilterTest.checkCORSHeaders(response);
+        assertNotNull(response.getHeaders().get("Host"));
     }
 }
