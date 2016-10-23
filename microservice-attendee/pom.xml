@@ -71,6 +71,12 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.agoncal.application.conference</groupId>
+            <artifactId>conference-commons</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.arquillian.universe</groupId>
             <artifactId>arquillian-junit</artifactId>
             <type>pom</type>

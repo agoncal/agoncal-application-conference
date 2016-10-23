@@ -1,5 +1,6 @@
 package org.agoncal.application.conference.venue.rest;
 
+import org.agoncal.application.conference.commons.rest.CORSFilterTest;
 import org.agoncal.application.conference.venue.domain.Room;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -183,11 +184,6 @@ public class RoomEndpointTest {
     }
 
     private void checkHeaders(Response response) {
-        // TODO FIXME
-        // assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
-        // assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
-        // assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
-        // assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
-        // assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
+        CORSFilterTest.checkCORSHeaders(response);
     }
 }

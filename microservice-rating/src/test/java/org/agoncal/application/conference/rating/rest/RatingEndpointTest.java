@@ -3,6 +3,7 @@ package org.agoncal.application.conference.rating.rest;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.agoncal.application.conference.commons.jwt.SimpleKeyGenerator;
+import org.agoncal.application.conference.commons.rest.CORSFilterTest;
 import org.agoncal.application.conference.rating.domain.Rating;
 import org.agoncal.application.conference.rating.domain.Ratings;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
@@ -216,10 +217,6 @@ public class RatingEndpointTest {
     }
 
     private void checkHeaders(Response response) {
-        assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
-        assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
-        assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
-        assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
-        assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
+        CORSFilterTest.checkCORSHeaders(response);
     }
 }

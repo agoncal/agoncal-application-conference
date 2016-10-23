@@ -1,5 +1,6 @@
 package org.agoncal.application.conference.speaker.rest;
 
+import org.agoncal.application.conference.commons.rest.CORSFilterTest;
 import org.agoncal.application.conference.speaker.domain.AcceptedTalk;
 import org.agoncal.application.conference.speaker.domain.Speaker;
 import org.agoncal.application.conference.speaker.domain.Speakers;
@@ -33,9 +34,7 @@ import java.util.Arrays;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.agoncal.application.conference.commons.domain.Links.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -216,11 +215,6 @@ public class SpeakerEndpointTest {
     }
 
     private void checkHeaders(Response response) {
-        // TODO FIXME
-        // assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
-        // assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
-        // assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
-        // assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
-        // assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
+        CORSFilterTest.checkCORSHeaders(response);
     }
 }

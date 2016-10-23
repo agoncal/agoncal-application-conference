@@ -5,6 +5,7 @@ import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
 import org.agoncal.application.conference.commons.jwt.SimpleKeyGenerator;
+import org.agoncal.application.conference.commons.rest.CORSFilterTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -252,10 +253,6 @@ public class AttendeeEndpointTest {
     }
 
     private void checkHeaders(Response response) {
-        assertEquals("[*]", response.getHeaders().get("Access-Control-Allow-Origin").toString());
-        assertEquals("[origin, content-type, accept, authorization]", response.getHeaders().get("Access-Control-Allow-Headers").toString());
-        assertEquals("[true]", response.getHeaders().get("Access-Control-Allow-Credentials").toString());
-        assertEquals("[GET, POST, PUT, DELETE, OPTIONS, HEAD]", response.getHeaders().get("Access-Control-Allow-Methods").toString());
-        assertEquals("[1209600]", response.getHeaders().get("Access-Control-Max-Age").toString());
+        CORSFilterTest.checkCORSHeaders(response);
     }
 }

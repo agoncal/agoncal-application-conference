@@ -83,6 +83,13 @@
             </dependency>
             <dependency>
                 <groupId>org.agoncal.application.conference</groupId>
+                <artifactId>conference-commons</artifactId>
+                <version>${project.version}</version>
+                <type>test-jar</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.agoncal.application.conference</groupId>
                 <artifactId>conference-commons-jwt</artifactId>
                 <version>${project.version}</version>
             </dependency>
