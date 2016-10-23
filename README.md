@@ -63,11 +63,11 @@ Go to the following URLs to test the APIs
 * http://conference.docker.localhost:90/conference-venue/api/rooms
 
 
-### cURL
+## cURL
 
-curl http://conference.docker.localhost:90/conference-attendee/api/attendees
-curl -X POST http://conference.docker.localhost:90/conference-attendee/api/attendees/login -H 'Accept: application/json' -H 'Content-Type: application/x-www-form-urlencoded' -d 'login=agoncal&password=agoncal' -v
-curl 'http://conference.docker.localhost:90/conference-rating/api/ratings/uni_room9_tuesday_8_9h30_12h30' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: http://conference.docker.localhost:90/conference-schedule/api/sessions/uni_room9_tuesday_8_9h30_12h30' -H 'Connection: keep-alive' --compressed
+* `curl http://localhost:8080/conference-attendee/api/attendees -H 'Accept: application/json'` 
+* `curl -X POST http://localhost:8080/conference-attendee/api/attendees/login -H 'Content-Type: application/x-www-form-urlencoded' -d 'login=agoncal&password=agoncal'`
+* `curl -X POST http://localhost:8080/conference-rating/api/ratings/uni_room9_tuesday_8_9h30_12h30 -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZ29uY2FsIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2NvbmZlcmVuY2UtYXR0ZW5kZWUvYXBpL2F0dGVuZGVlcy9sb2dpbiIsImlhdCI6MTQ3NzIzNTYwNiwiZXhwIjoxNDc3MjM2NTA2fQ.GxV4IHsx99ln-hWdGaPMqAjkNNdvpl3DvykdZqbQUv0wqLxnto2G11BBMw-2UyNMA4T84UFpYVeMOxYcp-EEQg' -d 'mark=4'`
 
 ## References
 
