@@ -5,12 +5,27 @@ node [Speaker service] as sspeaker
 node [Talk service] as stalk
 node [Voting service] as svoting
 node [Schedule Service] as sschedule
+node [Attendee Service] as sattendee
 node [Front-end] as frontend
 
+database Speaker as dbspeaker
+database Talk as dbtalk
+database Voting as dbvoting
+database Schedule as dbschedule
+database Attendee as dbattendee
+
 frontend ..> sroom
-[frontend] ..> sspeaker
-[frontend] ..> stalk
-[frontend] ..> sschedule
-[frontend] ..> svoting
+frontend ..> sspeaker
+frontend ..> stalk
+frontend ..> sschedule
+frontend ..> svoting
+frontend ..> sattendee
+
+sspeaker ..> dbspeaker
+stalk ..> dbtalk
+sschedule ..> dbschedule
+svoting ..> dbvoting
+sattendee ..> dbattendee
+
 
 @enduml
