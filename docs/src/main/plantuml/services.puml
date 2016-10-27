@@ -6,22 +6,12 @@ node [Talk service] as stalk
 node [Voting service] as svoting
 node [Schedule Service] as sschedule
 node [Attendee Service] as sattendee
-node [Proxy] as proxy
-node [Front-end] as frontend
 
 database Speaker as dbspeaker
 database Talk as dbtalk
 database Voting as dbvoting
 database Schedule as dbschedule
 database Attendee as dbattendee
-
-frontend ..> proxy
-proxy ..> sroom
-proxy ..> sspeaker
-proxy ..> stalk
-proxy ..> sschedule
-proxy ..> svoting
-proxy ..> sattendee
 
 sspeaker ..> dbspeaker
 stalk ..> dbtalk
