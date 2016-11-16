@@ -1,19 +1,12 @@
-.classpath
-.project
-.settings
-.DS_Store
-target/
-typings/
-bower_components/
-node_modules/
-*.ddl
-*.iml
-*.ipr
-*.iws
-*.swp
-.idea
-*.log
-*dummy*
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/bower_components
 
 # IDEs and editors
 /.idea

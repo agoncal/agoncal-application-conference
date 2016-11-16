@@ -1,0 +1,24 @@
+# use the node latest image as base
+FROM node:latest
+
+# Author
+MAINTAINER Sébastien Pertus (Microsoft, DX)
+
+# Expose port 4200
+EXPOSE 4200
+
+# Install typescript and angular CLI
+RUN npm install -g http-server
+
+# Set the entry point
+ENTRYPOINT ["http-server", "-p 4200"]
+
+# Create the application directory
+RUN mkdir -p /usr/src/devoxxsolution
+
+# Copy the application content
+COPY ./dist/ /usr/src/devoxxsolution/
+
+# Set app root as working directory
+WORKDIR /usr/src/devoxxsolution
+
