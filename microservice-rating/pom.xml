@@ -174,5 +174,28 @@
             </build>
         </profile>
 
+        <profile>
+            <id>angular</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-codegen-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <inputSpec>src/main/webapp/swagger.json</inputSpec>
+                                    <language>typescript-angular2</language>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 </project>

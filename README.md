@@ -3,7 +3,8 @@
 ## Maven
 
 * `mvn versions:display-plugin-updates` checks plugin versions
-* `mvn swagger:generate` generates swagger.json file
+* `mvn swagger:generate` generates swagger.json file from the Java code
+* `mvn clean generate-sources -Pangular` generates TypeScript code (for Angular 2) from the swagger.json file
 * `/bin/bash -c 'mvn -f microservice-attendee/pom.xml swagger:generate && mvn -f microservice-rating/pom.xml swagger:generate && mvn -f microservice-schedule/pom.xml swagger:generate && mvn -f microservice-speaker/pom.xml swagger:generate && mvn -f microservice-talk/pom.xml swagger:generate && mvn -f microservice-venue/pom.xml swagger:generate'`
 
 ## Docker
