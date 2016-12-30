@@ -55,7 +55,7 @@
 
         <!-- Dependencies -->
         <version.javaee>7.0</version.javaee>
-        <version.swagger>1.5.10</version.swagger>
+        <version.swagger>1.5.12</version.swagger>
         <version.jjwt>0.7.0</version.jjwt>
     </properties>
 
