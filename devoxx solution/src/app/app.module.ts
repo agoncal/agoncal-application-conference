@@ -11,6 +11,7 @@ import { VoteComponent } from './vote/vote.component';
 import { AuthGuardService } from './auth.guard.service';
 import { AuthService } from './auth.service'
 import { RouterModule } from '@angular/router';
+import 'hammerjs';
 
 @NgModule({
   declarations: [

@@ -4,7 +4,7 @@ import * as models from '../model/models';
 
 @Component({
     selector: 'app-venue',
-    templateUrl: 'venue.component.html',
+    templateUrl: './venue.component.html',
     styleUrls: ['./venue.component.css']
 })
 export class VenueComponent implements OnInit {
