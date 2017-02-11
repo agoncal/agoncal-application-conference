@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
     isLoggedIn: any;
+    jwt: any;
 
   constructor() { }
 

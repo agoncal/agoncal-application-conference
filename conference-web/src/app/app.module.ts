@@ -7,11 +7,13 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { AuthService } from './auth.service'
+import { AuthService } from './auth.service';
+import { VoteComponent } from './vote/vote.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,

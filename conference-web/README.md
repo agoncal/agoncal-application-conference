@@ -49,6 +49,7 @@ import { MaterialModule } from '@angular/material';
 
 ```
 $ ng generate component login
+$ ng generate component vote
 $ ng generate service Auth
 ```
 
