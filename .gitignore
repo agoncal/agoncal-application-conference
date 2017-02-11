@@ -1,36 +1,35 @@
-.classpath
-.project
-.settings
 .DS_Store
-target/
-typings/
-bower_components/
-node_modules/
-*.ddl
-*.iml
-*.ipr
-*.iws
-*.swp
-.idea
-*.log
-*dummy*
 
 # IDEs and editors
-/.idea
+*.iml
+.idea
 /.vscode
 .project
 .classpath
 *.launch
-.settings/
+.settings
+
+# compiled output
+dist/
+/tmp
+target/
+typings/
+bower_components/
+node_modules/
+
+# dependencies
+/node_modules
+
 
 # misc
 /.sass-cache
 /connect.lock
 /coverage/*
 /libpeerconnection.log
-npm-debug.log
 testem.log
 /typings
+*.log
+*dummy*
 
 # e2e
 /e2e/*.js

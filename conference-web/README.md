@@ -4,13 +4,17 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 
 ## Angular CLI commands
 
+
+### Check NG CLI version
+
 ```
 $ ng version
 angular-cli: 1.0.0-beta.28.3
 node: 7.5.0
 ```
+### Create a new project
 
-Create the project without NPM or Git (already there)
+Create the project without NPM (we use Yarn) or Git (already there)
 
 ```
 $ ng new conference-web --prefix conf --skip-npm --skip-git
@@ -21,6 +25,33 @@ You can already install the needed dependencies with [Yarn]() :
 ```
 $ yarn install
 ```
+
+### Material Design 
+
+We will be use Material Design. So we need to install the dependencies and add them to the module app
+
+```
+$ yarn add @angular/material --save
+```
+
+```
+in app.module.ts
+// MATERIAL DESIGN MODULES
+import { MaterialModule } from '@angular/material';
+
+@NgModule({
+  imports: [
+    MaterialModule.forRoot(),
+  ],
+```
+
+### Generate the needed components 
+
+```
+$ ng generate component login
+$ ng generate service Auth
+```
+
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
