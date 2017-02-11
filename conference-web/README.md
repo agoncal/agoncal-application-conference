@@ -50,7 +50,12 @@ import { MaterialModule } from '@angular/material';
 ```
 $ ng generate component login
 $ ng generate component vote
-$ ng generate service Auth
+$ ng generate component venue
+$ ng generate component schedule
+$ ng generate component attendee
+$ ng generate component scheduleDetail
+$ ng generate service auth
+$ ng generate service authGuard
 ```
 
 
