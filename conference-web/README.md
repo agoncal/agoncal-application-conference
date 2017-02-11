@@ -14,13 +14,13 @@ node: 7.5.0
 ```
 ### Create a new project
 
-Create the project without NPM (we use Yarn) or Git (already there)
+Create the project without NPM (we use [Yarn](https://yarnpkg.com/)) or Git (already there)
 
 ```
 $ ng new conference-web --prefix conf --skip-npm --skip-git
 ```
 
-You can already install the needed dependencies with [Yarn]() : 
+You can already install the needed dependencies with [Yarn](https://yarnpkg.com/) : 
 
 ```
 $ yarn install
@@ -32,6 +32,9 @@ We will be use Material Design. So we need to install the dependencies and add t
 
 ```
 $ yarn add @angular/material --save
+$ yarn add hammerjs --save
+$ yarn add @types/hammerjs --save
+$ yarn add bootstrap --save
 ```
 
 ```
