@@ -26,9 +26,9 @@ You can already install the needed dependencies with [Yarn](https://yarnpkg.com/
 $ yarn install
 ```
 
-### Material Design 
+### Adding dependencies
 
-We will be use Material Design. So we need to install the dependencies and add them to the module app
+We need to install some dependencies :
 
 ```
 $ yarn add @angular/material --save
@@ -36,6 +36,8 @@ $ yarn add hammerjs --save
 $ yarn add @types/hammerjs --save
 $ yarn add bootstrap --save
 ```
+
+We use Material Design. So we need to add it to the module app :
 
 ```
 in app.module.ts

@@ -18,6 +18,7 @@ import { AttendeeComponent } from './attendee/attendee.component';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component'
 import { AuthGuardService } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
