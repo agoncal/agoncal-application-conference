@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 // MATERIAL DESIGN MODULES
 import { MaterialModule } from '@angular/material';
+import {MdIconModule} from '@angular/material/icon';
 
 import { ROUTES } from './app.routes';
 
@@ -33,6 +34,7 @@ import 'hammerjs';
   imports: [
     BrowserModule,
     FormsModule,
+    MdIconModule,
     HttpModule,
     MaterialModule.forRoot(),
     RouterModule.forRoot(ROUTES,{useHash: true})
