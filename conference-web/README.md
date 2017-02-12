@@ -74,7 +74,12 @@ $ brew install swagger-codegen
 Now generate the TypeScript code for all our services. Make sure all the services are up and running with a swagger.json file available
 
 ```
-$ wagger-codegen generate -i microservice-venue/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
+$ swagger-codegen generate -i microservice-attendee/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
+$ swagger-codegen generate -i microservice-rating/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
+$ swagger-codegen generate -i microservice-schedule/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
+$ swagger-codegen generate -i microservice-speaker/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
+$ swagger-codegen generate -i microservice-talk/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
+$ swagger-codegen generate -i microservice-venue/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
 ```
 
 
