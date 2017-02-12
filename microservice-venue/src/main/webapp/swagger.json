@@ -1,251 +1,134 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "description": "Allows rating for a talk and gives all the details about the ratings",
-        "version": "1.0.0",
-        "title": "Schedule"
-    },
-    "host": "localhost:8082",
-    "basePath": "/api",
-    "schemes": [
-        "http",
-        "https"
-    ],
-    "paths": {
-        "/ratings": {
-            "get": {
-                "summary": "Finds all the ratings",
-                "description": "",
-                "operationId": "allRatings",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "required": false,
-                        "type": "integer",
-                        "default": 1,
-                        "format": "int32"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Rating"
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Ratings not found"
-                    }
-                }
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Gives all the details of the rooms of the venue",
+    "version" : "1.0.0",
+    "title" : "Room"
+  },
+  "host" : "localhost:8085",
+  "basePath" : "/api",
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/rooms" : {
+      "get" : {
+        "summary" : "Finds all the rooms",
+        "description" : "",
+        "operationId" : "allRooms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Room"
+              }
             }
-        },
-        "/ratings/attendees/{attendeeId}": {
-            "get": {
-                "summary": "Finds all the ratings for an attendee",
-                "description": "",
-                "operationId": "allRatingsByAttendee",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "attendeeId",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Rating"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "404": {
-                        "description": "Ratings not found"
-                    }
-                }
-            }
-        },
-        "/ratings/sessions/{sessionId}": {
-            "get": {
-                "summary": "Finds all the ratings for a session",
-                "description": "",
-                "operationId": "allRatingsBySession",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "sessionId",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Rating"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "404": {
-                        "description": "Ratings not found"
-                    }
-                }
-            }
-        },
-        "/ratings/{id}": {
-            "get": {
-                "summary": "Finds a rating by ID",
-                "description": "",
-                "operationId": "retrieve",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Rating"
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "404": {
-                        "description": "Rating not found"
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Deletes a rating",
-                "description": "",
-                "operationId": "remove",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "405": {
-                        "description": "Invalid rating input"
-                    }
-                }
-            }
-        },
-        "/ratings/{sessionId}": {
-            "post": {
-                "summary": "Allows an attendee to rate a talk",
-                "description": "",
-                "operationId": "rate",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "sessionId",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "mark",
-                        "in": "formData",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32"
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "401": {
-                        "description": "Needs to authenticate first"
-                    }
-                }
-            }
+          },
+          "404" : {
+            "description" : "Rooms not found"
+          }
         }
-    },
-    "definitions": {
-        "Rating": {
-            "type": "object",
-            "properties": {
-                "links": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string",
-                        "format": "uri"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "sessionId": {
-                    "type": "string"
-                },
-                "attendeeId": {
-                    "type": "string"
-                },
-                "mark": {
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
+      },
+      "post" : {
+        "summary" : "Adds a new room to the venue",
+        "description" : "",
+        "operationId" : "add",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid input"
+          }
         }
+      },
+      "put" : {
+        "summary" : "Update an existing room",
+        "description" : "",
+        "operationId" : "update",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid values"
+          }
+        }
+      }
+    },
+    "/rooms/{id}" : {
+      "get" : {
+        "summary" : "Finds a room by ID",
+        "description" : "",
+        "operationId" : "retrieve",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Room"
+            }
+          },
+          "400" : {
+            "description" : "Invalid input"
+          },
+          "404" : {
+            "description" : "Room not found"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a room",
+        "description" : "",
+        "operationId" : "remove",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid room value"
+          }
+        }
+      }
     }
+  },
+  "definitions" : {
+    "Room" : {
+      "type" : "object",
+      "properties" : {
+        "links" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "capacity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "setup" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
 }
