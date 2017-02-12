@@ -28,7 +28,7 @@ import static org.agoncal.application.conference.commons.domain.Links.SELF;
  *         --
  */
 @Path("/talks")
-@Api(description = "Talks REST Endpoint")
+@Api(description = "Talks REST Endpoint", tags = {"Talk"})
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

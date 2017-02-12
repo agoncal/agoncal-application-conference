@@ -63,6 +63,20 @@ $ ng generate service auth
 $ ng generate service authGuard
 ```
 
+### Generate the code for the server APIs
+
+First we install `swagger-codegen` so we can generate TypeScript code to access our server APIs 
+
+```
+$ brew install swagger-codegen
+```
+
+Now generate the TypeScript code for all our services. Make sure all the services are up and running with a swagger.json file available
+
+```
+$ wagger-codegen generate -i microservice-venue/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
+```
+
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

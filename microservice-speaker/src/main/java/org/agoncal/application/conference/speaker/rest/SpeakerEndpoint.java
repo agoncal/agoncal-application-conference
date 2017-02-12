@@ -29,7 +29,7 @@ import static org.agoncal.application.conference.commons.domain.Links.SELF;
  *         --
  */
 @Path("/speakers")
-@Api(description = "Speakers REST Endpoint")
+@Api(description = "Speakers REST Endpoint", tags = {"Speaker"})
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

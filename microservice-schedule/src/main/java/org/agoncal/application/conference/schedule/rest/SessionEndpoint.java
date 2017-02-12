@@ -31,7 +31,7 @@ import static org.agoncal.application.conference.commons.domain.Links.SELF;
  *         --
  */
 @Path("/sessions")
-@Api(description = "Session REST Endpoint")
+@Api(description = "Session REST Endpoint", tags = {"Schedule"})
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

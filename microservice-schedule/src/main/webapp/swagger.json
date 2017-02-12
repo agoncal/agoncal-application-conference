@@ -7,10 +7,14 @@
   },
   "host" : "localhost:8082",
   "basePath" : "/api",
+  "tags" : [ {
+    "name" : "Schedule"
+  } ],
   "schemes" : [ "http", "https" ],
   "paths" : {
     "/sessions" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions",
         "description" : "",
         "operationId" : "allSessions",
@@ -41,6 +45,7 @@
         }
       },
       "post" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Adds a new session to the conference",
         "description" : "",
         "operationId" : "add",
@@ -55,6 +60,7 @@
     },
     "/sessions/friday" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Friday",
         "description" : "",
         "operationId" : "allSessionsFriday",
@@ -78,6 +84,7 @@
     },
     "/sessions/friday/{roomId}" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Friday on a specific room",
         "description" : "",
         "operationId" : "allSessionsFridayByRoom",
@@ -107,6 +114,7 @@
     },
     "/sessions/monday" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Monday",
         "description" : "",
         "operationId" : "allSessionsMonday",
@@ -130,6 +138,7 @@
     },
     "/sessions/monday/{roomId}" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Monday on a specific room",
         "description" : "",
         "operationId" : "allSessionsMondayByRoom",
@@ -159,6 +168,7 @@
     },
     "/sessions/thursday" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Thursday",
         "description" : "",
         "operationId" : "allSessionsThursday",
@@ -182,6 +192,7 @@
     },
     "/sessions/thursday/{roomId}" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Thursday on a specific room",
         "description" : "",
         "operationId" : "allSessionsThursdayByRoom",
@@ -211,6 +222,7 @@
     },
     "/sessions/tuesday" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Tuesday",
         "description" : "",
         "operationId" : "allSessionsTuesday",
@@ -234,6 +246,7 @@
     },
     "/sessions/tuesday/{roomId}" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Tuesday on a specific room",
         "description" : "",
         "operationId" : "allSessionsTuesdayByRoom",
@@ -263,6 +276,7 @@
     },
     "/sessions/wednesday" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Wednesday",
         "description" : "",
         "operationId" : "allSessionsWednesday",
@@ -286,6 +300,7 @@
     },
     "/sessions/wednesday/{roomId}" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds all the sessions for Wednesday on a specific room",
         "description" : "",
         "operationId" : "allSessionsWednesdayByRoom",
@@ -315,6 +330,7 @@
     },
     "/sessions/{id}" : {
       "get" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Finds a session by ID",
         "description" : "",
         "operationId" : "retrieve",
@@ -342,6 +358,7 @@
         }
       },
       "delete" : {
+        "tags" : [ "Schedule" ],
         "summary" : "Deletes a session",
         "description" : "",
         "operationId" : "remove",

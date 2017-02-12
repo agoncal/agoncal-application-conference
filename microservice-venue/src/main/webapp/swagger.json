@@ -7,10 +7,14 @@
   },
   "host" : "localhost:8085",
   "basePath" : "/api",
+  "tags" : [ {
+    "name" : "Venue"
+  } ],
   "schemes" : [ "http", "https" ],
   "paths" : {
     "/rooms" : {
       "get" : {
+        "tags" : [ "Venue" ],
         "summary" : "Finds all the rooms",
         "description" : "",
         "operationId" : "allRooms",
@@ -32,6 +36,7 @@
         }
       },
       "post" : {
+        "tags" : [ "Venue" ],
         "summary" : "Adds a new room to the venue",
         "description" : "",
         "operationId" : "add",
@@ -44,6 +49,7 @@
         }
       },
       "put" : {
+        "tags" : [ "Venue" ],
         "summary" : "Update an existing room",
         "description" : "",
         "operationId" : "update",
@@ -58,6 +64,7 @@
     },
     "/rooms/{id}" : {
       "get" : {
+        "tags" : [ "Venue" ],
         "summary" : "Finds a room by ID",
         "description" : "",
         "operationId" : "retrieve",
@@ -85,6 +92,7 @@
         }
       },
       "delete" : {
+        "tags" : [ "Venue" ],
         "summary" : "Deletes a room",
         "description" : "",
         "operationId" : "remove",

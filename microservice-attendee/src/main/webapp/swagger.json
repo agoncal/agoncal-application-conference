@@ -7,10 +7,14 @@
   },
   "host" : "localhost:8081",
   "basePath" : "/api",
+  "tags" : [ {
+    "name" : "Attendee"
+  } ],
   "schemes" : [ "http", "https" ],
   "paths" : {
     "/attendees" : {
       "get" : {
+        "tags" : [ "Attendee" ],
         "summary" : "Finds all the attendees",
         "description" : "",
         "operationId" : "allAttendees",
@@ -44,6 +48,7 @@
         }
       },
       "post" : {
+        "tags" : [ "Attendee" ],
         "summary" : "Adds a new attendee to the conference",
         "description" : "",
         "operationId" : "add",
@@ -58,6 +63,7 @@
     },
     "/attendees/login" : {
       "post" : {
+        "tags" : [ "Attendee" ],
         "summary" : "Logs an attendee with a user and password",
         "description" : "",
         "operationId" : "authenticateUser",
@@ -86,6 +92,7 @@
     },
     "/attendees/{id}" : {
       "get" : {
+        "tags" : [ "Attendee" ],
         "summary" : "Finds an attendee by ID",
         "description" : "",
         "operationId" : "retrieve",
@@ -113,6 +120,7 @@
         }
       },
       "delete" : {
+        "tags" : [ "Attendee" ],
         "summary" : "Deletes an attendee",
         "description" : "",
         "operationId" : "remove",

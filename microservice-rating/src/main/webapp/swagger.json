@@ -7,10 +7,14 @@
   },
   "host" : "localhost:8082",
   "basePath" : "/api",
+  "tags" : [ {
+    "name" : "Rating"
+  } ],
   "schemes" : [ "http", "https" ],
   "paths" : {
     "/ratings" : {
       "get" : {
+        "tags" : [ "Rating" ],
         "summary" : "Finds all the ratings",
         "description" : "",
         "operationId" : "allRatings",
@@ -43,6 +47,7 @@
     },
     "/ratings/attendees/{attendeeId}" : {
       "get" : {
+        "tags" : [ "Rating" ],
         "summary" : "Finds all the ratings for an attendee",
         "description" : "",
         "operationId" : "allRatingsByAttendee",
@@ -75,6 +80,7 @@
     },
     "/ratings/sessions/{sessionId}" : {
       "get" : {
+        "tags" : [ "Rating" ],
         "summary" : "Finds all the ratings for a session",
         "description" : "",
         "operationId" : "allRatingsBySession",
@@ -107,6 +113,7 @@
     },
     "/ratings/{id}" : {
       "get" : {
+        "tags" : [ "Rating" ],
         "summary" : "Finds a rating by ID",
         "description" : "",
         "operationId" : "retrieve",
@@ -134,6 +141,7 @@
         }
       },
       "delete" : {
+        "tags" : [ "Rating" ],
         "summary" : "Deletes a rating",
         "description" : "",
         "operationId" : "remove",
@@ -154,6 +162,7 @@
     },
     "/ratings/{sessionId}" : {
       "post" : {
+        "tags" : [ "Rating" ],
         "summary" : "Allows an attendee to rate a talk",
         "description" : "",
         "operationId" : "rate",

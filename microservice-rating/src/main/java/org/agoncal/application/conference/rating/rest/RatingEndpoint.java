@@ -32,7 +32,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
  *         --
  */
 @Path("/ratings")
-@Api(description = "Rating REST Endpoint")
+@Api(description = "Rating REST Endpoint", tags = {"Rating"})
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

@@ -36,7 +36,7 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
  *         --
  */
 @Path("/attendees")
-@Api(description = "Attendees REST Endpoint")
+@Api(description = "Attendees REST Endpoint", tags = {"Attendee"})
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

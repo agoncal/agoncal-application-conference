@@ -22,7 +22,7 @@ import java.util.List;
  *         --
  */
 @Path("/rooms")
-@Api(description = "Rooms REST Endpoint")
+@Api(description = "Rooms REST Endpoint", tags = {"Venue"})
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
