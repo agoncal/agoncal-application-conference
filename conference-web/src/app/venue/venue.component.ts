@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Room } from '../server/model/Room';
+import { VenueApi } from '../server/api/VenueApi';
 
 @Component({
   selector: 'conf-venue',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./venue.component.css']
 })
 export class VenueComponent implements OnInit {
+    rooms: Room[];
+    selected: boolean = false;
 
-  constructor() { }
+  constructor(private roomService: VenueApi) { }
 
   ngOnInit() {
+      this.roomService.allRooms()
+          .toPromise()
+          .then(rooms => {
+              this.rooms = rooms;
+          })
   }
 
 }
