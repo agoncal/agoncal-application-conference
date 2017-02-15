@@ -32,17 +32,40 @@ import 'rxjs/Rx';
 'use strict';
 import { Session } from '../model/Session';
 
+
+declare interface etagResponse { etag?: string; body?: any };
+
 @Injectable()
 export class ScheduleApi {
     protected basePath = 'http://conference.docker.localhost:90/conference-schedule/api';
     public defaultHeaders : Headers = new Headers();
+
+    // HATEOAS
+    public links: { [key: string]: string; } = {};
 
     constructor(protected http: Http, @Optional() basePath: string) {
         if (basePath) {
             this.basePath = basePath;
         }
     }
+    public getResponse(response: Response): any {
 
+        var headers = response.headers;
+        var body = response.json();
+
+        var etagReponse: etagResponse = {};
+        etagReponse.body = body.data ? body.data : body;
+
+        if (body.links) {
+            this.links = {};
+            for (let key in body.links) {
+                this.links[key] = body.links[key] !== undefined ? body.links[key] : null;
+            }
+        }
+
+        return etagReponse.body;
+
+    }
     /**
      * Adds a new session to the conference
      *
@@ -63,7 +86,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -93,7 +116,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -118,7 +141,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -149,7 +172,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -174,7 +197,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -205,7 +228,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -230,7 +253,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -261,7 +284,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -286,7 +309,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -317,7 +340,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -342,7 +365,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -373,7 +396,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -404,7 +427,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }
@@ -435,7 +458,7 @@ export class ScheduleApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response);
                 }
             });
     }

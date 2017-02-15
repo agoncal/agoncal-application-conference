@@ -9,20 +9,20 @@ import { Session } from '../server/model/Session';
 })
 export class ScheduleComponent implements OnInit {
 
-    private _sessions: Session[];
-    selected: boolean = false; // TODO is that useful ?
+    private sessions: Session[];
+    private selected: boolean = false; // TODO is that useful ?
 
     constructor(private scheduleService: ScheduleApi) {
     }
 
     ngOnInit() {
-        this.scheduleService.allSessions().subscribe((sessions: Session[]) => {
-            this._sessions = sessions
-        });
-    }
-
-
-    get sessions(): Session[] {
-        return this._sessions;
+        this.scheduleService.allSessions()
+            .toPromise()
+            .then(sessions => {
+                this.sessions = sessions;
+            })
+            .catch(error => {
+                console.log(`An error has occured ${error}`);
+            });
     }
 }

@@ -9,6 +9,12 @@ h2{
     margin-bottom: 10px;
 }
 
+h2{
+    color:darkred;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
 md-grid-list{
     margin-top:0px;
 }

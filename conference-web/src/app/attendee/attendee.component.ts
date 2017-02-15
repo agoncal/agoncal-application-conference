@@ -10,10 +10,10 @@ import { Attendee } from '../server/model/Attendee';
 })
 export class AttendeeComponent implements OnInit {
 
-    attendees: Attendee[];
-    next: string;
-    prev: string;
-    hasLinks: boolean = false;
+    private attendees: Attendee[];
+    private next: string;
+    private prev: string;
+    private hasLinks: boolean = false;
 
   constructor(private attendeesService: AttendeeApi) { }
 
@@ -31,7 +31,6 @@ export class AttendeeComponent implements OnInit {
       .catch(error => {
         console.log(`An error has occured ${error}`);
       });
-
   }
 
   gotoPrev() {
