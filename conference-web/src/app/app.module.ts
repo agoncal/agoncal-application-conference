@@ -7,27 +7,25 @@ import { RouterModule } from '@angular/router';
 // MATERIAL DESIGN MODULES
 import { MaterialModule } from '@angular/material';
 import { MdIconModule } from '@angular/material/icon';
-
 import { ROUTES } from './app.routes';
-
 // Components
 import { AppComponent } from './app.component';
 import { AttendeeComponent } from './attendee/attendee.component';
 import { LoginComponent } from './login/login.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component'
+import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 import { VenueComponent } from './venue/venue.component';
 import { VoteComponent } from './vote/vote.component';
 // Services
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 // Server APIs
-import { ScheduleApi } from './server/api/ScheduleApi';
-import { AttendeeApi } from './server/api/AttendeeApi';
-import { RatingApi } from './server/api/RatingApi';
-import { SpeakerApi } from './server/api/SpeakerApi';
-import { TalkApi } from './server/api/TalkApi';
-import { VenueApi } from './server/api/VenueApi';
+import { ScheduleApi } from './server/api/schedule.api';
+import { SpeakerApi } from './server/api/speaker.api';
+import { AttendeeApi } from './server/api/attendee.api';
+import { RatingApi } from './server/api/rating.api';
+import { TalkApi } from './server/api/talk.api';
+import { VenueApi } from './server/api/venue.api';
 import 'hammerjs';
 
 @NgModule({
@@ -46,18 +44,19 @@ import 'hammerjs';
     MdIconModule,
     HttpModule,
     MaterialModule.forRoot(),
-    RouterModule.forRoot(ROUTES,{useHash: true})
+    RouterModule.forRoot(ROUTES, {useHash: true})
   ],
   providers: [
-      AuthGuardService,
-      AuthService,
-      AttendeeApi,
-      RatingApi,
-      ScheduleApi,
-      SpeakerApi,
-      TalkApi,
-      VenueApi
+    AuthGuardService,
+    AuthService,
+    AttendeeApi,
+    RatingApi,
+    ScheduleApi,
+    SpeakerApi,
+    TalkApi,
+    VenueApi
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

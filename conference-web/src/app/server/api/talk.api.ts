@@ -1,6 +1,6 @@
 /**
- * Speaker
- * Gives all the details of the speakers
+ * Talk
+ * Gives all the details of the talks
  *
  * OpenAPI spec version: 1.0.0
  *
@@ -30,12 +30,15 @@ import 'rxjs/Rx';
 /* tslint:disable:no-unused-variable member-ordering */
 
 'use strict';
-import { Speaker } from '../model/Speaker';
+import { Talk } from '../model/Talk';
 
 @Injectable()
-export class SpeakerApi {
-    protected basePath = 'http://conference.docker.localhost:90/conference-speaker/api';
+export class TalkApi {
+    protected basePath = 'http://conference.docker.localhost:90/conference-talk/api';
     public defaultHeaders : Headers = new Headers();
+
+    // HATEOAS
+    public links: { [key: string]: string; } = {};
 
     constructor(protected http: Http, @Optional() basePath: string) {
         if (basePath) {
@@ -43,12 +46,24 @@ export class SpeakerApi {
         }
     }
 
+    public getResponse(body: any): any {
+        if (!body.data)
+            return body;
+
+        if (body.links) {
+            this.links = {};
+            for (let key in body.links) {
+                this.links[key] = body.links[key] !== undefined ? body.links[key] : null;
+            }
+        }
+        return body.data;
+    }
     /**
-     * Adds a new speaker to the conference
+     * Adds a new talk to the conference
      *
      */
     public add (extraHttpRequestParams?: any ) : Observable<{}> {
-        const path = this.basePath + '/speakers';
+        const path = this.basePath + '/talks';
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
@@ -63,18 +78,18 @@ export class SpeakerApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
 
     /**
-     * Finds all the speakers
+     * Finds all the talks
      *
      * @param page
      */
-    public allSpeakers (page?: number, extraHttpRequestParams?: any ) : Observable<Array<Speaker>> {
-        const path = this.basePath + '/speakers';
+    public allTalks (page?: number, extraHttpRequestParams?: any ) : Observable<Array<Talk>> {
+        const path = this.basePath + '/talks';
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
@@ -93,18 +108,18 @@ export class SpeakerApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
 
     /**
-     * Deletes a speaker
+     * Deletes a talk
      *
      * @param id
      */
     public remove (id: string, extraHttpRequestParams?: any ) : Observable<{}> {
-        const path = this.basePath + '/speakers/{id}'
+        const path = this.basePath + '/talks/{id}'
             .replace('{' + 'id' + '}', String(id));
 
         let queryParameters = new URLSearchParams();
@@ -124,19 +139,18 @@ export class SpeakerApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
 
     /**
-     * Finds a speaker by ID
+     * Finds a talk by ID
      *
      * @param id
-     * @param expand
      */
-    public retrieve (id: string, expand?: boolean, extraHttpRequestParams?: any ) : Observable<Speaker> {
-        const path = this.basePath + '/speakers/{id}'
+    public retrieve (id: string, extraHttpRequestParams?: any ) : Observable<Talk> {
+        const path = this.basePath + '/talks/{id}'
             .replace('{' + 'id' + '}', String(id));
 
         let queryParameters = new URLSearchParams();
@@ -145,10 +159,6 @@ export class SpeakerApi {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling retrieve.');
         }
-        if (expand !== undefined) {
-            queryParameters.set('expand', String(expand));
-        }
-
         let requestOptions: RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
@@ -160,9 +170,8 @@ export class SpeakerApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
-
 }

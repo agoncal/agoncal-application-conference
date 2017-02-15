@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers, RequestOptionsArgs, Response, URLSearchParams } from '@angular/http';
-import { AttendeeApi } from '../server/api/AttendeeApi';
-import { Attendee } from '../server/model/Attendee';
+import { URLSearchParams } from '@angular/http';
+import { AttendeeApi } from '../server/api/attendee.api';
+import { Attendee } from '../server/model/attendee';
 
 @Component({
   selector: 'conf-attendee',
@@ -34,10 +34,10 @@ export class AttendeeComponent implements OnInit {
   }
 
   gotoPrev() {
-    var uri = new URL(this.attendeesService.links["prev"]);
-    var urlsParams = new URLSearchParams(uri.search);
+    let uri = new URL(this.attendeesService.links["prev"]);
+    let urlsParams = new URLSearchParams(uri.search);
 
-    var nextPage = urlsParams.get("?page");
+    let nextPage = urlsParams.get("?page");
 
     this.attendeesService.allAttendees(+nextPage)
       .toPromise()
@@ -48,10 +48,10 @@ export class AttendeeComponent implements OnInit {
   }
 
   gotoNext() {
-    var uri = new URL(this.attendeesService.links["next"]);
-    var urlsParams = new URLSearchParams(uri.search);
+    let uri = new URL(this.attendeesService.links["next"]);
+    let urlsParams = new URLSearchParams(uri.search);
 
-    var nextPage = urlsParams.get("?page");
+    let nextPage = urlsParams.get("?page");
 
     this.attendeesService.allAttendees(+nextPage)
       .toPromise()

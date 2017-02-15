@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScheduleApi } from '../server/api/ScheduleApi';
+import { ScheduleApi } from '../server/api/schedule.api';
 import { Session } from '../server/model/Session';
 
 @Component({

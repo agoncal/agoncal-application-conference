@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {MdSidenav} from "@angular/material";
+import { MdSidenav } from '@angular/material';
 
 @Component({
   selector: 'conf-root',
@@ -13,9 +13,9 @@ export class AppComponent {
   sidenav: MdSidenav;
 
   openOrCloseSidenav() {
-    if (this.sidenav.opened){
+    if (this.sidenav.opened) {
       this.sidenav.close();
-    }else{
+    } else {
       this.sidenav.open();
     }
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from '../server/model/Room';
-import { VenueApi } from '../server/api/VenueApi';
+import { Room } from '../server/model/room';
+import { VenueApi } from '../server/api/venue.api';
 
 @Component({
   selector: 'conf-venue',
