@@ -16,6 +16,8 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 import { VenueComponent } from './venue/venue.component';
 import { VoteComponent } from './vote/vote.component';
+import { SpeakerComponent } from './speaker/speaker.component';
+import { SpeakerDetailComponent } from './speaker-detail/speaker-detail.component';
 // Services
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
@@ -35,8 +37,12 @@ import 'hammerjs';
     LoginComponent,
     ScheduleComponent,
     ScheduleDetailComponent,
+    SpeakerComponent,
+    SpeakerDetailComponent,
     VenueComponent,
-    VoteComponent
+    VoteComponent,
+    SpeakerComponent,
+    SpeakerDetailComponent
   ],
   imports: [
     BrowserModule,

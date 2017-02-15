@@ -23,6 +23,8 @@ import java.util.Map;
 public class JSonToDatabase {
 
     /**
+     * Data from http://cfp.devoxx.be/api/conferences/DV16/speakers
+     *
      * create table sp_speaker (id varchar(255) not null, avatarUrl varchar(255), bio varchar(5000), blog varchar(255), company varchar(255), firstName varchar(255), language varchar(3), lastName varchar(255), twitter varchar(255), primary key (id))
      * create table sp_speaker_sp_talk (Speaker_id varchar(255) not null, acceptedTalks_id varchar(255) not null)
      * create table sp_talk (id varchar(255) not null, language varchar(255), title varchar(255), primary key (id))
@@ -34,7 +36,7 @@ public class JSonToDatabase {
 
     public static void main(String[] args) throws IOException {
 
-        File file = Paths.get("src/test/resources/speakers.json").toFile();
+        File file = Paths.get("src/test/resources/speakers2.json").toFile();
         JsonReader rdr = Json.createReader(new FileReader(file.getAbsoluteFile()));
 
         JsonArray results = rdr.readArray();
