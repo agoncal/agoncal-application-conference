@@ -36,6 +36,7 @@ import { Attendee } from '../model/Attendee';
 export class AttendeeApi {
     protected basePath = 'http://conference.docker.localhost:90/conference-attendee/api';
     public defaultHeaders : Headers = new Headers();
+    private _links: { [key: string]: string; } = {};
 
     constructor(protected http: Http, @Optional() basePath: string) {
         if (basePath) {
@@ -43,6 +44,18 @@ export class AttendeeApi {
         }
     }
 
+    public getResponse(body: any): any {
+        if (!body.data)
+            return body;
+
+        if (body._links) {
+            this._links = {};
+            for (let key in body._links) {
+                this._links[key] = body._links[key] !== undefined ? body._links[key] : null;
+            }
+        }
+        return body.data;
+    }
     /**
      * Adds a new attendee to the conference
      *
@@ -63,7 +76,7 @@ export class AttendeeApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
@@ -93,7 +106,7 @@ export class AttendeeApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
@@ -129,7 +142,7 @@ export class AttendeeApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
@@ -160,7 +173,7 @@ export class AttendeeApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
@@ -191,9 +204,13 @@ export class AttendeeApi {
                 if (response.status === 204) {
                     return undefined;
                 } else {
-                    return response.json();
+                    return this.getResponse(response.json());
                 }
             });
     }
 
+
+    get links(): {[p: string]: string} {
+        return this._links;
+    }
 }

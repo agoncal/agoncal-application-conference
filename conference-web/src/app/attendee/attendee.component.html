@@ -1,3 +1,28 @@
-<p>
-  attendee works!
-</p>
+<div class="body">
+
+	<div style="margin:40px;">
+        <h2>Attendees</h2>
+	</div>
+
+	<div style="margin:40px;">
+		<button md-raised-button color="primary" style="width:100px" (click)="gotoPrev()">PREV</button>
+		<button md-raised-button color="primary" style="width:100px" (click)="gotoNext()">NEXT</button>
+	</div>
+
+	<md-grid-list cols="4">
+		<md-grid-tile *ngFor="let attendee of attendees">
+			<md-card style="margin-top:30px; margin-left:10px; margin-right:10px; margin-bottom:30px;">
+				<md-card-header>
+					<img md-card-avatar src="{{attendee.avatarUrl}}">
+					<md-card-title>{{attendee.firstName}} {{attendee.lastName}}</md-card-title>
+					<md-card-subtitle>{{attendee.company}}</md-card-subtitle>
+				</md-card-header>
+				<img md-card-image src="../../../assets/devoxxbrain.jpg">
+				<md-card-content>
+					<p>
+						{{attendee.twitter}}</p>
+				</md-card-content>
+			</md-card>
+		</md-grid-tile>
+	</md-grid-list>
+</div>
