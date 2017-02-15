@@ -36,7 +36,7 @@ public class JSonToDatabase {
 
     public static void main(String[] args) throws IOException {
 
-        File file = Paths.get("src/test/resources/speakers2.json").toFile();
+        File file = Paths.get("src/test/resources/speakers.json").toFile();
         JsonReader rdr = Json.createReader(new FileReader(file.getAbsoluteFile()));
 
         JsonArray results = rdr.readArray();

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *         http://www.antoniogoncalves.org
  *         --
  */
-@Provider
+//@Provider
 public class IPFilter implements ContainerResponseFilter {
 
     // ======================================
