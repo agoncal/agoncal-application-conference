@@ -1,3 +1,18 @@
-<p>
-  speaker-detail works!
-</p>
+<div class="content">
+  <md-card>
+    <md-card-header>
+      <img md-card-avatar src="{{speaker.avatarUrl}}">
+      <a href="" [routerLink]="['/speakers', speaker.id]">
+        <md-card-title>{{speaker.firstName}} {{speaker.lastName}}</md-card-title>
+      </a>
+      <md-card-subtitle>{{speaker.company}}</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src="../../../assets/devoxxbrain.jpg">
+    <md-card-content>
+      <p>
+        <a href="https://twitter.com/{{speaker.twitter | noat}}">
+          {{speaker.twitter}}
+        </a>
+    </md-card-content>
+  </md-card>
+</div>
