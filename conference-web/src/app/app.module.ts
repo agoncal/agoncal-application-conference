@@ -28,6 +28,7 @@ import { AttendeeApi } from './server/api/attendee.api';
 import { RatingApi } from './server/api/rating.api';
 import { TalkApi } from './server/api/talk.api';
 import { VenueApi } from './server/api/venue.api';
+import { NoatPipe } from './shared/noat/noat.pipe';
 import 'hammerjs';
 
 @NgModule({
@@ -42,7 +43,8 @@ import 'hammerjs';
     VenueComponent,
     VoteComponent,
     SpeakerComponent,
-    SpeakerDetailComponent
+    SpeakerDetailComponent,
+    NoatPipe
   ],
   imports: [
     BrowserModule,

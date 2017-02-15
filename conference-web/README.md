@@ -63,6 +63,7 @@ $ ng generate component speaker
 $ ng generate component speakerDetail
 $ ng generate service auth
 $ ng generate service authGuard
+$ ng generate pipe noat
 ```
 
 ### Generate the code for the server APIs

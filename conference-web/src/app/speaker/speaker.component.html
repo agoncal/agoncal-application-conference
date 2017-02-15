@@ -11,13 +11,17 @@
             <md-card style="margin-top:30px; margin-left:10px; margin-right:10px; margin-bottom:30px;">
                 <md-card-header>
                     <img md-card-avatar src="{{speaker.avatarUrl}}">
-                    <md-card-title>{{speaker.firstName}} {{speaker.lastName}}</md-card-title>
+                    <a href="" [routerLink]="['/speakers', speaker.id]">
+                      <md-card-title>{{speaker.firstName}} {{speaker.lastName}}</md-card-title>
+                    </a>
                     <md-card-subtitle>{{speaker.company}}</md-card-subtitle>
                 </md-card-header>
                 <img md-card-image src="../../../assets/devoxxbrain.jpg">
                 <md-card-content>
                     <p>
-                        {{speaker.twitter}}</p>
+                      <a href="https://twitter.com/{{speaker.twitter | noat}}">
+                        {{speaker.twitter}}
+                      </a>
                 </md-card-content>
             </md-card>
         </md-grid-tile>
