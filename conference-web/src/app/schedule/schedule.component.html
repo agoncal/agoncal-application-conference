@@ -1,3 +1,20 @@
-<p>
-  schedule works youpi!
-</p>
+<div class="body">
+	<md-list>
+		<md-list-item *ngFor="let session of sessions">
+			<md-icon md-list-avatar>note</md-icon>
+			<h4 *ngIf="session.talk" md-line>
+				<a href="" [routerLink]="['/sessions', session.id]">
+					{{session.talk.talkType}} : {{session.talk.title}}
+				</a>
+			</h4>
+			<p md-line>{{session.day}} : {{session.fromTime}} - {{session.toTime}} </p>
+			<p md-line *ngIf="session.talk && session.talk.speakers">
+				<span *ngFor="let speaker of session.talk.speakers"><a href="" [routerLink]="['/speakers', speaker.id]">{{speaker.name}}</a>
+				<span *ngIf="session.talk.speakers.indexOf(speaker) < (session.talk.speakers.length-1)"> - </span>
+				</span>
+			</p>
+		</md-list-item>
+		<md-divider></md-divider>
+	</md-list>
+
+</div>

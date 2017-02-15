@@ -34,7 +34,7 @@ import { Talk } from '../model/Talk';
 
 @Injectable()
 export class TalkApi {
-    protected basePath = 'http://localhost:8084/api';
+    protected basePath = 'http://conference.docker.localhost:90/conference-talk/api';
     public defaultHeaders : Headers = new Headers();
 
     constructor(protected http: Http, @Optional() basePath: string) {

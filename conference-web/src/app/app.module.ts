@@ -19,6 +19,7 @@ import { AttendeeComponent } from './attendee/attendee.component';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component'
 import { AuthGuardService } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
+import { ScheduleApi } from './server/api/ScheduleApi';
 import 'hammerjs';
 
 @NgModule({
@@ -39,7 +40,11 @@ import 'hammerjs';
     MaterialModule.forRoot(),
     RouterModule.forRoot(ROUTES,{useHash: true})
   ],
-  providers: [AuthGuardService, AuthService],
+  providers: [
+      AuthGuardService,
+      AuthService,
+      ScheduleApi
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

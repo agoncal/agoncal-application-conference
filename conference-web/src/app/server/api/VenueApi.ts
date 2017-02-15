@@ -34,7 +34,7 @@ import { Room } from '../model/Room';
 
 @Injectable()
 export class VenueApi {
-    protected basePath = 'http://localhost:8085/api';
+    protected basePath = 'http://conference.docker.localhost:90/conference-venue/api';
     public defaultHeaders : Headers = new Headers();
 
     constructor(protected http: Http, @Optional() basePath: string) {

@@ -34,7 +34,7 @@ import { Session } from '../model/Session';
 
 @Injectable()
 export class ScheduleApi {
-    protected basePath = 'http://localhost:8082/api';
+    protected basePath = 'http://conference.docker.localhost:90/conference-schedule/api';
     public defaultHeaders : Headers = new Headers();
 
     constructor(protected http: Http, @Optional() basePath: string) {

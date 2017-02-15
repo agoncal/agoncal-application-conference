@@ -34,7 +34,7 @@ import { Speaker } from '../model/Speaker';
 
 @Injectable()
 export class SpeakerApi {
-    protected basePath = 'http://localhost:8083/api';
+    protected basePath = 'http://conference.docker.localhost:90/conference-speaker/api';
     public defaultHeaders : Headers = new Headers();
 
     constructor(protected http: Http, @Optional() basePath: string) {
