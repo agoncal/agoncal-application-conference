@@ -36,7 +36,9 @@ import { Attendee } from '../model/Attendee';
 export class AttendeeApi {
     protected basePath = 'http://conference.docker.localhost:90/conference-attendee/api';
     public defaultHeaders : Headers = new Headers();
-    private _links: { [key: string]: string; } = {};
+
+    // HATEOAS
+    public links: { [key: string]: string; } = {};
 
     constructor(protected http: Http, @Optional() basePath: string) {
         if (basePath) {
@@ -48,10 +50,10 @@ export class AttendeeApi {
         if (!body.data)
             return body;
 
-        if (body._links) {
-            this._links = {};
-            for (let key in body._links) {
-                this._links[key] = body._links[key] !== undefined ? body._links[key] : null;
+        if (body.links) {
+            this.links = {};
+            for (let key in body.links) {
+                this.links[key] = body.links[key] !== undefined ? body.links[key] : null;
             }
         }
         return body.data;
@@ -207,10 +209,5 @@ export class AttendeeApi {
                     return this.getResponse(response.json());
                 }
             });
-    }
-
-
-    get links(): {[p: string]: string} {
-        return this._links;
     }
 }
