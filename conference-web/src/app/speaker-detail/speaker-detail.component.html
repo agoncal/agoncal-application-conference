@@ -1,17 +1,20 @@
 <div class="content">
   <md-card>
     <md-card-header>
-      <img md-card-avatar src="{{speaker.avatarUrl}}">
-      <a href="" [routerLink]="['/speakers', speaker.id]">
-        <md-card-title>{{speaker.firstName}} {{speaker.lastName}}</md-card-title>
-      </a>
-      <md-card-subtitle>{{speaker.company}}</md-card-subtitle>
+      <img md-card-avatar src="{{speaker?.avatarUrl}}">
+      <md-card-title>{{speaker?.firstName}} {{speaker?.lastName}}</md-card-title>
+      <md-card-subtitle>{{speaker?.company}}</md-card-subtitle>
     </md-card-header>
-    <img md-card-image src="../../../assets/devoxxbrain.jpg">
     <md-card-content>
       <p>
-        <a href="https://twitter.com/{{speaker.twitter | noat}}">
-          {{speaker.twitter}}
+      {{speaker?.bio}}
+      <p>
+        <a href="https://twitter.com/{{speaker?.twitter | noat}}">
+          {{speaker?.twitter}}
+        </a>
+      <p>
+        <a href="{{speaker?.blog}}">
+          {{speaker?.blog}}
         </a>
     </md-card-content>
   </md-card>

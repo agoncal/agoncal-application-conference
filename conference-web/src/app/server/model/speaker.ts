@@ -23,7 +23,7 @@
  */
 
 'use strict';
-import { AcceptedTalk } from './AcceptedTalk';
+import { AcceptedTalk } from './accepted.talk';
 
 export interface Speaker {
 

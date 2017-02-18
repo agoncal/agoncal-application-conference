@@ -15,21 +15,18 @@ export class SpeakerComponent implements OnInit {
   private prev: string;
   private hasLinks: boolean = false;
 
-  constructor(private speakersService: SpeakerApi) { }
+  constructor(private speakersService: SpeakerApi) {
+  }
 
   ngOnInit() {
     this.speakersService.allSpeakers()
-      .toPromise()
-      .then(speakers => {
+      .subscribe(speakers => {
         this.speakers = speakers;
 
         this.next = this.speakersService.links["next"] ? this.speakersService.links["next"] : undefined;
         this.prev = this.speakersService.links["prev"] ? this.speakersService.links["prev"] : undefined;
 
         this.hasLinks = (this.next != undefined || this.prev != undefined);
-      })
-      .catch(error => {
-        console.log(`An error has occured ${error}`);
       });
   }
 

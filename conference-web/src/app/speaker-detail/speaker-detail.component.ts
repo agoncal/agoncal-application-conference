@@ -10,25 +10,16 @@ import { Params, ActivatedRoute } from '@angular/router';
 })
 export class SpeakerDetailComponent implements OnInit {
 
-  private speaker: Speaker;
-  private id: string;
+  public speaker: Speaker;
 
   constructor(private speakersService: SpeakerApi,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      this.id = params['id'];
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.speakersService.retrieve(id).subscribe(speaker => this.speaker = speaker);
     });
-
-    this.speakersService.retrieve(this.id)
-      .toPromise()
-      .then(speaker => {
-        this.speaker = speaker;
-      })
-      .catch(error => {
-        console.log(`An error has occured ${error}`);
-      });
   }
 
 }

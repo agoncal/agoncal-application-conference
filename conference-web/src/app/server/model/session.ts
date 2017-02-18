@@ -23,8 +23,8 @@
  */
 
 'use strict';
-import { Room } from './Room';
-import { Talk } from './Talk';
+import { Room } from './room';
+import { Talk } from './talk';
 
 export interface Session {
 
