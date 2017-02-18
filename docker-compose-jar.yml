@@ -12,32 +12,32 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
             - /dev/null:/traefik.toml
     ms-attendee:
-        image: agoncal/microservice-attendee:war
+        image: agoncal/microservice-attendee:jar
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-attendee"
-            - "traefik.port=8080"
+            - "traefik.port=8081"
     ms-rating:
-        image: agoncal/microservice-rating:war
+        image: agoncal/microservice-rating:jar
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-rating"
-            - "traefik.port=8080"
+            - "traefik.port=8082"
     ms-schedule:
-        image: agoncal/microservice-schedule:war
+        image: agoncal/microservice-schedule:jar
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-schedule"
-            - "traefik.port=8080"
+            - "traefik.port=8083"
     ms-speaker:
-        image: agoncal/microservice-speaker:war
+        image: agoncal/microservice-speaker:jar
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-speaker"
-            - "traefik.port=8080"
+            - "traefik.port=8084"
     ms-talk:
-        image: agoncal/microservice-talk:war
+        image: agoncal/microservice-talk:jar
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-talk"
-            - "traefik.port=8080"
+            - "traefik.port=8085"
     ms-venue:
-        image: agoncal/microservice-venue:war
+        image: agoncal/microservice-venue:jar
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-venue"
-            - "traefik.port=8080"
+            - "traefik.port=8086"

@@ -9,15 +9,16 @@
 
 ## Docker
 
-* `docker image ls | grep agoncal/microservice`
+* `docker image ls -f "reference=agoncal/microservice*"`
 * `docker image prune`                            # removes all dangling images
-* `/bin/bash -c 'docker image rm -f $(docker image ls -q | grep agoncal/microservice)'`
-* `/bin/bash -c 'docker push agoncal/microservice-attendee && docker push agoncal/microservice-rating && docker push agoncal/microservice-schedule && docker push agoncal/microservice-speaker && docker push agoncal/microservice-talk && docker push agoncal/microservice-venue'`
+* `/bin/bash -c 'docker image rm $(docker image ls -q -f "reference=agoncal/microservice*")'`
+* `/bin/bash -c 'docker image rm $(docker image ls -q -f "reference=agoncal/microservice*:latest")'`
+* `/bin/bash -c 'docker image push agoncal/microservice-attendee:war && docker image push agoncal/microservice-rating:war && docker image push agoncal/microservice-schedule:war && docker image push agoncal/microservice-speaker:war && docker image push agoncal/microservice-talk:war && docker image push agoncal/microservice-venue:war'`
 
 ### Building Images
 
-* `docker build -t agoncal/conference-venue -f src/docker/Dockerfile .`
-* `mvn clean package -Pdocker`
+* `mvn clean package -Pdocker-war`
+* `mvn clean package -Pswarm,docker-jar`
 
 ### Running Images
 
@@ -30,39 +31,40 @@
 
 Go to the following URLs to test the APIs
 
-* http://localhost:8081/conference-attendee/api/attendees
-* http://localhost:8082/conference-rating/api/ratings
-* http://localhost:8083/conference-schedule/api/sessions
-* http://localhost:8084/conference-speaker/api/speakers
-* http://localhost:8085/conference-talk/api/talks
-* http://localhost:8086/conference-venue/api/rooms
+* [http://localhost:8081/conference-attendee/api/attendees]()
+* [http://localhost:8082/conference-rating/api/ratings]()
+* [http://localhost:8083/conference-schedule/api/sessions]()
+* [http://localhost:8084/conference-speaker/api/speakers]()
+* [http://localhost:8085/conference-talk/api/talks]()
+* [http://localhost:8086/conference-venue/api/rooms]()
 
 Go to the following URLs to test the swagger.json
 
-* http://localhost:8081/conference-attendee/swagger.json
-* http://localhost:8082/conference-rating/swagger.json
-* http://localhost:8083/conference-schedule/swagger.json
-* http://localhost:8084/conference-speaker/swagger.json
-* http://localhost:8085/conference-talk/swagger.json
-* http://localhost:8086/conference-venue/swagger.json
+* [http://localhost:8081/conference-attendee/swagger.json]()
+* [http://localhost:8082/conference-rating/swagger.json]()
+* [http://localhost:8083/conference-schedule/swagger.json]()
+* [http://localhost:8084/conference-speaker/swagger.json]()
+* [http://localhost:8085/conference-talk/swagger.json]()
+* [http://localhost:8086/conference-venue/swagger.json]()
 
 ## Docker Compose
 
 * `docker-compose up`
 * `docker-compose up -d` (in detached mode)
+* `docker-compose -f docker-compose-jar.yml up`
 * `docker-compose down`
 * `docker-compose ps`
 * `docker-compose scale ms-attendee=5`
 
 Go to the following URLs to test the APIs
 
-* http://conference.docker.localhost:8080/dashboard/ (Traeffik console)
-* http://conference.docker.localhost:90/conference-attendee/api/attendees
-* http://conference.docker.localhost:90/conference-rating/api/ratings
-* http://conference.docker.localhost:90/conference-schedule/api/sessions
-* http://conference.docker.localhost:90/conference-speaker/api/speakers
-* http://conference.docker.localhost:90/conference-talk/api/talks
-* http://conference.docker.localhost:90/conference-venue/api/rooms
+* [http://conference.docker.localhost:8080/dashboard/]() (Traeffik console)
+* [http://conference.docker.localhost:90/conference-attendee/api/attendees]()
+* [http://conference.docker.localhost:90/conference-rating/api/ratings]()
+* [http://conference.docker.localhost:90/conference-schedule/api/sessions]()
+* [http://conference.docker.localhost:90/conference-speaker/api/speakers]()
+* [http://conference.docker.localhost:90/conference-talk/api/talks]()
+* [http://conference.docker.localhost:90/conference-venue/api/rooms]()
 
 
 ## cURL

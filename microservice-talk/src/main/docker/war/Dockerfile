@@ -2,7 +2,7 @@ FROM jboss/wildfly:10.1.0.Final
 
 MAINTAINER agoncal
 
-LABEL name="Talk Micro Service"
+LABEL name="Talk Micro Service (war)"
 LABEL description="Talk Micro Service giving all the talks"
 LABEL version=${project.version}
 LABEL url="http://localhost:8080/conference-talk/api/talks"
