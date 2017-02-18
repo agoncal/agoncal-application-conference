@@ -23,7 +23,6 @@
         <version.compiler.plugin>3.6.0</version.compiler.plugin>
         <version.dependency.plugin>2.10</version.dependency.plugin>
         <version.deploy.plugin>2.8.2</version.deploy.plugin>
-        <version.docker.plugin>0.4.13</version.docker.plugin>
         <version.exec.plugin>1.5.0</version.exec.plugin>
         <version.failsafe.plugin>2.19.1</version.failsafe.plugin>
         <version.helper.plugin>1.12</version.helper.plugin>
@@ -36,6 +35,10 @@
         <version.swagger.plugin>3.1.4</version.swagger.plugin>
         <version.swagger-codegen.plugin>2.2.1</version.swagger-codegen.plugin>
         <version.war.plugin>3.0.0</version.war.plugin>
+
+        <!-- Docker -->
+        <skipDockerBuild>true</skipDockerBuild>
+        <version.docker.plugin>0.4.13</version.docker.plugin>
 
         <!-- Test -->
         <version.arquillian>1.0.0.Alpha7</version.arquillian>
@@ -250,23 +253,6 @@
                     <groupId>com.spotify</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
                     <version>${version.docker.plugin}</version>
-                    <configuration>
-                        <dockerDirectory>${project.build.directory}/docker</dockerDirectory>
-                        <imageName>agoncal/${project.artifactId}
-                        </imageName>
-                        <imageTags>
-                            <!--<imageTag>${project.version}</imageTag>-->
-                            <imageTag>latest</imageTag>
-                        </imageTags>
-                        <resources>
-                            <resource>
-                                <directory>${project.build.directory}</directory>
-                                <includes>
-                                    <include>${project.build.finalName}.war</include>
-                                </includes>
-                            </resource>
-                        </resources>
-                    </configuration>
                     <executions>
                         <execution>
                             <id>default-build</id>
@@ -548,6 +534,58 @@
             </dependencies>
         </profile>
 
+        <profile>
+            <id>docker-war</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>${project.basedir}/src/main/docker/war</directory>
+                        <targetPath>${project.build.directory}/docker</targetPath>
+                        <includes>
+                            <include>Dockerfile</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>${project.basedir}/src/main/resources</directory>
+                    </resource>
+                </resources>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <dockerDirectory>${project.build.directory}/docker</dockerDirectory>
+                            <imageName>agoncal/${project.artifactId}</imageName>
+                            <imageTags>
+                                <imageTag>latest</imageTag>
+                                <imageTag>war</imageTag>
+                            </imageTags>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>${project.build.finalName}.war</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>

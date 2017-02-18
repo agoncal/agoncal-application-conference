@@ -9,9 +9,9 @@
 
 ## Docker
 
-* `/bin/bash -c 'docker rm -fv $(docker ps -aq)'`
-* `/bin/bash -c 'docker rmi -f $(docker images -q --filter dangling=true)'`
-* `/bin/bash -c 'docker rmi -f $(docker images "agoncal/microservice*" -q)'`
+* `docker image ls | grep agoncal/microservice`
+* `docker image prune`                            # removes all dangling images
+* `/bin/bash -c 'docker image rm -f $(docker image ls -q | grep agoncal/microservice)'`
 * `/bin/bash -c 'docker push agoncal/microservice-attendee && docker push agoncal/microservice-rating && docker push agoncal/microservice-schedule && docker push agoncal/microservice-speaker && docker push agoncal/microservice-talk && docker push agoncal/microservice-venue'`
 
 ### Building Images
