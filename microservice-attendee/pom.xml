@@ -126,6 +126,10 @@
                     <groupId>org.wildfly.swarm</groupId>
                     <artifactId>jpa</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>

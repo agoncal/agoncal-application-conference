@@ -30,6 +30,7 @@ testem.log
 /typings
 *.log
 *dummy*
+*.ddl
 
 # JS
 *.map
