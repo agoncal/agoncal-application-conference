@@ -1,3 +1,19 @@
-<p>
-  schedule-detail works!
-</p>
+<div class="content">
+	<md-card>
+		<md-card-subtitle *ngIf="talk" >{{talk.talkType}} - {{talk.track}}</md-card-subtitle>
+		<md-card-title *ngIf="talk" >{{talk.title}}</md-card-title>
+		<md-card-subtitle *ngIf="session" >{{session.day}} : {{session.fromTime}} - {{session.toTime}}</md-card-subtitle>
+		<md-card-content *ngIf="talk">
+			<p>{{talk.summary}}</p>
+		</md-card-content>
+		<md-card-title-group  *ngFor="let speaker of speakers">
+			<img md-card-sm-image src="{{speaker.avatarUrl}}">
+			<md-card-title>{{speaker.firstName}} {{speaker.lastName}}</md-card-title>
+			<md-card-subtitle *ngIf="speaker.twitter" >{{speaker.twitter}}</md-card-subtitle>
+		</md-card-title-group>
+		<md-card-actions>
+			<button md-button [routerLink]="['/']" >BACK</button>
+			<button md-button [routerLink]="['/ratings', id]" >VOTE</button>
+		</md-card-actions>
+	</md-card>
+</div>
