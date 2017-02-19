@@ -1,12 +1,13 @@
-// CORE DEPS
+// Core dependencies
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-// MATERIAL DESIGN MODULES
+// Material design modules
 import { MaterialModule } from '@angular/material';
 import { MdIconModule } from '@angular/material/icon';
+// Routes
 import { ROUTES } from './app.routes';
 // Components
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { RatingApi } from './server/api/rating.api';
 import { TalkApi } from './server/api/talk.api';
 import { VenueApi } from './server/api/venue.api';
 import { NoatPipe } from './shared/noat/noat.pipe';
+// External dependencies
 import 'hammerjs';
 
 @NgModule({
@@ -51,7 +53,7 @@ import 'hammerjs';
     FormsModule,
     MdIconModule,
     HttpModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     RouterModule.forRoot(ROUTES, {useHash: true})
   ],
   providers: [
