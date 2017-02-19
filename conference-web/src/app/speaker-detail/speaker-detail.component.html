@@ -1,10 +1,7 @@
 <div class="content">
   <md-card>
-    <md-card-header>
-      <img md-card-avatar src="{{speaker?.avatarUrl}}">
       <md-card-title>{{speaker?.firstName}} {{speaker?.lastName}}</md-card-title>
       <md-card-subtitle>{{speaker?.company}}</md-card-subtitle>
-    </md-card-header>
     <md-card-content>
       <p>
       {{speaker?.bio}}
@@ -17,6 +14,9 @@
           {{speaker?.blog}}
         </a>
     </md-card-content>
+    <md-card-title-group>
+      <img md-card-sm-image src="{{speaker?.avatarUrl}}">
+    </md-card-title-group>
     <md-card-actions>
       <button md-button [routerLink]="['/speakers']" >BACK</button>
     </md-card-actions>
