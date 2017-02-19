@@ -19,17 +19,13 @@ export class AttendeeComponent implements OnInit {
 
   ngOnInit() {
     this.attendeesService.allAttendees()
-      .toPromise()
-      .then(attendees => {
+      .subscribe(attendees => {
         this.attendees = attendees;
 
         this.next = this.attendeesService.links["next"] ? this.attendeesService.links["next"] : undefined;
         this.prev = this.attendeesService.links["prev"] ? this.attendeesService.links["prev"] : undefined;
 
         this.hasLinks = (this.next != undefined || this.prev != undefined);
-      })
-      .catch(error => {
-        console.log(`An error has occured ${error}`);
       });
   }
 
