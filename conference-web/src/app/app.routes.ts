@@ -9,6 +9,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 import { SpeakerComponent } from './speaker/speaker.component';
 import { SpeakerDetailComponent } from './speaker-detail/speaker-detail.component';
+import { LogoutComponent } from './logout/logout.component';
 
 export const ROUTES: Routes = [
   {path: '', component: ScheduleComponent},
@@ -17,6 +18,7 @@ export const ROUTES: Routes = [
   {path: 'speakers', component: SpeakerComponent},
   {path: 'speakers/:id', component: SpeakerDetailComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
   {path: 'attendees', component: AttendeeComponent},
   {path: 'ratings/:id', component: VoteComponent, canActivate: [AuthGuardService]},
   {path: 'rooms', component: VenueComponent}

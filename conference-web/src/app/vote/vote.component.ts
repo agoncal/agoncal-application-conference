@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Http, Headers, RequestOptionsArgs, Response } from '@angular/http';
+import {Talk} from "../server/model/talk";
+import {Session} from "../server/model/session";
+import {ScheduleApi} from "../server/api/schedule.api";
+import {TalkApi} from "../server/api/talk.api";
+import {SpeakerApi} from "../server/api/speaker.api";
 
 @Component({
   selector: 'conf-vote',
@@ -11,16 +16,16 @@ import { Http, Headers, RequestOptionsArgs, Response } from '@angular/http';
 export class VoteComponent implements OnInit {
 
     private id: string;
-    // public session: models.Session;
-    // public talk: models.Talk;
+    public session: Session;
+    public talk: Talk;
     rating: any;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        // private scheduleService: DefaultApiSchedule,
-        // private talkService: DefaultApiTalk,
-        // private speakerService: DefaultApiSpeaker,
+        private scheduleService: ScheduleApi,
+        private talkService: TalkApi,
+        private speakerService: SpeakerApi,
         private authService: AuthService,
         private http: Http
 
@@ -31,7 +36,7 @@ export class VoteComponent implements OnInit {
           this.id = params['id'];
       });
 
-      // this.getSession(this.id);
+      this.getSession(this.id);
   }
 
     onSubmit() {
@@ -54,15 +59,15 @@ export class VoteComponent implements OnInit {
 
     }
 
-    // private getSession(id: string) {
-    //     this.scheduleService
-    //         .retrieve(id)
-    //         .flatMap((s: models.Session) => {
-    //             this.session = s;
-    //             return s ? this.talkService.retrieve(s.talk.id) : undefined;
-    //         }).subscribe((t: models.Talk) => {
-    //         this.talk = t;
-    //         return t ? t.speakers : undefined;
-    //     });
-    // }
+    private getSession(id: string) {
+        this.scheduleService
+            .retrieve(id)
+            .flatMap((s: Session) => {
+                this.session = s;
+                return s ? this.talkService.retrieve(s.talk.id) : undefined;
+            }).subscribe((t: Talk) => {
+            this.talk = t;
+            return t ? t.speakers : undefined;
+        });
+    }
 }

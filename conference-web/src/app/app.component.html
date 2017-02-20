@@ -1,5 +1,5 @@
 <div>
-    <md-toolbar color="primary">
+  <md-toolbar color="primary">
         <span>
           <button md-icon-button (click)="openOrCloseSidenav()">
             <md-icon>menu</md-icon>
@@ -7,44 +7,46 @@
           <md-icon class="icon-20">spa</md-icon>
             Angular loves Micro Profile
         </span>
-    </md-toolbar>
-    <md-menu x-position="after" #menu="mdMenu">
-        <button md-menu-item>Settings</button>
-        <button md-menu-item>Help</button>
-    </md-menu>
-    <md-sidenav-container>
-        <md-sidenav align="start" mode="over" #sidenav>
-            <md-tab-group>
-                <md-tab>
-                    <template md-tab-label>Details</template>
-                    <md-nav-list (click)="sidenav.close()">
+  </md-toolbar>
+  <md-sidenav-container>
+    <md-sidenav align="start" mode="over" #sidenav>
+      <md-tab-group>
+        <md-tab>
+          <template md-tab-label>Conference</template>
+          <md-nav-list (click)="sidenav.close()">
 
-                        <a md-list-item [routerLink]="['/']">
-                            <span md-line>Sessions</span>
-                            <span md-line class="secondary">Sessions list</span>
-                        </a>
-                        <a md-list-item [routerLink]="['/attendees']">
-                            <span md-line>Attendees</span>
-                            <span md-line class="secondary">Attendees list</span>
-                        </a>
-                        <a md-list-item [routerLink]="['/speakers']">
-                            <span md-line>Speakers</span>
-                            <span md-line class="secondary">Speakers list</span>
-                        </a>
-                        <a md-list-item [routerLink]="['/rooms']">
-                            <span md-line>Rooms</span>
-                            <span md-line class="secondary">Rooms list</span>
-                        </a>
+            <a md-list-item [routerLink]="['/']">
+              <span md-line>Sessions</span>
+              <span md-line class="secondary">Sessions list</span>
+            </a>
+            <a md-list-item [routerLink]="['/attendees']">
+              <span md-line>Attendees</span>
+              <span md-line class="secondary">Attendees list</span>
+            </a>
+            <a md-list-item [routerLink]="['/speakers']">
+              <span md-line>Speakers</span>
+              <span md-line class="secondary">Speakers list</span>
+            </a>
+            <a md-list-item [routerLink]="['/rooms']">
+              <span md-line>Rooms</span>
+              <span md-line class="secondary">Rooms list</span>
+            </a>
 
-                    </md-nav-list>
-                </md-tab>
-                <md-tab>
-                    <template md-tab-label>Feed</template>
-                </md-tab>
-            </md-tab-group>
-        </md-sidenav>
-        <router-outlet></router-outlet>
-    </md-sidenav-container>
+          </md-nav-list>
+        </md-tab>
+        <md-tab>
+          <template md-tab-label>Other</template>
+          <md-nav-list (click)="sidenav.close()">
+
+            <a md-list-item [routerLink]="['/logout']">
+              <span md-line>Logout</span>
+            </a>
+          </md-nav-list>
+        </md-tab>
+      </md-tab-group>
+    </md-sidenav>
+    <router-outlet></router-outlet>
+  </md-sidenav-container>
 
 
 </div>

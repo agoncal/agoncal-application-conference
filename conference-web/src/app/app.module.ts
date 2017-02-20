@@ -32,6 +32,7 @@ import { VenueApi } from './server/api/venue.api';
 import { NoatPipe } from './shared/noat/noat.pipe';
 // External dependencies
 import 'hammerjs';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import 'hammerjs';
     VoteComponent,
     SpeakerComponent,
     SpeakerDetailComponent,
-    NoatPipe
+    NoatPipe,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

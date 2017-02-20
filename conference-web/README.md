@@ -55,6 +55,7 @@ import { MaterialModule } from '@angular/material';
 ```
 $ ng generate component attendee
 $ ng generate component login
+$ ng generate component logout
 $ ng generate component vote
 $ ng generate component venue
 $ ng generate component schedule
