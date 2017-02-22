@@ -32,13 +32,44 @@ testem.log
 *dummy*
 *.ddl
 
-# JS
-*.map
-
 # e2e
-/e2e/*.js
+/e2e/**.js
 /e2e/*.map
 
 #System Files
 yarn.lock
 Thumbs.db
+
+# JS
+*.map
+conference-web/src/aot/
+conference-web/src/app/attendee/attendee.component.js
+conference-web/src/app/login/login.component.js
+conference-web/src/app/logout/logout.component.js
+conference-web/src/app/schedule-detail/schedule-detail.component.js
+conference-web/src/app/schedule/schedule.component.js
+conference-web/src/app/server/api/attendee.api.js
+conference-web/src/app/server/api/rating.api.js
+conference-web/src/app/server/api/schedule.api.js
+conference-web/src/app/server/api/speaker.api.js
+conference-web/src/app/server/api/talk.api.js
+conference-web/src/app/server/api/venue.api.js
+conference-web/src/app/server/model/Attendee.js
+conference-web/src/app/server/model/Rating.js
+conference-web/src/app/server/model/accepted.talk.js
+conference-web/src/app/server/model/room.js
+conference-web/src/app/server/model/session.js
+conference-web/src/app/server/model/speaker.js
+conference-web/src/app/server/model/talk.js
+conference-web/src/app/shared/noat/noat.pipe.js
+conference-web/src/app/speaker-detail/speaker-detail.component.js
+conference-web/src/app/speaker/speaker.component.js
+conference-web/src/app/venue/venue.component.js
+conference-web/src/app/vote/vote.component.js
+conference-web/src/environments/environment.js
+conference-web/src/main.js
+conference-web/src/app/app.component.js
+conference-web/src/app/app.module.js
+conference-web/src/app/app.routes.js
+conference-web/src/app/auth-guard.service.js
+conference-web/src/app/auth.service.js

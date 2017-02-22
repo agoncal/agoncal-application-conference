@@ -35,6 +35,7 @@ $ yarn add @angular/material --save
 $ yarn add hammerjs --save
 $ yarn add @types/hammerjs --save
 $ yarn add bootstrap --save
+$ yarn add @angular/platform-server --save
 ```
 
 We use Material Design. So we need to add it to the module app :
@@ -86,17 +87,16 @@ $ swagger-codegen generate -i microservice-talk/src/main/webapp/swagger.json -l 
 $ swagger-codegen generate -i microservice-venue/src/main/webapp/swagger.json -l typescript-angular2 -o conference-web/src/app/server
 ```
 
-
 ## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+Run `yarn run start` (which in fact is a `ng serve`) for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `yarn run build` (which is a `ng build` the `-prod` flag for a production build) to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Build for production
+
+Run `yarn run aot` for Ahead-of-Time compilation 
 
 ## Running unit tests
 
@@ -109,7 +109,8 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Deploying to GitHub Pages
 
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
+npm install rollup rollup-plugin-node-resolve rollup-plugin-commonjs rollup-plugin-uglify --save-dev
+
 
 ## Further help
 

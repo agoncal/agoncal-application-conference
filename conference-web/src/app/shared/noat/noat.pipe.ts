@@ -6,10 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NoatPipe implements PipeTransform {
 
   transform(value: string, args?: any): any {
-    if(value == null)
+    if (value == null)
       return value;
 
-    if (value.startsWith('@'))
+    if (value.charAt(0) == '@')
       return value.substring(1);
     else
       return value;
