@@ -90,13 +90,18 @@ $ swagger-codegen generate -i microservice-venue/src/main/webapp/swagger.json -l
 ## Development server
 Run `yarn run start` (which in fact is a `ng serve`) for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Build
+## Build and Dockerise
 
-Run `yarn run build` (which is a `ng build` the `-prod` flag for a production build) to build the project. The build artifacts will be stored in the `dist/` directory.
+* Run `yarn run build` (which is a `ng build` the `-prod` flag for a production build) to build the project. The build artifacts will be stored in the `dist/` directory.
+* Then build the Docker image `docker image build -t agoncal/microservice-web .`
+* Execute the Docker image `docker container run -p 4200:4200 agoncal/microservice-web`
 
 ## Build for production
 
-Run `yarn run aot` for Ahead-of-Time compilation 
+* Run `yarn run aot` for Ahead-of-Time compilation.
+* Install the Rollup dependencies 
+
+`yarn add rollup rollup-plugin-node-resolve rollup-plugin-commonjs rollup-plugin-uglify --save-dev`
 
 ## Running unit tests
 
