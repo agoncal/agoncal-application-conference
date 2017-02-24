@@ -11,8 +11,6 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - /dev/null:/traefik.toml
-    ms-web:
-        image: agoncal/conference-web:latest
     ms-attendee:
         image: agoncal/microservice-attendee:jar
         labels:

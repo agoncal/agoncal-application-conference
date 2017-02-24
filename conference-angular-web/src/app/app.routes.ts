@@ -8,11 +8,13 @@ import { VoteComponent } from './vote/vote.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './auth.guard.service';
 import { ScheduledetailsComponent } from './ms/scheduledetails/scheduledetails.component';
+import { SpeakerDetailComponent } from './ms/speaker-detail/speaker-detail.component';
 
 const routes: Routes = [
   { path: 'rooms', component: VenueComponent },
   { path: 'sessions', component: ScheduleComponent },
   { path: 'sessions/:id', component: ScheduledetailsComponent },
+  { path: 'speakers/:id', component: SpeakerDetailComponent },
   { path: '', component: ScheduleComponent },
   { path: 'login', component: LoginComponent },
   { path: 'attendees', component : AttendeeComponent},

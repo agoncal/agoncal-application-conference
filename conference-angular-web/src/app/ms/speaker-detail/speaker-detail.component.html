@@ -1,0 +1,24 @@
+<div class="content">
+  <md-card>
+      <md-card-title>{{speaker?.firstName}} {{speaker?.lastName}}</md-card-title>
+      <md-card-subtitle>{{speaker?.company}}</md-card-subtitle>
+    <md-card-content>
+      <p>
+      {{speaker?.bio}}
+      <p>
+        <a href="https://twitter.com/{{speaker?.twitter}}">
+          {{speaker?.twitter}}
+        </a>
+      <p>
+        <a href="{{speaker?.blog}}">
+          {{speaker?.blog}}
+        </a>
+    </md-card-content>
+    <md-card-title-group>
+      <img md-card-sm-image src="{{speaker?.avatarUrl}}">
+    </md-card-title-group>
+    <md-card-actions>
+      <button md-button [routerLink]="['/speakers']" >BACK</button>
+    </md-card-actions>
+  </md-card>
+</div>

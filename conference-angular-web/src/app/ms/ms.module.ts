@@ -7,12 +7,13 @@ import { CommonModule } from '@angular/common'
 import { MaterialModule } from '@angular/material';
 import { AttendeeComponent } from './attendee/attendee.component';
 import { ScheduledetailsComponent } from './scheduledetails/scheduledetails.component';
+import { SpeakerDetailComponent } from './speaker-detail/speaker-detail.component';
 
 
 @NgModule({
   imports: [CommonModule, MaterialModule, RouterModule],
-  exports: [ScheduleComponent, VenueComponent, AttendeeComponent, ScheduledetailsComponent],
-  declarations: [ScheduleComponent, VenueComponent, AttendeeComponent, ScheduledetailsComponent],
+  exports: [ScheduleComponent, VenueComponent, AttendeeComponent, ScheduledetailsComponent, SpeakerDetailComponent],
+  declarations: [ScheduleComponent, VenueComponent, AttendeeComponent, ScheduledetailsComponent, SpeakerDetailComponent],
   providers: [
     ContactService, DefaultApiVenue, DefaultApiSchedule,
     DefaultApiAttendee, DefaultApiTalk, DefaultApiSpeaker],
