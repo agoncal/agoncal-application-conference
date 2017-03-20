@@ -7,32 +7,29 @@ import org.agoncal.application.conference.speaker.domain.Speakers;
 import org.agoncal.application.conference.speaker.repository.SpeakerRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
-import java.net.URI;
 import java.util.Arrays;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.Response.Status.*;
 import static org.agoncal.application.conference.commons.domain.Links.*;
 import static org.junit.Assert.*;
 
@@ -47,15 +44,6 @@ public class SpeakerEndpointTest {
     private static final Speaker TEST_SPEAKER = new Speaker("last name", "first name", "bio", "en", "twitter", "avatar url", "company", "blog");
     private static final AcceptedTalk TEST_ACCEPTED_TALK = new AcceptedTalk("id", "title", "en");
     private static String speakerId;
-    private Client client;
-    private WebTarget webTarget;
-
-    // ======================================
-    // =          Injection Points          =
-    // ======================================
-
-    @ArquillianResource
-    private URI baseURL;
 
     // ======================================
     // =         Deployment methods         =
@@ -76,58 +64,48 @@ public class SpeakerEndpointTest {
     }
 
     // ======================================
-    // =          Lifecycle methods         =
-    // ======================================
-
-    @Before
-    public void initWebTarget() {
-        client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("api/speakers");
-    }
-
-    // ======================================
     // =            Test methods            =
     // ======================================
 
     @Test
     @InSequence(1)
-    public void shouldFailGetingSpeakersWithZeroPage() throws Exception {
+    public void shouldFailGetingSpeakersWithZeroPage(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(400, response.getStatus());
+        assertEquals(BAD_REQUEST.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(2)
-    public void shouldGetNoSpeakers() throws Exception {
+    public void shouldGetNoSpeakers(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, response.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(3)
-    public void shouldFailCreatingInvalidSpeaker() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
-        assertEquals(400, response.getStatus());
+    public void shouldFailCreatingInvalidSpeaker(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(null);
+        assertEquals(UNSUPPORTED_MEDIA_TYPE.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(4)
-    public void shouldCreateSpeaker() throws Exception {
+    public void shouldCreateSpeaker(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         TEST_SPEAKER.setAcceptedTalks(Arrays.asList(TEST_ACCEPTED_TALK));
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_SPEAKER, APPLICATION_JSON_TYPE));
-        assertEquals(201, response.getStatus());
+        assertEquals(CREATED.getStatusCode(), response.getStatus());
         speakerId = getSpeakerId(response);
         checkHeaders(response);
     }
 
     @Test
     @InSequence(5)
-    public void shouldGetAlreadyCreatedSpeaker() throws Exception {
+    public void shouldGetAlreadyCreatedSpeaker(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 11 attributes", 11, jsonObject.size());
         assertEquals(speakerId, jsonObject.getString("id"));
@@ -153,23 +131,23 @@ public class SpeakerEndpointTest {
 
     @Test
     @InSequence(6)
-    public void shouldGetCreatedSpeakerWithEtag() throws Exception {
+    public void shouldGetCreatedSpeakerWithEtag(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
         EntityTag etag = response.getEntityTag();
         assertNotNull(etag);
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         response.close();
         Response response2 = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
         assertNotNull(response2.getEntityTag());
-        assertEquals(304, response2.getStatus());
+        assertEquals(NOT_MODIFIED.getStatusCode(), response2.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(7)
-    public void shouldCheckCollectionOfSpeakers() throws Exception {
+    public void shouldCheckCollectionOfSpeakers(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
@@ -178,19 +156,19 @@ public class SpeakerEndpointTest {
 
     @Test
     @InSequence(8)
-    public void shouldRemoveSpeaker() throws Exception {
+    public void shouldRemoveSpeaker(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(204, response.getStatus());
+        assertEquals(NO_CONTENT.getStatusCode(), response.getStatus());
         Response checkResponse = webTarget.path(speakerId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, checkResponse.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), checkResponse.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(9)
-    public void shouldRemoveWithInvalidInput() throws Exception {
+    public void shouldRemoveWithInvalidInput(@ArquillianResteasyResource("api/speakers") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(405, response.getStatus());
+        assertEquals(METHOD_NOT_ALLOWED.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
@@ -216,6 +194,5 @@ public class SpeakerEndpointTest {
 
     private void checkHeaders(Response response) {
         CORSFilterTest.checkCORSHeaders(response);
-        assertNotNull(response.getHeaders().get("Host"));
     }
 }

@@ -8,6 +8,7 @@ import org.agoncal.application.conference.commons.jwt.SimpleKeyGenerator;
 import org.agoncal.application.conference.commons.rest.CORSFilterTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -15,15 +16,12 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.*;
@@ -33,6 +31,7 @@ import java.net.URI;
 import java.security.Key;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.Response.Status.*;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
 import static org.junit.Assert.*;
@@ -48,8 +47,6 @@ public class AttendeeEndpointTest {
     private static final Attendee TEST_ATTENDEE = new Attendee("id", "last name", "first name", "login", "password");
     private static String token;
     private static String attendeeId;
-    private Client client;
-    private WebTarget webTarget;
 
     // ======================================
     // =          Injection Points          =
@@ -77,83 +74,73 @@ public class AttendeeEndpointTest {
     }
 
     // ======================================
-    // =          Lifecycle methods         =
-    // ======================================
-
-    @Before
-    public void initWebTarget() {
-        client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("api/attendees");
-    }
-
-    // ======================================
     // =            Test methods            =
     // ======================================
 
     @Test
     @InSequence(1)
-    public void shouldFailLoginWithInvalidValues() throws Exception {
+    public void shouldFailLoginWithInvalidValues(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Form form = new Form();
         form.param("login", "");
         form.param("password", "");
 
         Response response = webTarget.path("login").request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-        assertEquals(400, response.getStatus());
+        assertEquals(BAD_REQUEST.getStatusCode(), response.getStatus());
         assertNull(response.getHeaderString(HttpHeaders.AUTHORIZATION));
         checkHeaders(response);
     }
 
     @Test
     @InSequence(2)
-    public void shouldFailLoginWithInvalidUserPassword() throws Exception {
+    public void shouldFailLoginWithInvalidUserPassword(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Form form = new Form();
         form.param("login", "dummyLogin");
         form.param("password", "dummyPassword");
 
         Response response = webTarget.path("login").request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-        assertEquals(401, response.getStatus());
+        assertEquals(UNAUTHORIZED.getStatusCode(), response.getStatus());
         assertNull(response.getHeaderString(HttpHeaders.AUTHORIZATION));
         checkHeaders(response);
     }
 
     @Test
     @InSequence(3)
-    public void shouldFailGetingAttendeesWithZeroPage() throws Exception {
+    public void shouldFailGetingAttendeesWithZeroPage(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(400, response.getStatus());
+        assertEquals(BAD_REQUEST.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(4)
-    public void shouldGetNoAttendees() throws Exception {
+    public void shouldGetNoAttendees(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, response.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(5)
-    public void shouldFailCreatingInvalidAttendee() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
-        assertEquals(400, response.getStatus());
+    public void shouldFailCreatingInvalidAttendee(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(null);
+        assertEquals(UNSUPPORTED_MEDIA_TYPE.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(6)
-    public void shouldCreateAttendee() throws Exception {
+    public void shouldCreateAttendee(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_ATTENDEE, APPLICATION_JSON_TYPE));
-        assertEquals(201, response.getStatus());
+        assertEquals(CREATED.getStatusCode(), response.getStatus());
         attendeeId = getAttendeeId(response);
         checkHeaders(response);
     }
 
     @Test
     @InSequence(7)
-    public void shouldGetAlreadyCreatedAttendee() throws Exception {
+    public void shouldGetAlreadyCreatedAttendee(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(attendeeId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
@@ -165,28 +152,28 @@ public class AttendeeEndpointTest {
 
     @Test
     @InSequence(8)
-    public void shouldGetCreatedAttendeeWithEtag() throws Exception {
+    public void shouldGetCreatedAttendeeWithEtag(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).get();
         EntityTag etag = response.getEntityTag();
         assertNotNull(etag);
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         response.close();
         Response response2 = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
         assertNotNull(response2.getEntityTag());
-        assertEquals(304, response2.getStatus());
+        assertEquals(NOT_MODIFIED.getStatusCode(), response2.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(9)
-    public void shouldLogUserIn() throws Exception {
+    public void shouldLogUserIn(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Form form = new Form();
         form.param("login", TEST_ATTENDEE.getLogin());
         form.param("password", TEST_ATTENDEE.getPassword());
 
         Response response = webTarget.path("login").request(MediaType.APPLICATION_JSON_TYPE).post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         assertNotNull(response.getHeaderString(HttpHeaders.AUTHORIZATION));
         token = response.getHeaderString(HttpHeaders.AUTHORIZATION);
 
@@ -205,9 +192,9 @@ public class AttendeeEndpointTest {
 
     @Test
     @InSequence(10)
-    public void shouldCheckCollectionOfAttendees() throws Exception {
+    public void shouldCheckCollectionOfAttendees(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
@@ -216,19 +203,19 @@ public class AttendeeEndpointTest {
 
     @Test
     @InSequence(11)
-    public void shouldRemoveAttendee() throws Exception {
+    public void shouldRemoveAttendee(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(204, response.getStatus());
+        assertEquals(NO_CONTENT.getStatusCode(), response.getStatus());
         Response checkResponse = webTarget.path(attendeeId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, checkResponse.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), checkResponse.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(12)
-    public void shouldRemoveWithInvalidInput() throws Exception {
+    public void shouldRemoveWithInvalidInput(@ArquillianResteasyResource("api/attendees") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(405, response.getStatus());
+        assertEquals(METHOD_NOT_ALLOWED.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
@@ -254,6 +241,5 @@ public class AttendeeEndpointTest {
 
     private void checkHeaders(Response response) {
         CORSFilterTest.checkCORSHeaders(response);
-        assertNotNull(response.getHeaders().get("Host"));
     }
 }

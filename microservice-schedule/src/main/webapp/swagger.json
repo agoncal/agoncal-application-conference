@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Schedule"
   },
-  "host" : "localhost:8082",
+  "host" : "localhost:8083",
   "basePath" : "/api",
   "tags" : [ {
     "name" : "Schedule"

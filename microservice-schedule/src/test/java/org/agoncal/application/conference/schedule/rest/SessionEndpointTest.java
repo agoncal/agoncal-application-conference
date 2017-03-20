@@ -8,31 +8,28 @@ import org.agoncal.application.conference.schedule.domain.Talk;
 import org.agoncal.application.conference.schedule.repository.SessionRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.StringReader;
-import java.net.URI;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.Response.Status.*;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
 import static org.junit.Assert.*;
@@ -50,15 +47,6 @@ public class SessionEndpointTest {
     private static final Talk TEST_TALK = new Talk("idtalk", "title", "talkType", "track", TEST_SPEAKER);
     private static final Session TEST_SESSION = new Session(true, true, 12345L, "12345", 23456L, "23456", "monday", TEST_ROOM, TEST_TALK);
     private static String sessionId;
-    private Client client;
-    private WebTarget webTarget;
-
-    // ======================================
-    // =          Injection Points          =
-    // ======================================
-
-    @ArquillianResource
-    private URI baseURL;
 
     // ======================================
     // =         Deployment methods         =
@@ -80,57 +68,47 @@ public class SessionEndpointTest {
     }
 
     // ======================================
-    // =          Lifecycle methods         =
-    // ======================================
-
-    @Before
-    public void initWebTarget() {
-        client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("api/sessions");
-    }
-
-    // ======================================
     // =            Test methods            =
     // ======================================
 
     @Test
     @InSequence(1)
-    public void shouldFailGetingSessionsWithZeroPage() throws Exception {
+    public void shouldFailGetingSessionsWithZeroPage(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(400, response.getStatus());
+        assertEquals(BAD_REQUEST.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(2)
-    public void shouldGetNoSessions() throws Exception {
+    public void shouldGetNoSessions(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, response.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(3)
-    public void shouldFailCreatingInvalidSession() throws Exception {
-        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(null, APPLICATION_JSON_TYPE));
-        assertEquals(400, response.getStatus());
+    public void shouldFailCreatingInvalidSession(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).post(null);
+        assertEquals(UNSUPPORTED_MEDIA_TYPE.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(4)
-    public void shouldCreateSession() throws Exception {
+    public void shouldCreateSession(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).post(Entity.entity(TEST_SESSION, APPLICATION_JSON_TYPE));
-        assertEquals(201, response.getStatus());
+        assertEquals(CREATED.getStatusCode(), response.getStatus());
         sessionId = getSpeakerId(response);
         checkHeaders(response);
     }
 
     @Test
     @InSequence(5)
-    public void shouldGetAlreadyCreatedSessions() throws Exception {
+    public void shouldGetAlreadyCreatedSessions(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 12 links", 12, jsonObject.getJsonObject("links").size());
         assertEquals(sessionId, jsonObject.getString("id"));
@@ -157,23 +135,23 @@ public class SessionEndpointTest {
 
     @Test
     @InSequence(6)
-    public void shouldGetCreatedSessionWithEtag() throws Exception {
+    public void shouldGetCreatedSessionWithEtag(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         EntityTag etag = response.getEntityTag();
         assertNotNull(etag);
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         response.close();
         Response response2 = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).header("If-None-Match", etag).get();
         assertNotNull(response2.getEntityTag());
-        assertEquals(304, response2.getStatus());
+        assertEquals(NOT_MODIFIED.getStatusCode(), response2.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(7)
-    public void shouldCheckCollectionOfSessions() throws Exception {
+    public void shouldCheckCollectionOfSessions(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 10 links", 10, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
@@ -182,19 +160,19 @@ public class SessionEndpointTest {
 
     @Test
     @InSequence(8)
-    public void shouldRemoveSession() throws Exception {
+    public void shouldRemoveSession(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(204, response.getStatus());
+        assertEquals(NO_CONTENT.getStatusCode(), response.getStatus());
         Response checkResponse = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, checkResponse.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), checkResponse.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(9)
-    public void shouldRemoveWithInvalidInput() throws Exception {
+    public void shouldRemoveWithInvalidInput(@ArquillianResteasyResource("api/sessions") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(405, response.getStatus());
+        assertEquals(METHOD_NOT_ALLOWED.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
@@ -220,6 +198,5 @@ public class SessionEndpointTest {
 
     private void checkHeaders(Response response) {
         CORSFilterTest.checkCORSHeaders(response);
-        assertNotNull(response.getHeaders().get("Host"));
     }
 }

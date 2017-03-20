@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Talk"
   },
-  "host" : "localhost:8084",
+  "host" : "localhost:8085",
   "basePath" : "/api",
   "tags" : [ {
     "name" : "Talk"

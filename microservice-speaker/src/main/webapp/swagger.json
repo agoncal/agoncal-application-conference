@@ -5,7 +5,7 @@
     "version" : "1.0.0",
     "title" : "Speaker"
   },
-  "host" : "localhost:8083",
+  "host" : "localhost:8084",
   "basePath" : "/api",
   "tags" : [ {
     "name" : "Speaker"

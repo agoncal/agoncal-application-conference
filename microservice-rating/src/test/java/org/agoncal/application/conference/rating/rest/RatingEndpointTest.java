@@ -9,6 +9,7 @@ import org.agoncal.application.conference.rating.domain.Ratings;
 import org.agoncal.application.conference.rating.repository.RatingRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -16,15 +17,12 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
@@ -40,6 +38,7 @@ import java.util.Date;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.Response.Status.*;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
 import static org.junit.Assert.assertEquals;
@@ -55,8 +54,6 @@ public class RatingEndpointTest {
 
     private static final Rating TEST_RATING = new Rating("sessionId", "attendeeId", 5);
     private static String ratingId;
-    private Client client;
-    private WebTarget webTarget;
 
     // ======================================
     // =          Injection Points          =
@@ -85,63 +82,53 @@ public class RatingEndpointTest {
     }
 
     // ======================================
-    // =          Lifecycle methods         =
-    // ======================================
-
-    @Before
-    public void initWebTarget() {
-        client = ClientBuilder.newClient();
-        webTarget = client.target(baseURL).path("api/ratings");
-    }
-
-    // ======================================
     // =            Test methods            =
     // ======================================
 
     @Test
     @InSequence(1)
-    public void shouldFailGetingRatingsWithZeroPage() throws Exception {
+    public void shouldFailGetingRatingsWithZeroPage(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Response response = webTarget.queryParam("page", 0).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(400, response.getStatus());
+        assertEquals(BAD_REQUEST.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(2)
-    public void shouldGetNoRatings() throws Exception {
+    public void shouldGetNoRatings(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, response.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(3)
-    public void shouldFailTryingToRateASessionWithNoToken() throws Exception {
+    public void shouldFailTryingToRateASessionWithNoToken(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Form form = new Form();
         form.param("mark", TEST_RATING.getMark().toString());
 
         Response response = webTarget.path(TEST_RATING.getSessionId()).request(APPLICATION_JSON_TYPE).post(Entity.entity(form, APPLICATION_FORM_URLENCODED));
-        assertEquals(401, response.getStatus());
+        assertEquals(UNAUTHORIZED.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(4)
-    public void shouldRateASessionWithToken() throws Exception {
+    public void shouldRateASessionWithToken(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Form form = new Form();
         form.param("mark", TEST_RATING.getMark().toString());
 
         Response response = webTarget.path(TEST_RATING.getSessionId()).request(APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, issueToken()).post(Entity.entity(form, APPLICATION_FORM_URLENCODED));
-        assertEquals(201, response.getStatus());
+        assertEquals(CREATED.getStatusCode(), response.getStatus());
         ratingId = getRatingId(response);
         checkHeaders(response);
     }
 
     @Test
     @InSequence(5)
-    public void shouldGetAlreadyCreatedRating() throws Exception {
+    public void shouldGetAlreadyCreatedRating(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(ratingId, jsonObject.getString("id"));
         assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
@@ -153,9 +140,9 @@ public class RatingEndpointTest {
 
     @Test
     @InSequence(6)
-    public void shouldCheckCollectionOfRatings() throws Exception {
+    public void shouldCheckCollectionOfRatings(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
-        assertEquals(200, response.getStatus());
+        assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
@@ -164,19 +151,19 @@ public class RatingEndpointTest {
 
     @Test
     @InSequence(7)
-    public void shouldRemoveRating() throws Exception {
+    public void shouldRemoveRating(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Response response = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(204, response.getStatus());
+        assertEquals(NO_CONTENT.getStatusCode(), response.getStatus());
         Response checkResponse = webTarget.path(ratingId).request(APPLICATION_JSON_TYPE).get();
-        assertEquals(404, checkResponse.getStatus());
+        assertEquals(NOT_FOUND.getStatusCode(), checkResponse.getStatus());
         checkHeaders(response);
     }
 
     @Test
     @InSequence(8)
-    public void shouldRemoveWithInvalidInput() throws Exception {
+    public void shouldRemoveWithInvalidInput(@ArquillianResteasyResource("api/ratings") WebTarget webTarget) throws Exception {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).delete();
-        assertEquals(405, response.getStatus());
+        assertEquals(METHOD_NOT_ALLOWED.getStatusCode(), response.getStatus());
         checkHeaders(response);
     }
 

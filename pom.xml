@@ -20,12 +20,12 @@
 
         <!-- Plugins -->
         <version.clean.plugin>3.0.0</version.clean.plugin>
-        <version.compiler.plugin>3.6.0</version.compiler.plugin>
-        <version.dependency.plugin>2.10</version.dependency.plugin>
+        <version.compiler.plugin>3.6.1</version.compiler.plugin>
+        <version.dependency.plugin>3.0.0</version.dependency.plugin>
         <version.deploy.plugin>2.8.2</version.deploy.plugin>
-        <version.exec.plugin>1.5.0</version.exec.plugin>
+        <version.exec.plugin>1.6.0</version.exec.plugin>
         <version.failsafe.plugin>2.19.1</version.failsafe.plugin>
-        <version.helper.plugin>1.12</version.helper.plugin>
+        <version.helper.plugin>3.0.0</version.helper.plugin>
         <version.install.plugin>2.5.2</version.install.plugin>
         <version.jar.plugin>3.0.2</version.jar.plugin>
         <version.processor.plugin>3.2.0</version.processor.plugin>
@@ -33,7 +33,7 @@
         <version.site.plugin>3.6</version.site.plugin>
         <version.surefire.plugin>2.19.1</version.surefire.plugin>
         <version.swagger.plugin>3.1.4</version.swagger.plugin>
-        <version.swagger-codegen.plugin>2.2.1</version.swagger-codegen.plugin>
+        <version.swagger-codegen.plugin>2.2.2</version.swagger-codegen.plugin>
         <version.war.plugin>3.0.0</version.war.plugin>
 
         <!-- Docker -->
@@ -41,26 +41,26 @@
         <version.docker.plugin>0.4.13</version.docker.plugin>
 
         <!-- Test -->
-        <version.arquillian>1.0.0.Alpha7</version.arquillian>
+        <version.arquillian>1.1.12.0</version.arquillian>
         <version.arquillian.junit>1.1.11.Final</version.arquillian.junit>
-        <version.arquillian.wildfly.remote>8.2.1.Final</version.arquillian.wildfly.remote>
-        <version.arquillian.wildfly.managed>8.2.1.Final</version.arquillian.wildfly.managed>
-        <version.assertj>3.6.1</version.assertj>
+        <version.arquillian.rest>1.0.0.Alpha4</version.arquillian.rest>
+        <version.arquillian.wildfly>2.0.2.Final</version.arquillian.wildfly>
+        <version.assertj>3.6.2</version.assertj>
         <version.junit>4.12</version.junit>
         <version.json>1.0.4</version.json>
         <version.resteasy>3.1.0.Final</version.resteasy>
         <version.shrinkwrap>1.2.6</version.shrinkwrap>
-        <version.shrinkwrap.maven.resolver>2.2.4</version.shrinkwrap.maven.resolver>
+        <version.shrinkwrap.maven.resolver>2.2.6</version.shrinkwrap.maven.resolver>
 
         <!-- App servers -->
-        <version.wildfly-swarm>2017.2.0</version.wildfly-swarm>
+        <version.wildfly-swarm>2017.3.3</version.wildfly-swarm>
         <version.wildfly>10.1.0.Final</version.wildfly>
 
         <!-- Dependencies -->
         <version.javaee>7.0</version.javaee>
-        <version.swagger>1.5.12</version.swagger>
+        <version.swagger>1.5.13</version.swagger>
         <version.jjwt>0.7.0</version.jjwt>
-        <version.h2>1.4.193</version.h2>
+        <version.h2>1.4.194</version.h2>
     </properties>
 
     <prerequisites>
@@ -173,6 +173,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.jboss.arquillian.junit</groupId>
                 <artifactId>arquillian-junit-core</artifactId>
@@ -192,15 +193,21 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.glassfish</groupId>
-                <artifactId>javax.json</artifactId>
-                <version>${version.json}</version>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-rest-client-api</artifactId>
+                <version>${version.arquillian.rest}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-client</artifactId>
-                <version>${version.resteasy}</version>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-rest-client-impl-3x</artifactId>
+                <version>${version.arquillian.rest}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.json</artifactId>
+                <version>${version.json}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -217,9 +224,10 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                <artifactId>shrinkwrap-resolver-api-maven</artifactId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
                 <version>${version.shrinkwrap.maven.resolver}</version>
-                <scope>test</scope>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -473,9 +481,9 @@
             </build>
             <dependencies>
                 <dependency>
-                    <groupId>org.wildfly</groupId>
+                    <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>${version.arquillian.wildfly.remote}</version>
+                    <version>${version.arquillian.wildfly}</version>
                     <scope>test</scope>
                     <exclusions>
                         <exclusion>
@@ -532,9 +540,9 @@
             </build>
             <dependencies>
                 <dependency>
-                    <groupId>org.wildfly</groupId>
+                    <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>${version.arquillian.wildfly.managed}</version>
+                    <version>${version.arquillian.wildfly}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>

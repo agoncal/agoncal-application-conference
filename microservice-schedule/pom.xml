@@ -32,7 +32,7 @@
                             <springmvc>false</springmvc>
                             <locations>org.agoncal.application.conference.schedule.rest</locations>
                             <schemes>http,https</schemes>
-                            <host>localhost:8082</host>
+                            <host>localhost:8083</host>
                             <basePath>/api</basePath>
                             <info>
                                 <title>Schedule</title>
@@ -90,11 +90,15 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
             <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-            <version>${version.shrinkwrap.maven.resolver}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-rest-client-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-rest-client-impl-3x</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
