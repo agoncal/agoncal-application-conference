@@ -2,7 +2,7 @@ version: "2"
 
 services:
     traefik:
-        image: traefik:v1.0.3
+        image: traefik:v1.2.0
         command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
         ports:
             - "90:80"
@@ -12,32 +12,32 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
             - /dev/null:/traefik.toml
     ms-attendee:
-        image: agoncal/microservice-attendee:latest
+        image: agoncal/microservice-attendee:war
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-attendee"
             - "traefik.port=8080"
     ms-rating:
-        image: agoncal/microservice-rating:latest
+        image: agoncal/microservice-rating:war
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-rating"
             - "traefik.port=8080"
     ms-schedule:
-        image: agoncal/microservice-schedule:latest
+        image: agoncal/microservice-schedule:war
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-schedule"
             - "traefik.port=8080"
     ms-speaker:
-        image: agoncal/microservice-speaker:latest
+        image: agoncal/microservice-speaker:war
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-speaker"
             - "traefik.port=8080"
     ms-talk:
-        image: agoncal/microservice-talk:latest
+        image: agoncal/microservice-talk:war
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-talk"
             - "traefik.port=8080"
     ms-venue:
-        image: agoncal/microservice-venue:latest
+        image: agoncal/microservice-venue:war
         labels:
             - "traefik.frontend.rule=Host:conference.docker.localhost;PathPrefix:/conference-venue"
             - "traefik.port=8080"
