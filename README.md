@@ -12,8 +12,8 @@
 * `docker image ls "agoncal/microservice*"`
 * `docker image prune`                            # removes all dangling images
 * `/bin/bash -c 'docker image rm $(docker image ls -q "agoncal/microservice*") -f'`
-* `/bin/bash -c 'docker image push agoncal/microservice-attendee:war && docker image push agoncal/microservice-rating:war && docker image push agoncal/microservice-schedule:war && docker image push agoncal/microservice-speaker:war && docker image push agoncal/microservice-talk:war && docker image push agoncal/microservice-venue:war'`
-* `/bin/bash -c 'docker image push agoncal/microservice-attendee:jar && docker image push agoncal/microservice-rating:jar && docker image push agoncal/microservice-schedule:jar && docker image push agoncal/microservice-speaker:jar && docker image push agoncal/microservice-talk:jar && docker image push agoncal/microservice-venue:jar'`
+* `/bin/bash -c 'docker image push agoncal/conference-web && docker image push agoncal/microservice-attendee:war && docker image push agoncal/microservice-rating:war && docker image push agoncal/microservice-schedule:war && docker image push agoncal/microservice-speaker:war && docker image push agoncal/microservice-talk:war && docker image push agoncal/microservice-venue:war'`
+* `/bin/bash -c 'docker image push agoncal/conference-web && docker image push agoncal/microservice-attendee:jar && docker image push agoncal/microservice-rating:jar && docker image push agoncal/microservice-schedule:jar && docker image push agoncal/microservice-speaker:jar && docker image push agoncal/microservice-talk:jar && docker image push agoncal/microservice-venue:jar'`
 
 ### Building Back-end Images
 
