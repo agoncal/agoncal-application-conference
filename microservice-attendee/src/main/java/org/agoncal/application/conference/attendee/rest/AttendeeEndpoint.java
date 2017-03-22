@@ -2,16 +2,13 @@ package org.agoncal.application.conference.attendee.rest;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.agoncal.application.conference.attendee.domain.Attendee;
 import org.agoncal.application.conference.attendee.domain.Attendees;
 import org.agoncal.application.conference.attendee.repository.AttendeeRepository;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
-import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.commons.jwt.KeyGenerator;
+import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -72,6 +69,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @Consumes(APPLICATION_FORM_URLENCODED)
     @ApiOperation(value = "Logs an attendee with a user and password")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Authenticated"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 401, message = "Invalid login/password")
     })
@@ -102,9 +100,10 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @POST
     @ApiOperation(value = "Adds a new attendee to the conference")
     @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "The attendee is created"),
         @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(@NotNull Attendee attendee) {
+    public Response add(@ApiParam(value = "Room to be created", required = true) @NotNull Attendee attendee) {
         Attendee created = attendeeRepository.create(attendee);
         return Response.created(getURIForSelf(attendee)).entity(created).build();
     }
@@ -113,6 +112,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @Path("/{id}")
     @ApiOperation(value = "Finds an attendee by ID", response = Attendee.class)
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Attendee found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Attendee not found")}
     )
@@ -139,6 +139,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @GET
     @ApiOperation(value = "Finds all the attendees", response = Attendee.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All attendees found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Attendees not found")}
     )
@@ -167,6 +168,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes an attendee")
     @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Attendee has been deleted"),
         @ApiResponse(code = 405, message = "Invalid input")}
     )
     public Response remove(@PathParam("id") @NotEmpty String id) {

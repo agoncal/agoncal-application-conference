@@ -1,0 +1,142 @@
+---
+swagger: "2.0"
+info:
+  description: "Gives all the details of the rooms of the venue"
+  version: "1.0.0"
+  title: "Room"
+host: "localhost:8086"
+basePath: "/api"
+tags:
+- name: "Venue"
+schemes:
+- "http"
+- "https"
+paths:
+  /rooms:
+    get:
+      tags:
+      - "Venue"
+      summary: "Finds all the rooms"
+      description: ""
+      operationId: "allRooms"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Rooms found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Room"
+        404:
+          description: "Rooms not found"
+    post:
+      tags:
+      - "Venue"
+      summary: "Adds a new room to the venue"
+      description: ""
+      operationId: "add"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Room to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/Room"
+      responses:
+        201:
+          description: "The room is created"
+        400:
+          description: "Invalid input"
+    put:
+      tags:
+      - "Venue"
+      summary: "Update an existing room"
+      description: ""
+      operationId: "update"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Room to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Room"
+      responses:
+        200:
+          description: "Rooms updated"
+        405:
+          description: "Invalid values"
+  /rooms/{id}:
+    get:
+      tags:
+      - "Venue"
+      summary: "Finds a room by ID"
+      description: ""
+      operationId: "retrieve"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Room found"
+          schema:
+            $ref: "#/definitions/Room"
+        400:
+          description: "Invalid input"
+        404:
+          description: "Room not found"
+    delete:
+      tags:
+      - "Venue"
+      summary: "Deletes a room"
+      description: ""
+      operationId: "remove"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Room has been deleted"
+        405:
+          description: "Invalid room value"
+definitions:
+  Room:
+    type: "object"
+    properties:
+      links:
+        type: "object"
+        additionalProperties:
+          type: "string"
+          format: "uri"
+      id:
+        type: "string"
+      name:
+        type: "string"
+      capacity:
+        type: "integer"
+        format: "int32"
+      setup:
+        type: "string"

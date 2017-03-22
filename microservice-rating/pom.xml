@@ -40,7 +40,7 @@
                                 <description>Allows rating for a talk and gives all the details about the ratings</description>
                             </info>
                             <swaggerDirectory>${basedir}/src/main/webapp</swaggerDirectory>
-                            <outputFormats>json</outputFormats>
+                            <outputFormats>json,yaml</outputFormats>
                         </apiSource>
                     </apiSources>
                 </configuration>

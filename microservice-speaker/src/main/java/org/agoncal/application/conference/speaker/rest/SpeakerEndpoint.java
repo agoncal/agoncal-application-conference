@@ -1,9 +1,6 @@
 package org.agoncal.application.conference.speaker.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.domain.Links;
 import org.agoncal.application.conference.commons.registry.TalkMicroService;
@@ -60,9 +57,10 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @POST
     @ApiOperation(value = "Adds a new speaker to the conference")
     @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "The speaker is created"),
         @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(@NotNull Speaker speaker) {
+    public Response add(@ApiParam(value = "Speaker to be created", required = true) @NotNull Speaker speaker) {
         Speaker created = speakerRepository.create(speaker);
         return Response.created(getURIForSelf(speaker)).entity(created).build();
     }
@@ -71,6 +69,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @Path("/{id}")
     @ApiOperation(value = "Finds a speaker by ID", response = Speaker.class)
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Speaker found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Speaker not found")}
     )
@@ -107,6 +106,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @GET
     @ApiOperation(value = "Finds all the speakers", response = Speaker.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All speakers found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Speakers not found")}
     )
@@ -138,6 +138,7 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a speaker")
     @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Speaker has been deleted"),
         @ApiResponse(code = 405, message = "Invalid speaker value")}
     )
     public Response remove(@PathParam("id") @NotEmpty String id) {

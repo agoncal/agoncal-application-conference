@@ -22,7 +22,7 @@
         "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "Rooms found",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -42,7 +42,19 @@
         "operationId" : "add",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Room to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Room"
+          }
+        } ],
         "responses" : {
+          "201" : {
+            "description" : "The room is created"
+          },
           "400" : {
             "description" : "Invalid input"
           }
@@ -55,7 +67,19 @@
         "operationId" : "update",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Room to be updated",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Room"
+          }
+        } ],
         "responses" : {
+          "200" : {
+            "description" : "Rooms updated"
+          },
           "405" : {
             "description" : "Invalid values"
           }
@@ -78,7 +102,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "Room found",
             "schema" : {
               "$ref" : "#/definitions/Room"
             }
@@ -105,6 +129,9 @@
           "type" : "string"
         } ],
         "responses" : {
+          "204" : {
+            "description" : "Room has been deleted"
+          },
           "405" : {
             "description" : "Invalid room value"
           }

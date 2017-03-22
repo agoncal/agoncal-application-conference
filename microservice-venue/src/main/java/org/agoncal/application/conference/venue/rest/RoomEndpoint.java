@@ -1,9 +1,6 @@
 package org.agoncal.application.conference.venue.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.venue.domain.Room;
@@ -50,9 +47,10 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
     @POST
     @ApiOperation(value = "Adds a new room to the venue")
     @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "The room is created"),
         @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(@NotNull Room room) {
+    public Response add(@ApiParam(value = "Room to be created", required = true) @NotNull Room room) {
         Room created = roomRepository.create(room);
         return Response.created(getURIForSelf(room)).entity(created).build();
     }
@@ -61,6 +59,7 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
     @Path("/{id}")
     @ApiOperation(value = "Finds a room by ID", response = Room.class)
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Room found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Room not found")}
     )
@@ -87,6 +86,7 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
     @GET
     @ApiOperation(value = "Finds all the rooms", response = Room.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All rooms found"),
         @ApiResponse(code = 404, message = "Rooms not found")}
     )
     public Response allRooms() {
@@ -105,6 +105,7 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a room")
     @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Room has been deleted"),
         @ApiResponse(code = 405, message = "Invalid room value")}
     )
     public Response remove(@PathParam("id") @NotEmpty String id) {
@@ -115,9 +116,10 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
     @PUT
     @ApiOperation(value = "Update an existing room")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Rooms updated"),
         @ApiResponse(code = 405, message = "Invalid values")}
     )
-    public Response update(@NotNull Room room) {
+    public Response update(@ApiParam(value = "Room to be updated", required = true) @NotNull Room room) {
         roomRepository.update(room);
         room.addSelfLink(getURIForSelf(room));
         room.addCollectionLink(getURIForCollection());

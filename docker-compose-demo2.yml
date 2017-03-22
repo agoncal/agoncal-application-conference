@@ -1,0 +1,7 @@
+version: "2"
+
+services:
+    demo1:
+        image: agoncal/demo01
+        ports:
+            - "8080:8080"

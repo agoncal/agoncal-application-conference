@@ -1,9 +1,6 @@
 package org.agoncal.application.conference.schedule.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.registry.RatingMicroService;
 import org.agoncal.application.conference.commons.registry.SpeakerMicroService;
@@ -75,9 +72,10 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @POST
     @ApiOperation(value = "Adds a new session to the conference")
     @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "The session is created"),
         @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(@NotNull Session session) {
+    public Response add(@ApiParam(value = "Session to be created", required = true) @NotNull Session session) {
         Session created = sessionRepository.create(session);
         return Response.created(getURIForSelf(session)).entity(created).build();
     }
@@ -86,6 +84,7 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/{id}")
     @ApiOperation(value = "Finds a session by ID", response = Session.class)
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Session found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Session not found")}
     )
@@ -126,6 +125,7 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @GET
     @ApiOperation(value = "Finds all the sessions", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All sessions found"),
         @ApiResponse(code = 404, message = "Sessions not found")}
     )
     public Response allSessions(@DefaultValue("1") @QueryParam("page") @Min(1) Integer pageNumber) {
@@ -165,7 +165,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/monday")
     @ApiOperation(value = "Finds all the sessions for Monday", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Monday sessions found"),
+        @ApiResponse(code = 404, message = "Monday sessions not found")}
     )
     public Response allSessionsMonday() {
         return allSessionsByDay("monday");
@@ -175,7 +176,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/monday/{roomId}")
     @ApiOperation(value = "Finds all the sessions for Monday on a specific room", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Monday sessions found"),
+        @ApiResponse(code = 404, message = "Monday sessions not found")}
     )
     public Response allSessionsMondayByRoom(@PathParam("roomId") String roomId) {
         return allSessionsByDayAndRoom("monday", roomId);
@@ -185,7 +187,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/tuesday")
     @ApiOperation(value = "Finds all the sessions for Tuesday", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Tuesday sessions found"),
+        @ApiResponse(code = 404, message = "Tuesday sessions not found")}
     )
     public Response allSessionsTuesday() {
         return allSessionsByDay("tuesday");
@@ -195,7 +198,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/tuesday/{roomId}")
     @ApiOperation(value = "Finds all the sessions for Tuesday on a specific room", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Tuesday sessions found"),
+        @ApiResponse(code = 404, message = "Tuesday sessions not found")}
     )
     public Response allSessionsTuesdayByRoom(@PathParam("roomId") String roomId) {
         return allSessionsByDayAndRoom("tuesday", roomId);
@@ -205,7 +209,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/wednesday")
     @ApiOperation(value = "Finds all the sessions for Wednesday", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Wednesday sessions found"),
+        @ApiResponse(code = 404, message = "Wednesday sessions not found")}
     )
     public Response allSessionsWednesday() {
         return allSessionsByDay("wednesday");
@@ -215,7 +220,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/wednesday/{roomId}")
     @ApiOperation(value = "Finds all the sessions for Wednesday on a specific room", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Wednesday sessions found"),
+        @ApiResponse(code = 404, message = "Wednesday sessions not found")}
     )
     public Response allSessionsWednesdayByRoom(@PathParam("roomId") String roomId) {
         return allSessionsByDayAndRoom("wednesday", roomId);
@@ -225,7 +231,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/thursday")
     @ApiOperation(value = "Finds all the sessions for Thursday", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Thursday sessions found"),
+        @ApiResponse(code = 404, message = "Thursday sessions not found")}
     )
     public Response allSessionsThursday() {
         return allSessionsByDay("thursday");
@@ -235,7 +242,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/thursday/{roomId}")
     @ApiOperation(value = "Finds all the sessions for Thursday on a specific room", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Thursday sessions found"),
+        @ApiResponse(code = 404, message = "Thursday sessions not found")}
     )
     public Response allSessionsThursdayByRoom(@PathParam("roomId") String roomId) {
         return allSessionsByDayAndRoom("thursday", roomId);
@@ -245,7 +253,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/friday")
     @ApiOperation(value = "Finds all the sessions for Friday", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Friday sessions found"),
+        @ApiResponse(code = 404, message = "Friday sessions not found")}
     )
     public Response allSessionsFriday() {
         return allSessionsByDay("friday");
@@ -255,7 +264,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/friday/{roomId}")
     @ApiOperation(value = "Finds all the sessions for Friday on a specific room", response = Session.class, responseContainer = "List")
     @ApiResponses(value = {
-        @ApiResponse(code = 404, message = "Sessions not found")}
+        @ApiResponse(code = 200, message = "Friday sessions found"),
+        @ApiResponse(code = 404, message = "Friday sessions not found")}
     )
     public Response allSessionsFridayByRoom(@PathParam("roomId") String roomId) {
         return allSessionsByDayAndRoom("friday", roomId);
@@ -265,6 +275,7 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a session")
     @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Session has been deleted"),
         @ApiResponse(code = 405, message = "Invalid input")}
     )
     public Response remove(@PathParam("id") @NotEmpty String id) {

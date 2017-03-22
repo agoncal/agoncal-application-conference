@@ -1,0 +1,161 @@
+---
+swagger: "2.0"
+info:
+  description: "Gives all the details of the speakers"
+  version: "1.0.0"
+  title: "Speaker"
+host: "localhost:8084"
+basePath: "/api"
+tags:
+- name: "Speaker"
+schemes:
+- "http"
+- "https"
+paths:
+  /speakers:
+    get:
+      tags:
+      - "Speaker"
+      summary: "Finds all the speakers"
+      description: ""
+      operationId: "allSpeakers"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 1
+        minimum: 1.0
+        format: "int32"
+      responses:
+        200:
+          description: "All speakers found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Speaker"
+        400:
+          description: "Invalid input"
+        404:
+          description: "Speakers not found"
+    post:
+      tags:
+      - "Speaker"
+      summary: "Adds a new speaker to the conference"
+      description: ""
+      operationId: "add"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Speaker to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/Speaker"
+      responses:
+        201:
+          description: "The speaker is created"
+        400:
+          description: "Invalid input"
+  /speakers/{id}:
+    get:
+      tags:
+      - "Speaker"
+      summary: "Finds a speaker by ID"
+      description: ""
+      operationId: "retrieve"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "expand"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        200:
+          description: "Speaker found"
+          schema:
+            $ref: "#/definitions/Speaker"
+        400:
+          description: "Invalid input"
+        404:
+          description: "Speaker not found"
+    delete:
+      tags:
+      - "Speaker"
+      summary: "Deletes a speaker"
+      description: ""
+      operationId: "remove"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Speaker has been deleted"
+        405:
+          description: "Invalid speaker value"
+definitions:
+  AcceptedTalk:
+    type: "object"
+    properties:
+      links:
+        type: "object"
+        additionalProperties:
+          type: "string"
+          format: "uri"
+      id:
+        type: "string"
+      title:
+        type: "string"
+      language:
+        type: "string"
+  Speaker:
+    type: "object"
+    properties:
+      links:
+        type: "object"
+        additionalProperties:
+          type: "string"
+          format: "uri"
+      id:
+        type: "string"
+      lastName:
+        type: "string"
+      firstName:
+        type: "string"
+      bio:
+        type: "string"
+      language:
+        type: "string"
+      twitter:
+        type: "string"
+      avatarUrl:
+        type: "string"
+      company:
+        type: "string"
+      blog:
+        type: "string"
+      acceptedTalks:
+        type: "array"
+        items:
+          $ref: "#/definitions/AcceptedTalk"

@@ -40,7 +40,7 @@
                                 <description>Gives all the details of the speakers</description>
                             </info>
                             <swaggerDirectory>${basedir}/src/main/webapp</swaggerDirectory>
-                            <outputFormats>json</outputFormats>
+                            <outputFormats>json,yaml</outputFormats>
                         </apiSource>
                     </apiSources>
                 </configuration>

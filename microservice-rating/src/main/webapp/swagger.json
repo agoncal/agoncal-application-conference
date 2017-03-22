@@ -31,7 +31,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "All ratings found",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -61,7 +61,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "All ratings by attendee found",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -94,7 +94,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "All ratings by session found",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -127,7 +127,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "Rating found",
             "schema" : {
               "$ref" : "#/definitions/Rating"
             }
@@ -154,6 +154,9 @@
           "type" : "string"
         } ],
         "responses" : {
+          "204" : {
+            "description" : "Rating has been deleted"
+          },
           "405" : {
             "description" : "Invalid rating input"
           }
@@ -183,6 +186,9 @@
           "format" : "int32"
         } ],
         "responses" : {
+          "201" : {
+            "description" : "Session rated"
+          },
           "400" : {
             "description" : "Invalid input"
           },

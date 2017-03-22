@@ -31,7 +31,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "All attendees found",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -54,7 +54,19 @@
         "operationId" : "add",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Room to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Attendee"
+          }
+        } ],
         "responses" : {
+          "201" : {
+            "description" : "The attendee is created"
+          },
           "400" : {
             "description" : "Invalid input"
           }
@@ -81,6 +93,9 @@
           "type" : "string"
         } ],
         "responses" : {
+          "200" : {
+            "description" : "Authenticated"
+          },
           "400" : {
             "description" : "Invalid input"
           },
@@ -106,7 +121,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "Attendee found",
             "schema" : {
               "$ref" : "#/definitions/Attendee"
             }
@@ -133,6 +148,9 @@
           "type" : "string"
         } ],
         "responses" : {
+          "204" : {
+            "description" : "Attendee has been deleted"
+          },
           "405" : {
             "description" : "Invalid input"
           }

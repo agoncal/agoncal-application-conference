@@ -31,7 +31,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "All speakers found",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -54,7 +54,19 @@
         "operationId" : "add",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Speaker to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Speaker"
+          }
+        } ],
         "responses" : {
+          "201" : {
+            "description" : "The speaker is created"
+          },
           "400" : {
             "description" : "Invalid input"
           }
@@ -83,7 +95,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "Speaker found",
             "schema" : {
               "$ref" : "#/definitions/Speaker"
             }
@@ -110,6 +122,9 @@
           "type" : "string"
         } ],
         "responses" : {
+          "204" : {
+            "description" : "Speaker has been deleted"
+          },
           "405" : {
             "description" : "Invalid speaker value"
           }

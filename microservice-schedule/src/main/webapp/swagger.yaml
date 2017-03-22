@@ -1,0 +1,414 @@
+---
+swagger: "2.0"
+info:
+  description: "Gives all the details of the schedule"
+  version: "1.0.0"
+  title: "Schedule"
+host: "localhost:8083"
+basePath: "/api"
+tags:
+- name: "Schedule"
+schemes:
+- "http"
+- "https"
+paths:
+  /sessions:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions"
+      description: ""
+      operationId: "allSessions"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 1
+        minimum: 1.0
+        format: "int32"
+      responses:
+        200:
+          description: "All sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Sessions not found"
+    post:
+      tags:
+      - "Schedule"
+      summary: "Adds a new session to the conference"
+      description: ""
+      operationId: "add"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Session to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/Session"
+      responses:
+        201:
+          description: "The session is created"
+        400:
+          description: "Invalid input"
+  /sessions/friday:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Friday"
+      description: ""
+      operationId: "allSessionsFriday"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Friday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Friday sessions not found"
+  /sessions/friday/{roomId}:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Friday on a specific room"
+      description: ""
+      operationId: "allSessionsFridayByRoom"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "roomId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Friday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Friday sessions not found"
+  /sessions/monday:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Monday"
+      description: ""
+      operationId: "allSessionsMonday"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Monday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Monday sessions not found"
+  /sessions/monday/{roomId}:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Monday on a specific room"
+      description: ""
+      operationId: "allSessionsMondayByRoom"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "roomId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Monday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Monday sessions not found"
+  /sessions/thursday:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Thursday"
+      description: ""
+      operationId: "allSessionsThursday"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Thursday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Thursday sessions not found"
+  /sessions/thursday/{roomId}:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Thursday on a specific room"
+      description: ""
+      operationId: "allSessionsThursdayByRoom"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "roomId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Thursday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Thursday sessions not found"
+  /sessions/tuesday:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Tuesday"
+      description: ""
+      operationId: "allSessionsTuesday"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Tuesday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Tuesday sessions not found"
+  /sessions/tuesday/{roomId}:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Tuesday on a specific room"
+      description: ""
+      operationId: "allSessionsTuesdayByRoom"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "roomId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Tuesday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Tuesday sessions not found"
+  /sessions/wednesday:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Wednesday"
+      description: ""
+      operationId: "allSessionsWednesday"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Wednesday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Wednesday sessions not found"
+  /sessions/wednesday/{roomId}:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds all the sessions for Wednesday on a specific room"
+      description: ""
+      operationId: "allSessionsWednesdayByRoom"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "roomId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Wednesday sessions found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Session"
+        404:
+          description: "Wednesday sessions not found"
+  /sessions/{id}:
+    get:
+      tags:
+      - "Schedule"
+      summary: "Finds a session by ID"
+      description: ""
+      operationId: "retrieve"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Session found"
+          schema:
+            $ref: "#/definitions/Session"
+        400:
+          description: "Invalid input"
+        404:
+          description: "Session not found"
+    delete:
+      tags:
+      - "Schedule"
+      summary: "Deletes a session"
+      description: ""
+      operationId: "remove"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Session has been deleted"
+        405:
+          description: "Invalid input"
+definitions:
+  Room:
+    type: "object"
+    properties:
+      links:
+        type: "object"
+        additionalProperties:
+          type: "string"
+          format: "uri"
+      id:
+        type: "string"
+  Session:
+    type: "object"
+    properties:
+      links:
+        type: "object"
+        additionalProperties:
+          type: "string"
+          format: "uri"
+      id:
+        type: "string"
+      notAllocated:
+        type: "boolean"
+        default: false
+      isaBreak:
+        type: "boolean"
+        default: false
+      fromTimeMillis:
+        type: "integer"
+        format: "int64"
+      fromTime:
+        type: "string"
+      toTimeMillis:
+        type: "integer"
+        format: "int64"
+      toTime:
+        type: "string"
+      day:
+        type: "string"
+      room:
+        $ref: "#/definitions/Room"
+      talk:
+        $ref: "#/definitions/Talk"
+  Speaker:
+    type: "object"
+    properties:
+      links:
+        type: "object"
+        additionalProperties:
+          type: "string"
+          format: "uri"
+      id:
+        type: "string"
+      name:
+        type: "string"
+  Talk:
+    type: "object"
+    properties:
+      links:
+        type: "object"
+        additionalProperties:
+          type: "string"
+          format: "uri"
+      id:
+        type: "string"
+      title:
+        type: "string"
+      talkType:
+        type: "string"
+      track:
+        type: "string"
+      speakers:
+        type: "array"
+        items:
+          $ref: "#/definitions/Speaker"

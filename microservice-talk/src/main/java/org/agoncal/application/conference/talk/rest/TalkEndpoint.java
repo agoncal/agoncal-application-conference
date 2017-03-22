@@ -1,9 +1,6 @@
 package org.agoncal.application.conference.talk.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.registry.SpeakerMicroService;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
@@ -59,9 +56,10 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @POST
     @ApiOperation(value = "Adds a new talk to the conference")
     @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "The talk is created"),
         @ApiResponse(code = 400, message = "Invalid input")}
     )
-    public Response add(@NotNull Talk talk) {
+    public Response add(@ApiParam(value = "Talk to be created", required = true) @NotNull Talk talk) {
         Talk created = talkRepository.create(talk);
         return Response.created(getURIForSelf(created)).entity(created).build();
     }
@@ -70,6 +68,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @Path("/{id}")
     @ApiOperation(value = "Finds a talk by ID", response = Talk.class)
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Talk found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Talk not found")}
     )
@@ -101,6 +100,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @GET
     @ApiOperation(value = "Finds all the talks", response = Talk.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All talks found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Talks not found")}
     )
@@ -133,6 +133,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a talk")
     @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Talk has been deleted"),
         @ApiResponse(code = 405, message = "Invalid input")}
     )
     public Response remove(@PathParam("id") @NotEmpty String id) {

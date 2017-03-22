@@ -77,6 +77,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
     @JWTTokenNeeded
     @ApiOperation(value = "Allows an attendee to rate a talk")
     @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "Session rated"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 401, message = "Needs to authenticate first")
     })
@@ -100,6 +101,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
     @Path("/{id}")
     @ApiOperation(value = "Finds a rating by ID", response = Rating.class)
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Rating found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Rating not found")
     })
@@ -121,6 +123,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
     @GET
     @ApiOperation(value = "Finds all the ratings", response = Rating.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All ratings found"),
         @ApiResponse(code = 404, message = "Ratings not found")}
     )
     public Response allRatings(@DefaultValue("1") @QueryParam("page") @Min(1) Integer pageNumber) {
@@ -150,6 +153,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
     @Path("/attendees/{attendeeId}")
     @ApiOperation(value = "Finds all the ratings for an attendee", response = Rating.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All ratings by attendee found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Ratings not found")}
     )
@@ -169,6 +173,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
     @Path("/sessions/{sessionId}")
     @ApiOperation(value = "Finds all the ratings for a session", response = Rating.class, responseContainer = "List")
     @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "All ratings by session found"),
         @ApiResponse(code = 400, message = "Invalid input"),
         @ApiResponse(code = 404, message = "Ratings not found")}
     )
@@ -188,6 +193,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
     @Path("/{id}")
     @ApiOperation(value = "Deletes a rating")
     @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Rating has been deleted"),
         @ApiResponse(code = 405, message = "Invalid rating input")}
     )
     public Response remove(@PathParam("id") @NotEmpty String id) {

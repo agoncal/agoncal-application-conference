@@ -31,7 +31,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "All talks found",
             "schema" : {
               "type" : "array",
               "items" : {
@@ -54,7 +54,19 @@
         "operationId" : "add",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Talk to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Talk"
+          }
+        } ],
         "responses" : {
+          "201" : {
+            "description" : "The talk is created"
+          },
           "400" : {
             "description" : "Invalid input"
           }
@@ -77,7 +89,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "Talk found",
             "schema" : {
               "$ref" : "#/definitions/Talk"
             }
@@ -104,6 +116,9 @@
           "type" : "string"
         } ],
         "responses" : {
+          "204" : {
+            "description" : "Talk has been deleted"
+          },
           "405" : {
             "description" : "Invalid input"
           }
