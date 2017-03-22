@@ -11,6 +11,10 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - /dev/null:/traefik.toml
+    conference-web:
+        image: agoncal/conference-web
+        ports:
+            - "80:80"
     ms-attendee:
         image: agoncal/microservice-attendee:jar
         labels:

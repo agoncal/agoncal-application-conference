@@ -15,13 +15,19 @@
 * `/bin/bash -c 'docker image push agoncal/microservice-attendee:war && docker image push agoncal/microservice-rating:war && docker image push agoncal/microservice-schedule:war && docker image push agoncal/microservice-speaker:war && docker image push agoncal/microservice-talk:war && docker image push agoncal/microservice-venue:war'`
 * `/bin/bash -c 'docker image push agoncal/microservice-attendee:jar && docker image push agoncal/microservice-rating:jar && docker image push agoncal/microservice-schedule:jar && docker image push agoncal/microservice-speaker:jar && docker image push agoncal/microservice-talk:jar && docker image push agoncal/microservice-venue:jar'`
 
-### Building Images
+### Building Back-end Images
 
 * `mvn clean package -Pdocker-war`
 * `mvn clean package -Pswarm,docker-jar`
 
+### Building Front-end Images
+
+* `ng build`
+* `docker image build -t agoncal/conference-web .`
+
 ### Running Images
 
+* `docker run -d --name=conference-web -p 80:80 agoncal/conference-web`
 * `docker run -d --name=microservice-attendee -p 8081:8080 -p 9991:9990 agoncal/microservice-attendee:latest`
 * `docker run -d --name=microservice-rating   -p 8082:8080 -p 9992:9990 agoncal/microservice-rating:latest`
 * `docker run -d --name=microservice-schedule -p 8083:8080 -p 9993:9990 agoncal/microservice-schedule:latest`
