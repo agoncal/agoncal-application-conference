@@ -2,6 +2,7 @@ package org.agoncal.application.conference.venue.rest;
 
 import org.agoncal.application.conference.commons.rest.CORSFilterTest;
 import org.agoncal.application.conference.venue.domain.Room;
+import org.agoncal.application.conference.venue.domain.Rooms;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -25,10 +26,11 @@ import java.io.File;
 import java.io.StringReader;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static javax.ws.rs.core.Response.Status.*;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
+import static org.agoncal.application.conference.commons.domain.Links.SWAGGER;
 import static org.junit.Assert.*;
-import static javax.ws.rs.core.Response.Status.*;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -53,7 +55,7 @@ public class RoomEndpointTest {
             .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Room.class, RoomEndpoint.class, RoomRepository.class, Application.class)
+            .addClasses(Room.class, Rooms.class, RoomEndpoint.class, RoomRepository.class, Application.class)
             .addAsLibraries(files);
     }
 
@@ -87,7 +89,8 @@ public class RoomEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 5 attributes", 5, jsonObject.size());
         assertEquals(roomId, jsonObject.getString("id"));
-        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 3 links", 3, jsonObject.getJsonObject("links").size());
+        assertTrue(jsonObject.getJsonObject("links").getString(SWAGGER).contains("swagger.json"));
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/rooms/" + roomId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/rooms"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
@@ -120,6 +123,17 @@ public class RoomEndpointTest {
         assertEquals(roomId, jsonObject.getString("id"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
         assertEquals(2, jsonObject.getJsonObject("links").size());
+        checkHeaders(response);
+    }
+
+    @Test
+    @InSequence(7)
+    public void shouldCheckCollectionOfRooms(@ArquillianResteasyResource("api/rooms") WebTarget webTarget) throws Exception {
+        Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
+        assertEquals(OK.getStatusCode(), response.getStatus());
+        JsonObject jsonObject = readJsonContent(response);
+        assertEquals("Should have 1 link", 1, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 11 rooms", 11, jsonObject.getJsonArray("data").size());
         checkHeaders(response);
     }
 

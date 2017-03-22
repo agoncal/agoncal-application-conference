@@ -166,7 +166,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
         for (Rating rating : allRatings) {
             rating.addSelfLink(getURIForSelf(rating));
         }
-        return Response.ok(buildEntity(allRatings)).build();
+        return Response.ok(buildEntities(allRatings)).build();
     }
 
     @GET
@@ -186,7 +186,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
         for (Rating rating : allRatings) {
             rating.addSelfLink(getURIForSelf(rating));
         }
-        return Response.ok(buildEntity(allRatings)).build();
+        return Response.ok(buildEntities(allRatings)).build();
     }
 
     @DELETE

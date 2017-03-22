@@ -72,6 +72,10 @@ public class LinkableResources<R extends LinkableResource> {
         addLink(LAST, uri);
     }
 
+    public void addSwaggerLink(URI uri) {
+        addLink(SWAGGER, uri);
+    }
+
     public void addLink(String rel, URI uri) {
         if (links == null)
             links = new HashMap<>();

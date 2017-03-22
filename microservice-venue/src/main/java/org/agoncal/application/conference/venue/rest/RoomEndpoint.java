@@ -4,6 +4,7 @@ import io.swagger.annotations.*;
 import org.agoncal.application.conference.commons.constraints.NotEmpty;
 import org.agoncal.application.conference.commons.rest.LinkableEndpoint;
 import org.agoncal.application.conference.venue.domain.Room;
+import org.agoncal.application.conference.venue.domain.Rooms;
 import org.agoncal.application.conference.venue.repository.RoomRepository;
 
 import javax.enterprise.context.RequestScoped;
@@ -77,6 +78,7 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
         if (preconditions == null) {
             room.addSelfLink(getURIForSelf(room));
             room.addCollectionLink(getURIForCollection());
+            room.addSwaggerLink(getURIForSwagger());
             preconditions = Response.ok(room).tag(etag);
         }
 
@@ -98,7 +100,10 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
         for (Room room : allRooms) {
             room.addSelfLink(getURIForSelf(room));
         }
-        return Response.ok(buildEntity(allRooms)).build();
+        Rooms rooms = new Rooms(allRooms);
+        rooms.addSwaggerLink(getURIForSwagger());
+
+        return Response.ok(buildEntities(rooms)).build();
     }
 
     @DELETE
@@ -123,6 +128,16 @@ public class RoomEndpoint extends LinkableEndpoint<Room> {
         roomRepository.update(room);
         room.addSelfLink(getURIForSelf(room));
         room.addCollectionLink(getURIForCollection());
+        room.addSwaggerLink(getURIForSwagger());
         return Response.ok(room).build();
+    }
+
+    // ======================================
+    // =           Private methods          =
+    // ======================================
+
+    private GenericEntity<Rooms> buildEntities(final Rooms rooms) {
+        return new GenericEntity<Rooms>(rooms) {
+        };
     }
 }

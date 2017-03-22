@@ -7,6 +7,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public abstract class LinkableEndpoint<E extends Identifiable> {
@@ -56,12 +57,20 @@ public abstract class LinkableEndpoint<E extends Identifiable> {
         return uriInfo.getBaseUriBuilder().path(type).queryParam("page", pageNumber).build();
     }
 
+    public URI getURIForSwagger() {
+        try {
+            return new URI(uriInfo.getBaseUri().toString().replace("api/", "swagger.json"));
+        } catch (URISyntaxException e) {
+            return uriInfo.getBaseUriBuilder().path(type).build();
+        }
+    }
+
     public UriInfo getUriInfo() {
         return uriInfo;
     }
 
-    public GenericEntity<List<E>> buildEntity(final List<E> roomList) {
-        return new GenericEntity<List<E>>(roomList) {
+    public GenericEntity<List<E>> buildEntities(final List<E> entities) {
+        return new GenericEntity<List<E>>(entities) {
         };
     }
 }

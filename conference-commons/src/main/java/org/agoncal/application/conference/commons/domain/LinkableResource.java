@@ -34,6 +34,10 @@ public abstract class LinkableResource implements Identifiable {
         addLink(COLLECTION, uri);
     }
 
+    public void addSwaggerLink(URI uri) {
+        addLink(SWAGGER, uri);
+    }
+
     // ======================================
     // =          Getters & Setters         =
     // ======================================

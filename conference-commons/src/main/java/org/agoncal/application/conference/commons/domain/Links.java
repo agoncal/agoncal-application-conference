@@ -18,4 +18,5 @@ public interface Links {
     String NEXT = "next";
     String LAST = "last";
     String SUMMARY = "summary";
+    String SWAGGER = "swagger";
 }

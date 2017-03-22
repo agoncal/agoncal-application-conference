@@ -22,7 +22,7 @@
         "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
-            "description" : "Rooms found",
+            "description" : "All rooms found",
             "schema" : {
               "type" : "array",
               "items" : {
