@@ -130,6 +130,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
         if (preconditions == null) {
             attendee.addSelfLink(getURIForSelf(attendee));
             attendee.addCollectionLink(getURIForCollection());
+            attendee.addSwaggerLink(getURIForSwagger());
             preconditions = Response.ok(attendee).tag(etag);
         }
 
@@ -160,6 +161,7 @@ public class AttendeeEndpoint extends LinkableEndpoint<Attendee> {
         attendees.addLast(getURIForPage(last));
         attendees.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
         attendees.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
+        attendees.addSwaggerLink(getURIForSwagger());
 
         return Response.ok(buildEntities(attendees)).build();
     }

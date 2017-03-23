@@ -88,6 +88,8 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
             speaker.addSelfLink(getURIForSelf(speaker));
             speaker.addCollectionLink(getURIForCollection());
             speaker.addLink(Links.SUMMARY, getURIBuilderForSelf(speaker).queryParam("expand", false).build());
+            speaker.addSwaggerLink(getURIForSwagger());
+
             if (expand) {
                 for (AcceptedTalk acceptedTalk : speaker.getAcceptedTalks()) {
                     acceptedTalk.addLink(SELF, uriTalk.clone().path(acceptedTalk.getId()).build());
@@ -123,15 +125,16 @@ public class SpeakerEndpoint extends LinkableEndpoint<Speaker> {
             speaker.setAcceptedTalks(null);
         }
 
-        Speakers spakers = new Speakers(allSpeakers);
+        Speakers speakers = new Speakers(allSpeakers);
         Integer last = speakerRepository.getNumberOfPages();
-        spakers.addSelfLink(getURIForPage(pageNumber));
-        spakers.addFirst(getURIForPage(1));
-        spakers.addLast(getURIForPage(last));
-        spakers.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
-        spakers.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
+        speakers.addSelfLink(getURIForPage(pageNumber));
+        speakers.addFirst(getURIForPage(1));
+        speakers.addLast(getURIForPage(last));
+        speakers.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
+        speakers.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
+        speakers.addSwaggerLink(getURIForSwagger());
 
-        return Response.ok(buildEntities(spakers)).build();
+        return Response.ok(buildEntities(speakers)).build();
     }
 
     @DELETE

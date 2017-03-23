@@ -122,7 +122,7 @@ public class RoomEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(roomId, jsonObject.getString("id"));
         assertEquals(TEST_ROOM.getName(), jsonObject.getString("name"));
-        assertEquals(2, jsonObject.getJsonObject("links").size());
+        assertEquals(3, jsonObject.getJsonObject("links").size());
         checkHeaders(response);
     }
 

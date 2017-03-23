@@ -104,6 +104,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
             session.addCollectionLink(getURIForCollection());
             session.addLink(session.getDay(), getUriBuilderForRoot().path(session.getDay()).build());
             session.addLink("vote", uriRating.path(session.getId()).build());
+            session.addSwaggerLink(getURIForSwagger());
+
             for (int i = 3; i < 11; i++) {
                 session.addLink("room" + i, getUriBuilderForRoot().path(session.getDay()).path("room" + i).build());
             }
@@ -157,6 +159,7 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         sessions.addLink("wednesday", getUriBuilderForRoot().path("wednesday").build());
         sessions.addLink("thursday", getUriBuilderForRoot().path("thursday").build());
         sessions.addLink("friday", getUriBuilderForRoot().path("friday").build());
+        sessions.addSwaggerLink(getURIForSwagger());
 
         return Response.ok(buildEntities(sessions)).build();
     }
@@ -303,6 +306,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         Sessions sessions = new Sessions(allSessions);
         sessions.addSelfLink(getUriBuilderForRoot().path(day).build());
         sessions.addCollectionLink(getURIForCollection());
+        sessions.addSwaggerLink(getURIForSwagger());
+
         for (int i = 3; i < 11; i++) {
             sessions.addLink("room" + i, getUriBuilderForRoot().path(day).path("room" + i).build());
         }
@@ -326,6 +331,8 @@ public class SessionEndpoint extends LinkableEndpoint<Session> {
         sessions.addSelfLink(getUriBuilderForRoot().path(day).path(roomId).build());
         sessions.addCollectionLink(getURIForCollection());
         sessions.addLink(day, getUriBuilderForRoot().path(day).build());
+        sessions.addSwaggerLink(getURIForSwagger());
+
         return Response.ok(buildEntities(sessions)).build();
     }
 

@@ -114,6 +114,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
 
         rating.addSelfLink(getURIForSelf(rating));
         rating.addCollectionLink(getURIForCollection());
+        rating.addSwaggerLink(getURIForSwagger());
         rating.setAttendeeId(uriAttendee.clone().path(rating.getAttendeeId()).build().toString());
         rating.setSessionId(uriSession.clone().path(rating.getSessionId()).build().toString());
 
@@ -145,6 +146,7 @@ public class RatingEndpoint extends LinkableEndpoint<Rating> {
         ratings.addLast(getURIForPage(last));
         ratings.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
         ratings.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
+        ratings.addSwaggerLink(getURIForSwagger());
 
         return Response.ok(buildEntities(ratings)).build();
     }

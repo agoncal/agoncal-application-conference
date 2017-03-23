@@ -109,7 +109,8 @@ public class SpeakerEndpointTest {
         JsonObject jsonObject = readJsonContent(response);
         assertEquals("Should have 11 attributes", 11, jsonObject.size());
         assertEquals(speakerId, jsonObject.getString("id"));
-        assertEquals("Should have 3 links", 3, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 4 links", 4, jsonObject.getJsonObject("links").size());
+        assertTrue(jsonObject.getJsonObject("links").getString(SWAGGER).contains("swagger.json"));
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/speakers/" + speakerId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/speakers"));
         assertTrue(jsonObject.getJsonObject("links").getString(SUMMARY).contains("/api/speakers"));
@@ -149,7 +150,7 @@ public class SpeakerEndpointTest {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 6 links", 6, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
         checkHeaders(response);
     }

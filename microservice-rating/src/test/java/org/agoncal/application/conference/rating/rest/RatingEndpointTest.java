@@ -41,6 +41,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.Response.Status.*;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
+import static org.agoncal.application.conference.commons.domain.Links.SWAGGER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -131,7 +132,8 @@ public class RatingEndpointTest {
         assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
         assertEquals(ratingId, jsonObject.getString("id"));
-        assertEquals("Should have 2 links", 2, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 3 links", 3, jsonObject.getJsonObject("links").size());
+        assertTrue(jsonObject.getJsonObject("links").getString(SWAGGER).contains("swagger.json"));
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/ratings/" + ratingId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/ratings"));
         assertEquals(TEST_RATING.getMark(), new Integer(jsonObject.getInt("mark")));
@@ -144,7 +146,7 @@ public class RatingEndpointTest {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 5 links", 5, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 6 links", 6, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
         checkHeaders(response);
     }

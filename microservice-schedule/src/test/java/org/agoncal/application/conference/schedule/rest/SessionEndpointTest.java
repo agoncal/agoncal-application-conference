@@ -32,6 +32,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.Response.Status.*;
 import static org.agoncal.application.conference.commons.domain.Links.COLLECTION;
 import static org.agoncal.application.conference.commons.domain.Links.SELF;
+import static org.agoncal.application.conference.commons.domain.Links.SWAGGER;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
@@ -110,8 +111,9 @@ public class SessionEndpointTest {
         Response response = webTarget.path(sessionId).request(APPLICATION_JSON_TYPE).get();
         assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 12 links", 12, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 13 links", 13, jsonObject.getJsonObject("links").size());
         assertEquals(sessionId, jsonObject.getString("id"));
+        assertTrue(jsonObject.getJsonObject("links").getString(SWAGGER).contains("swagger.json"));
         assertTrue(jsonObject.getJsonObject("links").getString(SELF).contains("/api/sessions/" + sessionId));
         assertTrue(jsonObject.getJsonObject("links").getString(COLLECTION).contains("/api/sessions"));
         assertTrue(jsonObject.getJsonObject("links").getString("vote").contains("/api/ratings"));
@@ -153,7 +155,7 @@ public class SessionEndpointTest {
         Response response = webTarget.request(APPLICATION_JSON_TYPE).get();
         assertEquals(OK.getStatusCode(), response.getStatus());
         JsonObject jsonObject = readJsonContent(response);
-        assertEquals("Should have 10 links", 10, jsonObject.getJsonObject("links").size());
+        assertEquals("Should have 11 links", 11, jsonObject.getJsonObject("links").size());
         assertEquals("Should have 1 talk", 1, jsonObject.getJsonArray("data").size());
         checkHeaders(response);
     }

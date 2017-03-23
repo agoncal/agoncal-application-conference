@@ -86,6 +86,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
         if (preconditions == null) {
             talk.addSelfLink(getURIForSelf(talk));
             talk.addCollectionLink(getURIForCollection());
+            talk.addSwaggerLink(getURIForSwagger());
 
             for(Speaker speaker: talk.getSpeakers()) {
                 speaker.addLink(SELF, uriSpeaker.clone().path(speaker.getId()).build());
@@ -125,6 +126,7 @@ public class TalkEndpoint extends LinkableEndpoint<Talk> {
         talks.addLast(getURIForPage(last));
         talks.addNext(getURIForPage(pageNumber < last ? pageNumber + 1 : last));
         talks.addPrevious(getURIForPage(pageNumber == 1 ? 1 : pageNumber - 1));
+        talks.addSwaggerLink(getURIForSwagger());
 
         return Response.ok(buildEntities(talks)).build();
     }
