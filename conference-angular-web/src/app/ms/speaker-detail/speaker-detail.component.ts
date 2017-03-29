@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultApiSpeaker } from '../api/api';
+import { SpeakerApi } from '../api/api';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Speaker } from '../model/Speaker';
 
@@ -12,7 +12,7 @@ export class SpeakerDetailComponent implements OnInit {
 
   public speaker: Speaker;
 
-  constructor(private speakersService: DefaultApiSpeaker,
+  constructor(private speakersService:SpeakerApi,
               private route: ActivatedRoute) { }
 
   ngOnInit() {

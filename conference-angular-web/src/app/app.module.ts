@@ -10,7 +10,9 @@ import { MsModule } from './ms/ms.module';
 import { LoginComponent } from './login/login.component';
 import { VoteComponent } from './vote/vote.component';
 import { AuthGuardService } from './auth.guard.service';
-import { AuthService } from './auth.service'
+import { AuthService } from './auth.service';
+import { BASE_PATH } from 'app/ms/variables';
+import { environment } from '../environments/environment';
 
 import 'hammerjs';
 
@@ -30,7 +32,11 @@ import 'hammerjs';
     MaterialModule,
     MsModule
   ],
-  providers: [AuthGuardService, AuthService],
+  providers: [
+    AuthGuardService,
+    AuthService,
+    { provide: BASE_PATH, useValue: environment.basePath }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

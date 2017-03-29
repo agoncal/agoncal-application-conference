@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultApiSchedule } from '../api/api';
+import { ScheduleApi } from '../api/api';
 import * as models from '../model/models';
 import { MdButton } from '@angular/material';
 
@@ -13,7 +13,7 @@ export class ScheduleComponent implements OnInit {
   sessions: models.Session[];
   selected: boolean = false;
 
-  constructor(private scheduleService: DefaultApiSchedule) { }
+  constructor(private scheduleService: ScheduleApi) { }
 
   ngOnInit() {
 

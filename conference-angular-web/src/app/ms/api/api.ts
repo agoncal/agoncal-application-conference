@@ -1,7 +1,8 @@
-export * from './DefaultApiSchedule';
-export * from './DefaultApiVenue';
-export * from './DefaultApiAttendee';
-export * from './DefaultApiTalk';
-export * from './DefaultApiSpeaker';
-export * from './ContactService';
+export * from './AttendeeApi';
+export * from './ScheduleApi';
+export * from './SpeakerApi';
+export * from './TalkApi';
+export * from './VenueApi';
+export * from './RatingApi';
+// export * from './ContactService';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultApiVenue } from '../api/api';
+import {VenueApi } from '../api/api';
 import * as models from '../model/models';
 
 @Component({
@@ -11,7 +11,7 @@ export class VenueComponent implements OnInit {
     rooms: models.Room[];
     selected: boolean = false;
 
-    constructor(private roomService: DefaultApiVenue) { }
+    constructor(private roomService: VenueApi) { }
 
     ngOnInit() {
         this.roomService.allRooms()

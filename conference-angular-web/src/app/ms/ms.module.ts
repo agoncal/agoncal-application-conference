@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DefaultApiVenue, DefaultApiSchedule, ContactService, DefaultApiAttendee, DefaultApiTalk, DefaultApiSpeaker } from './api/api';
+import { VenueApi, ScheduleApi, AttendeeApi, TalkApi, SpeakerApi } from './api/api';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { VenueComponent } from './venue/venue.component';
 import { CommonModule } from '@angular/common'
@@ -15,7 +15,8 @@ import { SpeakerDetailComponent } from './speaker-detail/speaker-detail.componen
   exports: [ScheduleComponent, VenueComponent, AttendeeComponent, ScheduledetailsComponent, SpeakerDetailComponent],
   declarations: [ScheduleComponent, VenueComponent, AttendeeComponent, ScheduledetailsComponent, SpeakerDetailComponent],
   providers: [
-    ContactService, DefaultApiVenue, DefaultApiSchedule,
-    DefaultApiAttendee, DefaultApiTalk, DefaultApiSpeaker],
+    VenueApi, ScheduleApi,
+    AttendeeApi, TalkApi, SpeakerApi
+    ],
 })
 export class MsModule { }

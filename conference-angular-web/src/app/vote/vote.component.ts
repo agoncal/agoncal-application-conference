@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router, Params} from "@angular/router";
-import {DefaultApiSchedule, DefaultApiSpeaker, DefaultApiTalk} from "../ms/api/api";
+import {ScheduleApi, SpeakerApi, TalkApi} from "../ms/api/api";
 import * as models from "../ms/model/models";
 import {AuthService} from "../auth.service";
 import "rxjs/Rx";
@@ -19,9 +19,9 @@ export class VoteComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private scheduleService: DefaultApiSchedule,
-              private talkService: DefaultApiTalk,
-              private speakerService: DefaultApiSpeaker,
+              private scheduleService: ScheduleApi,
+              private talkService: TalkApi,
+              private speakerService: SpeakerApi,
               private authService: AuthService,
               private http: Http) {
   }
