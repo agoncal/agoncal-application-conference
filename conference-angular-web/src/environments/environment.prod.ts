@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  basePath: "http://nginxdevoxx.westeurope.cloudapp.azure.com/"
+  basePath: "http://nginxdevoxx.westeurope.cloudapp.azure.com:90"
 };

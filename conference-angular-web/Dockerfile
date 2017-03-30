@@ -1,11 +1,11 @@
 FROM nginx
 
-MAINTAINER agoncal
+MAINTAINER spertus
 
 LABEL name="Conference Web"
 LABEL description="Angular front-end for the conference application"
 LABEL url="http://localhost:80"
-LABEL vendor="@agoncal"
+LABEL vendor="@sebastienpertus"
 
 EXPOSE 80
 

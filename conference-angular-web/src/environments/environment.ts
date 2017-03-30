@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  basePath: "http://conference.docker.localhost:90"
+  basePath: "http://localhost:90"
 };
