@@ -17,7 +17,7 @@ export class VenueComponent implements OnInit {
         this.roomService.allRooms()
             .toPromise()
             .then(rooms => {
-                this.rooms = rooms;
+                this.rooms = rooms.sort((a,b) => a.capacity > b.capacity ? -1 : 1);
             })
     }
 

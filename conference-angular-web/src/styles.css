@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~bootstrap/dist/css/bootstrap-theme.min.css';
 
 
 body {
@@ -16,9 +14,9 @@ md-toolbar-row {
   justify-content: space-between;
 }
 
-p {
+/*p {
   margin: 16px;
-}
+}*/
 
 [md-raised-button] {
   width: 100%;

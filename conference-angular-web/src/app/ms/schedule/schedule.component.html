@@ -1,20 +1,25 @@
-<div class="body">
-	<md-list>
-		<md-list-item *ngFor="let session of sessions">
-			<md-icon md-list-avatar>note</md-icon>
-			<h4 *ngIf="session.talk" md-line>
-				<a href="" [routerLink]="['/sessions', session.id]">
-					{{session.talk.talkType}} : {{session.talk.title}}
-				</a>
-			</h4>
-			<p md-line>{{session.day}} : {{session.fromTime}} - {{session.toTime}} </p>
-			<p md-line *ngIf="session.talk && session.talk.speakers">
-				<span *ngFor="let speaker of session.talk.speakers"><a href="" [routerLink]="['/speakers', speaker.id]">{{speaker.name}}</a> 
-				<span *ngIf="session.talk.speakers.indexOf(speaker) < (session.talk.speakers.length-1)"> - </span>
-				</span>
-			</p>
-		</md-list-item>
-		<md-divider></md-divider>
-	</md-list>
-
+<div class="content">
+	<div class="container">
+		<div class="body">
+			<div class="list-group">
+				<div *ngFor="let session of sessions">
+					<div *ngIf="session.talk">
+						<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1">
+									<a href="" [routerLink]="['/sessions', session.id]">{{session.talk.talkType}} : {{session.talk.title}}</a>
+								</h5>
+								<small class="text-muted">{{session.day}} : {{session.fromTime}} - {{session.toTime}} </small>
+							</div>
+							<p class="mb-1" *ngIf="session.talk && session.talk.speakers">
+								<span *ngFor="let speaker of session.talk.speakers"><a href="" [routerLink]="['/speakers', speaker.id]">{{speaker.name}}</a> 
+							<span *ngIf="session.talk.speakers.indexOf(speaker) < (session.talk.speakers.length-1)"> - </span>
+								</span>
+							</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

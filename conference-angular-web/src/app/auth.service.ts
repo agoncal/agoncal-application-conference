@@ -1,18 +1,17 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable, Optional, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { BASE_PATH, COLLECTION_FORMATS } from './ms/variables';
 import { Http, Headers, RequestOptionsArgs, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
   private _jwt: string;
-  protected basePath = 'http://conference.docker.localhost:90/conference-attendee/api/attendees/login';
+  protected basePath: string; //= 'http://conference.docker.localhost:90/conference-attendee/api/attendees/login';
 
-  constructor(private router: Router, private http: Http, @Optional() basePath: string) {
-    if (basePath) {
-      this.basePath = basePath;
-    }
+  constructor(private router: Router, private http: Http, @Inject(BASE_PATH) basePath: string) {
+    this.basePath = basePath + "/conference-attendee/api/attendees/login";
   }
 
   get jwt(): string {

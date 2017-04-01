@@ -1,19 +1,41 @@
 <div class="content">
-	<md-card>
-		<md-card-subtitle *ngIf="talk" >{{talk.talkType}} - {{talk.track}}</md-card-subtitle>
-		<md-card-title *ngIf="talk" >{{talk.title}}</md-card-title>
-		<md-card-subtitle *ngIf="session" >{{session.day}} : {{session.fromTime}} - {{session.toTime}}</md-card-subtitle>
-		<md-card-content *ngIf="talk">
-			<p>{{talk.summary}}</p>
-		</md-card-content>
-		<md-card-title-group  *ngFor="let speaker of speakers">
-			<img md-card-sm-image src="{{speaker.avatarUrl}}">
-			<md-card-title>{{speaker.firstName}} {{speaker.lastName}}</md-card-title>
-			<md-card-subtitle *ngIf="speaker.twitter" >{{speaker.twitter}}</md-card-subtitle>
-		</md-card-title-group>
-		<md-card-actions>
-			<button md-button [routerLink]="['/']" >RETOUR</button>
-			<button md-button [routerLink]="['/ratings', id]" >VOTE</button>
-		</md-card-actions>
-	</md-card>
-</div>
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-sm-8 blog-main">
+
+				<div class="blog-post">
+					<h2 class="blog-post-title" *ngIf="talk">{{talk.talkType}} - {{talk.track}}</h2>
+					<p class="blog-post-meta" *ngIf="session">{{session.day}} : {{session.fromTime}} - {{session.toTime}}</p>
+
+					<div *ngIf="talk">
+						<p>{{talk.summary}}</p>
+					</div>
+
+					<div *ngIf="talk">
+						<button type="button" [routerLink]="['/ratings', id]" class="btn btn-outline-success">Vote for this talk</button>
+						<button type="button" [routerLink]="['/']" class="btn btn-outline-primary">Back to conferences</button>
+					</div>
+				</div>
+
+				<!-- /.blog-post -->
+			</div>
+
+			<div class="col-sm-3 offset-sm-1 blog-sidebar">
+				<div class="sidebar-module sidebar-module-inset">
+					<h4>Speakers</h4>
+					<div class="card" *ngFor="let speaker of speakers">
+						<img class="card-img-top" data-src="{{speaker.avatarUrl}}" alt="{{speaker.firstName}} {{speaker.lastName}}">
+						<div class="card-block">
+							<h4 class="card-title">{{speaker.firstName}} {{speaker.lastName}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- /.blog-sidebar -->
+
+	
+		</div>
