@@ -1,3 +1,44 @@
+<div class="container">
+
+	<!-- Static navbar -->
+	 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Devoxx</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Conferences <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/attendees']">Attendees</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/rooms']">Rooms</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+	<!-- Main component for a primary marketing message or call to action -->
+	<div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Hello, Devoxx !!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+      </div>
+	</div>
+
+	<router-outlet></router-outlet>
+	
+</div>
+<!-- /container -->
+<!--
 <div>
 	<md-toolbar color="primary">
 		<span>
@@ -16,7 +57,7 @@
 		<md-sidenav align="start" mode="over" #sidenav>
 			<md-tab-group>
 				<md-tab>
-					<template md-tab-label>Details</template>
+					<ng-template md-tab-label>Details</ng-template>
 						<md-nav-list (click)="sidenav.close()">
 
 							<a md-list-item [routerLink]="['/']">
@@ -35,14 +76,13 @@
 						</md-nav-list>
 				</md-tab>
 				<md-tab>
-					<template md-tab-label>Feed</template>
+					<ng-template md-tab-label>Feed</ng-template>
 				</md-tab>
 			</md-tab-group>
 		</md-sidenav>
 		<router-outlet></router-outlet>
-		<!--<app-schedule></app-schedule>
-		<app-venue></app-venue>-->
+
 	</md-sidenav-container>
 
 
-</div>
+</div>-->

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { DefaultApiSchedule, DefaultApiSpeaker, DefaultApiTalk } from '../api/api';
+import {ScheduleApi, SpeakerApi, TalkApi } from '../api/api';
 import * as models from '../model/models';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -23,9 +23,9 @@ export class ScheduledetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private scheduleService: DefaultApiSchedule,
-    private talkService: DefaultApiTalk,
-    private speakerService: DefaultApiSpeaker
+    private scheduleService: ScheduleApi,
+    private talkService: TalkApi,
+    private speakerService: SpeakerApi
 
   ) { }
 

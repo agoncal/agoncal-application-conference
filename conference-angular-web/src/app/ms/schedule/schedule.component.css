@@ -1,7 +1,7 @@
-/*div.body {
-  margin:0 auto;
-  text-align:center;
-}*/
+.container {
+  max-width: 60rem;
+}
+
 
 h2{
     color:darkred;

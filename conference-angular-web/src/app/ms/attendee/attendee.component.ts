@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultApiAttendee } from '../api/api';
+import { AttendeeApi } from '../api/api';
 import * as models from '../model/models';
 import { Http, Headers, RequestOptionsArgs, Response, URLSearchParams } from '@angular/http';
 
@@ -16,7 +16,7 @@ export class AttendeeComponent implements OnInit {
   prev: string;
   hasLinks: boolean = false;
   
-  constructor(private attendeesService: DefaultApiAttendee) {
+  constructor(private attendeesService: AttendeeApi) {
 
   }
 

@@ -1,29 +1,24 @@
 <div class="content">
 
-	<md-card elevation="5">
+   <div class="container">
 
-		<md-card-title>
-			<h2>User login</h2>
-		</md-card-title>
+      <form class="form-signin" *ngIf="!submitted" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
 
-		<md-card-content>
+        <input  [(ngModel)]="mdUserName" name="username" #name="ngModel" class="form-control" placeholder="Username" required autofocus>
+        
+				<label for="inputPassword" class="sr-only">Password</label>
+        <input [(ngModel)]="mdPassword" name="password" #name="ngModel" class="form-control" type="password"  placeholder="Password" required>
+        
+				<div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.form.valid">Sign in</button>
+      </form>
 
-			<form *ngIf="!submitted" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-				<div class="form-group">
-
-					<div>
-						<input [(ngModel)]="mdUserName" name="username" #name="ngModel" placeholder="UserName" class="form-control" required>
-					</div>
-
-					<div style="margin-top:10px">
-						<input placeholder="Password" name="password" [(ngModel)]="mdPassword" #name="ngModel" class="form-control" required>
-					</div>
-				</div>
-				<button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Submit</button>
-			</form>
-
-		</md-card-content>
-
-	</md-card>
+    </div>
 
 </div>

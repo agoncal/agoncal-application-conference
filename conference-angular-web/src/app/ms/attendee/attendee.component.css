@@ -1,9 +1,18 @@
-.example-card {
-  width: 400px;
-  height: 200px;
+
+.card {
+  float: left;
+  width: 18%;
+  padding: .75rem;
+  margin-bottom: 2rem;
+  margin-left: 0px;
+  /*border: 0;*/
 }
 
-.example-header-image {
-  /*background-image: url('assets/img/examples/shiba1.jpg');*/
-  background-size: cover;
+.card > img {
+  width: 80%;
+  /*height: 80%*/
 }
+
+/*.card-text {
+  font-size: 85%;
+}*/

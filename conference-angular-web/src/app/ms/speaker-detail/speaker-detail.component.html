@@ -1,5 +1,17 @@
-<div class="content">
-  <md-card>
+<div class="container">
+
+  <div class="card">
+    <img class="card-img-top" src="{{speaker?.avatarUrl}}" alt="{{speaker?.firstName}} {{speaker?.lastName}}">
+    <div class="card-block">
+      <h4 class="card-title">{{speaker?.firstName}} {{speaker?.lastName}}</h4>
+      <p class="card-text">{{speaker?.bio}}</p>
+      <a href="https://twitter.com/{{speaker?.twitter}" class="card-link">{{speaker?.twitter}}</a>
+    <a href="{{speaker?.blog}}" class="card-link">{{speaker?.blog}}</a>
+
+    </div>
+  </div>
+
+  <!--<md-card>
       <md-card-title>{{speaker?.firstName}} {{speaker?.lastName}}</md-card-title>
       <md-card-subtitle>{{speaker?.company}}</md-card-subtitle>
     <md-card-content>
@@ -20,5 +32,5 @@
     <md-card-actions>
       <button md-button [routerLink]="['/speakers']" >BACK</button>
     </md-card-actions>
-  </md-card>
+  </md-card>-->
 </div>

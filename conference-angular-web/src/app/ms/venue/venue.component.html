@@ -1,7 +1,18 @@
 <div class="body">
 	<h2>Here's a list of Rooms availabe</h2>
 
-	<md-grid-list cols="4" rowHeight="200px">
+	<ul class="list-group">
+		<a *ngFor="let room of rooms" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+			<div class="d-flex w-100 justify-content-between">
+				<h5 class="mb-1">{{room.name}}</h5>
+				<span class="badge badge-default badge-pill">{{room.capacity}}</span>
+			</div>
+			<p class="mb-1">{{room?.setup}}</p>
+		</a>
+
+	</ul>
+
+	<!--<md-grid-list cols="4" rowHeight="200px">
 		<md-grid-tile *ngFor="let room of rooms" item-width="300">
 			<img src="../../../assets/devoxxbrain.jpg">
 			<md-grid-tile-footer style="left:10px;right:10px;">
@@ -12,5 +23,5 @@
       </button>
 			</md-grid-tile-footer>
 		</md-grid-tile>
-	</md-grid-list>
+	</md-grid-list>-->
 </div>
