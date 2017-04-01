@@ -41,8 +41,7 @@
         <version.docker.plugin>0.4.13</version.docker.plugin>
 
         <!-- Test -->
-        <version.arquillian>1.1.12.0</version.arquillian>
-        <version.arquillian.junit>1.1.11.Final</version.arquillian.junit>
+        <version.arquillian>1.1.13.2</version.arquillian>
         <version.arquillian.rest>1.0.0.Alpha4</version.arquillian.rest>
         <version.arquillian.wildfly>2.0.2.Final</version.arquillian.wildfly>
         <version.assertj>3.6.2</version.assertj>
@@ -173,11 +172,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
-                <groupId>org.jboss.arquillian.junit</groupId>
-                <artifactId>arquillian-junit-core</artifactId>
-                <version>${version.arquillian.junit}</version>
+                <groupId>org.arquillian.universe</groupId>
+                <artifactId>arquillian-junit</artifactId>
+                <version>${version.arquillian}</version>
+                <type>pom</type>
                 <scope>test</scope>
             </dependency>
             <dependency>
