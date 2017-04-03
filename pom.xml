@@ -70,7 +70,7 @@
         <module>conference-commons</module>
         <module>conference-commons-jwt</module>
         <module>conference-tests</module>
-        <module>conference-web</module>
+        <!--<module>conference-web</module>-->
         <module>microservice-attendee</module>
         <module>microservice-rating</module>
         <module>microservice-schedule</module>

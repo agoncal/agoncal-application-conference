@@ -132,6 +132,7 @@
                             <properties>
                                 <swarm.http.port>8083</swarm.http.port>
                                 <swarm.context.path>${project.build.finalName}</swarm.context.path>
+                                <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
                             </properties>
                         </configuration>
                     </plugin>
