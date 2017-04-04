@@ -14,7 +14,7 @@
 						<p>{{talk.summary}}</p>
 					</div>
 
-					<form *ngIf="!submitted" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+					<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
 						<select class="form-control" name="rating" [(ngModel)]="rating" required>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -34,7 +34,7 @@
 				<div class="sidebar-module sidebar-module-inset">
 					<h4>Speakers</h4>
 					<div *ngFor="let speaker of speakers">
-						<div >
+						<div>
 							<span>{{speaker.name}}</span>
 						</div>
 					</div>

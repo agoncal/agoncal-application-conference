@@ -21,19 +21,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService) {
   }
 
- 
+
   onSubmit() {
     this.authService
       .login(this.mdUserName, this.mdPassword)
       .mergeMap(jwt => this.route.queryParams)
       .map(qp => qp['redirectTo'])
       .subscribe(redirectTo => {
-        if (this.authService.isLoggedIn) { 
+        if (this.authService.isLoggedIn) {
           let url = redirectTo ? [redirectTo] : ['/'];
           this.router.navigate(url);
         }

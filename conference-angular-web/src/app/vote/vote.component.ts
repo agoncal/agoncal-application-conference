@@ -41,6 +41,9 @@ export class VoteComponent implements OnInit {
 
 
   onSubmit() {
+    console.log("------------------------------------------");
+    console.log("session id : " + this.session.id + " rating : " + this.rating);
+    console.log("------------------------------------------");
 
     var jwt = this.authService.jwt;
     let defaultHeaders: Headers = new Headers();
@@ -51,7 +54,7 @@ export class VoteComponent implements OnInit {
       headers: defaultHeaders
     };
 
-    this.ratingService.rate("id", 5, requestOptions)
+    this.ratingService.rate(this.session.id, this.rating, requestOptions)
       .subscribe((value:any) => {
         console.log("success :)");
       }, (error:any) => {
